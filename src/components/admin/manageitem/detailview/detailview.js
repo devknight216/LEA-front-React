@@ -24,7 +24,8 @@ function DetailViewComponent({selected}) {
         history.push(`/admin/properties/edit/${selected.id}`);
     }
     const gotoDetailPropertyPage = () => {
-        history.push(`/admin/properties/detail/${selected.id}`);
+        const win = window.open(`/details/${selected.id}`, "_blank");
+        win.focus();
     }
 
     return (
@@ -58,7 +59,7 @@ function DetailViewComponent({selected}) {
                             </div>
 
                         </div>
-                        <a href={selected.airbnb} target="_blank"><p className="truncate text-blue-600 underline">{selected.airbnb}</p></a>
+                        <a href={selected.airbnb} target="_blank" rel="noreferrer"><p className="truncate text-blue-600 underline">{selected.airbnb}</p></a>
                         <p>Item property:</p>
                         <div className="flex justify-start flex-wrap">
                             <div className="px-2 m-1 bg-red-600 rounded-md text-white">Apartment</div>

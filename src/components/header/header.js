@@ -124,7 +124,6 @@ export default function HeaderComponent() {
                               className="hidden md:block absolute z-10 top-full inset-x-0 transform shadow-lg bg-white"
                             >
                               <div className="max-w-7xl mx-auto grid gap-y-6 px-4 py-6 sm:grid-cols-2 sm:gap-8 sm:px-6 sm:py-8 lg:grid-cols-4 lg:px-8 lg:py-12 xl:py-16">
-                                {/* Place desktop search */}
                               </div>
                               <div className="bg-gray-50">
                                 <div className="max-w-7xl mx-auto space-y-6 px-4 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-6 lg:px-8">

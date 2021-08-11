@@ -1,6 +1,14 @@
+import { useState } from 'react'
 import { ChevronDownIcon, SearchIcon, SortAscendingIcon } from '@heroicons/react/solid'
 
-export default function FilterNavComponent() {
+export default function FilterNavComponent({handleFilter}) {
+
+  const [filterText, setFilterText] = useState('');
+
+  const handleChange = (e) => {
+    setFilterText(e.target.value);
+  }
+
   return (
     <div className="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
       <h3 className="text-lg leading-6 font-medium text-gray-900">Properties</h3>
@@ -19,6 +27,9 @@ export default function FilterNavComponent() {
               id="search_candidate"
               className="focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full rounded-none rounded-l-md pl-10 sm:hidden border-gray-300"
               placeholder="Search"
+              value={filterText}
+              onChange={(e) => handleChange(e)}
+              onKeyPress={(e)=> e.key === 'Enter' && handleFilter({filterText}) }
             />
             <input
               type="text"
@@ -26,6 +37,9 @@ export default function FilterNavComponent() {
               id="search_candidate"
               className="hidden focus:ring-indigo-500 focus:border-indigo-500 w-full h-full rounded-none rounded-l-md pl-10 sm:block sm:text-sm border-gray-300"
               placeholder="Search candidates"
+              value={filterText}
+              onChange={(e) => handleChange(e)}
+              onKeyPress={(e)=> e.key === 'Enter' && handleFilter({filterText}) }
             />
           </div>
           <button

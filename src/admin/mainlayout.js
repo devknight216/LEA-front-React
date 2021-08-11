@@ -17,7 +17,6 @@ import ManageNewPropertyItemPage from './manageitem'
 import BrandImage from 'assets/imgs/brand/png-white-background.png'
 import CreateNewPropertyPage from './createnewitem'
 import EditpropertiesPage from './editproperties'
-import PropertyDetailViewPage from './detailviewproperty'
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: HomeIcon, current: true },
@@ -274,9 +273,6 @@ function DashboardMainLayout() {
                   </Route>
                   <Route path="/admin/properties/edit/:id">
                     <EditpropertiesPage/>
-                  </Route>
-                  <Route path="/admin/properties/detail/:id">
-                    <PropertyDetailViewPage/>
                   </Route>
                 </Switch>
               </div>

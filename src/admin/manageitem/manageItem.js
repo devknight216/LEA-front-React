@@ -44,15 +44,23 @@ const properties = [
 ]
 function ManageNewPropertyItemPage() {
     const [selected, setSelected] = useState(properties[0]);
+    const [filteredProperties, setFilteredProperties] = useState(properties);
+
+    const handleFilter = ({filterText}) => {
+      //Call API for filter here...
+      let tempProperties = [...properties];
+      tempProperties = tempProperties.filter((e) => e.name.toUpperCase().search(filterText.toUpperCase()) !== -1);
+      setFilteredProperties(tempProperties);
+    }
 
     return (
         <div>
-            <FilterNavComponent/>
+            <FilterNavComponent handleFilter={handleFilter}/>
             <div className="border rounded-xl mt-5">
                 <div className="py-6">
                     <div className="flex-1 relative z-0 flex overflow-hidden">
                         <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none p-4">
-                            <ItemsTableComponent getSeleted = {setSelected} properties = {properties} selected = {selected}/>
+                            <ItemsTableComponent getSeleted = {setSelected} properties = {filteredProperties} selected = {selected}/>
                         </main>
                         <aside className="hidden relative xl:flex xl:flex-col flex-shrink-0 w-96 p-4">
                             <DetailViewComponent selected={selected}/>

@@ -4,7 +4,11 @@ import { amenities } from './constant'
 const features = [
   {
     label: "What is the property type?",
-    properties:['Apartment', 'House', 'Condo / Townhome', 'Secondary Unit', 'Unique Space', 'Bed and Breakfast', 'Boutique Hotel', 'Duplex', 'RV / Camper', 'Tiny House']
+    properties:['Apartment', 'House', 'Secondary Unit', 'Unique Space', 'Bed and Breakfast', 'Boutique Hotel']
+  },
+  {
+    label: "Choose the best option that fits the property.",
+    properties:['Rental Unit', 'Condominium (Condo)', 'Loft', 'Serviced Apartment']
   },
   {
     label: "Choose the best option that fits the space in the property that guests will occupy.",
