@@ -5,10 +5,16 @@ import MouseParticles from 'react-mouse-particles';
 import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import DashboardMainLayout from 'admin/mainlayout';
 import SigninPage from 'views/signin';
-
+import { useDispatch } from 'react-redux';
+import { getAllProperties } from 'reduxstore/propertyreducer/slice'
 
 function App() {
-  //fake auth
+  //testing redux
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch( getAllProperties() );
+  },[])
+
   return (
     <div>
       <Router>
