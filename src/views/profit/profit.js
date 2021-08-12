@@ -5,10 +5,10 @@ export default function ProfitPage() {
         <div>
             <HeroComponent/>
             <div className="container mx-auto">
-                <div className="text-center py-5">
+                <div className="text-center pt-10 pb-5">
                     <span className="text-3xl font-extrabold tracking-tight sm:text-4xl">What makes Airbnb so profitable?</span>
                 </div>
-                <div className="px-4">
+                <div className="px-4 max-w-2xl mx-auto">
                     <span className="text-gray-600">
                         Is your goal to earn more income in 2021? Can you believe how fast last year went by?<br/>
                         If increasing your income while decreasing your work time is one of them, then look no further this course is your ticket!<br/>
@@ -46,7 +46,7 @@ export default function ProfitPage() {
                     <div className="py-5">
                         <a
                             href="#"
-                            className="flex w-max mx-auto items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-red-400 hover:bg-red-500 sm:px-8"
+                            className="flex w-max mx-auto items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-400 hover:bg-red-500 sm:px-8"
                         >
                             Buy Now
                         </a>
