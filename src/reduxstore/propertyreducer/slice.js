@@ -41,7 +41,7 @@ export const PropertySlice = createSlice(
             .addCase(
                 deletePropertyById.fulfilled,
                 ( state, action ) => {
-                    state.property = action.payload;
+                    state.properties = action.payload;
                     state.status = STATUS.FULFILLED;
                 }
             )

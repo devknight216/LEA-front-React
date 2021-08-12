@@ -1,92 +1,27 @@
 import ImageListComponent from 'components/admin/manageitem/imagelist'
 import { Link } from 'react-router-dom'
-const features = [
-  {
-    label: "What kind of place will you host?",
-    properties:['Apartment', 'House', 'Secondary Unit', 'Unique Space', 'Bed and Breakfast', 'Boutique Hotel']
-  },
-  {
-    label: "Which of these best describes your place?",
-    properties:['Rental Unit', 'Condominium (Condo)', 'Loft', 'Serviced Apartment']
-  },
-  {
-    label: "What kind of space will guests have?",
-    properties:['An entire place', 'A private room', 'A shared room']
-  },
-]
+import { amenities, features, guestsNum, lastOffer } from '../createnewitem/constant'
+import { useForm } from "react-hook-form";
+import { formatReqestData } from '../createnewitem/functions';
+import { useDispatch } from 'react-redux';
+import { createNewProperty } from 'reduxstore/propertyreducer/action';
 
-const guestsNum = [
-  {
-    type: 'of guests'
-  },
-  {
-    type: 'of beds'
-  },
-  {
-    type: 'of bedrooms'
-  },
-  {
-    type: 'of bathrooms'
-  },
-]
-
-const placeOffer = {
-  'Amenities':[
-    'Pool',
-    'Hot Tub',
-    'Patio',
-    'BBQ Grill',
-    'Fire Pit',
-    'BBQ Grill',
-    'Fire Pit',
-    'Pool Table',
-    'Indoor Fireplace',
-    'Outdoor Dining Area',
-    'Exercise Equipment'
-  ],
-  'favorites':[
-    'Wifi',
-    'TV',
-    'Kitchen',
-    'Washer',
-    'Free parking on premises',
-    'Paid parking on premises',
-    'Air Conditioning',
-    'Dedicated Workspace',
-    'Outdoor shower',
-    'EV charger'
-  ],
-  'safetyItems':[
-    'Smoke alarm',
-    'First aid kit',
-    'Carbon monoxide alarm',
-    'Fire extinguisher'
-  ]
-}
-
-const lastOffer = {
-  'first':[
-    'Peaceful',
-    'Unique',
-    'Family-Friendly',
-    'Stylish',
-    'Central',
-    'Spacious'
-  ],
-  'second':[
-    'Security Camera',
-    'Weapons',
-    'Dangerous animals'
-  ]
-}
-
-export default function EditpropertiesPage() { 
+export default function CreateNewPropertyPage() { 
+    //Get form data from hook form
+    const { register, handleSubmit } = useForm();
+    const dispatch = useDispatch();
+    const onSubmit = (data) => {
+      const requestBody = formatReqestData(data);
+      //Dispatch API to create New Item
+      dispatch(createNewProperty(JSON.stringify(requestBody)));
+    };
+    
     return (
-      <form className="space-y-8 divide-y divide-gray-200">
+      <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-8 divide-y divide-gray-200">
           <div>
             <div>
-              <h3 className="text-lg leading-6 font-medium text-gray-900">Update Property</h3>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">Create Property</h3>
               <p className="mt-1 text-sm text-gray-500">
                 This information will be displayed publicly so be careful what you share.
               </p>
@@ -94,43 +29,39 @@ export default function EditpropertiesPage() {
   
             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
               <div className="sm:col-span-4">
-                <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="propertyName" className="block text-sm font-medium text-gray-700">
                   Property Name
                 </label>
                 <div className="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
-                    name="username"
-                    id="username"
-                    autoComplete="username"
+                    {...register("propertyName", {required: true, maxLength: 80})}
                     className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
                   />
                 </div>
               </div>
               <div className="sm:col-span-1">
-                <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="nightlyRate" className="block text-sm font-medium text-gray-700">
                   Nightly Rate
                 </label>
                 <div className="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="number"
-                    name="username"
-                    id="username"
-                    autoComplete="username"
+                    min={0}
+                    {...register("nightlyRate", {required: true})}
                     className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
                   />
                 </div>
               </div>
   
               <div className="sm:col-span-6">
-                <label htmlFor="about" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="propertyDescription" className="block text-sm font-medium text-gray-700">
                   Description
                 </label>
                 <div className="mt-1">
                   <textarea
-                    id="about"
-                    name="about"
                     rows={3}
+                    {...register("propertyDescription", {required: true})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
                     defaultValue={''}
                   />
@@ -177,83 +108,62 @@ export default function EditpropertiesPage() {
           <ImageListComponent/>
           <div className="pt-8">
             <div>
-              <h3 className="text-lg leading-6 font-medium text-gray-900">Hosted by</h3>
-              <p className="mt-1 text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">Host Information</h3>
             </div>
             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
               <div className="sm:col-span-3">
-                <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="hostedByName" className="block text-sm font-medium text-gray-700">
                   Name
                 </label>
                 <div className="mt-1">
                   <input
                     type="text"
-                    name="first_name"
-                    id="first_name"
-                    autoComplete="given-name"
+                    name="hostedByName"
+                    id="hostedByName"
+                    autoComplete="hostedByName"
+                    {...register("hostedByName", {required: true})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
               </div>
   
               <div className="sm:col-span-3">
-                <label htmlFor="last_name" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="hostedByNameEmail" className="block text-sm font-medium text-gray-700">
                   Email
                 </label>
                 <div className="mt-1">
                   <input
-                    type="text"
-                    name="last_name"
-                    id="last_name"
-                    autoComplete="family-name"
+                    type="email"
+                    {...register("hostedByNameEmail", {required: true, pattern: /^\S+@\S+$/i})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
+              </div>  
+              <div className="sm:col-span-6 mt-5">
+                <h3 className="text-lg leading-6 font-medium text-gray-900">Property Location</h3>
               </div>
   
-              <div className="sm:col-span-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Location
+              
+              <div className="sm:col-span-3">
+                <label htmlFor="street_address" className="block text-sm font-medium text-gray-700">
+                  Apartment, Suite etc
                 </label>
                 <div className="mt-1">
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                    type="text"
+                    {...register("apartment", {required: true})}
+                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
               </div>
-  
               <div className="sm:col-span-3">
-                <label htmlFor="country" className="block text-sm font-medium text-gray-700">
-                  Country / Region
-                </label>
-                <div className="mt-1">
-                  <select
-                    id="country"
-                    name="country"
-                    autoComplete="country"
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full py-2 sm:text-sm border-gray-300 rounded-md"
-                  >
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
-                  </select>
-                </div>
-              </div>
-  
-              <div className="sm:col-span-6">
                 <label htmlFor="street_address" className="block text-sm font-medium text-gray-700">
                   Street address
                 </label>
                 <div className="mt-1">
                   <input
                     type="text"
-                    name="street_address"
-                    id="street_address"
-                    autoComplete="street-address"
+                    {...register("street", {required: true})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
@@ -266,8 +176,7 @@ export default function EditpropertiesPage() {
                 <div className="mt-1">
                   <input
                     type="text"
-                    name="city"
-                    id="city"
+                    {...register("city", {required: true})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
@@ -280,8 +189,7 @@ export default function EditpropertiesPage() {
                 <div className="mt-1">
                   <input
                     type="text"
-                    name="state"
-                    id="state"
+                    {...register("state", {required: true})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
@@ -294,11 +202,24 @@ export default function EditpropertiesPage() {
                 <div className="mt-1">
                   <input
                     type="text"
-                    name="zip"
-                    id="zip"
-                    autoComplete="postal-code"
+                    {...register("zip", {required: true, pattern: /[0-9]+/})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
+                </div>
+              </div>
+              <div className="sm:col-span-3">
+                <label htmlFor="country" className="block text-sm font-medium text-gray-700">
+                  Country / Region
+                </label>
+                <div className="mt-1">
+                  <select
+                    {...register("country", {required: true})}
+                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                  >
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>Mexico</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -306,9 +227,9 @@ export default function EditpropertiesPage() {
   
           <div className="pt-8">
             <div>
-              <h3 className="text-lg leading-6 font-medium text-gray-900">Features</h3>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">Property Features</h3>
               <p className="mt-1 text-sm text-gray-500">
-                We'll always let you know about important changes, but you pick what else you want to hear about.
+                Select options below that best suit your property.
               </p>
             </div>
             <div className="mt-6">
@@ -321,9 +242,10 @@ export default function EditpropertiesPage() {
                         <div className="mt-2 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                           <div className="sm:col-span-3">
                             <select
-                              id="country"
-                              name="type"
-                              autoComplete="type"
+                              id={item.label}
+                              name={item.label}
+                              autoComplete={item.label}
+                              {...register( `${item.variableName}`)}
                               className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full py-2 sm:text-sm border-gray-300 rounded-md"
                             >
                               {
@@ -337,93 +259,55 @@ export default function EditpropertiesPage() {
                       </div>
                     ))
                   }
-                  <legend className="text-base font-medium text-gray-900">How many guests would you like to welcome?</legend>
-                  <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-4">
+                  <legend className="text-base font-medium text-gray-900">Please indicate the number applicable to the fields below: </legend>
+                  <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2 md:grid-cols-4">
                     {
                       guestsNum.map((item, index)=>(
                         <div key={index}>
                             <div className="flex items-center">                    
                               <input
-                                type="number"
-                                name="state"
-                                id="state"
-                                className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                                type='number'
+                                {...register( `${item.variableName}`, {required: true})}
+                                min= {0}
+                                id={item.type}
+                                className="shadow-sm focus:ring-indigo-500 px-2 focus:border-indigo-500 block h-full py-2 sm:text-sm border-gray-300 rounded-md"
                               />
-                              <span>{item.type}</span>
+                              <span className="ml-3">{item.type}</span>
                             </div>
+                            <span className="text-sm text-gray-500">{item.description}</span>
                         </div>
                       ))
                     }                  
                   </div>
                   <div>
-                    <legend className='text-base font-medium text-gray-900'>Let guests know what your place has to offer, Do you have any standout amenities?</legend>
-                    <div className="p-5 border-2 rounded-xl grid grid-cols-1 sm:grid-cols-3 gap-x-4">
-                      <div className='px-3'>
-                        <legend className='text-base font-medium py-2 text-gray-900'>Standout amenities</legend>
-                        {
-                          placeOffer.Amenities.map((item, index) => (
-                            <div className="relative flex items-start" key={index}>
-                              <div className="flex items-center h-5">
-                                <input
-                                  id="candidates"
-                                  name="candidates"
-                                  type="checkbox"
-                                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                                />
-                              </div>
-                              <div className="ml-3 text-sm">
-                                <label htmlFor="candidates" className="font-medium text-gray-700">
-                                  {item}
-                                </label>
-                              </div>
-                            </div>
-                          ))
-                        }
-                      </div>
-                      <div className='px-3'>
-                        <legend className='text-base font-medium py-2 text-gray-900'>Guest favorites</legend>
-                        {
-                          placeOffer.favorites.map((item, index) => (
-                            <div className="relative flex items-start" key={index}>
-                              <div className="flex items-center h-5">
-                                <input
-                                  id="candidates"
-                                  name="candidates"
-                                  type="checkbox"
-                                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                                />
-                              </div>
-                              <div className="ml-3 text-sm">
-                                <label htmlFor="candidates" className="font-medium text-gray-700">
-                                  {item}
-                                </label>
-                              </div>
-                            </div>
-                          ))
-                        }
-                      </div>
-                      <div className='px-3'>
-                        <legend className='text-base font-medium py-2 text-gray-900'>Have any of these safety items?</legend>
-                        {
-                          placeOffer.safetyItems.map((item, index) => (
-                            <div className="relative flex items-start" key={index}>
-                              <div className="flex items-center h-5">
-                                <input
-                                  id="candidates"
-                                  name="candidates"
-                                  type="checkbox"
-                                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                                />
-                              </div>
-                              <div className="ml-3 text-sm">
-                                <label htmlFor="candidates" className="font-medium text-gray-700">
-                                  {item}
-                                </label>
-                              </div>
-                            </div>
-                          ))
-                        }
-                      </div>
+                    <legend className='text-base font-medium text-gray-900'>What amenities comes with booking the property?</legend>
+                    <div className="p-5 border-2 rounded-xl grid grid-cols-1 sm:grid-cols-4 gap-x-4 gap-y-4">
+                      {
+                        Object.keys(amenities).map(category => (
+                          <div className='px-3' key={category}>
+                            <legend className='text-base font-medium py-2 text-gray-900'>{amenities[category].title}</legend>
+                            {
+                              amenities[category].lists.map((item, index) => (
+                                <div className="relative flex items-start" key={index}>
+                                  <div className="flex items-center h-5">
+                                    <input
+                                      id={item.variableName}
+                                      {...register( `${item.variableName}`)}
+                                      type="checkbox"
+                                      className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                    />
+                                  </div>
+                                  <div className="ml-3 text-sm">
+                                    <label htmlFor= {item.variableName} className="font-medium text-gray-700">
+                                      {item.label}
+                                    </label>
+                                  </div>
+                                </div>
+                              ))
+                            }
+                          </div>
+                        ))
+                      }
                     </div>
                   </div>
                 </div>
@@ -432,21 +316,20 @@ export default function EditpropertiesPage() {
             <fieldset>
               <div className="grid sm:grid-cols-2 grid-cols-1">
                 <div>
-                  <legend className='text-base font-medium py-2 text-gray-900'>describe your place: (Choose up to 2 highlights)</legend>
+                  <legend className='text-base font-medium py-2 text-gray-900'>Describe the property.</legend>
                   {
                     lastOffer.first.map((item, index) => (
                       <div className="relative flex items-start" key={index}>
                         <div className="flex items-center h-5">
                           <input
-                            id="candidates"
-                            name="candidates"
+                            {...register( `${item.variableName}`)}
                             type="checkbox"
                             className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                           />
                         </div>
                         <div className="ml-3 text-sm">
-                          <label htmlFor="candidates" className="font-medium text-gray-700">
-                            {item}
+                          <label htmlFor= {item.variableName} className="font-medium text-gray-700">
+                            {item.lable}
                           </label>
                         </div>
                       </div>
@@ -454,21 +337,20 @@ export default function EditpropertiesPage() {
                   }
                 </div>
                 <div>
-                  <legend className='text-base font-medium py-2 text-gray-900'>Just a few questions</legend>
+                  <legend className='text-base font-medium py-2 text-gray-900'>Does the property has any of the following?</legend>
                   {
                     lastOffer.second.map((item, index) => (
                       <div className="relative flex items-start" key={index}>
                         <div className="flex items-center h-5">
                           <input
-                            id="candidates"
-                            name="candidates"
+                            {...register( `${item.variableName}`)}
                             type="checkbox"
                             className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                           />
                         </div>
                         <div className="ml-3 text-sm">
-                          <label htmlFor="candidates" className="font-medium text-gray-700">
-                            {item}
+                          <label htmlFor= {item.variableName} className="font-medium text-gray-700">
+                            {item.lable}
                           </label>
                         </div>
                       </div>
@@ -494,7 +376,7 @@ export default function EditpropertiesPage() {
               type="submit"
               className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              Update
+              Save
             </button>
           </div>
         </div>

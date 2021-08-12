@@ -22,7 +22,7 @@ export const getPropertyById = createAsyncThunk(
 
 export const deletePropertyById = createAsyncThunk(
     "property/deleteById",
-    async(id) => {
+    async(id) => {        
         const response = await deletePropertyByIdFromAPI(id);
         console.log("API response", response);
         return response.data;

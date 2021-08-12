@@ -27,8 +27,16 @@ const getPropertyByIdFromAPI = async ( id ) => {
 }
 
 const deletePropertyByIdFromAPI = async ( id ) => {
-    const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api/property/${id}`;
-    const res = axios.delete(
+    const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api/property`;
+    await axios.delete(
+        `${backend_url}/${id}`,
+        {
+            headers:{
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        }
+    );
+    const res = await axios.get(
         backend_url,
         {
             headers:{

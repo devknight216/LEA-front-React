@@ -12,7 +12,6 @@ export default function CreateNewPropertyPage() {
     const dispatch = useDispatch();
     const onSubmit = (data) => {
       const requestBody = formatReqestData(data);
-      console.log('RequestBody=>', requestBody);
       //Dispatch API to create New Item
       dispatch(createNewProperty(JSON.stringify(requestBody)));
     };
@@ -203,7 +202,7 @@ export default function CreateNewPropertyPage() {
                 <div className="mt-1">
                   <input
                     type="text"
-                    {...register("zip", {required: true})}
+                    {...register("zip", {required: true, pattern: /[0-9]+/})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
@@ -261,7 +260,7 @@ export default function CreateNewPropertyPage() {
                     ))
                   }
                   <legend className="text-base font-medium text-gray-900">Please indicate the number applicable to the fields below: </legend>
-                  <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-4">
+                  <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2 md:grid-cols-4">
                     {
                       guestsNum.map((item, index)=>(
                         <div key={index}>
