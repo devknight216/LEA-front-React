@@ -27,7 +27,7 @@ export default function CtaComponent() {
                         <p className="mt-2 text-gray-800 text-3xl font-extrabold tracking-tight sm:text-4xl">We're here to help</p>
                         <p className="mt-3 text-lg text-gray-800">
                             Want to know more about our properties? Maybe you have some questions about the rates. 
-                            Fill out the contact form and one our real estate expert will reach out to you and assist you with your concerns. 
+                            Fill out the contact form and one our  real estate consultants will reach out to you and assist you with your concerns. 
                         </p>
                         <div className="mt-8">
                             <div className="inline-flex rounded-md shadow">
@@ -35,7 +35,7 @@ export default function CtaComponent() {
                                     to="/contact"
                                     className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-400 hover:bg-red-700"
                                 >
-                                    Visit the help center
+                                    Contact Us
                                     <ExternalLinkIcon className="-mr-1 ml-3 h-5 w-5 text-white" aria-hidden="true" />
                                 </Link>
                             </div>

@@ -1,30 +1,22 @@
 /* This example requires Tailwind CSS v2.0+ */
+import ChrisAvatar from 'assets/imgs/avatars/chrisAvatar.png'
+import KatAvatar from 'assets/imgs/avatars/katAvatar.png'
+
 const people = [
   {
-    name: 'Whitney Francis',
-    role: 'Copywriter',
-    imageUrl:
-      'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+    name: 'Chris',
+    role: 'CEO',
+    imageUrl: ChrisAvatar,
     twitterUrl: '#',
     linkedinUrl: '#',
   },
   {
-    name: 'Whitney Francis',
-    role: 'Copywriter',
-    imageUrl:
-      'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+    name: 'Kat',
+    role: 'Property Manager',
+    imageUrl: KatAvatar,
     twitterUrl: '#',
     linkedinUrl: '#',
   },
-  {
-    name: 'Whitney Francis',
-    role: 'Copywriter',
-    imageUrl:
-      'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },
-  // More people...
 ]
 
 export default function OurTeamComponent() {
@@ -39,7 +31,7 @@ export default function OurTeamComponent() {
               neque.
             </p>
           </div>
-          <ul className="mx-auto space-y-16 sm:grid sm:grid-cols-2 sm:gap-16 sm:space-y-0 lg:grid-cols-3 lg:max-w-5xl">
+          <ul className="mx-auto space-y-16 sm:grid sm:grid-cols-2 sm:gap-16 sm:space-y-0 lg:grid-cols-2 lg:max-w-5xl">
             {people.map((person, index) => (
               <li key={person.name} key={index}>
                 <div className="space-y-6">

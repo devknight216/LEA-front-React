@@ -16,7 +16,7 @@ const isRejectedAction = (action) =>
 
 export const PropertySlice = createSlice(
     {
-        name: "PROPERTY",
+        name: "property",
         initialState: {
             property: {},
             properties: [],
