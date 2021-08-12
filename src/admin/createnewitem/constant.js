@@ -282,16 +282,16 @@ export const amenities = {
     'heatingCooling': {
         title: 'Heating and Cooling',
         lists: [{
-                label: 'Backing',
-                variableName: 'amenities_ceiling_company'
+                label: 'Ceiling Fan',
+                variableName: 'amenities_ceiling_fan'
             },
             {
                 label: 'Heating',
                 variableName: 'amenities_heating'
             },
             {
-                label: 'Ceiling Company',
-                variableName: 'amenities_ceiling_company'
+                label: 'Portable Fan',
+                variableName: 'amenities_portable_fan'
             },
         ],
     },
@@ -314,20 +314,12 @@ export const amenities = {
                 variableName: 'amenities_blender'
             },
             {
-                label: 'Bread maker',
-                variableName: 'amenities_bread_maker'
-            },
-            {
                 label: 'Coffee',
                 variableName: 'amenities_coffie'
             },
             {
                 label: 'Coffee maker',
                 variableName: 'amenities_coffee_maker'
-            },
-            {
-                label: 'Bread maker',
-                variableName: 'amenities_bread_maker'
             },
             {
                 label: 'Cooking basics',
@@ -346,7 +338,7 @@ export const amenities = {
                 variableName: 'amenities_freezer'
             },
             {
-                label: 'Hot water kettls',
+                label: 'Hot water Kettls',
                 variableName: 'amenities_hot_water_kettles'
             },
             {
@@ -400,10 +392,6 @@ export const amenities = {
             {
                 label: 'Resort access',
                 variable: 'amenities_resort_access'
-            },
-            {
-                label: 'Ski-in/Ski-out',
-                variable: 'amenities_skiin_skiout'
             },
             {
                 label: 'Ski-in/Ski-out',

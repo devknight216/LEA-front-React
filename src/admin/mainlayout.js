@@ -263,7 +263,7 @@ function DashboardMainLayout() {
               <div className="py-4">
                 <Switch>
                   <Route exact path="/admin">
-                    This is Dashbaord
+                    This is Dashboard
                   </Route>
                   <Route exact path="/admin/properties">
                     <ManageNewPropertyItemPage/>
