@@ -75,5 +75,5 @@ export const PropertySlice = createSlice(
     }
 )
 
-export { getAllProperties, getPropertyById };
+export { getAllProperties, getPropertyById, createNewProperty, updatePropertyById, deletePropertyById };
 export default PropertySlice.reducer;

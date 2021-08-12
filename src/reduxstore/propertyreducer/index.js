@@ -59,7 +59,8 @@ const craeteNewPropertFromAPI = async ( requestBody ) => {
         requestBody,
         {
             headers:{
-                'X-Requested-With': 'XMLHttpRequest'
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
             }
         }
     );

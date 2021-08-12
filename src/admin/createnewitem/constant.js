@@ -1,3 +1,54 @@
+export const features = [
+    {
+      label: "What is the property type?",
+      variableName: "propertyType",
+      properties:['Apartment', 'House', 'Condo / Townhome', 'Secondary Unit', 'Unique Space', 'Bed and Breakfast', 'Boutique Hotel', 'Duplex', 'RV / Camper', 'Tiny House']
+    },
+    {
+      label: "Choose the best option that fits the space in the property that guests will occupy.",
+      variableName: "propertySpaceFeature",
+      properties:['An entire place', 'A private room', 'A shared room']
+    },
+]
+  
+export const guestsNum = [
+    {
+      type: 'of guests',
+      variableName: 'guestNum',
+      description: '# of guests that the property an accomodate'
+    },
+    {
+      type: 'of beds',
+      variableName: 'bedsNum',
+      description: '# of beds in the property that guests can use'
+    },
+    {
+      type: 'of bedrooms',
+      variableName: 'bedroomNum',
+      description: '# of bedrooms in the property'
+    },
+    {
+      type: 'of bathrooms',
+      variableName: 'bathroomNum',
+      description: '# of bathrroms in the property'
+    },
+  ]
+  
+export const lastOffer = {
+    'first':[
+      { lable: "Peaceful", variableName: "peaceful" },
+      { lable: "Unique", variableName: "unique" },
+      { lable: "Family-Friendly", variableName: "familiFriendly" },
+      { lable: "Stylish", variableName: "stylish" },
+      { lable: "Central", variableName: "central" },
+      { lable: "Spacious", variableName: "spacious" },
+    ],
+    'second':[
+      { lable: "Security Camera", variableName: "securityCamera" },
+      { lable: "Weapons", variableName: "weapons" },
+      { lable: "Dangerous", variableName: "dangerous" }
+    ]
+  }
 export const amenities = {
     'standout': {
         title: 'Standout amenities',

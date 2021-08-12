@@ -1,55 +1,24 @@
 import ImageListComponent from 'components/admin/manageitem/imagelist'
 import { Link } from 'react-router-dom'
-import { amenities } from './constant'
-const features = [
-  {
-    label: "What is the property type?",
-    properties:['Apartment', 'House', 'Condo / Townhome', 'Secondary Unit', 'Unique Space', 'Bed and Breakfast', 'Boutique Hotel', 'Duplex', 'RV / Camper', 'Tiny House']
-  },
-  {
-    label: "Choose the best option that fits the space in the property that guests will occupy.",
-    properties:['An entire place', 'A private room', 'A shared room']
-  },
-]
-
-const guestsNum = [
-  {
-    type: 'of guests',
-    description: '# of guests that the property an accomodate'
-  },
-  {
-    type: 'of beds',
-    description: '# of beds in the property that guests can use'
-  },
-  {
-    type: 'of bedrooms',
-    description: '# of bedrooms in the property'
-  },
-  {
-    type: 'of bathrooms',
-    description: '# of bathrroms in the property'
-  },
-]
-
-const lastOffer = {
-  'first':[
-    'Peaceful',
-    'Unique',
-    'Family-Friendly',
-    'Stylish',
-    'Central',
-    'Spacious'
-  ],
-  'second':[
-    'Security Camera',
-    'Weapons',
-    'Dangerous animals'
-  ]
-}
+import { amenities, features, guestsNum, lastOffer } from './constant'
+import { useForm } from "react-hook-form";
+import { formatReqestData } from './functions';
+import { useDispatch } from 'react-redux';
+import { createNewProperty } from 'reduxstore/propertyreducer/action';
 
 export default function CreateNewPropertyPage() { 
+    //Get form data from hook form
+    const { register, handleSubmit } = useForm();
+    const dispatch = useDispatch();
+    const onSubmit = (data) => {
+      const requestBody = formatReqestData(data);
+      console.log('RequestBody=>', requestBody);
+      //Dispatch API to create New Item
+      dispatch(createNewProperty(JSON.stringify(requestBody)));
+    };
+    
     return (
-      <form className="space-y-8 divide-y divide-gray-200">
+      <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-8 divide-y divide-gray-200">
           <div>
             <div>
@@ -67,9 +36,7 @@ export default function CreateNewPropertyPage() {
                 <div className="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
-                    name="propertyName"
-                    id="propertyName"
-                    autoComplete="propertyName"
+                    {...register("propertyName", {required: true, maxLength: 80})}
                     className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
                   />
                 </div>
@@ -81,9 +48,8 @@ export default function CreateNewPropertyPage() {
                 <div className="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="number"
-                    name="nightlyRate"
-                    id="nightlyRate"
-                    autoComplete="nightlyRate"
+                    min={0}
+                    {...register("nightlyRate", {required: true})}
                     className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
                   />
                 </div>
@@ -95,9 +61,8 @@ export default function CreateNewPropertyPage() {
                 </label>
                 <div className="mt-1">
                   <textarea
-                    id="propertyDescription"
-                    name="propertyDescription"
                     rows={3}
+                    {...register("propertyDescription", {required: true})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
                     defaultValue={''}
                   />
@@ -157,6 +122,7 @@ export default function CreateNewPropertyPage() {
                     name="hostedByName"
                     id="hostedByName"
                     autoComplete="hostedByName"
+                    {...register("hostedByName", {required: true})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
@@ -169,9 +135,7 @@ export default function CreateNewPropertyPage() {
                 <div className="mt-1">
                   <input
                     type="email"
-                    name="hostedByNameEmail"
-                    id="hostedByNameEmail"
-                    autoComplete="hostedByNameEmail"
+                    {...register("hostedByNameEmail", {required: true, pattern: /^\S+@\S+$/i})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
@@ -188,9 +152,7 @@ export default function CreateNewPropertyPage() {
                 <div className="mt-1">
                   <input
                     type="text"
-                    name="street_address"
-                    id="street_address"
-                    autoComplete="street-address"
+                    {...register("apartment", {required: true})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
@@ -202,9 +164,7 @@ export default function CreateNewPropertyPage() {
                 <div className="mt-1">
                   <input
                     type="text"
-                    name="street_address"
-                    id="street_address"
-                    autoComplete="street-address"
+                    {...register("street", {required: true})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
@@ -217,8 +177,7 @@ export default function CreateNewPropertyPage() {
                 <div className="mt-1">
                   <input
                     type="text"
-                    name="city"
-                    id="city"
+                    {...register("city", {required: true})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
@@ -231,8 +190,7 @@ export default function CreateNewPropertyPage() {
                 <div className="mt-1">
                   <input
                     type="text"
-                    name="state"
-                    id="state"
+                    {...register("state", {required: true})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
@@ -245,9 +203,7 @@ export default function CreateNewPropertyPage() {
                 <div className="mt-1">
                   <input
                     type="text"
-                    name="zip"
-                    id="zip"
-                    autoComplete="postal-code"
+                    {...register("zip", {required: true})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
@@ -258,9 +214,7 @@ export default function CreateNewPropertyPage() {
                 </label>
                 <div className="mt-1">
                   <select
-                    id="country"
-                    name="country"
-                    autoComplete="country"
+                    {...register("country", {required: true})}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full py-2 sm:text-sm border-gray-300 rounded-md"
                   >
                     <option>United States</option>
@@ -292,6 +246,7 @@ export default function CreateNewPropertyPage() {
                               id={item.label}
                               name={item.label}
                               autoComplete={item.label}
+                              {...register( `${item.variableName}`)}
                               className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full py-2 sm:text-sm border-gray-300 rounded-md"
                             >
                               {
@@ -312,8 +267,8 @@ export default function CreateNewPropertyPage() {
                         <div key={index}>
                             <div className="flex items-center">                    
                               <input
-                                type={item.type}
-                                name={item.type}
+                                type='number'
+                                {...register( `${item.variableName}`, {required: true})}
                                 min= {0}
                                 id={item.type}
                                 className="shadow-sm focus:ring-indigo-500 px-2 focus:border-indigo-500 block h-full py-2 sm:text-sm border-gray-300 rounded-md"
@@ -338,7 +293,7 @@ export default function CreateNewPropertyPage() {
                                   <div className="flex items-center h-5">
                                     <input
                                       id={item.variableName}
-                                      name={item.variableName}
+                                      {...register( `${item.variableName}`)}
                                       type="checkbox"
                                       className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                                     />
@@ -368,15 +323,14 @@ export default function CreateNewPropertyPage() {
                       <div className="relative flex items-start" key={index}>
                         <div className="flex items-center h-5">
                           <input
-                            id= {item}
-                            name= {item}
+                            {...register( `${item.variableName}`)}
                             type="checkbox"
                             className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                           />
                         </div>
                         <div className="ml-3 text-sm">
-                          <label htmlFor= {item} className="font-medium text-gray-700">
-                            {item}
+                          <label htmlFor= {item.variableName} className="font-medium text-gray-700">
+                            {item.lable}
                           </label>
                         </div>
                       </div>
@@ -390,15 +344,14 @@ export default function CreateNewPropertyPage() {
                       <div className="relative flex items-start" key={index}>
                         <div className="flex items-center h-5">
                           <input
-                            id= {item}
-                            name= {item}
+                            {...register( `${item.variableName}`)}
                             type="checkbox"
                             className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                           />
                         </div>
                         <div className="ml-3 text-sm">
-                          <label htmlFor= {item} className="font-medium text-gray-700">
-                            {item}
+                          <label htmlFor= {item.variableName} className="font-medium text-gray-700">
+                            {item.lable}
                           </label>
                         </div>
                       </div>
