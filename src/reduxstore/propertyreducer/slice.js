@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getAllProperties } from './action'
+import { deletePropertyById, getAllProperties, getPropertyById, updatePropertyById, createNewProperty } from './action'
 const PREFIX = 'property'
 
 const STATUS = {
@@ -31,6 +31,34 @@ export const PropertySlice = createSlice(
                     state.status = STATUS.FULFILLED
                 } 
             )
+            .addCase(
+                getPropertyById.fulfilled,
+                ( state, action ) => {
+                    state.property = action.payload,
+                    state.status = STATUS.FULFILLED
+                }
+            )
+            .addCase(
+                deletePropertyById.fulfilled,
+                ( state, action ) => {
+                    state.property = action.payload
+                    state.status = STATUS.FULFILLED
+                }
+            )
+            .addCase(
+                updatePropertyById.fulfilled,
+                ( state, action ) => {
+                    state.property = action.payload
+                    state.status = STATUS.FULFILLED
+                }
+            )
+            .addCase(
+                createNewProperty.fulfilled,
+                ( state, action ) => {
+                    state.property = action.payload
+                    state.status = STATUS.FULFILLED
+                }
+            )
             .addMatcher(
                 isPendingAction,
                 ( state, action ) => {
@@ -47,5 +75,5 @@ export const PropertySlice = createSlice(
     }
 )
 
-export { getAllProperties  };
+export { getAllProperties, getPropertyById };
 export default PropertySlice.reducer;

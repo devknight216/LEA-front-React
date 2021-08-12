@@ -6,13 +6,13 @@ import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 're
 import DashboardMainLayout from 'admin/mainlayout';
 import SigninPage from 'views/signin';
 import { useDispatch } from 'react-redux';
-import { getAllProperties } from 'reduxstore/propertyreducer/slice'
+import { getPropertyById } from 'reduxstore/propertyreducer/slice'
 
 function App() {
   //testing redux
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch( getAllProperties() );
+    dispatch( getPropertyById('6113c66620229231a4cc3eb8') );
   },[])
 
   return (
