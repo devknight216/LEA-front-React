@@ -6,7 +6,7 @@ export const getAllProperties = createAsyncThunk(
     "property/getAll",
     async() => {
         const response = await getAllPropertiesFromAPI();
-        console.log("API response", response);
+        console.log("API response", response.data);
         return response.data;
     }
 );

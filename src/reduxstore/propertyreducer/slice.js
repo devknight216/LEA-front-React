@@ -27,36 +27,36 @@ export const PropertySlice = createSlice(
             builder.addCase(
                 getAllProperties.fulfilled,
                 ( state, action ) => {
-                    state.properties = action.payload,
-                    state.status = STATUS.FULFILLED
+                    state.properties = action.payload;
+                    state.status = STATUS.FULFILLED;
                 } 
             )
             .addCase(
                 getPropertyById.fulfilled,
                 ( state, action ) => {
-                    state.property = action.payload,
-                    state.status = STATUS.FULFILLED
+                    state.property = action.payload;
+                    state.status = STATUS.FULFILLED;
                 }
             )
             .addCase(
                 deletePropertyById.fulfilled,
                 ( state, action ) => {
-                    state.property = action.payload
-                    state.status = STATUS.FULFILLED
+                    state.property = action.payload;
+                    state.status = STATUS.FULFILLED;
                 }
             )
             .addCase(
                 updatePropertyById.fulfilled,
                 ( state, action ) => {
-                    state.property = action.payload
-                    state.status = STATUS.FULFILLED
+                    state.property = action.payload;
+                    state.status = STATUS.FULFILLED;
                 }
             )
             .addCase(
                 createNewProperty.fulfilled,
                 ( state, action ) => {
-                    state.property = action.payload
-                    state.status = STATUS.FULFILLED
+                    state.property = action.payload;
+                    state.status = STATUS.FULFILLED;
                 }
             )
             .addMatcher(
