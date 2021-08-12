@@ -88,6 +88,18 @@ export const amenities = {
                 label: 'Exercise Equipment',
                 variableName: 'amenities_exercise_equipment'
             },
+            {
+                label: 'Gym',
+                variableName: 'amenities_gym'
+            },
+            {
+                label: 'Pets Allowed',
+                variableName: 'amenities_pet_allowed'
+            },
+            {
+                label: 'Self Check-in',
+                variableName: 'amenities_self_check_in'
+            },
         ],
     },
     'favorites': {
@@ -381,6 +393,10 @@ export const amenities = {
                 variableName: 'amenities_dining_table'
             },
             {
+                label: 'Dishes and silverware',
+                variableName: 'amenities_dishes_and_silverware'
+            },
+            {
                 label: 'Dishwasher',
                 variableName: 'ademindate_dighwasher'
             },
@@ -391,6 +407,10 @@ export const amenities = {
             {
                 label: 'Hot water Kettls',
                 variableName: 'amenities_hot_water_kettles'
+            },
+            {
+                label: 'Microwave',
+                variableName: 'amenities_microwave'
             },
             {
                 label: 'Mini fridge',
