@@ -27,7 +27,7 @@ export default function HeroComponent() {
     //Transaction for Hero title
     const intervalId = setInterval(() =>
       setIndex(index => index + 1),
-      3000 // every 3 seconds
+      5000 // every 3 seconds
     );
     return () => clearTimeout(intervalId);
   }, []);
