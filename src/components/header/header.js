@@ -1,11 +1,10 @@
 import { Fragment } from 'react';
+import SearchPropertyComponent from './searchproperty'
 import { Popover, Transition } from '@headlessui/react';
 import {
     BookmarkAltIcon,
     BriefcaseIcon,
-    ChartBarIcon,
     CheckCircleIcon,
-    CursorClickIcon,
     DesktopComputerIcon,
     GlobeAltIcon,
     InformationCircleIcon,
@@ -16,7 +15,6 @@ import {
     PlayIcon,
     ShieldCheckIcon,
     UserGroupIcon,
-    ViewGridIcon,
     XIcon,
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
@@ -63,6 +61,7 @@ const blogPosts = [
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
+
 
 export default function HeaderComponent() {
     return (
@@ -123,8 +122,7 @@ export default function HeaderComponent() {
                               static
                               className="hidden md:block absolute z-10 top-full inset-x-0 transform shadow-lg bg-white"
                             >
-                              <div className="max-w-7xl mx-auto grid gap-y-6 px-4 py-6 sm:grid-cols-2 sm:gap-8 sm:px-6 sm:py-8 lg:grid-cols-4 lg:px-8 lg:py-12 xl:py-16">
-                              </div>
+                              <SearchPropertyComponent />
                               <div className="bg-gray-50">
                                 <div className="max-w-7xl mx-auto space-y-6 px-4 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-6 lg:px-8">
                                   {callsToAction.map((item) => (
@@ -276,12 +274,9 @@ export default function HeaderComponent() {
                     <Link to="/signin" className="text-base font-medium text-gray-500 hover:text-gray-900">
                       Sign in
                     </Link>
-                    <a
-                      href="#"
-                      className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                    >
+                    <Link to="/signup" className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                       Sign up
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -360,12 +355,9 @@ export default function HeaderComponent() {
                       </Link>
                     </div>
                     <div className="mt-6">
-                      <a
-                        href="#"
-                        className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                      >
+                      <Link to="/signup"className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                         Sign up
-                      </a>
+                      </Link>
                       <p className="mt-6 text-center text-base font-medium text-gray-500">
                         Existing customer?{' '}
                         <Link to="/signin" className="text-indigo-600 hover:text-indigo-500">

@@ -4,6 +4,7 @@ import MainLayout from 'views/mainlayout';
 import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import DashboardMainLayout from 'admin/mainlayout';
 import SigninPage from 'views/signin';
+import SignupPage from 'views/signup';
 
 function App() {
 
@@ -13,6 +14,9 @@ function App() {
         <Switch>         
           <Route exact path="/signin">
             <SigninPage/>
+          </Route>  
+          <Route exact path="/signup">
+            <SignupPage/>
           </Route>
           <PrivateRoute path="/admin">
             <DashboardMainLayout/>
