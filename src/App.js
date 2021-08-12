@@ -33,9 +33,9 @@ function App() {
 
 function PrivateRoute({ children,  isAuth, ...rest}) {
   let auth = false;
-  const authinfo = localStorage.getItem('isAuth');
-  console.log(authinfo)
-  if(authinfo == 'admin'){
+  const authinfo = JSON.parse(localStorage.getItem('userinfo'))?.id;
+  const privateAdminID = "61154c3d1cba360016f54ba1";
+  if(authinfo == privateAdminID){
     auth = true;
   }
   return (

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Brand from 'assets/imgs/brand/png-white-background.png';
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { login } from './api';
 
 export default function SigninPage() {
 
@@ -9,15 +10,32 @@ export default function SigninPage() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const history = useHistory();
-  const onSubmit = data => {
-    if((data.email == "aulin@admin.com") && (data.password == "admin")){
-      localStorage.setItem('isAuth', 'admin');
+  const onSubmit = async( data )=> {
+    const user = {
+      email: data.email,
+      password: data.password,
+      rememberMe: data.rememberMe
     }
-    history.push('/admin');
+    try {      
+      const response = await login(user);
+      console.log(response);
+      if(response.status == 200){
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('userinfo', JSON.stringify({ email: response.data.email, name: response.data.name, id: response.data["_id"] }));
+        let privateAdminID = "61154c3d1cba360016f54ba1";
+        (privateAdminID == response.data._id )?history.push('/admin'):history.push('/');       
+      }
+    } catch (error) {
+      console.log(error.message);
+      alert("Faild login");
+    }
   };
 
   useEffect(()=>{
-    localStorage.removeItem('isAuth');
+    if(localStorage.getItem('token')){
+      console.log("Already signin");
+      history.push('/');
+    }
   },[])
 
   return (
@@ -76,6 +94,7 @@ export default function SigninPage() {
                   id="remember_me"
                   name="remember_me"
                   type="checkbox"
+                  {...register("rememberMe")}
                   className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
                 <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-900">

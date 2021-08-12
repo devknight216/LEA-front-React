@@ -137,7 +137,7 @@ export default function ContactUsPage() {
               </div>
               <h3 className="text-lg font-medium text-gray-600">Contact Us</h3>
               <p className="mt-6 text-base text-gray-600 max-w-3xl">
-                Talk to our team of specialists. Fill out the contact form and one of our property consultant will reach out to you. 
+                Talk to our team of specialists. Fill out the contact form and one of our property consultants will reach out to you. 
               </p>
               <dl className="mt-8 space-y-6">
                 <dt>

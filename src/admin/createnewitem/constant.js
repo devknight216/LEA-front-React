@@ -1,3 +1,54 @@
+export const features = [
+    {
+      label: "What is the property type?",
+      variableName: "propertyType",
+      properties:['Apartment', 'House', 'Condo / Townhome', 'Secondary Unit', 'Unique Space', 'Bed and Breakfast', 'Boutique Hotel', 'Duplex', 'RV / Camper', 'Tiny House']
+    },
+    {
+      label: "Choose the best option that fits the space in the property that guests will occupy.",
+      variableName: "propertySpaceFeature",
+      properties:['An entire place', 'A private room', 'A shared room']
+    },
+]
+  
+export const guestsNum = [
+    {
+      type: 'of guests',
+      variableName: 'guestNum',
+      description: '# of guests that the property an accomodate'
+    },
+    {
+      type: 'of beds',
+      variableName: 'bedsNum',
+      description: '# of beds in the property that guests can use'
+    },
+    {
+      type: 'of bedrooms',
+      variableName: 'bedroomNum',
+      description: '# of bedrooms in the property'
+    },
+    {
+      type: 'of bathrooms',
+      variableName: 'bathroomNum',
+      description: '# of bathrroms in the property'
+    },
+  ]
+  
+export const lastOffer = {
+    'first':[
+      { lable: "Peaceful", variableName: "peaceful" },
+      { lable: "Unique", variableName: "unique" },
+      { lable: "Family-Friendly", variableName: "familiFriendly" },
+      { lable: "Stylish", variableName: "stylish" },
+      { lable: "Central", variableName: "central" },
+      { lable: "Spacious", variableName: "spacious" },
+    ],
+    'second':[
+      { lable: "Security Camera", variableName: "securityCamera" },
+      { lable: "Weapons", variableName: "weapons" },
+      { lable: "Dangerous", variableName: "dangerous" }
+    ]
+  }
 export const amenities = {
     'standout': {
         title: 'Standout amenities',
@@ -282,16 +333,16 @@ export const amenities = {
     'heatingCooling': {
         title: 'Heating and Cooling',
         lists: [{
-                label: 'Backing',
-                variableName: 'amenities_ceiling_company'
+                label: 'Ceiling Fan',
+                variableName: 'amenities_ceiling_fan'
             },
             {
                 label: 'Heating',
                 variableName: 'amenities_heating'
             },
             {
-                label: 'Ceiling Company',
-                variableName: 'amenities_ceiling_company'
+                label: 'Portable Fan',
+                variableName: 'amenities_portable_fan'
             },
         ],
     },
@@ -314,20 +365,12 @@ export const amenities = {
                 variableName: 'amenities_blender'
             },
             {
-                label: 'Bread maker',
-                variableName: 'amenities_bread_maker'
-            },
-            {
                 label: 'Coffee',
                 variableName: 'amenities_coffie'
             },
             {
                 label: 'Coffee maker',
                 variableName: 'amenities_coffee_maker'
-            },
-            {
-                label: 'Bread maker',
-                variableName: 'amenities_bread_maker'
             },
             {
                 label: 'Cooking basics',
@@ -346,7 +389,7 @@ export const amenities = {
                 variableName: 'amenities_freezer'
             },
             {
-                label: 'Hot water kettls',
+                label: 'Hot water Kettls',
                 variableName: 'amenities_hot_water_kettles'
             },
             {
@@ -400,10 +443,6 @@ export const amenities = {
             {
                 label: 'Resort access',
                 variable: 'amenities_resort_access'
-            },
-            {
-                label: 'Ski-in/Ski-out',
-                variable: 'amenities_skiin_skiout'
             },
             {
                 label: 'Ski-in/Ski-out',

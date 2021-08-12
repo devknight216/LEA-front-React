@@ -1,15 +1,32 @@
 import { useEffect } from 'react';
 import Brand from 'assets/imgs/brand/png-white-background.png';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { userRegister } from './api';
 
 export default function SigninPage() {
 
   //React hook form
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
-  const onSubmit = data => {
-    console.log(data);
+  const history = useHistory();
+  
+  //Register User
+  const onSubmit = async( data ) => {
+    const user = {
+      name: `${data.firstname} ${data.lastname}`,
+      role: 'user',
+      email: data.email,
+      password: data.password,
+      password2: data.confirmpassword
+    }
+    try {      
+      await userRegister(user);
+      alert('Registered successfully')
+      history.push('/login')
+    } catch (error) {      
+      console.log(error);
+      alert('Faild Register')
+    }
   };
 
   useEffect(()=>{
