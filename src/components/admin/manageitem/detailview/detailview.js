@@ -16,7 +16,6 @@ function DetailViewComponent( {selected} ) {
         slidesToShow: 1,
         slidesToScroll: 1
     };
-    console.log("deteil Image", selected?.imageURLs);
 
     // Redirect to Subpages
     const history = useHistory();
@@ -33,13 +32,12 @@ function DetailViewComponent( {selected} ) {
             <div className="space-y-4">
                 <div className="aspect-w-3 aspect-h-2">
                     <Slider {...settings}>
-                        {
-                            selected?.imageURLs?.map((item, index )=> (
-                                <div key={index}>
-                                    <img className="object-cover shadow-lg w-full rounded-lg" src={item.url} alt="" />
-                                </div>
-                            ))
-                        }
+                        <div>
+                            <img className="object-cover shadow-lg w-full rounded-lg" src={BedroomImg} alt="" />
+                        </div>
+                        <div>
+                            <img className="object-cover shadow-lg w-full rounded-lg" src={KitchenImg} alt="" />
+                        </div>
                     </Slider>
                 </div>
 

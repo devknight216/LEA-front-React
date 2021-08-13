@@ -3,41 +3,23 @@ import SearchPropertyComponent from './searchproperty'
 import { Popover, Transition } from '@headlessui/react';
 import {
     BookmarkAltIcon,
-    BriefcaseIcon,
-    CheckCircleIcon,
-    DesktopComputerIcon,
-    GlobeAltIcon,
     InformationCircleIcon,
     MenuIcon,
-    NewspaperIcon,
-    OfficeBuildingIcon,
-    PhoneIcon,
-    PlayIcon,
     ShieldCheckIcon,
-    UserGroupIcon,
     XIcon,
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import BrandIcon from 'assets/imgs/brand/png-white-background.png';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { SignOut } from 'reduxstore/authreducer/action';
 
-const callsToAction = [
-  { name: 'Course', href: '#', icon: PlayIcon },
-  { name: 'View All Properties', href: '/properties', icon: CheckCircleIcon },
-  { name: 'Contact Us', href: '/contact', icon: PhoneIcon },
-];
 const company = [
   { name: 'About', href: '#', icon: InformationCircleIcon },
-  { name: 'Customers', href: '#', icon: OfficeBuildingIcon },
-  { name: 'Press', href: '#', icon: NewspaperIcon },
-  { name: 'Careers', href: '#', icon: BriefcaseIcon },
-  { name: 'Privacy', href: '#', icon: ShieldCheckIcon },
+  { name: 'Privacy and Policies', href: '#', icon: ShieldCheckIcon },
 ];
 const resources = [
-  { name: 'Community', href: '#', icon: UserGroupIcon },
-  { name: 'Partners', href: '#', icon: GlobeAltIcon },
   { name: 'Guides', href: '#', icon: BookmarkAltIcon },
-  { name: 'Webinars', href: '#', icon: DesktopComputerIcon },
 ];
 const blogPosts = [
   {
@@ -64,6 +46,10 @@ function classNames(...classes) {
 
 
 export default function HeaderComponent() {
+
+  const authUser = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+
     return (
       <Popover className="relative bg-white">
         {({ open }) => (
@@ -89,65 +75,14 @@ export default function HeaderComponent() {
                 </div>
                 <div className="hidden md:flex-1 md:flex md:items-center md:justify-between">
                   <Popover.Group as="nav" className="flex space-x-10">
-                    <Popover>
-                      {({ open }) => (
-                        <>
-                          <Popover.Button
-                            className={classNames(
-                              open ? 'text-gray-900' : 'text-gray-500',
-                              'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-                            )}
-                          >
-                            <span>Search</span>
-                            <ChevronDownIcon
-                              className={classNames(
-                                open ? 'text-gray-600' : 'text-gray-400',
-                                'ml-2 h-5 w-5 group-hover:text-gray-500'
-                              )}
-                              aria-hidden="true"
-                            />
-                          </Popover.Button>
-  
-                          <Transition
-                            show={open}
-                            as={Fragment}
-                            enter="transition ease-out duration-200"
-                            enterFrom="opacity-0 -translate-y-1"
-                            enterTo="opacity-100 translate-y-0"
-                            leave="transition ease-in duration-150"
-                            leaveFrom="opacity-100 translate-y-0"
-                            leaveTo="opacity-0 -translate-y-1"
-                          >
-                            <Popover.Panel
-                              static
-                              className="hidden md:block absolute z-10 top-full inset-x-0 transform shadow-lg bg-white"
-                            >
-                              <SearchPropertyComponent />
-                              <div className="bg-gray-50">
-                                <div className="max-w-7xl mx-auto space-y-6 px-4 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-6 lg:px-8">
-                                  {callsToAction.map((item) => (
-                                    <div key={item.name} className="flow-root">
-                                      <Link
-                                        to={item.href}
-                                        className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
-                                      >
-                                        <item.icon className="flex-shrink-0 h-6 w-6 text-gray-400" aria-hidden="true" />
-                                        <span className="ml-3">{item.name}</span>
-                                      </Link>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            </Popover.Panel>
-                          </Transition>
-                        </>
-                      )}
-                    </Popover>
                     <Link to="/properties" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                        Properties
+                      View All Properties
                     </Link>
                     <Link to="/profit" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                        Profit from Airbnb
+                      Courses
+                    </Link>
+                    <Link to="/profit" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                      Contac Us
                     </Link>
                     <Popover>
                       {({ open }) => (
@@ -230,7 +165,7 @@ export default function HeaderComponent() {
                                   </div>
                                 </nav>
                                 <div className="bg-gray-50 px-4 py-8 sm:py-12 sm:px-6 lg:px-8 xl:pl-12">
-                                  <div>
+                                  {/* <div>
                                     <h3 className="text-sm font-medium tracking-wide text-gray-500 uppercase">
                                       From the blog
                                     </h3>
@@ -261,7 +196,7 @@ export default function HeaderComponent() {
                                       {' '}
                                       View all posts <span aria-hidden="true">&rarr;</span>
                                     </a>
-                                  </div>
+                                  </div> */}
                                 </div>
                               </div>
                             </Popover.Panel>
@@ -270,15 +205,26 @@ export default function HeaderComponent() {
                       )}
                     </Popover>
                   </Popover.Group>
-                  <div className="flex items-center md:ml-12">
-                    <Link to="/signin" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                      Sign in
-                    </Link>
-                    <Link to="/signup" className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                      Sign up
-                    </Link>
-                  </div>
+                    {authUser ?
+                    <div className="flex items-center md:ml-12">
+                      <div onClick={() => dispatch(SignOut())} className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer">
+                        Sign Out
+                      </div>
+                    </div>
+                    :
+                    <div className="flex items-center md:ml-12">
+                      <Link to="/signin" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                        Sign in
+                      </Link>
+                      <Link to="/signup" className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                        Sign up
+                      </Link>
+                    </div>
+                    }
                 </div>
+              </div>
+              <div className="absolute w-full top-28">
+                  <SearchPropertyComponent />
               </div>
             </div>
   
@@ -355,6 +301,13 @@ export default function HeaderComponent() {
                       </Link>
                     </div>
                     <div className="mt-6">
+                      {console.log(authUser)}
+                    {authUser ?
+                    <div onClick={() => dispatch(SignOut())} className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                      Sign Out
+                    </div>
+                    :
+                    <>
                       <Link to="/signup"className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                         Sign up
                       </Link>
@@ -364,6 +317,8 @@ export default function HeaderComponent() {
                           Sign in
                         </Link>
                       </p>
+                    </>
+                    }
                     </div>
                   </div>
                 </div>

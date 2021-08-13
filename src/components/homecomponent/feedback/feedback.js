@@ -74,7 +74,7 @@ export default function FeedbackComponent() {
               <blockquote className="relative">
                 <div className="text-2xl leading-9 font-medium text-gray-900">
                   <p>
-                    The best Airbnb I’ve been to in Houston. Nice building , very clean , huge TVs and plenty Restaurants walking distance. 
+                    The best Airbnb I’ve been to in Houston. Nice building , very clean , huge TVs and plenty of Restaurants walking distance. 
                     I would stay here again without question.
                   </p>
                 </div>
@@ -89,7 +89,7 @@ export default function FeedbackComponent() {
                     </div>
                     <div className="ml-4 lg:ml-0">
                       <div className="text-base font-medium text-gray-900">Judith Black</div>
-                      <div className="text-base font-medium text-indigo-600">CEO, Tuple</div>
+                      <div className="text-base font-medium text-indigo-600">CEO, RentCheck</div>
                     </div>
                   </div>
                 </footer>

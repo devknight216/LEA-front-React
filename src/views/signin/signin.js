@@ -2,40 +2,43 @@ import { useEffect } from 'react';
 import Brand from 'assets/imgs/brand/png-white-background.png';
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { login } from './api';
+import { useDispatch, useSelector } from 'react-redux';
+import { SignIn } from 'reduxstore/authreducer/slice';
+
 
 export default function SigninPage() {
 
   //React hook form
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
+  const dispatch = useDispatch();
   const history = useHistory();
+
+  const token = useSelector((state) => state.auth.token);
+  const authUser = useSelector((state) => state.auth.user);
+
   const onSubmit = async( data )=> {
+
     const user = {
       email: data.email,
       password: data.password,
       rememberMe: data.rememberMe
     }
     try {      
-      const response = await login(user);
-      if(response.status == 200){
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('userinfo', JSON.stringify({ email: response.data.email, name: response.data.name, id: response.data["_id"] }));
-        const privateAdminID = ["61154c3d1cba360016f54ba1", "61161e26b1d2120016a9d62e", "61161eaab1d2120016a9d632", "61161f1bb1d2120016a9d636", "61161fa7b1d2120016a9d639"]
-        let isAdmin = false
-        if(privateAdminID.indexOf(response.data._id)>=0) isAdmin = true   
-        isAdmin?history.push('/admin'):history.push('/');
-      }
+      dispatch(SignIn(user));
     } catch (error) {
       alert("Faild login");
     }
   };
 
   useEffect(()=>{
-    if(localStorage.getItem('token')){
-      history.push('/');
+    if(token){
+      if(authUser.role === 'admin'){
+        history.push('/admin');
+      } else {
+        history.push('/');
+      }
     }
-  },[])
+  },[token])
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">

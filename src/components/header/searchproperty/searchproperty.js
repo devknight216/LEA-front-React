@@ -76,7 +76,7 @@ export default function SearchPropertyComponent() {
     <>
       <Popover.Group
         as="nav"
-        className="flex w-6xl max-w-4/5 m-auto relative mt-3 bg-gray-200 rounded-full p-1"
+        className="flex w-6xl max-w-4/5 m-auto relative mt-3 bg-gray-100 rounded-full p-1"
       >
         <Popover className="w-1/4 outline-none">
           <Popover.Button className="w-full flex outline-none">

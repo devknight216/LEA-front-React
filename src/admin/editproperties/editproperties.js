@@ -22,6 +22,7 @@ export default function CreateNewPropertyPage() {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     const requestBody = formatReqestData(data);
+    console.log("ddd=>", requestBody);
     //Dispatch API to create New Item
     const payload = {
       id: propertyId, 

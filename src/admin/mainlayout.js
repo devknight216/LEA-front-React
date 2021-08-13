@@ -27,9 +27,9 @@ const navigation = [
   { name: 'Reports', href: '/admin/reports', icon: ChartBarIcon, current: false },
 ]
 const userNavigation = [
-  { name: 'Profile', href: '#', onClick: () => {} },
-  { name: 'Settings', href: '#', onClick: () => {} },
-  { name: 'Sign out', href: '/signin', onClick: () => { localStorage.clear() } },
+  { name: 'Your Profile', href: '#' },
+  { name: 'Settings', href: '#' },
+  { name: 'Sign out', href: '/signin' },
 ]
 
 function classNames(...classes) {
@@ -39,7 +39,6 @@ function classNames(...classes) {
 function DashboardMainLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
-
   return (
     <div className="h-screen flex overflow-hidden bg-gray-100">
       <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -234,7 +233,6 @@ function DashboardMainLayout() {
                             {({ active }) => (
                               <Link
                                 to={item.href}
-                                onClick={item.onClick}
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm text-gray-700'

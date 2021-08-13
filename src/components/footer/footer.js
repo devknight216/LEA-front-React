@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 const navigation = {
     main: [
       { name: 'Home', href: '/' },
-      { name: 'Properties', href: '/properties' },
-      { name: 'Profit for Aribnb', href: '/profit' },
-      { name: 'Course', href: '#' },
+      { name: 'View All Properties', href: '/properties' },
+      { name: 'Courses', href: '/profit' },
       { name: 'Contact Us', href: '/contact' },
       { name: 'Terms & Policy', href: '#' },
     ],

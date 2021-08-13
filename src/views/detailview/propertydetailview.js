@@ -12,6 +12,9 @@ import DateRangerComponent from 'components/detailview/dateranger';
 import ReactStars from "react-rating-stars-component";
 import { PlusCircleIcon, MinusCircleIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { getPropertyById } from 'reduxstore/propertyreducer/action';
+import { useDispatch, useSelector } from 'react-redux';
 
 const stats = [
   { label: 'guests', value: 12, icon: GuestIcon },
@@ -49,11 +52,18 @@ const recentHires = [
     href: '#',
   },
 ]
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
-export default function PropertyDetailViewPage() { 
+const PropertyDetailViewPage = (props) => { 
+
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+    // dispatch(getPropertyById(props.match.params.id));
+  // }, []);
+
+  const property = [];
+  //  = useSelector(state => state.properties.property);
+  // console.log(property)
+
   return (
     <div>
       <DetailViewCarouselComponent/>
@@ -277,3 +287,4 @@ export default function PropertyDetailViewPage() {
     </div>
   )
 }
+export default PropertyDetailViewPage;

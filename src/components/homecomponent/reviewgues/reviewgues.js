@@ -33,7 +33,7 @@ export default function ReviewGuesComponent() {
                   </div>
                   <div className="ml-4">
                     <div className="text-base font-medium text-white">Terrell</div>
-                    <div className="text-base font-medium text-indigo-200">CEO, Tuple</div>
+                    <div className="text-base font-medium text-gray-100">CEO, Tuple</div>
                   </div>
                 </div>
               </footer>
@@ -72,7 +72,7 @@ export default function ReviewGuesComponent() {
                   </div>
                   <div className="ml-4">
                     <div className="text-base font-medium text-white">Sheemka</div>
-                    <div className="text-base font-medium text-indigo-200">CEO, Workcation</div>
+                    <div className="text-base font-medium text-gray-100">CEO, Workcation</div>
                   </div>
                 </div>
               </footer>
