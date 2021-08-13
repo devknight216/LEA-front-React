@@ -56,7 +56,23 @@ export default function SearchPropertyComponent() {
       }
   }
 
-  return (
+  const getGuestText = () => {
+      let text = '';
+      if(guestNum.adult + guestNum.children > 0) {
+          text += `${guestNum.adult + guestNum.children} Guest,`;
+      }
+      if(guestNum.infants > 0) {
+          text += ` ${guestNum.adult} Infants,`;
+      }
+      if(text === '') {
+          text = 'Add Guest';
+      } else {
+          text = text.slice(0, -1);
+      }
+      return text;
+  }
+
+    return (
     <>
       <Popover.Group
         as="nav"
@@ -79,7 +95,7 @@ export default function SearchPropertyComponent() {
                   </div>
                   <GooglePlacesAutoComplete
                     inputRef={locationRef}
-                    inputClassName="w-full bg-transparent outline-none overflow-ellipsis pl-8 text-md text-gray-700 placeholder-gray-400"
+                    inputClassName="w-full bg-transparent outline-none overflow-ellipsis pl-8 text-md text-gray-700 placeholder-gray-600 text-md font-semibold"
                     itemClassName="text-left my-3 text-gray-600"
                     containerClassName="w-200% absolute top-24 p-3 bg-white rounded-lg shadow-md"
                     loader={
@@ -116,11 +132,7 @@ export default function SearchPropertyComponent() {
                     CheckIn
                   </div>
                   <div
-                    className={`w-full text-left text-md font-semibold pl-8 ${
-                      filterDateRange.from === ""
-                        ? "text-gray-400"
-                        : "text-gray-600"
-                    }`}
+                    className={`w-full text-left text-md font-semibold pl-8 text-gray-600`}
                   >
                     {filterDateRange.from ? moment(filterDateRange.from, 'YYYY-MM-DD').format('MM/DD/YYYY') : "From"}
                   </div>
@@ -176,11 +188,7 @@ export default function SearchPropertyComponent() {
                     CheckOut
                   </div>
                   <div
-                    className={`w-full text-left text-md font-semibold pl-8 ${
-                      filterDateRange.to === ""
-                        ? "text-gray-400"
-                        : "text-gray-600"
-                    }`}
+                    className={`w-full text-left text-md font-semibold pl-8 text-gray-600`}
                   >
                     {filterDateRange.to ? moment(filterDateRange.to, 'YYYY-MM-DD').format('MM/DD/YYYY') : "To"}
                   </div>
@@ -230,8 +238,8 @@ export default function SearchPropertyComponent() {
                   <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">
                     Guest
                   </div>
-                  <div className="w-full text-left text-gray-400 text-md font-semibold pl-8">
-                    Add Guest
+                  <div className="w-2/3 text-left text-gray-600 text-md font-semibold pl-8 truncate">
+                    {getGuestText()}
                   </div>
                 </div>
                 <div className="absolute w-16 h-16 bg-yellow-300 hover:bg-yellow-400 rounded-full right-3 top-3 flex items-center justify-center" onClick={(e) => e.preventDefault()}>
