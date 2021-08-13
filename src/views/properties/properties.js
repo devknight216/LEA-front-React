@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HeroComponent from 'components/herosection';
 import PropertyIistItem from 'components/properties/propertylist';
 import BedRoom from 'assets/imgs/property/bedroom.jpg';
@@ -48,6 +48,7 @@ const properties = [
 ]
 
 export default function PropertiesPage() {
+
     return (
         <div>
             <HeroComponent/>

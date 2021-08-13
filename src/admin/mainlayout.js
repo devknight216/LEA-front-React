@@ -27,7 +27,7 @@ const navigation = [
   { name: 'Reports', href: '/admin/reports', icon: ChartBarIcon, current: false },
 ]
 const userNavigation = [
-  { name:  JSON.parse( localStorage.getItem('userinfo')).name, href: '#', onClick: () => {} },
+  { name: 'Profile', href: '#', onClick: () => {} },
   { name: 'Settings', href: '#', onClick: () => {} },
   { name: 'Sign out', href: '/signin', onClick: () => { localStorage.clear() } },
 ]
