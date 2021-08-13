@@ -43,7 +43,7 @@ function DetailViewCarouselComponent({imageURLs}) {
     return (
         <div className="mx-auto container">
             <Slider {...settings}>
-              {imageURLs.map((image) => {
+              {imageURLs?.map((image) => {
                 return (
                 <div className="px-2">
                     <img src={image.url} className="w-full outline-none" alt=""/>

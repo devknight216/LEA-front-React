@@ -78,8 +78,8 @@ const CardItem = ({ item }) => {
             alt=""
           />
         </div>
-        <div className="text-lg leading-6 font-medium space-y-1 px-5">
-          <h3>{item.propertyName}</h3>
+        <div className="text-lg leading-6 font-medium space-y-1 px-5 w-full">
+          <h3 className="truncate ">{item.propertyName}</h3>
           <p className="text-indigo-600">Nightly Rate: ${item.nightlyRate}</p>
         </div>
 
