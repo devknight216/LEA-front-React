@@ -18,7 +18,6 @@ export default function SigninPage() {
     }
     try {      
       const response = await login(user);
-      console.log(response);
       if(response.status == 200){
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userinfo', JSON.stringify({ email: response.data.email, name: response.data.name, id: response.data["_id"] }));
@@ -26,14 +25,12 @@ export default function SigninPage() {
         (privateAdminID == response.data._id )?history.push('/admin'):history.push('/');       
       }
     } catch (error) {
-      console.log(error.message);
       alert("Faild login");
     }
   };
 
   useEffect(()=>{
     if(localStorage.getItem('token')){
-      console.log("Already signin");
       history.push('/');
     }
   },[])

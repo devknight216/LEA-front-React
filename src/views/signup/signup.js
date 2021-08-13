@@ -24,7 +24,6 @@ export default function SigninPage() {
       alert('Registered successfully')
       history.push('/login')
     } catch (error) {      
-      console.log(error);
       alert('Faild Register')
     }
   };
