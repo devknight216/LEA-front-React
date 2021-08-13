@@ -44,12 +44,12 @@ export default function ProfitPage() {
                         </span>
                     </div>
                     <div className="py-5">
-                        <a
-                            href="#"
-                            className="flex w-max mx-auto items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-400 hover:bg-red-500 sm:px-8"
+                        <div 
+                            onClick={() => { window.open('https://legendaryestatesairbnb.teachable.com/p/short-term-airbnb') }} 
+                            className="flex w-max mx-auto items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-400 hover:bg-red-500 sm:px-8 cursor-pointer" 
                         >
                             Buy Now
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
