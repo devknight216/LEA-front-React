@@ -21,8 +21,10 @@ export default function SigninPage() {
       if(response.status == 200){
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userinfo', JSON.stringify({ email: response.data.email, name: response.data.name, id: response.data["_id"] }));
-        let privateAdminID = "61154c3d1cba360016f54ba1";
-        (privateAdminID == response.data._id )?history.push('/admin'):history.push('/');       
+        const privateAdminID = ["61154c3d1cba360016f54ba1", "61161e26b1d2120016a9d62e", "61161eaab1d2120016a9d632", "61161f1bb1d2120016a9d636", "61161fa7b1d2120016a9d639"]
+        let isAdmin = false
+        if(privateAdminID.indexOf(response.data._id)>=0) isAdmin = true   
+        isAdmin?history.push('/admin'):history.push('/');
       }
     } catch (error) {
       alert("Faild login");

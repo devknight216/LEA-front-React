@@ -34,10 +34,8 @@ function App() {
 function PrivateRoute({ children,  isAuth, ...rest}) {
   let auth = false;
   const authinfo = JSON.parse(localStorage.getItem('userinfo'))?.id;
-  const privateAdminID = "61154c3d1cba360016f54ba1";
-  if(authinfo == privateAdminID){
-    auth = true;
-  }
+  const privateAdminID = ["61154c3d1cba360016f54ba1", "61161e26b1d2120016a9d62e", "61161eaab1d2120016a9d632", "61161f1bb1d2120016a9d636", "61161fa7b1d2120016a9d639"]
+  if(privateAdminID.indexOf(authinfo)>=0) auth=true
   return (
     <Route
       {...rest}

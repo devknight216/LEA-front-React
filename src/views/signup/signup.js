@@ -22,7 +22,7 @@ export default function SigninPage() {
     try {      
       await userRegister(user);
       alert('Registered successfully')
-      history.push('/login')
+      history.push('/signin')
     } catch (error) {      
       alert('Faild Register')
     }
