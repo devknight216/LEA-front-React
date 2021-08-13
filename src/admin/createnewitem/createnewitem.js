@@ -5,16 +5,34 @@ import { useForm } from "react-hook-form";
 import { formatReqestData } from './functions';
 import { useDispatch } from 'react-redux';
 import { createNewProperty } from 'reduxstore/propertyreducer/action';
+import { uploadImageToFirebase, recordImagedata, removeStore } from 'firebaseStorage/functions';
+import { useState } from 'react'; 
 
 export default function CreateNewPropertyPage() { 
+    
+    const[imageData, setImageData] = useState(null);
+
     //Get form data from hook form
     const { register, handleSubmit } = useForm();
     const dispatch = useDispatch();
     const onSubmit = (data) => {
-      const requestBody = formatReqestData(data);
+      const requestBody = formatReqestData(data, imageData);
+      console.log(requestBody);
       //Dispatch API to create New Item
       dispatch(createNewProperty(JSON.stringify(requestBody)));
+      //Clear Image Cash
+      setImageData(null);
+      removeStore();
     };
+
+    //Image Upload
+    const [url, setUrl] = useState(null);
+    const [progress, setProgeress] = useState(0);
+    const handlfileChange = async(e) => {
+      if(e.target.files[0]){
+        await uploadImageToFirebase(e.target.files[0],setProgeress, setUrl);
+      }
+    }
     
     return (
       <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
@@ -94,8 +112,8 @@ export default function CreateNewPropertyPage() {
                         htmlFor="file-upload"
                         className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                       >
-                        <span>Upload a file</span>
-                        <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                        <span>Upload a file</span> <span> progress: {progress}</span>
+                        <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handlfileChange} />
                       </label>
                       <p className="pl-1">or drag and drop</p>
                     </div>
@@ -105,7 +123,7 @@ export default function CreateNewPropertyPage() {
               </div>
             </div>
           </div>
-          <ImageListComponent/>
+          <ImageListComponent getImageData={setImageData}/>
           <div className="pt-8">
             <div>
               <h3 className="text-lg leading-6 font-medium text-gray-900">Host Information</h3>

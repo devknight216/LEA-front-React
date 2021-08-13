@@ -8,23 +8,23 @@ import ProfitPage from "./profit";
 import PropertiesPage from "./properties/properties";
 import NotFoundPage from "./404";
 
-export default function MainLayout(){
-    return(
-        <>
-            <HeaderComponent/> 
-            <Switch>
-                <Route exact path="/" children={HomePage}/>
-                <Route path="/properties" children={PropertiesPage}/>
-                <Route path="/profit" children={ProfitPage}/>
-                <Route path="/contact"> 
-                    <ContactUsPage/>
-                </Route>
-                <Route path="/details/:id" children={PropertyDetailViewPage}/>
-                <Route>
-                    <NotFoundPage/>
-                </Route>
-            </Switch>           
-            <FooterComponent/>
-        </>
-    )
+export default function MainLayout() {
+  return (
+    <>
+      <HeaderComponent />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/properties" component={PropertiesPage} />
+        <Route path="/profit" component={ProfitPage} />
+        <Route path="/contact">
+          <ContactUsPage />
+        </Route>
+        <Route path="/details/:id" component={PropertyDetailViewPage} />
+        <Route>
+          <NotFoundPage />
+        </Route>
+      </Switch>
+      <FooterComponent />
+    </>
+  );
 }

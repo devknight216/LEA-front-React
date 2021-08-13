@@ -1,19 +1,23 @@
 import { amenities, lastOffer } from './constant'
-export const formatReqestData = ( data ) => {
+export const formatReqestData = ( data, imageData ) => {
     
     const amenities = formatAmentities(data);
     const propertyDescribe = formatArray(data, lastOffer.first);
     const propertyspecialFeature = formatArray(data, lastOffer.second);
+    console.log('ppp', imageData);
+    let imageArray = [];
+    Object.keys(imageData).map(key => {
+        imageArray.push({
+            fileName:imageData[key].name,
+            url:imageData[key].url
+        });
+    })
+
     const requestbody = {
         propertyName:  data.propertyName,
         nightlyRate: data.nightlyRate,
         propertyDescription: data.propertyDescription,
-        imageURLs: [
-            {
-               filename: "image1.png",
-               url: "https://a0.muscache.com/im/pictures/055dcb9-548e-4f9f-9620-10e05f420d0d.jpg?im_w=720"
-            }
-        ],
+        imageURLs:imageArray,
         hostInfo: {
             name: data.hostedByName,
             userId:"9203923823932823423",

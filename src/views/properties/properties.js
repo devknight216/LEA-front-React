@@ -7,12 +7,13 @@ import { getAllProperties } from 'reduxstore/propertyreducer/action';
 
 
 const PropertiesPage  = () => {
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //   dispatch(getAllProperties());
-    // }, []);
-    const properties = [];
-    //  = useSelector((state) => state.properties.properties);
+    
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAllProperties());
+    }, []);
+    const properties = useSelector((state) => state.properties.properties);
+
     return (
         <div>
             <HeroComponent/>

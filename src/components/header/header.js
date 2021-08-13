@@ -81,8 +81,8 @@ export default function HeaderComponent() {
                     <Link to="/profit" className="text-base font-medium text-gray-500 hover:text-gray-900">
                       Courses
                     </Link>
-                    <Link to="/profit" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                      Contac Us
+                    <Link to="/contact" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                      Contact Us
                     </Link>
                     <Popover>
                       {({ open }) => (
@@ -301,7 +301,6 @@ export default function HeaderComponent() {
                       </Link>
                     </div>
                     <div className="mt-6">
-                      {console.log(authUser)}
                     {authUser ?
                     <div onClick={() => dispatch(SignOut())} className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                       Sign Out

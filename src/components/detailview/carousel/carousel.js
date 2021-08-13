@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import BedRoom from 'assets/imgs/property/bedroom.jpg';
 
-function DetailViewCarouselComponent() {
+function DetailViewCarouselComponent({imageURLs}) {
     const settings = {
         dots: false,
         infinite: true,
@@ -43,24 +43,13 @@ function DetailViewCarouselComponent() {
     return (
         <div className="mx-auto container">
             <Slider {...settings}>
+              {imageURLs.map((image) => {
+                return (
                 <div className="px-2">
-                    <img src={BedRoom} className="w-full"/>
+                    <img src={image.url} className="w-full outline-none" alt=""/>
                 </div>
-                <div className="px-2">
-                    <img src={BedRoom} className="w-full"/>
-                </div>
-                <div className="px-2">
-                    <img src={BedRoom} className="w-full"/>
-                </div>
-                <div className="px-2">
-                    <img src={BedRoom} className="w-full"/>
-                </div>
-                <div className="px-2">
-                    <img src={BedRoom} className="w-full"/>
-                </div>
-                <div className="px-2">
-                    <img src={BedRoom} className="w-full"/>
-                </div>
+                )
+              })}
             </Slider>
         </div>
     )

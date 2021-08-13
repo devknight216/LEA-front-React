@@ -27,9 +27,9 @@ const navigation = [
   { name: 'Reports', href: '/admin/reports', icon: ChartBarIcon, current: false },
 ]
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '/signin' },
+  { name: 'Profile', href: '#', onClick: () => {} },
+  { name: 'Settings', href: '#', onClick: () => {} },
+  { name: 'Sign out', href: '/signin', onClick: () => { localStorage.clear() } },
 ]
 
 function classNames(...classes) {
@@ -233,6 +233,7 @@ function DashboardMainLayout() {
                             {({ active }) => (
                               <Link
                                 to={item.href}
+                                onClick={item.onClick}
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm text-gray-700'

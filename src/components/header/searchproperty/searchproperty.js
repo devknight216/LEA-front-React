@@ -87,7 +87,7 @@ export default function SearchPropertyComponent() {
                 <div
                   className={classNames(
                     open ? "rounded-full bg-white shadow-l shadow-lg" : "",
-                    "w-full transform py-5 leading-2"
+                    "w-full transform lg:py-5 sm:py-3 leading-2"
                   )}
                 >
                   <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">
@@ -124,7 +124,7 @@ export default function SearchPropertyComponent() {
                   ref={checkInRef}
                   className={classNames(
                     open ? "rounded-full bg-white shadow-lg" : "",
-                    "transform py-5 w-full"
+                    "transform lg:py-5 sm:py-3 w-full"
                   )}
                   onClick={(e) => e.preventDefault()}
                 >
@@ -180,7 +180,7 @@ export default function SearchPropertyComponent() {
                   ref={checkOutRef}
                   className={classNames(
                     open ? "rounded-full bg-white shadow-lg" : "",
-                    "transform py-5 w-full"
+                    "transform lg:py-5 sm:py-3 w-full"
                   )}
                   onClick={(e) => e.preventDefault()}
                 >
@@ -234,7 +234,7 @@ export default function SearchPropertyComponent() {
             {({ open }) => (
               <>
                 {open && setCurrentNav(4)}
-                <div className={classNames( open ? "rounded-full bg-white shadow-lg" : "", "transform py-5 w-full" )} onClick={(e) => e.preventDefault()} >
+                <div className={classNames( open ? "rounded-full bg-white shadow-lg" : "", "transform lg:py-5 sm:py-3 w-full" )} onClick={(e) => e.preventDefault()} >
                   <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">
                     Guest
                   </div>
@@ -242,7 +242,7 @@ export default function SearchPropertyComponent() {
                     {getGuestText()}
                   </div>
                 </div>
-                <div className="absolute w-16 h-16 bg-yellow-300 hover:bg-yellow-400 rounded-full right-3 top-3 flex items-center justify-center" onClick={(e) => e.preventDefault()}>
+                <div className="absolute w-16 h-16 bg-yellow-300 hover:bg-yellow-400 rounded-full right-3 lg:top-3 sm:top-0 flex items-center justify-center" onClick={(e) => e.preventDefault()}>
                     <SearchIcon className="text-white w-1/2 h-1/2" />
                 </div>
               </>
