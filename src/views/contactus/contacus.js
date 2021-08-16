@@ -308,9 +308,9 @@ export default function ContactUsPage() {
                       defaultValue={''}
                     />
                   </div>
-                  {/* <div className={recaptureCallback?"hidden":"flex justify-center mt-10"}>
+                  <div className={recaptureCallback?"hidden":"flex justify-center mt-10"}>
                     <RecaptureComponent setrecaptureCallback = {setrecaptureCallback}/>
-                  </div> */}
+                  </div>
                 </div>
                 {
                   recaptureCallback &&

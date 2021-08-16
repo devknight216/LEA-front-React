@@ -6,29 +6,61 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { getPropertyById, updatePropertyById } from 'reduxstore/propertyreducer/slice';
 import { useEffect, useState } from 'react';
+import { recordImagedata, removeStore, uploadImageToFirebase } from 'firebaseStorage/functions';
+import { Toast } from 'components/common/notification';
 
 export default function CreateNewPropertyPage() { 
   const location = useLocation();
-  const propertyId = location.pathname.split('/')[4];    
+  const propertyId = location.pathname.split('/')[4];  
+  const[imageData, setImageData] = useState(null);  
   
   //Get Stored value
   const dispatch = useDispatch();
   const property = useSelector(state => state.properties.property);
   useEffect(()=>{
     dispatch(getPropertyById(propertyId));
-  },[])
+    return () => {
+      removeStore();
+    }
+  },[]);
+
+  //Preload uploaded Image  
+  useEffect(() => {
+    if(property?.imageURLs){
+      property.imageURLs.map(
+        (image) => {
+          recordImagedata({name: image.filename, url:image.url});
+        }
+      )
+    }
+  }, [property])
 
   //Get form data from hook form
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    const requestBody = formatReqestData(data);
+    const requestBody = formatReqestData(data, imageData);
     //Dispatch API to create New Item
     const payload = {
       id: propertyId, 
       body: JSON.stringify(requestBody)
     }
-    dispatch(updatePropertyById(payload));
+    try {
+      dispatch(updatePropertyById(payload));
+      Toast('','Updated Successful', 'success')
+    } catch (error) {
+      Toast('','Faild', 'danger')
+    }
   };
+
+  //Image Upload
+  const [url, setUrl] = useState(null);
+  const [progress, setProgeress] = useState(0);
+  const handlfileChange = async(e) => {
+    console.log(e.target.files[0]);
+    if(e.target.files[0]){
+      await uploadImageToFirebase(e.target.files[0], setProgeress, setUrl);
+    }
+  }
   
   return (
     <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
@@ -108,12 +140,16 @@ export default function CreateNewPropertyPage() {
                   <div className="flex text-sm text-gray-600">
                     <label
                       htmlFor="file-upload"
-                      className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                      className="relative cursor-pointer  rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                     >
-                      <span>Upload a file</span>
-                      <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                      <span>Upload a file</span> <span> progress: {progress}</span>
+                      <div className="relative pt-1">
+                        <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-200">
+                          <div style={{ width: `${progress}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
+                        </div>
+                      </div>
+                      <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handlfileChange} />
                     </label>
-                    <p className="pl-1">or drag and drop</p>
                   </div>
                   <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                 </div>
@@ -121,7 +157,7 @@ export default function CreateNewPropertyPage() {
             </div>
           </div>
         </div>
-        <ImageListComponent/>
+        <ImageListComponent getImageData={setImageData}/>
         <div className="pt-8">
           <div>
             <h3 className="text-lg leading-6 font-medium text-gray-900">Host Information</h3>

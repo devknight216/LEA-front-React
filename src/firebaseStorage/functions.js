@@ -4,6 +4,7 @@ import 'firebase/database'
 
 const uploadImageToFirebase = async ( file, setProgress, getImageUrl ) => {
     const task = firebase.database().ref('/');
+    console.log(file);
     var key = task.push().key;
     //Get Reference of Firebase store
     let store = firebase.storage();

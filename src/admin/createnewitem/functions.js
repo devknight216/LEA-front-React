@@ -4,11 +4,10 @@ export const formatReqestData = ( data, imageData ) => {
     const amenities = formatAmentities(data);
     const propertyDescribe = formatArray(data, lastOffer.first);
     const propertyspecialFeature = formatArray(data, lastOffer.second);
-    console.log('ppp', imageData);
     let imageArray = [];
     Object.keys(imageData).map(key => {
         imageArray.push({
-            fileName:imageData[key].name,
+            filename:imageData[key].name,
             url:imageData[key].url
         });
     })

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ConfirmAlertComponent from 'components/modals/confirmalert';
 import { useHistory } from 'react-router-dom'
-import { deletePropertyById, getAllProperties } from 'reduxstore/propertyreducer/slice';
+import { deletePropertyById } from 'reduxstore/propertyreducer/slice';
 import { useDispatch, useSelector } from 'react-redux';
+import { TrashIcon, PencilAltIcon, PlusIcon } from '@heroicons/react/outline'
   
 export default function ItemsTableComponent( {getSelected} ) {
   
@@ -35,11 +36,14 @@ export default function ItemsTableComponent( {getSelected} ) {
   const gotoCreateNew = () => {
     history.push('/admin/properties/new');
   }
+  const gotEdit = (id) => {
+    history.push(`/admin/properties/edit/${id}`)
+  }
 
   return (
     <div>
       <div className="grid grid-cols-2 mb-5">
-        <div className="px-10 py-2 w-max mx-auto bg-yellow-500 text-white text-center hover:bg-yellow-700 rounded-md cursor-pointer" onClick={gotoCreateNew}>New</div>
+        <div className="px-10 py-2 w-max mx-auto flex bg-yellow-500 text-white text-center hover:bg-yellow-700 rounded-md cursor-pointer" onClick={gotoCreateNew}>New <PlusIcon/></div>
         {
           selected && <button className="px-10 py-2 w-max mx-auto bg-red-500 text-white text-center hover:bg-red-700 rounded-md cursor-pointer" onClick={handleDelete}>Delete</button>
         }
@@ -51,11 +55,15 @@ export default function ItemsTableComponent( {getSelected} ) {
               key={property['_id']}
               id={property['_id']}
               onClick={ () => { handleSelectProperty(property) } }
-              className={ ( selected?._id == property['_id'] )?"py-4 flex bg-gray-300 px-5 cursor-pointer":"py-4 flex hover:bg-gray-300 px-5 cursor-pointer" }
+              className={ ( selected?._id == property['_id'] )?"py-4 flex bg-gray-300 px-5 cursor-pointer justify-between":"py-4 flex hover:bg-gray-300 px-5 cursor-pointer justify-between" }
             >
               <div>
                 <p className="text-sm font-medium text-gray-900"> { property.propertyName }</p>
                 <p className="text-sm text-gray-500">${property.nightlyRate}/night</p>
+              </div>
+              <div>
+                <PencilAltIcon className="text-gray-400 h-6 w-6 hover:text-gray-800" onClick={()=>{gotEdit(property._id)}}/>
+                <TrashIcon className="text-red-400 h-6 w-6 hover:text-red-600" onClick={handleDelete}/>
               </div>
             </li>
           ))
