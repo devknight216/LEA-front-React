@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import firebase from 'firebaseStorage/configure';
 import 'firebase/database'
-import { removeStore } from "firebaseStorage/functions";
+import 'firebase/storage'
+import { deleteImage, removeStore } from "firebaseStorage/functions";
 
 export default function ImageListComponent({getImageData}) {
     const[data, setData] = useState(null);
@@ -16,7 +17,27 @@ export default function ImageListComponent({getImageData}) {
           setData(null)
         }
       })
-    }, [])
+    }, []);
+
+    //Delete Item
+    const deleteItem = (data) => {
+      console.log(data);
+      firebase.database().ref(`/property/imageRecord/${data.name}`).remove().then(
+        ()=>{
+          deleteImage(data.url);
+          firebase.database().ref('/property/imageRecord').on('value', (snapshot) =>{
+            if(snapshot.exists()){
+              setData(snapshot.val());
+              getImageData(snapshot.val());
+            }
+            else{
+              setData(null)
+            }
+          })
+        }
+      ).catch((e) => { console.log(e); })
+    }
+
     return (
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -52,7 +73,7 @@ export default function ImageListComponent({getImageData}) {
                           <a target="_blank" href={data[key].url}>View Image</a>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium w-1/4">
-                          <a href="#" className="text-indigo-600 hover:text-indigo-900" onClick={removeStore}>
+                          <a href="#" className="text-indigo-600 hover:text-indigo-900" onClick={() => {deleteItem(data[key])}}>
                             Delete
                           </a>
                         </td>

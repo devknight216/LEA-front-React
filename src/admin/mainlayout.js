@@ -46,7 +46,6 @@ function DashboardMainLayout() {
   const dispatch = useDispatch();
   const signOutFunc = (type) => {
     if(type == "Sign out") {
-      localStorage.clear();
       dispatch(SignOut())
     }
   }

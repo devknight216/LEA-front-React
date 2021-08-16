@@ -6,7 +6,7 @@ import { formatReqestData } from './functions';
 import { useDispatch } from 'react-redux';
 import { createNewProperty } from 'reduxstore/propertyreducer/action';
 import { uploadImageToFirebase, recordImagedata, removeStore } from 'firebaseStorage/functions';
-import { useState } from 'react'; 
+import { useEffect, useState } from 'react'; 
 import { Toast } from 'components/common/notification';
 
 export default function CreateNewPropertyPage() { 
@@ -31,6 +31,13 @@ export default function CreateNewPropertyPage() {
         removeStore();
       }
     };
+
+    //Component UnMount
+    useEffect(() => {
+      return () => {
+        removeStore();
+      }
+    }, [])
 
     //Image Upload
     const [url, setUrl] = useState(null);
@@ -117,12 +124,16 @@ export default function CreateNewPropertyPage() {
                     <div className="flex text-sm text-gray-600">
                       <label
                         htmlFor="file-upload"
-                        className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                        className="relative cursor-pointer  rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                       >
                         <span>Upload a file</span> <span> progress: {progress}</span>
+                        <div className="relative pt-1">
+                          <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-200">
+                            <div style={{ width: `${progress}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
+                          </div>
+                        </div>
                         <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handlfileChange} />
                       </label>
-                      <p className="pl-1">or drag and drop</p>
                     </div>
                     <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                   </div>
@@ -285,7 +296,7 @@ export default function CreateNewPropertyPage() {
                     ))
                   }
                   <legend className="text-base font-medium text-gray-900">Please indicate the number applicable to the fields below: </legend>
-                  <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2 md:grid-cols-4">
+                  <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4">
                     {
                       guestsNum.map((item, index)=>(
                         <div key={index}>
