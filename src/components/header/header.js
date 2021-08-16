@@ -10,7 +10,7 @@ import {
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import BrandIcon from 'assets/imgs/brand/png-white-background.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { SignOut } from 'reduxstore/authreducer/action';
 
@@ -49,10 +49,12 @@ export default function HeaderComponent() {
 
   const authUser = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const path = location.pathname;
 
-    return (
-      <Popover className="relative bg-white">
-        {({ open }) => (
+return (
+  <Popover className="relative bg-white">
+      {({ open }) => (
           <>
             <div className="absolute inset-0 shadow z-30 pointer-events-none" aria-hidden="true" />
             <div className="relative z-20">
@@ -206,25 +208,27 @@ export default function HeaderComponent() {
                     </Popover>
                   </Popover.Group>
                     {authUser ?
-                    <div className="flex items-center md:ml-12">
-                      <div onClick={() => dispatch(SignOut())} className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer">
-                        Sign Out
+                      <div className="flex items-center md:ml-12">
+                        <div onClick={() => dispatch(SignOut())} className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer">
+                          Sign Out
+                        </div>
                       </div>
-                    </div>
-                    :
-                    <div className="flex items-center md:ml-12">
-                      <Link to="/signin" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                        Sign in
-                      </Link>
-                      <Link to="/signup" className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                        Sign up
-                      </Link>
-                    </div>
+                      :
+                      <div className="flex items-center md:ml-12">
+                        <Link to="/signin" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                          Sign in
+                        </Link>
+                        <Link to="/signup" className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                          Sign up
+                        </Link>
+                      </div>
                     }
                 </div>
               </div>
               <div className="absolute w-full top-28">
-                  <SearchPropertyComponent />
+                {
+                  ( path == "/" || path == "/properties") && <SearchPropertyComponent />
+                }
               </div>
             </div>
   

@@ -5,6 +5,24 @@ import PropertyBanner from 'assets/imgs/background/properties-banner-image.png'
 import { Link, useLocation } from 'react-router-dom';
 import ProfitBanner from 'assets/imgs/background/profit-banner.png';
 import ContactBanner from 'assets/imgs/background/contact-banner.png'
+
+import AirConditionIcon from 'assets/imgs/icon/air-conditioner.png';
+import DeskTopIcon from 'assets/imgs/icon/desktop.png';
+import DumbBellIcon from 'assets/imgs/icon/dumbbell.png';
+import FirePlaceIcon from 'assets/imgs/icon/fireplace.png';
+import GrillIcon from 'assets/imgs/icon/grill.png';
+import KitchenIcon from 'assets/imgs/icon/kitchen.png';
+import OutDoorCafeIcon from 'assets/imgs/icon/outdoor-cafe.png';
+import ParkedCarIcon from 'assets/imgs/icon/parked-car.png';
+import PetIcon from 'assets/imgs/icon/pet.png';
+import PoolTableIcon from 'assets/imgs/icon/pool-table.png';
+import ShowerIcon from 'assets/imgs/icon/shower.png';
+import SleepIcon from 'assets/imgs/icon/sleep.png';
+import SwimmingPoolIcon from 'assets/imgs/icon/swimming-pool.png';
+import TVIcon from 'assets/imgs/icon/tv.png';
+import WifiIcon from 'assets/imgs/icon/wifi.png';
+
+
 const BANNER = {
   '/': HomeBanner,
   '/properties': PropertyBanner,
@@ -12,18 +30,10 @@ const BANNER = {
   '/contact': ContactBanner
 }
 
-export default function HeroComponent() {
+const iconlist = [AirConditionIcon, DeskTopIcon, DumbBellIcon, FirePlaceIcon, GrillIcon, KitchenIcon, OutDoorCafeIcon, ParkedCarIcon, PetIcon, PoolTableIcon, ShowerIcon, SleepIcon, SwimmingPoolIcon, TVIcon, WifiIcon]
 
-  const [index, setIndex] = React.useState(0);
+export default function HeroComponent() {
   const location = useLocation();
-  React.useEffect(() => {
-    //Transaction for Hero title
-    const intervalId = setInterval(() =>
-      setIndex(index => index + 1),
-      5000 // every 3 seconds
-    );
-    return () => clearTimeout(intervalId);
-  }, []);
 
   return (
     <>
@@ -71,36 +81,14 @@ export default function HeroComponent() {
           {
             (location.pathname != '/contact')&&
               <div className="bg-yellow-300">
-                <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-                  {/* <div className="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
-                    <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                      <img className="h-12" src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg" alt="Tuple" />
-                    </div>
-                    <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                      <img className="h-12" src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg" alt="Mirage" />
-                    </div>
-                    <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                      <img
-                        className="h-12"
-                        src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg"
-                        alt="StaticKit"
-                      />
-                    </div>
-                    <div className="col-span-1 flex justify-center md:col-span-2 md:col-start-2 lg:col-span-1">
-                      <img
-                        className="h-12"
-                        src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg"
-                        alt="Transistor"
-                      />
-                    </div>
-                    <div className="col-span-2 flex justify-center md:col-span-2 md:col-start-4 lg:col-span-1">
-                      <img
-                        className="h-12"
-                        src="https://tailwindui.com/img/logos/workcation-logo-gray-400.svg"
-                        alt="Workcation"
-                      />
-                    </div>
-                  </div> */}
+                <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 flex flex-wrap justify-center">
+                  {
+                    iconlist.map((icon, index) => (
+                      <div key={index} className="text-center mx-3"> 
+                        <img src={icon} className="w-8 md:w-10 h-auto"/>
+                      </div>
+                    ))
+                  }
                 </div>
               </div>
           }
