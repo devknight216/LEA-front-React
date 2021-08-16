@@ -17,7 +17,6 @@ export default function SigninPage() {
   const authUser = useSelector((state) => state.auth.user);
 
   const onSubmit = async( data )=> {
-
     const user = {
       email: data.email,
       password: data.password,
@@ -26,7 +25,7 @@ export default function SigninPage() {
     try {      
       dispatch(SignIn(user));
     } catch (error) {
-      alert("Faild login");
+      console.log('Faild');
     }
   };
 

@@ -10,7 +10,7 @@ export default function CarouselPropertyComponent() {
     infinite: true,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 1,
+    slidesToScroll: 3,
     lazyLoad: true,
     arrows: false,
     autoplay: true,
@@ -57,7 +57,7 @@ export default function CarouselPropertyComponent() {
       <Slider {...settings}>
         {properties.map((property) => {
           return (
-            <div>
+            <div key={property._id}>
               <CardItem item={property} />
             </div>
           );
@@ -74,7 +74,7 @@ const CardItem = ({ item }) => {
         <div className="aspect-w-3 aspect-h-2 p-5">
           <img
             className="object-cover w-full shadow-lg rounded-lg"
-            src={item.imageURLs[0].url}
+            src={item.imageURLs[1].url}
             alt=""
           />
         </div>

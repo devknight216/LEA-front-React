@@ -3,10 +3,12 @@ import 'firebase/storage'
 import 'firebase/database'
 
 const uploadImageToFirebase = async ( file, setProgress, getImageUrl ) => {
+    const task = firebase.database().ref('/');
+    var key = task.push().key;
     //Get Reference of Firebase store
     let store = firebase.storage();
     let storageRef = store.ref();
-    let uploadTask = storageRef.child(`images/property/${file.name.split('.')[0]}`).put(file);
+    let uploadTask = storageRef.child(`images/property/${file.name.split('.')[0]}${key}`).put(file);
     uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
         (snapshot) => {
             let progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes))*100;
@@ -16,7 +18,7 @@ const uploadImageToFirebase = async ( file, setProgress, getImageUrl ) => {
         },() =>{
             uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
                 getImageUrl(url);
-                recordImagedata({name: file.name,url:url})
+                recordImagedata({name: `${file.name.split('.')[0]}${key}`,url:url})
             })
         }
     )

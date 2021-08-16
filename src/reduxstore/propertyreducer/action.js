@@ -31,7 +31,6 @@ export const updatePropertyById = createAsyncThunk(
     async(payload) => {
         const {id, body} = payload;
         const response = await updatePropertyByIdFromAPI(id, body);
-        console.log("API response", response);
         return response.data;
     }
 )

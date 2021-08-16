@@ -54,7 +54,6 @@ const recentHires = [
 ];
 
 const PropertyDetailViewPage = (props) => {
-  console.log(props);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPropertyById(props.match.params.id));

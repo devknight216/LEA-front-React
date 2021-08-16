@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { createNewProperty } from 'reduxstore/propertyreducer/action';
 import { uploadImageToFirebase, recordImagedata, removeStore } from 'firebaseStorage/functions';
 import { useState } from 'react'; 
+import { Toast } from 'components/common/notification';
 
 export default function CreateNewPropertyPage() { 
     
@@ -17,12 +18,18 @@ export default function CreateNewPropertyPage() {
     const dispatch = useDispatch();
     const onSubmit = (data) => {
       const requestBody = formatReqestData(data, imageData);
-      console.log(requestBody);
-      //Dispatch API to create New Item
-      dispatch(createNewProperty(JSON.stringify(requestBody)));
-      //Clear Image Cash
-      setImageData(null);
-      removeStore();
+      try {        
+        //Dispatch API to create New Item
+        dispatch(createNewProperty(JSON.stringify(requestBody)));
+        Toast("", "Creating is finished Successfully", "success");
+        //Clear Image Cash
+        setImageData(null);
+        removeStore();
+      } catch (error) {
+        Toast("", "Creating is faild", "danger");
+        setImageData(null);
+        removeStore();
+      }
     };
 
     //Image Upload

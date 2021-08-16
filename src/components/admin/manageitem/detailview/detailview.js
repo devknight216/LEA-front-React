@@ -16,7 +16,6 @@ function DetailViewComponent( {selected} ) {
         slidesToShow: 1,
         slidesToScroll: 1
     };
-    console.log("deteil Image", selected?.imageURLs);
 
     // Redirect to Subpages
     const history = useHistory();

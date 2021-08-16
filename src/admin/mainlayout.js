@@ -17,6 +17,8 @@ import ManageNewPropertyItemPage from './manageitem'
 import BrandImage from 'assets/imgs/brand/png-white-background.png'
 import CreateNewPropertyPage from './createnewitem'
 import EditpropertiesPage from './editproperties'
+import { useDispatch } from 'react-redux';
+import { SignOut } from 'reduxstore/authreducer/action'
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: HomeIcon, current: true },
@@ -27,9 +29,9 @@ const navigation = [
   { name: 'Reports', href: '/admin/reports', icon: ChartBarIcon, current: false },
 ]
 const userNavigation = [
-  { name: 'Profile', href: '#', onClick: () => {} },
-  { name: 'Settings', href: '#', onClick: () => {} },
-  { name: 'Sign out', href: '/signin', onClick: () => { localStorage.clear() } },
+  { name: 'Profile', href: '#' },
+  { name: 'Settings', href: '#' },
+  { name: 'Sign out', href: '/signin'},
 ]
 
 function classNames(...classes) {
@@ -39,6 +41,16 @@ function classNames(...classes) {
 function DashboardMainLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+
+  //Sign Out
+  const dispatch = useDispatch();
+  const signOutFunc = (type) => {
+    if(type == "Sign out") {
+      localStorage.clear();
+      dispatch(SignOut())
+    }
+  }
+
   return (
     <div className="h-screen flex overflow-hidden bg-gray-100">
       <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -233,7 +245,7 @@ function DashboardMainLayout() {
                             {({ active }) => (
                               <Link
                                 to={item.href}
-                                onClick={item.onClick}
+                                onClick={() => { signOutFunc(item.name) }}
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm text-gray-700'
