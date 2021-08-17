@@ -21,7 +21,6 @@ export default function ImageListComponent({getImageData}) {
 
     //Delete Item
     const deleteItem = (data) => {
-      console.log(data);
       firebase.database().ref(`/property/imageRecord/${data.name}`).remove().then(
         ()=>{
           deleteImage(data.url);

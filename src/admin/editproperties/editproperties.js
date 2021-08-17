@@ -56,7 +56,6 @@ export default function CreateNewPropertyPage() {
   const [url, setUrl] = useState(null);
   const [progress, setProgeress] = useState(0);
   const handlfileChange = async(e) => {
-    console.log(e.target.files[0]);
     if(e.target.files[0]){
       await uploadImageToFirebase(e.target.files[0], setProgeress, setUrl);
     }

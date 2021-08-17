@@ -17,6 +17,7 @@ export default function SearchPropertyComponent() {
   const [currentNav, setCurrentNav] = useState(null);
   const [filterDateRange, setFilterDateRange] = useState({ from: null, to: null});
   const [guestNum, setGuestNum] = useState({ adult:0, children:0, infants: 0});
+  const [locationUrl, setLocation] = useState(null)
 
   const changeGuestNum = (type, who) => {
       if(type === 'plus') {
@@ -43,11 +44,11 @@ export default function SearchPropertyComponent() {
                 break;
           }
           case 'children': {
-                setGuestNum({...guestNum, children:guestNum.adult > 0 ? guestNum.children - 1 : 0});
+                setGuestNum({...guestNum, children:guestNum.children > 0 ? guestNum.children - 1 : 0});
                 break;
           }
           case 'infants':{
-                setGuestNum({...guestNum, infants:guestNum.adult > 0 ? guestNum.infants - 1 : 0});
+                setGuestNum({...guestNum, infants:guestNum.infants > 0 ? guestNum.infants - 1 : 0});
                 break;
           }
           default: {
@@ -104,7 +105,7 @@ export default function SearchPropertyComponent() {
                       </div>
                     }
                     onSelect={(e) => {
-                      checkInRef.current.click();
+                      setLocation(e)
                     }}
                   />
                 </div>
@@ -242,7 +243,14 @@ export default function SearchPropertyComponent() {
                     {getGuestText()}
                   </div>
                 </div>
-                <div className="absolute w-16 h-16 bg-yellow-300 hover:bg-yellow-400 rounded-full right-3 lg:top-3 sm:top-0 flex items-center justify-center" onClick={(e) => e.preventDefault()}>
+                <div 
+                  className="absolute w-16 h-16 bg-yellow-300 hover:bg-yellow-400 rounded-full right-3 lg:top-3 sm:top-0 flex items-center justify-center" 
+                  onClick={
+                    (e) => {
+                      e.preventDefault(); 
+                      console.log(guestNum, filterDateRange, currentNav, locationUrl);
+                  }}
+                >
                     <SearchIcon className="text-white w-1/2 h-1/2" />
                 </div>
               </>

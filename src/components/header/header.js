@@ -194,7 +194,7 @@ return (
                     }
                 </div>
               </div>
-              <div className="absolute w-full top-28">
+              <div className="absolute w-full top-28 hidden lg:block">
                 {
                   ( path == "/") && <SearchPropertyComponent />
                 }
