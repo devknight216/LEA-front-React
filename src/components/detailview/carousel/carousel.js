@@ -1,57 +1,44 @@
 import React from 'react';
-import Slider from 'react-slick';
-import BedRoom from 'assets/imgs/property/bedroom.jpg';
 
-function DetailViewCarouselComponent({imageURLs}) {
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        lazyLoad: true,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed:1500,
-        pauseOnHover: true,
-        dots: true,
-        responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-                infinite: true,
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-              }
-            }
-        ]
-    };
+function DetailViewCarouselComponent({images}) {
     return (
-        <div className="mx-auto container">
-            <Slider {...settings}>
-              {imageURLs?.map((image) => {
-                return (
-                <div className="px-2">
-                    <img src={image.url} className="w-full outline-none" alt=""/>
-                </div>
-                )
-              })}
-            </Slider>
-        </div>
+      <div className="mx-auto container">
+        {
+          images && 
+          <div className="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
+            <div className="hidden aspect-w-3 aspect-h-4 rounded-lg overflow-hidden lg:block">
+              <img
+                src={images[0]?.url}
+                alt={images[0]?.filename}
+                className="w-full h-full object-center object-cover"
+              />
+            </div>
+            <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+              <div className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden">
+                <img
+                  src={images[1]?.url}
+                  alt={images[1]?.filename}
+                  className="w-full h-full object-center object-cover"
+                />
+              </div>
+              <div className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden">
+                <img
+                  src={images[0]?.url}
+                  alt={images[0]?.filename}
+                  className="w-full h-full object-center object-cover"
+                />
+              </div>
+            </div>
+            <div className="aspect-w-4 aspect-h-5 sm:rounded-lg sm:overflow-hidden lg:aspect-w-3 lg:aspect-h-4">
+              <img
+                src={images[1]?.url}
+                alt={images[1]?.filename}
+                className="w-full h-full object-center object-cover"
+              />
+            </div>
+          </div>
+        }
+      </div>
     )
 }
 

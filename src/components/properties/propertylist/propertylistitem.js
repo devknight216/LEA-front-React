@@ -1,6 +1,13 @@
+import { useHistory } from "react-router-dom"
+
 export default function PropertyIistItem ({item}){
+
+    const history = useHistory();
+    const gotoDetailView = () => {
+        history.push(`/details/${item?._id}`)
+    }
     return<>      
-        <div className="space-y-4 mx-4 my-10 bg-white rounded-lg shadow-xl">
+        <div className="space-y-4 mx-4 my-10 bg-white rounded-lg shadow-xl cursor-pointer" onClick={gotoDetailView}>
             <div className="aspect-w-3 aspect-h-2 p-5">
                 <img className="object-cover w-full shadow-lg rounded-lg" src={item.imageURLs[0].url} alt="" />
             </div>

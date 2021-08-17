@@ -3,8 +3,10 @@ import Slider from "react-slick";
 import { ArrowNarrowRightIcon } from "@heroicons/react/outline";
 import { getAllProperties } from "reduxstore/propertyreducer/action";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-export default function CarouselPropertyComponent() {
+export default function CarouselPropertyComponent() {  
+
   const settings = {
     dots: false,
     infinite: true,
@@ -46,6 +48,8 @@ export default function CarouselPropertyComponent() {
   useEffect(() => {
     dispatch(getAllProperties());
   }, []);
+
+   
   const properties = useSelector((state) => state.properties.properties);
   return (
     <div className="container mx-auto w-full">
@@ -68,6 +72,10 @@ export default function CarouselPropertyComponent() {
 }
 
 const CardItem = ({ item }) => {
+  const history = useHistory();
+  const gotoDetail = () => {
+    history.push(`/details/${item._id}`)
+  }
   return (
     <>
       <div className="space-y-4 mx-4 my-10 bg-white rounded-lg shadow-xl">
@@ -85,10 +93,7 @@ const CardItem = ({ item }) => {
 
         <ul className="flex space-x-5 px-5 pt-3">
           <li>
-            <span className="px-2 py-1 bg-red-400 rounded-lg text-white cursor-pointer hover:bg-red-600" onClick={() => {
-                const win = window.open(`/details/${item._id}`, "_blank");
-                win.focus();
-            }}>
+            <span className="px-2 py-1 bg-red-400 rounded-lg text-white cursor-pointer hover:bg-red-600" onClick={gotoDetail}>
               View Details
             </span>
           </li>
