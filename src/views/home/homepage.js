@@ -12,10 +12,10 @@ function HomePage() {
         <div>
             <HeroComponent/>
             <CarouselPropertyComponent/>
-            <OurTeamComponent/>
-            <StatusComponent/>
             <FeedbackComponent/>
             <ReviewGuesComponent/>
+            <StatusComponent/>
+            <OurTeamComponent/>
             <CtaComponent/>
         </div>
     )

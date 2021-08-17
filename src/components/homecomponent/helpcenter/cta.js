@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 export default function CtaComponent() {
     return (
         <div>            
-            {/* CTA Section */}
             <div className="relative bg-white">
                 <div className="relative h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
                     <img

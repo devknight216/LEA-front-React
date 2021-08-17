@@ -1,12 +1,11 @@
-/* This example requires Tailwind CSS v2.0+ */
+import WomenAvatar2 from 'assets/imgs/avatars/girl_1.png';
+import MenAvatar from 'assets/imgs/avatars/boy.png';
+
 export default function ReviewGuesComponent() {
     return (
-      <section className="bg-yellow-400">
+      <section className="bg-white">
         <div className="max-w-7xl mx-auto md:grid md:grid-cols-2 md:px-6 lg:px-8">
-          <div className="py-12 px-4 sm:px-6 md:flex md:flex-col md:py-16 md:pl-0 md:pr-10 md:border-r md:border-white lg:pr-16">
-            <div className="md:flex-shrink-0">
-              {/* <img className="h-12" src="https://tailwindui.com/img/logos/tuple-logo-indigo-300.svg" alt="Tuple" /> */}
-            </div>
+          <div className="py-12 px-4 sm:px-6 md:flex md:flex-col md:py-16 md:pl-0 md:pr-10 md:border-r md:border-yellow lg:pr-16">
             <blockquote className="mt-6 md:flex-grow md:flex md:flex-col">
               <div className="relative text-lg font-medium text-gray-600 md:flex-grow">
                 <svg
@@ -24,29 +23,22 @@ export default function ReviewGuesComponent() {
               </div>
               <footer className="mt-8">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 inline-flex rounded-full border-2 border-white">
+                  <div className="flex-shrink-0 inline-flex rounded-full border-2 border-yellow-600">
                     <img
                       className="h-12 w-12 rounded-full"
-                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      src={WomenAvatar2}
                       alt=""
                     />
                   </div>
                   <div className="ml-4">
-                    <div className="text-base font-medium text-white">Terrell</div>
-                    <div className="text-base font-medium text-gray-100">CEO, Tuple</div>
+                    <div className="text-base font-medium text-gray-600">Samantha</div>
+                    <div className="text-base font-medium text-gray-600">Price Writer, Mommy Traveller</div>
                   </div>
                 </div>
               </footer>
             </blockquote>
           </div>
-          <div className="py-12 px-4 border-t-2 border-white sm:px-6 md:py-16 md:pr-0 md:pl-10 md:border-t-0 md:border-l lg:pl-16">
-            <div className="md:flex-shrink-0">
-              {/* <img
-                className="h-12"
-                src="https://tailwindui.com/img/logos/workcation-logo-indigo-300.svg"
-                alt="Workcation"
-              /> */}
-            </div>
+          <div className="py-12 px-4 border-t-2 border-yellow-500 sm:px-6 md:py-16 md:pr-0 md:pl-10 md:border-t-0 md:border-l lg:pl-16">
             <blockquote className="mt-6 md:flex-grow md:flex md:flex-col">
               <div className="relative text-lg font-medium text-gray-600 md:flex-grow">
                 <svg
@@ -62,17 +54,17 @@ export default function ReviewGuesComponent() {
                 </p>
               </div>
               <footer className="mt-8">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 inline-flex rounded-full border-2 border-white">
+                <div className="flex items-start mt-10">
+                  <div className="flex-shrink-0 inline-flex rounded-full border-2 border-yellow-600">
                     <img
                       className="h-12 w-12 rounded-full"
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      src={MenAvatar}
                       alt=""
                     />
                   </div>
                   <div className="ml-4">
-                    <div className="text-base font-medium text-white">Sheemka</div>
-                    <div className="text-base font-medium text-gray-100">CEO, Workcation</div>
+                    <div className="text-base font-medium text-gray-600">Ryan Stewart</div>
+                    <div className="text-base font-medium text-gray-600">CEO,Rentcheck</div>
                   </div>
                 </div>
               </footer>

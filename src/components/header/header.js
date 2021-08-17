@@ -167,38 +167,7 @@ return (
                                   </div>
                                 </nav>
                                 <div className="bg-gray-50 px-4 py-8 sm:py-12 sm:px-6 lg:px-8 xl:pl-12">
-                                  {/* <div>
-                                    <h3 className="text-sm font-medium tracking-wide text-gray-500 uppercase">
-                                      From the blog
-                                    </h3>
-                                    <ul className="mt-6 space-y-6">
-                                      {blogPosts.map((post) => (
-                                        <li key={post.id} className="flow-root">
-                                          <a href={post.href} className="-m-3 p-3 flex rounded-lg hover:bg-gray-100">
-                                            <div className="hidden sm:block flex-shrink-0">
-                                              <img
-                                                className="w-32 h-20 object-cover rounded-md"
-                                                src={post.imageUrl}
-                                                alt=""
-                                              />
-                                            </div>
-                                            <div className="w-0 flex-1 sm:ml-8">
-                                              <h4 className="text-base font-medium text-gray-900 truncate">
-                                                {post.name}
-                                              </h4>
-                                              <p className="mt-1 text-sm text-gray-500">{post.preview}</p>
-                                            </div>
-                                          </a>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                  <div className="mt-6 text-sm font-medium">
-                                    <a href="#" className="text-indigo-600 hover:text-indigo-500">
-                                      {' '}
-                                      View all posts <span aria-hidden="true">&rarr;</span>
-                                    </a>
-                                  </div> */}
+                                  
                                 </div>
                               </div>
                             </Popover.Panel>
@@ -227,7 +196,7 @@ return (
               </div>
               <div className="absolute w-full top-28">
                 {
-                  ( path == "/" || path == "/properties") && <SearchPropertyComponent />
+                  ( path == "/") && <SearchPropertyComponent />
                 }
               </div>
             </div>

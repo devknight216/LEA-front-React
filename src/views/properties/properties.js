@@ -16,7 +16,6 @@ const PropertiesPage  = () => {
 
     return (
         <div>
-            <HeroComponent/>
             <div className="container mx-auto">
                 <div className="mt-10 text-center">
                     <h3 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Check out our Properties</h3>

@@ -1,4 +1,5 @@
-/* This example requires Tailwind CSS v2.0+ */
+import WomenAvatar1 from 'assets/imgs/avatars/girl.png';
+
 export default function FeedbackComponent() {
     return (
       <section className="bg-white overflow-hidden">
@@ -53,7 +54,7 @@ export default function FeedbackComponent() {
             <div className="hidden lg:block lg:flex-shrink-0">
               <img
                 className="h-64 w-64 rounded-full xl:h-80 xl:w-80"
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                src={WomenAvatar1}
                 alt=""
               />
             </div>
@@ -83,13 +84,13 @@ export default function FeedbackComponent() {
                     <div className="flex-shrink-0 lg:hidden">
                       <img
                         className="h-12 w-12 rounded-full"
-                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={WomenAvatar1}
                         alt=""
                       />
                     </div>
                     <div className="ml-4 lg:ml-0">
-                      <div className="text-base font-medium text-gray-900">Judith Black</div>
-                      <div className="text-base font-medium text-indigo-600">CEO, RentCheck</div>
+                      <div className="text-base font-medium text-gray-900">Marissa Robins</div>
+                      <div className="text-base font-medium text-indigo-600">Social Media Manager, Discover World</div>
                     </div>
                   </div>
                 </footer>
