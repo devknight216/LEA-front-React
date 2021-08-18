@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { deletePropertyById, getAllProperties, getPropertyById, updatePropertyById, createNewProperty } from './action'
+import { searchPropertiesFromAPI } from '.'
+import { deletePropertyById, getAllProperties, getPropertyById, updatePropertyById, createNewProperty, searchProperties } from './action'
 const PREFIX = 'property'
 
 const STATUS = {
@@ -56,6 +57,13 @@ export const PropertySlice = createSlice(
                 createNewProperty.fulfilled,
                 ( state, action ) => {
                     state.property = action.payload;
+                    state.status = STATUS.FULFILLED;
+                }
+            )
+            .addCase(
+                searchProperties.fulfilled,
+                ( state, action ) => {
+                    state.properties = action.payload;
                     state.status = STATUS.FULFILLED;
                 }
             )

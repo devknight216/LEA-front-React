@@ -4,6 +4,7 @@ import { RangePicker } from "react-trip-date";
 import GooglePlacesAutoComplete from "../googleautocomplete";
 import { MinusIcon, PlusIcon, SearchIcon } from "@heroicons/react/solid";
 import moment from "moment";
+import { useHistory } from "react-router-dom";
 
 export default function SearchPropertyComponent() {
   function classNames(...classes) {
@@ -13,6 +14,7 @@ export default function SearchPropertyComponent() {
   const checkInRef = React.useRef();
   const checkOutRef = React.useRef();
   const guestRef = React.useRef();
+  const history = useHistory();
 
   const [currentNav, setCurrentNav] = useState(null);
   const [filterDateRange, setFilterDateRange] = useState({ from: null, to: null});
@@ -248,7 +250,7 @@ export default function SearchPropertyComponent() {
                   onClick={
                     (e) => {
                       e.preventDefault(); 
-                      console.log(guestNum, filterDateRange, currentNav, locationUrl);
+                      history.push(`/properties?adult=${guestNum.adult}&children=${guestNum.children}&infants=${guestNum.infants}&location=${locationUrl?.description}&checkin=${filterDateRange.from}&checkout=${filterDateRange.to}`)
                   }}
                 >
                     <SearchIcon className="text-white w-1/2 h-1/2" />

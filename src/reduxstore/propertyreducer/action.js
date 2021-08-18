@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getAllPropertiesFromAPI, getPropertyByIdFromAPI, deletePropertyByIdFromAPI, updatePropertyByIdFromAPI, craeteNewPropertFromAPI } from "."; 
+import { getAllPropertiesFromAPI, getPropertyByIdFromAPI, deletePropertyByIdFromAPI, updatePropertyByIdFromAPI, craeteNewPropertFromAPI, searchPropertiesFromAPI } from "."; 
 
 export const getAllProperties = createAsyncThunk(
     "property/getAll",
@@ -39,6 +39,14 @@ export const createNewProperty = createAsyncThunk(
     "property/create",
     async(requestBody) => {
         const response = await craeteNewPropertFromAPI(requestBody);
+        return response.data;
+    }
+)
+
+export const searchProperties = createAsyncThunk(
+    "property/search",
+    async(requestBody) => {
+        const response = await searchPropertiesFromAPI(requestBody);
         return response.data;
     }
 )

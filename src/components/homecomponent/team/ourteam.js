@@ -26,7 +26,7 @@ export default function OurTeamComponent() {
               <div className="mt-8">
                 <div className="inline-flex rounded-md shadow">
                   <Link
-                      to="/contact"
+                      to="/staging"
                       className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-400 hover:bg-red-700"
                   >
                     Learn More

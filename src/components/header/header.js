@@ -20,24 +20,7 @@ const company = [
 ];
 const resources = [
   { name: 'Guides', href: '#', icon: BookmarkAltIcon },
-];
-const blogPosts = [
-  {
-    id: 1,
-    name: 'Boost your conversion rate',
-    href: '#',
-    preview: 'Eget ullamcorper ac ut vulputate fames nec mattis pellentesque elementum. Viverra tempor id mus.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1558478551-1a378f63328e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2849&q=80',
-  },
-  {
-    id: 2,
-    name: 'How to use search engine optimization to drive traffic to your site',
-    href: '#',
-    preview: 'Eget ullamcorper ac ut vulputate fames nec mattis pellentesque elementum. Viverra tempor id mus.',
-    imageUrl:
-      'https://images.unsplash.com/1/apple-gear-looking-pretty.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
-  },
+  { name: 'Staging', href: '/staging', icon: BookmarkAltIcon },
 ];
 
 function classNames(...classes) {
@@ -150,7 +133,7 @@ return (
                                     </h3>
                                     <ul className="mt-5 space-y-6">
                                       {resources.map((item) => (
-                                        <li key={item.name} className="flow-root">
+                                        <Link to={item.name} className="flow-root" key={item.name}>
                                           <a
                                             href={item.href}
                                             className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
@@ -161,7 +144,7 @@ return (
                                             />
                                             <span className="ml-4">{item.name}</span>
                                           </a>
-                                        </li>
+                                        </Link>
                                       ))}
                                     </ul>
                                   </div>
@@ -253,21 +236,17 @@ return (
                         Properties
                       </Link>
   
-                      <a href="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
-                        Profit from Airbnb
-                      </a>
-  
-                      <a href="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                      <Link to="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                         Courses
-                      </a>
+                      </Link>
   
-                      <a href="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
-                        Resources
-                      </a>
+                      <Link to="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                        Staging
+                      </Link>
   
-                      <a href="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                      <Link to="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                         Blog
-                      </a>
+                      </Link>
   
                       <Link to="/contact" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                         Contact Us
