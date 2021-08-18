@@ -16,7 +16,7 @@ import { SignOut } from 'reduxstore/authreducer/action';
 
 const company = [
   { name: 'About', href: '#', icon: InformationCircleIcon },
-  { name: 'Privacy and Policies', href: '#', icon: ShieldCheckIcon },
+  { name: 'Privacy and Policies', href: '/policy', icon: ShieldCheckIcon },
 ];
 const resources = [
   { name: 'Guides', href: '#', icon: BookmarkAltIcon },
@@ -177,9 +177,9 @@ return (
                     }
                 </div>
               </div>
-              <div className="absolute w-full top-28 hidden lg:block">
+              <div className="absolute w-full top-52 hidden lg:block">
                 {
-                  ( path == "/") && <SearchPropertyComponent />
+                  path=="/" && <SearchPropertyComponent />
                 }
               </div>
             </div>

@@ -25,8 +25,8 @@ export default function CtaComponent() {
                         </h2>
                         <p className="mt-2 text-gray-800 text-3xl font-extrabold tracking-tight sm:text-4xl">We're here to help</p>
                         <p className="mt-3 text-lg text-gray-800">
-                            Want to know more about our properties? Maybe you have some questions about the rates. 
-                            Fill out the contact form and one our  real estate consultants will reach out to you and assist you with your concerns. 
+                            Want to know more about our properties? Maybe you have some questions about our process. 
+                            Fill out the contact form and one our qualified property consultants will reach out to you and assist you with your concerns. 
                         </p>
                         <div className="mt-8">
                             <div className="inline-flex rounded-md shadow">

@@ -4,10 +4,12 @@ import HeaderComponent from "components/header";
 import { Route, Switch } from "react-router-dom";
 import ContactUsPage from "./contactus";
 import HomePage from "./home";
-import ProfitPage from "./profit";
+import ProfitPage from "./course";
 import PropertiesPage from "./properties/properties";
 import NotFoundPage from "./404";
 import Stagingpage from "./staging";
+import TermsPage from "./policy";
+import PolicyPage from "./policy";
 
 export default function MainLayout() {
   return (
@@ -24,6 +26,7 @@ export default function MainLayout() {
           <ContactUsPage />
         </Route>
         <Route path="/details/:id" component={PropertyDetailViewPage} />
+        <Route path="/policy" component={PolicyPage}/>
         <Route>
           <NotFoundPage />
         </Route>

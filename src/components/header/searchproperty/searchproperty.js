@@ -250,7 +250,7 @@ export default function SearchPropertyComponent() {
                   onClick={
                     (e) => {
                       e.preventDefault(); 
-                      history.push(`/properties?adult=${guestNum.adult}&children=${guestNum.children}&infants=${guestNum.infants}&location=${locationUrl?.description}&checkin=${filterDateRange.from}&checkout=${filterDateRange.to}`)
+                      (guestNum&&locationUrl&&filterDateRange) && history.push(`/properties?adult=${guestNum.adult}&children=${guestNum.children}&infants=${guestNum.infants}&location=${locationUrl?.description}&checkin=${filterDateRange.from}&checkout=${filterDateRange.to}`)
                   }}
                 >
                     <SearchIcon className="text-white w-1/2 h-1/2" />

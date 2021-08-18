@@ -75,8 +75,8 @@ export default function FeedbackComponent() {
               <blockquote className="relative">
                 <div className="text-2xl leading-9 font-medium text-gray-900">
                   <p>
-                    The best Airbnb I’ve been to in Houston. Nice building , very clean , huge TVs and plenty of Restaurants walking distance. 
-                    I would stay here again without question.
+                    The best Airbnb I’ve been to in Houston. The building is nice and very clean. 
+                    They also have huge TVs and plenty of restaurants around within walking distance. I would stay here again without question.
                   </p>
                 </div>
                 <footer className="mt-8">

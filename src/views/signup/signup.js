@@ -22,7 +22,7 @@ export default function SigninPage() {
   const onSubmit = async (data) => {
     const user = {
       name: `${data.firstname} ${data.lastname}`,
-      role: "admin",
+      role: "user",
       email: data.email,
       password: data.password,
       password2: data.confirmpassword,

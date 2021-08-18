@@ -52,7 +52,7 @@ export default function HeroComponent() {
                 <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
                   <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl py-10">
                     <span className="text-white">
-                      <p className="text-center drop-shadow-xl">Luxury Apartments</p>
+                      <p className="text-center drop-shadow-xl md:mt-16">Luxury Apartments</p>
                       <p className="text-center">Fully Furnished</p>
                     </span>
                   </h1>
