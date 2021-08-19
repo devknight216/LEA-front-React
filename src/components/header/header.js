@@ -7,12 +7,14 @@ import {
     MenuIcon,
     ShieldCheckIcon,
     XIcon,
+    UserCircleIcon
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import BrandIcon from 'assets/imgs/brand/png-white-background.png';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { SignOut } from 'reduxstore/authreducer/action';
+import { classNames } from 'shared/function';
 
 const company = [
   { name: 'About', href: '#', icon: InformationCircleIcon },
@@ -22,12 +24,6 @@ const resources = [
   { name: 'Guides', href: '#', icon: BookmarkAltIcon },
   { name: 'Staging', href: '/staging', icon: BookmarkAltIcon },
 ];
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
-
-
 export default function HeaderComponent() {
 
   const authUser = useSelector((state) => state.auth.user);
@@ -113,8 +109,8 @@ return (
                                     <ul className="mt-5 space-y-6">
                                       {company.map((item) => (
                                         <li key={item.name} className="flow-root">
-                                          <a
-                                            href={item.href}
+                                          <Link
+                                            to={item.href}
                                             className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
                                           >
                                             <item.icon
@@ -122,7 +118,7 @@ return (
                                               aria-hidden="true"
                                             />
                                             <span className="ml-4">{item.name}</span>
-                                          </a>
+                                          </Link>
                                         </li>
                                       ))}
                                     </ul>
@@ -134,8 +130,7 @@ return (
                                     <ul className="mt-5 space-y-6">
                                       {resources.map((item) => (
                                         <Link to={item.name} className="flow-root" key={item.name}>
-                                          <a
-                                            href={item.href}
+                                          <div
                                             className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
                                           >
                                             <item.icon
@@ -143,9 +138,23 @@ return (
                                               aria-hidden="true"
                                             />
                                             <span className="ml-4">{item.name}</span>
-                                          </a>
+                                          </div>
                                         </Link>
                                       ))}
+                                      {
+                                        authUser?.role== "admin" &&
+                                        <Link to='/admin' className="flow-root">
+                                            <div
+                                              className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
+                                            >
+                                              <UserCircleIcon
+                                                className="flex-shrink-0 h-6 w-6 text-gray-400"
+                                                aria-hidden="true"
+                                              />
+                                              <span className="ml-4">Admin</span>
+                                            </div>
+                                          </Link>
+                                      }
                                     </ul>
                                   </div>
                                 </nav>
@@ -161,7 +170,7 @@ return (
                   </Popover.Group>
                     {authUser ?
                       <div className="flex items-center md:ml-12">
-                        <div onClick={() => dispatch(SignOut())} className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer">
+                        <div onClick={() => dispatch(SignOut())} className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-500 hover:bg-red-600 cursor-pointer">
                           Sign Out
                         </div>
                       </div>
@@ -170,7 +179,7 @@ return (
                         <Link to="/signin" className="text-base font-medium text-gray-500 hover:text-gray-900">
                           Sign in
                         </Link>
-                        <Link to="/signup" className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                        <Link to="/signup" className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-500 hover:bg-red-600">
                           Sign up
                         </Link>
                       </div>
@@ -254,17 +263,17 @@ return (
                     </div>
                     <div className="mt-6">
                     {authUser ?
-                    <div onClick={() => dispatch(SignOut())} className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                    <div onClick={() => dispatch(SignOut())} className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-500 hover:bg-red-600">
                       Sign Out
                     </div>
                     :
                     <>
-                      <Link to="/signup"className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                      <Link to="/signup"className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-500 hover:bg-red-600">
                         Sign up
                       </Link>
                       <p className="mt-6 text-center text-base font-medium text-gray-500">
                         Existing customer?{' '}
-                        <Link to="/signin" className="text-indigo-600 hover:text-indigo-500">
+                        <Link to="/signin" className="text-red-500 hover:text-red-600">
                           Sign in
                         </Link>
                       </p>

@@ -5,11 +5,9 @@ import GooglePlacesAutoComplete from "../googleautocomplete";
 import { MinusIcon, PlusIcon, SearchIcon } from "@heroicons/react/solid";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
+import { classNames } from "shared/function";
 
 export default function SearchPropertyComponent() {
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
   const locationRef = React.useRef();
   const checkInRef = React.useRef();
   const checkOutRef = React.useRef();

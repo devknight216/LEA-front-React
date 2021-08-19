@@ -19,6 +19,7 @@ import CreateNewPropertyPage from './createnewitem'
 import EditpropertiesPage from './editproperties'
 import { useDispatch } from 'react-redux';
 import { SignOut } from 'reduxstore/authreducer/action'
+import { classNames } from 'shared/function'
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: HomeIcon, current: true },
@@ -33,11 +34,6 @@ const userNavigation = [
   { name: 'Settings', href: '#' },
   { name: 'Sign out', href: '/signin'},
 ]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 function DashboardMainLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();

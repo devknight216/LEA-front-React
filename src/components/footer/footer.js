@@ -6,7 +6,7 @@ const navigation = {
       { name: 'View All Properties', href: '/properties' },
       { name: 'Courses', href: '/profit' },
       { name: 'Contact Us', href: '/contact' },
-      { name: 'Terms & Policy', href: '/policy' },
+      { name: 'Privacy & Policies', href: '/policy' },
     ],
     social: [
       {
