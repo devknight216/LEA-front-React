@@ -7,7 +7,8 @@ import {
     MenuIcon,
     ShieldCheckIcon,
     XIcon,
-    UserCircleIcon
+    UserCircleIcon,
+    SparklesIcon
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import BrandIcon from 'assets/imgs/brand/png-white-background.png';
@@ -22,7 +23,7 @@ const company = [
 ];
 const resources = [
   { name: 'Guides', href: '#', icon: BookmarkAltIcon },
-  { name: 'Staging', href: '/staging', icon: BookmarkAltIcon },
+  { name: 'Staging', href: '/staging', icon: SparklesIcon },
 ];
 export default function HeaderComponent() {
 

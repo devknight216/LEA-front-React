@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ImageItem1 from 'assets/imgs/background/Living room.jpg'
 import ImageItem2 from 'assets/imgs/background/Kitchen.jpg'
 import ImageItem3 from 'assets/imgs/background/dining.jpg'
 import ImageItem4 from 'assets/imgs/background/bedroom.jpg'
 import { CheckIcon } from '@heroicons/react/outline'
+import StagingInfoModalComponent from 'components/staging/popup';
 
 function Stagingpage() {
+    const [isOpen, setIsOpen] = useState(false);
+    //Run Staging Modal
+    const lunchStagingModal = () => {
+        setIsOpen(true);
+    }
     return (
         <div>
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 py-10 px-5 sm:px-16">
                 <div className="py-5">
-                    <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">Thinking of staging<br/> your home<br/> or apartment?</h2>
-                    <p className='my-2 sm:my-12 text-gray-600'>LEA can do it for you!</p>
+                    <h2 className="md:text-5xl text-3xl  font-extrabold tracking-tight text-gray-900">Thinking of staging<br/> your home<br/> or apartment?</h2>
+                    <p className='my-2 sm:my-12 text-2xl md:px-3 text-gray-600'>LEA can do it for you!</p>
                 </div>
                 <div>
                     <div className="grid grid-cols-1 md:grid-cols-2">
@@ -67,16 +73,17 @@ function Stagingpage() {
                             </ul>
                         </div>
                         <div>
-                            <h2 className="text-5xl font-extrabold tracking-tight text-gray-900">
+                            <h2 className="md:text-5xl text-3xl font-extrabold tracking-tight text-gray-900">
                                 Let LEA stage your<br/>home or apartment<br/> for you!
                             </h2>
                         </div>
                     </div>
                 </div>
                 <div className="text-center py-16">
-                    <a href="" className="md:px-16 px-8 py-5 bg-red-500 rounded-md hover:bg-red-600 text-white">Schedule an appointment now!</a>
+                    <div onClick={lunchStagingModal} className="md:px-12 px-8 cursor-pointer py-5 mx-auto max-w-xs bg-red-500 rounded-md hover:bg-red-600 text-white">Schedule an appointment now!</div>
                 </div>
             </div>
+            <StagingInfoModalComponent isOpen={isOpen} setisOpen={setIsOpen}/>
         </div>
     )
 }
