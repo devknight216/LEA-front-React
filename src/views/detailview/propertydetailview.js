@@ -1,8 +1,6 @@
 import DetailViewCarouselComponent from "components/detailview/carousel";
 import GoogleMapComponent from "components/detailview/googlemap";
 import DateRangerComponent from "components/detailview/dateranger";
-import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getPropertyById } from "reduxstore/propertyreducer/action";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +9,7 @@ import GuestIcon from "assets/imgs/icon/user.png";
 import BedroomIcon from "assets/imgs/icon/sleep.png";
 import BedIcon from "assets/imgs/icon/bed.png";
 import BathroomIcon from "assets/imgs/icon/bathtub.png";
+import ReserveComponent from "components/detailview/reserve";
 
 
 const PropertyDetailViewPage = (props) => {
@@ -28,6 +27,9 @@ const PropertyDetailViewPage = (props) => {
     { label: "beds", value: property?.bedsNum, icon: BedIcon },
     { label: "baths", value: property?.bathroomNum, icon: BathroomIcon },
   ];
+
+  //Get Checked in, Checked out Data
+  const[checked, setChecked] = useState(null)
   
   return (
     <div>
@@ -123,76 +125,10 @@ const PropertyDetailViewPage = (props) => {
               <div className="grid grid-cols-1 gap-4">
                 <section aria-labelledby="announcements-title">
                   <div className="rounded-lg w-full bg-white overflow-hidden shadow">
-                    <DateRangerComponent autoResponsive={false} />
+                    <DateRangerComponent autoResponsive={false} setCheckInOut={setChecked}/>
                   </div>
                 </section>
-                <section aria-labelledby="announcements-title">
-                  <div className="rounded-lg bg-white overflow-hidden shadow">
-                    <div className="text-center w-full">
-                      <h2
-                        className="text-base font-medium text-gray-900"
-                        id="announcements-title"
-                      >
-                        Reserve
-                      </h2>
-                      <div className="flow-root mt-6">
-                        <ul className="-my-5 py-5">
-                          <div className="flex justify-between px-5 gird grid-cols-2">
-                            <p>Adult:</p>
-                            <div className="flex justify-between w-1/2">
-                              <MinusCircleIcon className="h-6" />
-                              {2}
-                              <PlusCircleIcon className="h-6" />
-                            </div>
-                          </div>
-                          <div className="flex justify-between px-5 gird grid-cols-2">
-                            <p>Children:</p>
-                            <div className="flex justify-between w-1/2">
-                              <MinusCircleIcon className="h-6" />
-                              {2}
-                              <PlusCircleIcon className="h-6" />
-                            </div>
-                          </div>
-                          <div className="flex justify-between px-5 gird grid-cols-2">
-                            <p>Infants:</p>
-                            <div className="flex justify-between w-1/2">
-                              <MinusCircleIcon className="h-6" />
-                              {2}
-                              <PlusCircleIcon className="h-6" />
-                            </div>
-                          </div>
-                          <div className="py-5 px-10">
-                            <p className="text-gray-800">
-                              <span className="text-lg font-bold">2300USD</span>
-                              /Night
-                            </p>
-                            <div className="flex justify-between py-4 px-5 text-gray-800">
-                              <p className="underline">2,300USD x 2 nights</p>
-                              <p>4,600USD</p>
-                            </div>
-                            <div className="flex pb-5 px-5 justify-between">
-                              <p className="underline">Service fee</p>
-                              <p>779USD</p>
-                            </div>
-                            <hr />
-                            <div className="flex justify-between px-5 py-2">
-                              <p className="font-bold">Total</p>
-                              <p className="font-bold">5049USD</p>
-                            </div>
-                          </div>
-                        </ul>
-                      </div>
-                      <div className="mt-6">
-                        <Link
-                          to="#"
-                          className="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-800"
-                        >
-                          Reserve
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </section>
+                <ReserveComponent nightlyRate={property?.nightlyRate} checkedInOut={checked}/>
               </div>
             </div>
           </div>

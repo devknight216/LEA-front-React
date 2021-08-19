@@ -1,9 +1,9 @@
 import React from 'react'
 import { RangePicker } from 'react-trip-date'
 
-function DateRangerComponent({autoResponsive}) {
+function DateRangerComponent({autoResponsive, setCheckInOut}) {
     const handleChange = (days) => {
-        console.log('Selected Datas', days);
+        setCheckInOut(days);
     }
     return (
         <div>
@@ -12,7 +12,15 @@ function DateRangerComponent({autoResponsive}) {
                     <RangePicker
                         onChange={handleChange}
                         disabledBeforeToday={true}
-                        disabledDays={['2021-8-28']}
+                        disabledDays={[
+                            "2021-08-24",
+                            "2021-08-25",
+                            "2021-08-26",
+                            "2021-08-27",
+                            "2021-08-29",
+                            "2021-08-30",
+                            "2021-08-31"
+                        ]}
                         autoResponsive={true}
                         disabled
                     />
@@ -20,7 +28,15 @@ function DateRangerComponent({autoResponsive}) {
                     <RangePicker
                         onChange={handleChange}
                         disabledBeforeToday={true}
-                        disabledDays={['2021-8-28']}
+                        disabledDays={[
+                            "2021-08-24",
+                            "2021-08-25",
+                            "2021-08-26",
+                            "2021-08-27",
+                            "2021-08-29",
+                            "2021-08-30",
+                            "2021-08-31"
+                        ]}
                         autoResponsive={false}
                         numberOfMonths={1}
                     />
