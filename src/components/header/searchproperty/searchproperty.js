@@ -158,7 +158,7 @@ export default function SearchPropertyComponent() {
               className="hidden md:block absolute z-10 top-24 inset-x-0 bg-white rounded-t-lg shadow-md"
             >
               <RangePicker
-              numberOfMonths={2}
+                numberOfMonths={2}
                 onChange={(e) => {
                   setFilterDateRange(e);
                   checkOutRef.current.click();

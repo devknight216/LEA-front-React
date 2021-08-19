@@ -12,7 +12,6 @@ const PropertiesPage  = () => {
     const location = useLocation();
     const dispatch = useDispatch();
     useEffect(() => {
-        console.log('ttt');
         if(!location.search){
             dispatch(getAllProperties());
         }

@@ -73,7 +73,7 @@ export default function StagingInfoModalComponent( {isOpen, setisOpen} ) {
                                     >
                                         {
                                             item.options.map( (option, index) =>(
-                                                <option>{ option }</option>
+                                                <option key={index}>{ option }</option>
                                             ))
                                         }
                                     </select>

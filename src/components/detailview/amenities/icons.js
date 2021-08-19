@@ -82,6 +82,33 @@ import Breakfast from 'assets/imgs/amanities/Services/breakfast.png';
 import CleanBeforeCheckout from 'assets/imgs/amanities/Services/cleaning before checkout.png';
 import longtermStay from 'assets/imgs/amanities/Services/long term stay.png';
 import luggageDropoff from 'assets/imgs/amanities/Services/luggage dropoff.png';
+import pool from 'assets/imgs/amanities/Standout Amenities/pool.png';
+import bbgGrill from 'assets/imgs/amanities/Standout Amenities/bbq grill.png';
+import dumbBell from 'assets/imgs/amanities/Standout Amenities/dumbbell.png';
+import fireFit from 'assets/imgs/amanities/Standout Amenities/fire pit.png';
+import firePlace from 'assets/imgs/amanities/Standout Amenities/fireplace.png';
+import gym from 'assets/imgs/amanities/Standout Amenities/gym.png';
+import hotTub from 'assets/imgs/amanities/Standout Amenities/hot-tub.png';
+import outdoorDining from 'assets/imgs/amanities/Standout Amenities/outdoor dining.png';
+import patio from 'assets/imgs/amanities/Standout Amenities/patio.png';
+import pet from 'assets/imgs/amanities/Standout Amenities/pet.png';
+import poolTable from 'assets/imgs/amanities/Standout Amenities/pool-table.png';
+import selfCheckin from 'assets/imgs/amanities/Standout Amenities/self checkin.png';
+import airConditioner from 'assets/imgs/amanities/Guest Favorites/air-conditioner.png';
+import dedicatedWorkspace from 'assets/imgs/amanities/Guest Favorites/dedicated workspace.png';
+import evCharger from 'assets/imgs/amanities/Guest Favorites/ev charger.png';
+import freeParking from 'assets/imgs/amanities/Guest Favorites/free-parking.png';
+import kitchen from 'assets/imgs/amanities/Guest Favorites/kitchen.png';
+import parking from 'assets/imgs/amanities/Guest Favorites/parking.png';
+import shower from 'assets/imgs/amanities/Guest Favorites/shower.png';
+import tv from 'assets/imgs/amanities/Guest Favorites/tv.png';
+import washer from 'assets/imgs/amanities/Guest Favorites/washer.png';
+import wifi from 'assets/imgs/amanities/Guest Favorites/wifi.png';
+import carbonMonoxide from 'assets/imgs/amanities/Safety items/carbon-monoxide.png';
+import fireExtinguisher from 'assets/imgs/amanities/Safety items/fire-extinguisher.png';
+import firstAidKit from 'assets/imgs/amanities/Safety items/first-aid-kit.png';
+import smokeAlarm from 'assets/imgs/amanities/Safety items/smoke alarm.png';
+import dishesAndSliverware from 'assets/imgs/amanities/Kitchen and Dining/dishes and silverware.png'
 
 export const iconList = {
     "Bathtub": Bathtub,
@@ -170,4 +197,31 @@ export const iconList = {
     "Cleaning before checkout": CleanBeforeCheckout,
     "Long term stays allowed 28 days or more": longtermStay,
     "Luggage dropoff allowed": luggageDropoff,
+    "Pool": pool,
+    "Hot Tub": hotTub,
+    "Patio": patio,
+    "BBQ Grill": bbgGrill,
+    "Fire Pit": fireFit,
+    "Pool Table": poolTable,
+    "Indoor Fireplace": firePlace,
+    "Outdoor Dining Area": outdoorDining,
+    "Exercise Equipment": dumbBell,
+    "Gym": gym,
+    "Pets Allowed": pet,
+    "Self Check-in": selfCheckin,
+    "Wifi": wifi,
+    "TV": tv,
+    "Kitchen": kitchen,
+    "Washer": washer,
+    "Free parking on premises": freeParking,
+    "Paid parking on premises": parking,
+    "Air Conditioning": airConditioner,
+    "Dedicated Workspace": dedicatedWorkspace,
+    "Outdoor shower": shower,
+    "EV charger": evCharger,
+    "Smoke alarm": smokeAlarm,
+    "First aid kit": firstAidKit,
+    "Carbon monoxide alarm": carbonMonoxide,
+    "Fire extinguisher": fireExtinguisher,
+    "Dishes and silverware":dishesAndSliverware 
 }
