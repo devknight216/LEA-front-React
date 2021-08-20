@@ -20,11 +20,12 @@ import EditpropertiesPage from './editproperties'
 import { useDispatch } from 'react-redux';
 import { SignOut } from 'reduxstore/authreducer/action'
 import { classNames } from 'shared/function'
+import UserAdminsPage from './users'
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: HomeIcon, current: true },
   { name: 'Properties', href: '/admin/properties', icon: FolderIcon, current: false },
-  { name: 'Team', href: '/admin/team', icon: UsersIcon, current: false },
+  { name: 'Users', href: '/admin/users', icon: UsersIcon, current: false },
   { name: 'Calendar', href: '/admin/calendar', icon: CalendarIcon, current: false },
   { name: 'Documents', href: '/admin/documents', icon: InboxIcon, current: false },
   { name: 'Reports', href: '/admin/reports', icon: ChartBarIcon, current: false },
@@ -99,7 +100,7 @@ function DashboardMainLayout() {
               <div className="flex-shrink-0 flex items-center px-4">
                 <Link to='/'>
                   <img
-                    className="h-8 w-auto"
+                    className="h-16 w-auto"
                     src={BrandImage}
                     alt="Workflow"
                   />
@@ -144,7 +145,7 @@ function DashboardMainLayout() {
             <div className="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900">
               <Link to='/'>
                 <img
-                  className="h-12 w-auto"
+                  className="h-16 w-auto"
                   src={BrandImage}
                   alt="Workflow"
                 />
@@ -276,15 +277,10 @@ function DashboardMainLayout() {
                   <Route exact path="/admin">
                     This is Dashboard
                   </Route>
-                  <Route exact path="/admin/properties">
-                    <ManageNewPropertyItemPage/>
-                  </Route>
-                  <Route path="/admin/properties/new">
-                    <CreateNewPropertyPage/>
-                  </Route>
-                  <Route path="/admin/properties/edit/:id">
-                    <EditpropertiesPage/>
-                  </Route>
+                  <Route exact path="/admin/properties" component={ManageNewPropertyItemPage}/>
+                  <Route path="/admin/properties/new" component={CreateNewPropertyPage}/>
+                  <Route path="/admin/properties/edit/:id" component={EditpropertiesPage}/>
+                  <Route path="/admin/users" component={UserAdminsPage}/>
                 </Switch>
               </div>
               {/* /End replace */}
