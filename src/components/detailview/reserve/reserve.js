@@ -87,16 +87,16 @@ function ReserveComponent({ nightlyRate, checkedInOut }) {
                             
                             <div className="py-5 px-10">
                                 <p className="text-gray-800">
-                                    <span className="text-lg font-bold">{nightlyRate}USD</span>
+                                    <span className="text-lg font-bold">${nightlyRate}</span>
                                     /Night
                                 </p>
                                 <div className="flex justify-between py-4 px-5 text-gray-800">
-                                    <p className="underline">{nightlyRate}USD x {dateArray.length} nights</p>
-                                    <p>{ parseInt(nightlyRate) * dateArray.length}USD</p>
+                                    <p className="underline">${nightlyRate} x {dateArray.length} nights</p>
+                                    <p>${ parseInt(nightlyRate) * dateArray.length}</p>
                                 </div>
                                 <div className="flex pb-5 px-5 justify-between">
                                     <p className="underline">Service fee</p>
-                                    <p>{25}USD</p>
+                                    <p>${25}</p>
                                 </div>
                                 <div  className="flex pb-5 px-5 justify-end">
                                     <span className="font-bold mr-2">{ guests.adult + guests.children }</span> Guests
@@ -104,7 +104,7 @@ function ReserveComponent({ nightlyRate, checkedInOut }) {
                                 <hr />
                                 <div className="flex justify-between px-5 py-2">
                                     <p className="font-bold">Total</p>
-                                    <p className="font-bold">{(parseInt(nightlyRate) * dateArray.length - 25)*(guests.adult + guests.children) }USD</p>
+                                    <p className="font-bold">${(parseInt(nightlyRate) * dateArray.length - 25)*(guests.adult + guests.children) }</p>
                                 </div>
                             </div>
                         </ul>

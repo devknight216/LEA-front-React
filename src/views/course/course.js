@@ -15,32 +15,32 @@ const areaItem = [
     {
         icon: SettingIcon,
         text: 'Setup property listing with optimized settings',
-        bg: 'bg-yellow-500'
+        bg: 'bg-gray-100'
     },
     {
         icon: LandloadIcon,
         text: 'Hosting core concepts',
-        bg: 'bg-red-500'
+        bg: 'bg-gray-300'
     },
     {
         icon: balanceIcon,
         text: 'Creating a “Lifestyle Business” concepts',
-        bg: 'bg-yellow-500'
+        bg: 'bg-gray-100'
     },
     {
         icon: SearchIcon,
         text: 'Behind the scenes from our properties',
-        bg: 'bg-red-500'
+        bg: 'bg-gray-300'
     },
     {
         icon: TeamIcon,
         text: 'Build an outsourcing team',
-        bg: 'bg-yellow-500'
+        bg: 'bg-gray-100'
     },
     {
         icon: ProgressIcon,
         text: 'Scale up your business',
-        bg: 'bg-red-500'
+        bg: 'bg-gray-300'
     },
 ]
 
@@ -80,7 +80,7 @@ export default function Example() {
                             <span>If you're coach-able with a good attitude, a willingness to work, and you follow my system you will earn<br/> income. Even after your first 90 days the profits can be awesome!</span>
                         </div>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-white">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-gray-600">
                         {
                             areaItem.map((item, index) => (
                                 <div key={index} className={ classNames(item.bg, 'py-12 px-16 flex items-center justify-between') }>
@@ -92,7 +92,7 @@ export default function Example() {
                             ))
                         }
                     </div>
-                    <div className="bg-yellow-500 py-12 px-16 flex items-center justify-center text-white">
+                    <div className="bg-gray-100 py-12 px-16 flex items-center justify-center text-gray-600">
                         <img src={InstructionIcon} className="h-16 w-16 mr-3"/>
                         <div className="text-center">
                             <span>Complete guide on every aspect<br/> of the business</span>

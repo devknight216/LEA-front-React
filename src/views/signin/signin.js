@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Brand from 'assets/imgs/brand/png-white-background.png';
+import Brand from 'assets/imgs/brand/png-black-background.png';
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';

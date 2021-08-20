@@ -11,7 +11,7 @@ import {
     SparklesIcon
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
-import BrandIcon from 'assets/imgs/brand/png-white-background.png';
+import BrandIcon from 'assets/imgs/brand/png-black-background.png';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { SignOut } from 'reduxstore/authreducer/action';

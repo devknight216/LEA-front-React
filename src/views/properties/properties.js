@@ -32,32 +32,45 @@ const PropertiesPage  = () => {
         }
     }, []);
     const properties = useSelector((state) => state.properties.properties);
+    const status = useSelector((state) => state.properties.status);
 
     //Handle Drawer
     return (
         <div>
-            <div className="container mx-auto">
+            <div className="container mx-auto min-h-screen">
                 <div className="mt-10 text-center">
                     <h3 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Check out our Properties</h3>
                 </div>
                 <SearchComponent/>
+                <div>
                     {
-                        properties.length?
-                            <div className ="md:grid md:grid-cols-3 md:px-4 lg:px-8">
-                                {
-                                    properties.map((propety, index)=>(
-                                        <PropertyIistItem item={propety} key={index}/>
-                                    ))
-                                }
+                        (status == 2)?
+                            <div className='flex justify-center py-10'>
+                                <SpinnerDotted size={100} thickness={100} speed={100} color="#FF000055" enabled={(status == 2)} />
                             </div>
-                        : 
-                            <>
-                                <div className="py-20 text-center">
-                                    <span className="text-gray-200 text-5xl text-center">Sorry, We can't find items</span>
-                                </div>
-                            </>
+                        :
+                        
+                            (
+                                properties.length?
+                                    <div className ="md:grid md:grid-cols-3 md:px-4 lg:px-8">
+                                        {
+                                            properties.map((propety, index)=>(
+                                                <PropertyIistItem item={propety} key={index}/>
+                                            ))
+                                        }
+                                    </div>
+                                : 
+                                    <>
+                                        <div className="py-20 text-center">
+                                            <span className="text-gray-200 text-5xl text-center">Sorry, We can't find items</span>
+                                        </div>
+                                    </>
+                            )
+                        
                     }
+                </div>
             </div>
+           
         </div>
     )
 }

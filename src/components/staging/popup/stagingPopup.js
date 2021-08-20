@@ -54,11 +54,11 @@ export default function StagingInfoModalComponent( {isOpen, setisOpen} ) {
                 </div>
                 <div className="mt-3 text-center sm:mt-5">
                   <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
-                    Staging Works!  
+                    Let LEA stage your home!  
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Please enter information
+                      Change please enter to Provide your property details and our qualified staging consultant will reach out to you to discuss options to transform your space.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 py-5 gap-5 text-gray-700">
                         {
@@ -94,7 +94,7 @@ export default function StagingInfoModalComponent( {isOpen, setisOpen} ) {
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
                   onClick={onClose}
                 >
-                  Deactivate
+                  Submit
                 </button>
                 <button
                   type="button"
