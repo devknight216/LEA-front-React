@@ -6,6 +6,7 @@ import DashboardMainLayout from 'admin/mainlayout';
 import SigninPage from 'views/signin';
 import SignupPage from 'views/signup';
 import { useSelector } from 'react-redux';
+import HostMainLayoutPage from 'views/host/mainlayout';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           <PrivateRoute path="/admin">
             <DashboardMainLayout/>
           </PrivateRoute>
+          <HostPrivateRoute path="/host">
+            <HostMainLayoutPage/>
+          </HostPrivateRoute>
           <Route path="/">
             <MainLayout/>
           </Route>
@@ -37,6 +41,33 @@ function PrivateRoute({ children,  isAuth, ...rest}) {
   let auth = false;
   if(token && authUser.role === 'admin'){
     auth = true;
+  }
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        auth ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/signin",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
+function HostPrivateRoute({ children, ...rest}) {
+  const authUser = useSelector((state) => state.auth.user);
+  const token = useSelector((state) => state.auth.token);
+  let auth = true;
+  if(token && authUser.role === 'host'){
+    auth = true;
+    console.log('testing');
   }
   return (
     <Route

@@ -6,10 +6,9 @@ import ContactUsPage from "./contactus";
 import HomePage from "./home";
 import ProfitPage from "./course";
 import PropertiesPage from "./properties/properties";
-import NotFoundPage from "./404";
 import Stagingpage from "./staging";
-import TermsPage from "./policy";
 import PolicyPage from "./policy";
+import NotFoundPage from "./404";
 
 export default function MainLayout() {
   return (
@@ -18,18 +17,13 @@ export default function MainLayout() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/properties" component={PropertiesPage} />
-        <Route path="/staging">
-          <Stagingpage/>
-        </Route>
+        <Route path="/staging" component={Stagingpage}/>
         <Route path="/profit" component={ProfitPage} />
-        <Route path="/contact">
-          <ContactUsPage />
-        </Route>
+        <Route path="/contact" component={ContactUsPage}/>
         <Route path="/details/:id" component={PropertyDetailViewPage} />
         <Route path="/policy" component={PolicyPage}/>
-        <Route>
-          <NotFoundPage />
-        </Route>
+        {/* <HostPrivateRoute path="/host" component={HostMainLayoutPage}/> */}
+        <Route component={NotFoundPage}/>
       </Switch>
       <FooterComponent />
     </>
