@@ -42,7 +42,7 @@ function HostNewPropertyStepThree({ previousStep, nextStep }) {
                             </div>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 border-t mt-4 py-4">
-                            <Toggle label={"Do you wnat to manage this property in LEA?"}/>
+                            <Toggle label={"Do you want LEA to manage the property for you?"}/>
                             <div>
                                 <InputBox placeholder="Deposit Fee" name="depositFee" type="number"/>
                             </div>
@@ -51,7 +51,7 @@ function HostNewPropertyStepThree({ previousStep, nextStep }) {
                             </div>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 border-t mt-4 py-4">
-                            <Toggle label={"Do you wnat to allow pet for this property?"}/>
+                            <Toggle label={"Do you allow pets inside the property?"}/>
                             <div>
                                 <InputBox placeholder="Pet fee" name="depositFee" type="number" disabled={true}/>
                             </div>
