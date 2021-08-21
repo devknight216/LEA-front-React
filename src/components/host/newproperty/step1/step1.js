@@ -1,5 +1,5 @@
-import React from 'react'
-
+import { InputBox } from 'components/basicui/basicui';
+import React from 'react';
 const locationInfoLayout = [
     {
         label: "Apartment, Suite etc",
@@ -34,7 +34,7 @@ function HostNewPropertyStepOne({ nextStep }) {
         <div>
             <div className="max-w-4xl mx-auto rounded-md shadow-md p-3 sm:p-8 bg-white px-2">
                 <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
-                    <h3 className="text-lg leading-6 font-medium text-gray-900">Create your own property</h3>
+                    <h3 className="text-lg leading-6 font-medium text-gray-900">Add your property</h3>
                 </div>
                 <div className="py-5">
                     <form>                       
@@ -89,27 +89,6 @@ function HostNewPropertyStepOne({ nextStep }) {
                         <button className="bg-red-500 focus:bg-red-700 text-white px-10 py-2 rounded-md" onClick={nextStep}>Next</button>
                     </div>
                 </footer>
-            </div>
-        </div>
-    )
-}
-
-export const InputBox = ({ label, name, placeholder, type, onchange, disabled }) => {
-    return(
-        <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                {label}
-            </label>
-            <div className="mt-1">
-                <input
-                    type={type}
-                    name={name}
-                    id={name}
-                    min={0}
-                    className="shadow-sm focus: outline-none border block w-full h-full p-3 sm:text-sm border-gray-300 rounded-md"
-                    placeholder={placeholder}
-                    disabled={disabled}
-                />
             </div>
         </div>
     )

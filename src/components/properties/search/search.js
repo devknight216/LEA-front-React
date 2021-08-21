@@ -5,7 +5,19 @@ import qs from 'qs'
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { searchProperties } from 'reduxstore/propertyreducer/action';
+import { Toggle } from 'components/basicui/basicui';
 
+const specialAmenities = [
+  "Pets Allowed",
+  "Wifi",
+  "TV",
+  "Kitchen",
+  "Free parking on premises",
+  "Pool",
+  "Air Conditioning",
+  "Gym",
+  "Dedicated workspace"
+]
 export default function SearchComponent() {
 
   const location = useLocation();
@@ -74,7 +86,6 @@ export default function SearchComponent() {
   return (
     <div>
       <div className="shadow bg-white p-10 rounded-md text-gray-500 ">
-        <span className="text-gray-500 text-lg font-bold">Filtering</span>
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           <div className="mt-1">
             <label htmlFor="number" className="block text-sm font-medium text-gray-700">
@@ -131,6 +142,18 @@ export default function SearchComponent() {
               onChange={getAmenities}
               labelledBy="Select"
             />
+          </div>
+        </div>
+        <div className="border-t mt-4 py-3">
+          <span className="text-lg text-gray-500 font-bold">Special Amenities</span>
+          <div className="py-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5">
+              {
+                  specialAmenities.map(item => (
+                      <div key={item} className="my-2">
+                          <Toggle label={item}/>
+                      </div>
+                  ))
+              }
           </div>
         </div>
       </div>

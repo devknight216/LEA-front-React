@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { InputBox } from '../step1/step1';
 import MultiSelect from 'react-multi-select-component';
 import ImageUploadComponent from './imageupload';
-import { Toggle } from '../step2/step2';
+import { InputBox, Toggle } from 'components/basicui/basicui';
 
 const propertyDescribe = [ 
     { label: 'Peaceful', value:"Peaceful" }, 
