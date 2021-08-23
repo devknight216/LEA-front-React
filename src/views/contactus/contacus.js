@@ -3,6 +3,7 @@ import RecaptureComponent from 'components/recapture'
 import { useForm } from 'react-hook-form';
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
+import { contactus } from 'shared/api';
 
 export default function ContactUsPage() {
 
@@ -14,19 +15,14 @@ export default function ContactUsPage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = ( data ) => {
     const templateParams = {
-      firstName: data.firstName,
-      lastName: data.lastName,
+      firstname: data.firstName,
+      lastname: data.lastName,
       email: data.email,
       phone: data.phone,
       message: data.message,
       subject: data.subject
     }
-    if(recaptureCallback){
-      emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID,templateParams, process.env.REACT_APP_EMAILJS_USER_ID).then((response)=>{
-      }).catch((err) => {
-        console.log('FAILED...', err);
-      });
-    }
+    contactus(templateParams);
   }
 
   return (

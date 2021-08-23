@@ -24,8 +24,7 @@ export default function SearchComponent() {
 
   //Get Filtered Data
   const [filterData, setFilterData] = useState({
-      nightlyRateRangeFrom: 0,
-      nightlyRateRangeTo: '',
+      nightlyRate: 0,
       location: {},
       propertyType: '',
       propertySpaceFeature: '',
@@ -40,11 +39,26 @@ export default function SearchComponent() {
     })
   }
 
+  //Add Main Amenities value
+  const addMainAmenities = ( value ) => {
+    setFilterData({
+      ...filterData,
+      amenities: [...filterData.amenities, value]
+    })
+  }
+
+  //Remove MainAmenities Value
+  const removeMainAmenities = ( index ) => {
+    setFilterData({
+      ...filterData,
+      amenities: filterData.amenities.filter((item) => item !== index)
+    })
+  }
   //Get Nightly Rate
   const getNightlyRate = (e) => {
     setFilterData({
       ...filterData,
-      nightlyRateRangeFrom: e.target.value
+      nightlyRate: e.target.value
     })
   }
 
@@ -61,7 +75,7 @@ export default function SearchComponent() {
     setFilterData({
       ...filterData,
       propertySpaceFeature: e.target.value =="All"?"": e.target.value
-    })
+    });
   }
   
   const dispatch = useDispatch();
@@ -69,8 +83,7 @@ export default function SearchComponent() {
     if(location.search){
       const query = qs.parse(location.search, { ignoreQueryPrefix: true });
       dispatch(searchProperties({
-        nightlyRateRangeFrom: filterData.nightlyRateRangeFrom,
-        nightlyRateRangeTo: filterData.nightlyRateRangeTo,
+        nightlyRate: filterData.nightlyRateRangeFrom,
         location: {},
         propertyType: filterData.propertyType,
         propertySpaceFeature: filterData.propertySpaceFeature,
@@ -95,7 +108,7 @@ export default function SearchComponent() {
               <input
                 type="number"
                 name="rate"
-                value={filterData.nightlyRateRangeFrom}
+                value={filterData.nightlyRate}
                 onChange={getNightlyRate}
                 id="rate"
                 className="shadow-sm h-full py-2 px-3 border border-gray-300 block w-full sm:text-sm rounded-md"
@@ -150,7 +163,7 @@ export default function SearchComponent() {
               {
                   specialAmenities.map(item => (
                       <div key={item} className="my-2">
-                          <Toggle label={item}/>
+                          <Toggle label={item} getToggleValue={addMainAmenities} removeToggleValue={removeMainAmenities}/>
                       </div>
                   ))
               }

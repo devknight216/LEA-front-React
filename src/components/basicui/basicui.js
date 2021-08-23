@@ -24,14 +24,23 @@ export const InputBox = ({ label, name, placeholder, type, onchange, disabled })
 } 
 
 
-export const  Toggle = ({label, getToggleValue}) => {
-    const [enabled, setEnabled] = useState(false)
+export const  Toggle = ({label, getToggleValue, removeToggleValue}) => {
+    const [enabled, setEnabled] = useState(false);
+    const getToggle = (value) => {
+      if(value){
+        getToggleValue(label);
+      }
+      else{
+        removeToggleValue(label)
+      }
+      setEnabled(value);
+    }
   
     return (
       <Switch.Group as="div" className="flex items-center">
         <Switch
           checked={enabled}
-          onChange={setEnabled}
+          onChange={getToggle}
           className={classNames(
             enabled ? 'bg-red-500' : 'bg-gray-200',
             'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-offset-2 focus:ring-0'

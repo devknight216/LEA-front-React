@@ -1,4 +1,5 @@
 import axios from 'axios';
+const token  = localStorage.getItem('token');
 
 const getAllPropertiesFromAPI = async () => {
     const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api/property`;
@@ -32,6 +33,7 @@ const deletePropertyByIdFromAPI = async ( id ) => {
         `${backend_url}/${id}`,
         {
             headers:{
+                'Authorization': `${token}`,
                 'X-Requested-With': 'XMLHttpRequest'
             }
         }
@@ -53,6 +55,7 @@ const updatePropertyByIdFromAPI = async ( id, requestBody ) => {
         requestBody,
         {
             headers:{
+                'Authorization': `${token}`,
                 'X-Requested-With': 'XMLHttpRequest',
                 'Content-Type': 'application/json'
             }
@@ -68,6 +71,7 @@ const craeteNewPropertFromAPI = async ( requestBody ) => {
         requestBody,
         {
             headers:{
+                'Authorization': `${token}`,
                 'X-Requested-With': 'XMLHttpRequest',
                 'Content-Type': 'application/json'
             }
