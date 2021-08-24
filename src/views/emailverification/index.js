@@ -1,2 +1,2 @@
-export { default } from './emailverification'
+export { default } from './emailverification';
 

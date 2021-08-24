@@ -1,12 +1,12 @@
 import { CheckIcon } from '@heroicons/react/solid'
 
-const steps = [
-  { id: '01', name: 'Job details', href: '#', status: 'complete' },
-  { id: '02', name: 'Application form', href: '#', status: 'current' },
-  { id: '03', name: 'Preview', href: '#', status: 'upcoming' },
-]
 
-export default function StepsComponent() {
+export default function StepsComponent({step}) {
+  let steps = [
+    { id: '01', name: 'Job details', href: '#', status: 'complete' },
+    { id: '02', name: 'Application form', href: '#', status: 'current' },
+    { id: '03', name: 'Preview', href: '#', status: 'upcoming' },
+  ]
   return (
     <nav aria-label="Progress">
       <ol className="border border-gray-300 rounded-md divide-y divide-gray-300 md:flex md:divide-y-0  max-w-4xl mx-auto bg-white">
