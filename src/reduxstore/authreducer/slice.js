@@ -19,6 +19,7 @@ export const PropertySlice = createSlice({
         } else {
           state.token = action.payload.token;
           state.user = {
+            userID: action.payload._id,
             name: action.payload.name,
             email: action.payload.email,
             role: action.payload.role,
