@@ -25,7 +25,6 @@ export default function SigninPage() {
     try {      
       dispatch(SignIn(user));
     } catch (error) {
-      console.log('Faild');
     }
   };
 

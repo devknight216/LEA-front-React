@@ -1,8 +1,9 @@
 import { features, guestsNum } from 'admin/createnewitem/constant';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MultiSelect from 'react-multi-select-component';
 import { amenities } from 'components/properties/search/constant';
 import { InputBox, Toggle } from 'components/basicui/basicui';
+import { Toast } from 'components/common/notification';
 
 const specialAmenities = [
     "Pets Allowed",
@@ -16,10 +17,51 @@ const specialAmenities = [
     "Dedicated workspace"
 ]
 
-function HostNewPropertyStepTwo({ previousStep, nextStep }) {
+function HostNewPropertyStepTwo({ previousStep, nextStep, property, setProperty, setStep }) {
 
-    const [seletedAmenities, setSelectedAmenities] = useState([])
+    const [seletedAmenities, setSelectedAmenities] = useState([]);
 
+    //Get Property type
+    const getPropertyFeature = (e, param) => {
+        setProperty({
+            ...property,
+            [param]: e.target.value
+        })
+    }
+
+    //Get Amenities Value
+    useEffect(() => {
+        setProperty({
+            ...property,
+            amenities: seletedAmenities.map(item => item.value)
+        })
+    }, [seletedAmenities])
+
+    //Add Main Amenities value
+    const addMainAmenities = ( value ) => {
+        setSelectedAmenities([ ...seletedAmenities, { label: value, value: value } ])
+    }
+
+    //Remove MainAmenities Value
+    const removeMainAmenities = ( index ) => {
+        setSelectedAmenities(seletedAmenities.filter((item) => item.value !== index))
+    }
+
+    //Go to Next
+    const gotoNext = () => {
+        if( property.guestNum && property.bedsNum && property.bedroomNum && property.bathroomNum ){
+            setStep([
+                { id: '01', name: 'Job details', status: "complete" },
+                { id: '02', name: 'Application form', status:"complete" },
+                { id: '03', name: 'Preview', status:"current" },
+            ])
+            nextStep();
+        }
+        else{
+            Toast('', 'You should fill all fields', 'danger')
+        }
+    }
+        
     return (
         <div>
             <div className="max-w-4xl mx-auto rounded-md shadow-md p-3 sm:p-8 bg-white px-2">
@@ -39,6 +81,9 @@ function HostNewPropertyStepTwo({ previousStep, nextStep }) {
                                             <select
                                                 name={item.variableName}
                                                 className="shadow-sm focus:outline-none block w-full  h-full p-3 sm:text-sm border-gray-300  border rounded-md"
+                                                onChange={(e) => {
+                                                    getPropertyFeature(e, item.variableName)
+                                                }}
                                             >
                                                 {
                                                     item.properties.map((option) => (
@@ -56,7 +101,14 @@ function HostNewPropertyStepTwo({ previousStep, nextStep }) {
                             {
                                 guestsNum.map(item => (
                                     <div key={item.variableName}>
-                                        <InputBox type="number" name={item.type} placeholder={item.type}/>
+                                        <InputBox 
+                                            type="number" 
+                                            name={item.type} 
+                                            placeholder={item.type} 
+                                            onchange={(e) => {
+                                                getPropertyFeature(e, item.variableName)
+                                            }}
+                                        />
                                         <span className="text-gray-400">{item.description}</span>
                                     </div>
                                 ))
@@ -68,7 +120,7 @@ function HostNewPropertyStepTwo({ previousStep, nextStep }) {
                             {
                                 specialAmenities.map(item => (
                                     <div key={item} className="my-2">
-                                        <Toggle label={item}/>
+                                        <Toggle label={item} getToggleValue={addMainAmenities} removeToggleValue={removeMainAmenities}/>
                                     </div>
                                 ))
                             }
@@ -86,7 +138,7 @@ function HostNewPropertyStepTwo({ previousStep, nextStep }) {
                 <footer>
                     <div className="py-5 flex justify-between">
                         <button className="bg-red-500 focus:bg-red-700 text-white px-10 py-2 rounded-md" onClick={previousStep}>Prev</button>
-                        <button className="bg-red-500 focus:bg-red-700 text-white px-10 py-2 rounded-md" onClick={nextStep}>Next</button>
+                        <button className="bg-red-500 focus:bg-red-700 text-white px-10 py-2 rounded-md" onClick={gotoNext}>Next</button>
                     </div>
                 </footer>
             </div>

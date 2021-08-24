@@ -43,7 +43,7 @@ export default function SearchComponent() {
   const addMainAmenities = ( value ) => {
     setFilterData({
       ...filterData,
-      amenities: [...filterData.amenities, value]
+      amenities: [...filterData.amenities, { label: value, value: value }]
     })
   }
 
@@ -51,7 +51,7 @@ export default function SearchComponent() {
   const removeMainAmenities = ( index ) => {
     setFilterData({
       ...filterData,
-      amenities: filterData.amenities.filter((item) => item !== index)
+      amenities: filterData.amenities.filter((item) => item.value !== index)
     })
   }
   //Get Nightly Rate
@@ -83,16 +83,23 @@ export default function SearchComponent() {
     if(location.search){
       const query = qs.parse(location.search, { ignoreQueryPrefix: true });
       dispatch(searchProperties({
-        nightlyRate: filterData.nightlyRateRangeFrom,
+        nightlyRate: filterData.nightlyRate,
         location: {},
         propertyType: filterData.propertyType,
         propertySpaceFeature: filterData.propertySpaceFeature,
         guestNum: (parseInt(query.adult) + parseInt(query.children)),
-        amenities: filterData.amenities
+        amenities: filterData.amenities.map(item => item.value)
       }));
     }
     else{
-      dispatch(searchProperties(filterData));
+      dispatch(searchProperties({
+        nightlyRate: filterData.nightlyRate,
+        location: {},
+        propertyType: filterData.propertyType,
+        propertySpaceFeature: filterData.propertySpaceFeature,
+        guestNum: 0,
+        amenities: filterData.amenities.map(item => item.value)
+      }));
     }
   }, [filterData])
 

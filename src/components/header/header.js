@@ -2,13 +2,14 @@ import { Fragment } from 'react';
 import SearchPropertyComponent from './searchproperty'
 import { Popover, Transition } from '@headlessui/react';
 import {
-    BookmarkAltIcon,
-    InformationCircleIcon,
-    MenuIcon,
-    ShieldCheckIcon,
-    XIcon,
-    UserCircleIcon,
-    SparklesIcon
+  BookmarkAltIcon,
+  InformationCircleIcon,
+  MenuIcon,
+  ShieldCheckIcon,
+  XIcon,
+  UserCircleIcon,
+  SparklesIcon,
+  HomeIcon
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import BrandIcon from 'assets/imgs/brand/png-black-background.png';
@@ -130,7 +131,7 @@ return (
                                     </h3>
                                     <ul className="mt-5 space-y-6">
                                       {resources.map((item) => (
-                                        <Link to={item.name} className="flow-root" key={item.name}>
+                                        <Link to={item.href} className="flow-root" key={item.name}>
                                           <div
                                             className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
                                           >
@@ -153,6 +154,20 @@ return (
                                                 aria-hidden="true"
                                               />
                                               <span className="ml-4">Admin</span>
+                                            </div>
+                                          </Link>
+                                      }
+                                      {
+                                        authUser?.role== "host" &&
+                                          <Link to='/host' className="flow-root">
+                                            <div
+                                              className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
+                                            >
+                                              <HomeIcon
+                                                className="flex-shrink-0 h-6 w-6 text-gray-400"
+                                                aria-hidden="true"
+                                              />
+                                              <span className="ml-4">Add New Space</span>
                                             </div>
                                           </Link>
                                       }
@@ -246,17 +261,29 @@ return (
                         Properties
                       </Link>
   
-                      <Link to="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                      <Link to="/profit" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                         Courses
                       </Link>
   
-                      <Link to="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                      <Link to="/staging" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                         Staging
                       </Link>
   
-                      <Link to="#" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
-                        Blog
+                      <Link to="/policy" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                        Privacy and Policies
                       </Link>
+
+                      {
+                          authUser?.role== "admin" &&<Link to="/admin" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                            Admin
+                          </Link>
+                      }
+
+                      {
+                          authUser?.role== "host" &&<Link to="/host" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                            Add New Space
+                          </Link>
+                      }
   
                       <Link to="/contact" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                         Contact Us

@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Brand from "assets/imgs/brand/png-black-background.png";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { SignUp } from "reduxstore/authreducer/slice";
+import { Toggle } from "components/basicui/basicui";
 
 export default function SigninPage() {
   //React hook form
@@ -22,11 +23,12 @@ export default function SigninPage() {
   const onSubmit = async (data) => {
     const user = {
       name: `${data.firstname} ${data.lastname}`,
-      role: "user",
+      role: ishost,
       email: data.email,
       password: data.password,
       password2: data.confirmpassword,
     };
+    console.log(user);
     dispatch(SignUp(user));
   };
 
@@ -38,6 +40,14 @@ export default function SigninPage() {
     }
   }, [token, authUser]);
 
+  //is Host?
+  const[ ishost, setIsHost ] = useState('user');
+  const getManageTypeToggle = () => {
+    setIsHost("host");
+  }
+  const removeManageTypeToggle = () => {
+    setIsHost("user");
+  }
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -165,9 +175,13 @@ export default function SigninPage() {
             </div>
 
             <div>
+              <Toggle label={"Are you a host?"} getToggleValue={getManageTypeToggle} removeToggleValue={removeManageTypeToggle}/>
+            </div>
+
+            <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Sign Up
               </button>

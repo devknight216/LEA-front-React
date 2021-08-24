@@ -17,6 +17,7 @@ export const InputBox = ({ label, name, placeholder, type, onchange, disabled })
                     className="shadow-sm focus: outline-none border block w-full h-full p-3 sm:text-sm border-gray-300 rounded-md"
                     placeholder={placeholder}
                     disabled={disabled}
+                    onChange={onchange}
                 />
             </div>
         </div>

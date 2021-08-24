@@ -29,7 +29,6 @@ function GoogleMapComponent( {address} ) {
                         lat: lat,
                         lng: lng
                     })
-                    console.log(location);
                 },
                 (error) => {
                     console.error(error);

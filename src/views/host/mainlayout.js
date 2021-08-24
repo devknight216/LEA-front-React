@@ -9,10 +9,7 @@ function HostMainLayoutPage() {
         <div>
             <HeaderComponent/>
                 <Switch>
-                    <Route exact path="/host">
-                        <div>This is the host</div>
-                    </Route>
-                    <Route exact path="/host/new" component={HostCreateNewPropertypage}/>
+                    <Route exact path="/host" component={HostCreateNewPropertypage}/>
                 </Switch>
             <FooterComponent/>
         </div>

@@ -13,7 +13,6 @@ function EmailVerificaionPage({match}) {
                 Toast("", res.data.message, "success");
                 setSuccess(true);
            } catch (error) {
-                console.log(error);
                 setSuccess(false);
            }
        }

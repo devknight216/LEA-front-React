@@ -1,35 +1,103 @@
 import { InputBox } from 'components/basicui/basicui';
-import React from 'react';
-const locationInfoLayout = [
-    {
-        label: "Apartment, Suite etc",
-        name: "apartment",
-        onchange: () => {}
-    },
-    {
-        label: "Street address",
-        name: "street",
-        onchange: () => {}
-    },
-    {
-        label: "City",
-        name: "city",
-        onchange: () => {}
-    },
-    {
-        label: "State / Province",
-        name: "state",
-        onchange: () => {}
-    },
-    {
-        label: "ZIP / Postal",
-        name: "zip",
-        onchange: () => {}
-    },
-]
+import { Toast } from 'components/common/notification';
+import React, { useEffect, useState } from 'react';
 
+function HostNewPropertyStepOne({ nextStep, property, setProperty, setStep }) {
+    
+    const[location, setLocation] = useState({
+        apartment: "",
+        street: "",
+        city: "",
+        state: "",
+        country: "United States",
+        zip: ""
+    })
 
-function HostNewPropertyStepOne({ nextStep }) {
+    const locationInfoLayout = [
+        {
+            label: "Apartment, Suite etc",
+            name: "apartment",
+            onchange: (e) => { setLocation({ ...location, apartment: e.target.value }) }
+        },
+        {
+            label: "Street address",
+            name: "street",
+            onchange: (e) => { setLocation({ ...location, street: e.target.value }) }
+        },
+        {
+            label: "City",
+            name: "city",
+            onchange: (e) => { setLocation({ ...location, city: e.target.value }) }
+        },
+        {
+            label: "State / Province",
+            name: "state",
+            onchange: (e) => { setLocation({ ...location, state: e.target.value }) }
+        },
+        {
+            label: "ZIP / Postal",
+            name: "zip",
+            onchange: (e) => { setLocation({ ...location, zip: e.target.value }) }
+        },
+    ]
+
+    //Get Property Name 
+    const getProprtyName = (e) => {
+        setProperty({
+            ...property,
+            propertyName: e.target.value
+        })
+    } 
+
+    //Get Nightly Rate 
+    const getNightlyRate = (e) => {
+        setProperty({
+            ...property,
+            nightlyRate: e.target.value
+        })
+    }
+
+    //Get Property Description
+    const getPropertyDescription = (e) => {
+        setProperty({
+            ...property,
+            propertyDescription: e.target.value
+        })
+    }
+
+    //Get country name
+    const getCountryName = (e) => {
+        setLocation({
+            ...location,
+            country: e.target.value
+        })
+    }
+
+    //Get property Location
+    useEffect(() => {
+        if(location.apartment && location.city && location.state && location.street && location.zip && location.country){
+            setProperty({
+                ...property,
+                propertyLocation: location
+            })
+        }
+    }, [location])
+
+    //Go to Next 
+    const gotoNext = () => {
+        if( property.propertyName && property.nightlyRate && property.propertyDescription && property.propertyLocation ){
+            setStep([
+                { id: '01', name: 'Job details', status: "complete" },
+                { id: '02', name: 'Application form', status:"current" },
+                { id: '03', name: 'Preview', status:"upcoming" },
+            ])
+            nextStep();
+        }
+        else{
+            Toast('', 'You should fill all fields', 'danger')
+        }
+    }
+
     return (
         <div>
             <div className="max-w-4xl mx-auto rounded-md shadow-md p-3 sm:p-8 bg-white px-2">
@@ -40,10 +108,10 @@ function HostNewPropertyStepOne({ nextStep }) {
                     <form>                       
                         <div className="grid grid-cols-1 sm:gird-cols-2 md:grid-cols-3 md:gap-4 py-2">
                             <div className="col-span-2">
-                                <InputBox label="Property Name" name="propertyName" type="text"/>
+                                <InputBox label="Property Name" name="propertyName" type="text" onchange={getProprtyName}/>
                             </div>
                             <div className="col-span-1">
-                                <InputBox label="Nightly Rate" name="nightlyRate" type="number"/>
+                                <InputBox label="Nightly Rate" name="nightlyRate" type="number" onchange={getNightlyRate}/>
                             </div>
                         </div>
                         <div>
@@ -54,6 +122,7 @@ function HostNewPropertyStepOne({ nextStep }) {
                                 className="border  rounded-md p-4 outline-none border-gray-300 w-full" 
                                 rows={5}
                                 name="propertyDescription"
+                                onChange={getPropertyDescription}
                             />
                         </div>
                         <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
@@ -74,6 +143,7 @@ function HostNewPropertyStepOne({ nextStep }) {
                                 <div className="mt-1">
                                     <select
                                         className="shadow-sm focus:outline-none block w-full  h-full p-3 sm:text-sm border-gray-300  border rounded-md"
+                                        onChange={getCountryName}
                                     >
                                         <option>United States</option>
                                         <option>Canada</option>
@@ -86,7 +156,7 @@ function HostNewPropertyStepOne({ nextStep }) {
                 </div>
                 <footer>
                     <div className="py-5 text-center">
-                        <button className="bg-red-500 focus:bg-red-700 text-white px-10 py-2 rounded-md" onClick={nextStep}>Next</button>
+                        <button className="bg-red-500 focus:bg-red-700 text-white px-10 py-2 rounded-md" onClick={gotoNext}>Next</button>
                     </div>
                 </footer>
             </div>

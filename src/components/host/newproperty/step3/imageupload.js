@@ -1,6 +1,11 @@
 import { PlusIcon } from '@heroicons/react/solid'
 
 export default function ImageUploadComponent() {
+  const handlfileChange = async(e) => {
+    if(e.target.files[0]){
+      console.log(e.target.files[0]);
+    }
+  }
   return (
     <div className="text-center">
       <svg
@@ -21,13 +26,15 @@ export default function ImageUploadComponent() {
       <h3 className="mt-2 text-sm font-medium text-gray-900">No Images</h3>
       <p className="mt-1 text-sm text-gray-500">Upload Image to complete</p>
       <div className="mt-6">
-        <button
-          type="button"
-          className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-700 focus:outline-none focus:ring-0"
-        >
-            <PlusIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
-            Add Image
-        </button>
+        <label htmlFor="file-upload">
+          <div
+            className="cursor-pointer inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-700 focus:outline-none focus:ring-0"
+          >
+              <PlusIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+              Add Image
+          </div>
+          <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handlfileChange} />
+        </label>
       </div>
     </div>
   )

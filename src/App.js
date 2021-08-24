@@ -64,10 +64,9 @@ function PrivateRoute({ children,  isAuth, ...rest}) {
 function HostPrivateRoute({ children, ...rest}) {
   const authUser = useSelector((state) => state.auth.user);
   const token = useSelector((state) => state.auth.token);
-  let auth = true;
+  let auth = false;
   if(token && authUser.role === 'host'){
     auth = true;
-    console.log('testing');
   }
   return (
     <Route
