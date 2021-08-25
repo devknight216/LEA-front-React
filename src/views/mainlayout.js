@@ -11,6 +11,7 @@ import PolicyPage from "./policy";
 import NotFoundPage from "./404";
 import EmailVerificaionPage from "./emailverification";
 import NotiVerificationPage from "./emailverification/notiverification";
+import BookPage from "./book";
 
 export default function MainLayout() {
   return (
@@ -26,6 +27,7 @@ export default function MainLayout() {
         <Route path="/policy" component={PolicyPage}/>
         <Route path="/verify/:token" component={EmailVerificaionPage}/>
         <Route path="/verifynoti" component={NotiVerificationPage}/>
+        <Route path="/book/:id" component={BookPage}/>
         <Route component={NotFoundPage}/>
       </Switch>
       <FooterComponent />

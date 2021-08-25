@@ -154,7 +154,7 @@ export default function SearchComponent() {
               )) }
             </select>
           </div>
-          <div className="mt-1 z-50">
+          <div className="mt-1 z-30">
             <p className="block text-sm font-medium text-gray-700">Amenities</p>
             <MultiSelect
               options={amenities}

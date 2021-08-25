@@ -11,7 +11,6 @@ import BedIcon from "assets/imgs/icon/bed.png";
 import BathroomIcon from "assets/imgs/icon/bathtub.png";
 import ReserveComponent from "components/detailview/reserve";
 
-
 const PropertyDetailViewPage = (props) => {
 
   //Get Detail Data from API
@@ -128,7 +127,7 @@ const PropertyDetailViewPage = (props) => {
                     <DateRangerComponent autoResponsive={false} setCheckInOut={setChecked}/>
                   </div>
                 </section>
-                <ReserveComponent nightlyRate={property?.nightlyRate} checkedInOut={checked}/>
+                <ReserveComponent nightlyRate={property?.nightlyRate} checkedInOut={checked} propertyId={props.match.params.id}/>
               </div>
             </div>
           </div>

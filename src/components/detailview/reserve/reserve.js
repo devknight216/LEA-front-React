@@ -3,7 +3,7 @@ import { MinusCircleIcon,  PlusCircleIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom'
 import { getDaysArray } from 'shared/function';
 
-function ReserveComponent({ nightlyRate, checkedInOut }) {
+function ReserveComponent({ nightlyRate, checkedInOut, propertyId }) {
     const [guests, setGuests] = useState({
         adult: 0, 
         children: 0,
@@ -111,7 +111,7 @@ function ReserveComponent({ nightlyRate, checkedInOut }) {
                     </div>
                     <div className="mt-6">
                     <Link
-                        to="#"
+                        to={`/book/${propertyId}?adult=${guests.adult}&children=${guests.children}&infans=${guests.infants}&checkedin=${checkedInOut?.from}&checkedout=${checkedInOut?.to}`}
                         className="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-800"
                     >
                         Reserve
