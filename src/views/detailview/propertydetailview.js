@@ -127,7 +127,7 @@ const PropertyDetailViewPage = (props) => {
                     <DateRangerComponent autoResponsive={false} setCheckInOut={setChecked}/>
                   </div>
                 </section>
-                <ReserveComponent nightlyRate={property?.nightlyRate} checkedInOut={checked} propertyId={props.match.params.id}/>
+                <ReserveComponent checkedInOut={checked} propertyId={props.match.params.id} property={property}/>
               </div>
             </div>
           </div>

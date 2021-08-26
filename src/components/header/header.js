@@ -29,6 +29,7 @@ const resources = [
 export default function HeaderComponent() {
 
   const authUser = useSelector((state) => state.auth.user);
+  const authToken = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
   const location = useLocation();
   const path = location.pathname;
@@ -184,7 +185,7 @@ return (
                       )}
                     </Popover>
                   </Popover.Group>
-                    {authUser ?
+                    {authToken ?
                       <div className="flex items-center md:ml-12">
                         <div onClick={() => dispatch(SignOut())} className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-500 hover:bg-red-600 cursor-pointer">
                           Sign Out

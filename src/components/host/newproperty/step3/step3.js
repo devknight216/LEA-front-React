@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import MultiSelect from 'react-multi-select-component';
 import ImageUploadComponent from './imageupload';
 import { InputBox, Toggle } from 'components/basicui/basicui';
+import { useDispatch } from 'react-redux';
+import { createNewProperty } from 'reduxstore/propertyreducer/action';
+import { Toast } from 'components/common/notification';
+import { hostRemoveAllRecord } from 'firebaseStorage/hostspace';
 
 const propertyDescribe = [ 
     { label: 'Peaceful', value:"Peaceful" }, 
@@ -83,6 +87,14 @@ function HostNewPropertyStepThree({ previousStep, property, setProperty, setStep
         })
     }
 
+    //List a new property
+    const dispatch = useDispatch();
+    const createNewSpace = () => {
+        dispatch(createNewProperty(property));
+        Toast('','New property is created','success');
+        hostRemoveAllRecord();
+    }
+
     return (
         <div>
             <div className="max-w-4xl mx-auto rounded-md shadow-md p-3 sm:p-8 bg-white px-2">
@@ -132,7 +144,7 @@ function HostNewPropertyStepThree({ previousStep, property, setProperty, setStep
                 <footer>
                     <div className="py-5 flex justify-between">
                         <button className="bg-red-500 focus:bg-red-700 text-white px-10 py-2 rounded-md" onClick={previousStep}>Prev</button>
-                        <button className="bg-red-500 focus:bg-red-700 text-white px-10 py-2 rounded-md" >Create</button>
+                        <button className="bg-red-500 focus:bg-red-700 text-white px-10 py-2 rounded-md" onClick={createNewSpace}>Create</button>
                     </div>
                 </footer>
             </div>
@@ -140,4 +152,4 @@ function HostNewPropertyStepThree({ previousStep, property, setProperty, setStep
     )
 }
 
-export default HostNewPropertyStepThree
+export default HostNewPropertyStepThree;

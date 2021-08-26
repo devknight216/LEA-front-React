@@ -31,8 +31,9 @@ export const PropertySlice = createSlice({
       .addCase(SignUp.fulfilled, (state, action) => {
         if (action.payload.error) {
           Toast("", Object.values(action.payload.data)[0], "danger");
-        } else {
+        } else{
           state.user = {
+            userID: action.payload._id,
             name: action.payload.name,
             email: action.payload.email,
             role: action.payload.role,

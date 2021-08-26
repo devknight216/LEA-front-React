@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { searchPropertiesFromAPI } from '.'
 import { deletePropertyById, getAllProperties, getPropertyById, updatePropertyById, createNewProperty, searchProperties } from './action'
-const PREFIX = 'property'
+const PREFIX = 'property';
 
 const STATUS = {
     INITIAL: 0,

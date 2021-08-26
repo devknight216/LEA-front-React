@@ -16,15 +16,16 @@ function HostCreateNewPropertypage() {
     ]);
 
     //Property Info 
+    const hostinfo = JSON.parse(localStorage.getItem("user"));
     const[property, setProperty] = useState({
         propertyName: "",
         nightlyRate: 0,
         propertyDescription: "",
         imageURLs: [],
         hostInfo: {
-            name: "",
-            userId: "",
-            email: ""
+            name: hostinfo.name,
+            userId: hostinfo.userID,
+            email: hostinfo.email
         },
         propertyLocation: {
             apartment: "",
@@ -53,7 +54,6 @@ function HostCreateNewPropertypage() {
             hours: 0,
             rate: 80
         }
-
     })
 
     useEffect(() => {
