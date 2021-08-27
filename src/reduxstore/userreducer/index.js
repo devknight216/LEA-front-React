@@ -44,16 +44,16 @@ export const updateUserFromAPI = async(id, body) => {
     const token  = localStorage.getItem('token');
     const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api/accounts`;
     console.log(id, body);
-    // await axios.put(
-    //    `${backend_url}/${id}`,
-    //    JSON.stringify(body),
-    //    {
-    //         headers:{
-    //             'Authorization': `${token}`,
-    //             'X-Requested-With': 'XMLHttpRequest'
-    //         }
-    //     }
-    // )
+    await axios.put(
+       `${backend_url}/${id}`,
+       JSON.stringify(body),
+       {
+            headers:{
+                'Authorization': `${token}`,
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        }
+    )
     const res = await axios.get(
         backend_url,
         {

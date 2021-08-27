@@ -14,7 +14,6 @@ export default function UserEditModalComponent({user, isOpen, setIsOpen }) {
     const [role, setRole] = useState('user');
     const getUserRole = (e) => {
         setRole(e.target.value);
-        console.log(role);
     }
 
     //Update User Role
@@ -22,9 +21,7 @@ export default function UserEditModalComponent({user, isOpen, setIsOpen }) {
     const update = () => {
         const id = user?._id;
         const body = {
-            name: user?.name,
-            role: role,
-            email: user?.email,
+            role: role
         }
         dispatch(updateUser({id: user?._id, body: body}));
     }

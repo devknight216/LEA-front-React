@@ -17,6 +17,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { SignOut } from 'reduxstore/authreducer/action';
 import { classNames } from 'shared/function';
+import HeaderDropdownComponent from './headerdropdown';
 
 const company = [
   { name: 'About', href: '#', icon: InformationCircleIcon },
@@ -144,34 +145,6 @@ return (
                                           </div>
                                         </Link>
                                       ))}
-                                      {
-                                        authUser?.role== "admin" &&
-                                        <Link to='/admin' className="flow-root">
-                                            <div
-                                              className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
-                                            >
-                                              <UserCircleIcon
-                                                className="flex-shrink-0 h-6 w-6 text-gray-400"
-                                                aria-hidden="true"
-                                              />
-                                              <span className="ml-4">Admin</span>
-                                            </div>
-                                          </Link>
-                                      }
-                                      {
-                                        authUser?.role== "host" &&
-                                          <Link to='/host' className="flow-root">
-                                            <div
-                                              className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
-                                            >
-                                              <HomeIcon
-                                                className="flex-shrink-0 h-6 w-6 text-gray-400"
-                                                aria-hidden="true"
-                                              />
-                                              <span className="ml-4">Add New Space</span>
-                                            </div>
-                                          </Link>
-                                      }
                                     </ul>
                                   </div>
                                 </nav>
@@ -186,10 +159,8 @@ return (
                     </Popover>
                   </Popover.Group>
                     {authToken ?
-                      <div className="flex items-center md:ml-12">
-                        <div onClick={() => dispatch(SignOut())} className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-500 hover:bg-red-600 cursor-pointer">
-                          Sign Out
-                        </div>
+                      <div>
+                        <HeaderDropdownComponent/>
                       </div>
                       :
                       <div className="flex items-center md:ml-12">
@@ -223,7 +194,7 @@ return (
               <Popover.Panel
                 focus
                 static
-                className="absolute z-30 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+                className="absolute z-50 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
               >
                 <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
                   <div className="pt-5 pb-6 px-5 sm:pb-8">
