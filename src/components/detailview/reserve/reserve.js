@@ -56,7 +56,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
     const history = useHistory()
     const gotoBook = () => {
         if(dateArray.length){
-            history.push(`/book/${propertyId}?adult=${guests.adult}&children=${guests.children}&infans=${guests.infants}&checkedin=${checkedInOut?.from}&checkedout=${checkedInOut?.to}`)
+            history.push(`/book/${propertyId}?adult=${guests.adult}&children=${guests.children}&infants=${guests.infants}&checkedin=${checkedInOut?.from}&checkedout=${checkedInOut?.to}`)
         }
         else{
             Toast('', 'Please choose checked-in and checked-out', 'danger')
@@ -103,7 +103,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                 ))
                             }
                              <div className="flex justify-between px-5 gird grid-cols-2">
-                                <p>Infans:</p>
+                                <p>Infants:</p>
                                 <div className="flex justify-between w-1/2">
                                     <div className="cursor-pointer" onClick={() => { setGuests({ ...guests, infants: guests.infants ? (guests.infants-1) : 0 }) }}>
                                         <MinusCircleIcon 

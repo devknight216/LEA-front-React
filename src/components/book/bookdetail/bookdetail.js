@@ -33,7 +33,7 @@ function BookDetailComponent() {
                         <p className="font-bold mt-3">Guests</p>
                         <div className="text-sm flex flex-wrap justify-between px-3">
                             <p>Guests: {parseInt(query.adult) + parseInt(query.children)}</p>
-                            <p>Infans: {query.infans}</p>
+                            <p>Infants: {query.infants}</p>
                         </div>
                     </div>
                 </div>

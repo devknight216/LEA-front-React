@@ -36,7 +36,7 @@ export default function HeaderComponent() {
   const path = location.pathname;
 
 return (
-  <Popover className="relative bg-white">
+  <Popover className="relative bg-white" id="header">
       {({ open }) => (
           <>
             <div className="absolute inset-0 shadow z-40 pointer-events-none" aria-hidden="true" />

@@ -8,12 +8,12 @@ import { Toast } from 'components/common/notification';
 import { hostRemoveAllRecord } from 'firebaseStorage/hostspace';
 
 const propertyDescribe = [ 
-    { label: 'Peaceful', value:"Peaceful" }, 
-    { label: 'Unique', value: "Unique"}, 
-    { label: 'Family-Friendly', value: "Family-Friendly"}, 
-    { label: 'Stylish', value: 'Stylish' }, 
-    { label: 'Central', value: 'Central' }, 
-    { label: 'Spacious', value: 'Spacious'}
+    { label: 'Quiet Neighborhood', value:"Quiet Neighborhood" }, 
+    { label: 'Rare Space', value: "Rare Space"}, 
+    { label: 'Good for Families', value: "Good for Families"}, 
+    { label: 'Sleek Interior', value: 'Sleek Interior' }, 
+    { label: 'Ideal Location', value: 'Ideal Location' }, 
+    { label: 'Roomy and Big Space', value: 'Roomy and Big Space'}
 ];
 const propertyspecialFeature = [
     { label: 'Security Camera',  value: 'Security Camera'}, 
@@ -31,15 +31,6 @@ function HostNewPropertyStepThree({ previousStep, property, setProperty, setStep
             propertyDescribe: propertyDescribeWord.map(item => item.label)
         })
     }, [propertyDescribeWord])
-
-    //Get Property Special Feature
-    const [ propertySpecialFeature, setPropertySpecialFeature ] = useState([]);
-    useEffect(() => {
-        setProperty({
-            ...property,
-            propertyspecialFeature: propertySpecialFeature.map(item => item.label)
-        })
-    }, [propertySpecialFeature])
 
     //Get manage Type
     const getManageTypeToggle = (value) => {
@@ -111,14 +102,6 @@ function HostNewPropertyStepThree({ previousStep, property, setProperty, setStep
                                     options={propertyDescribe}
                                     onChange={setPropertyDescribeWord}
                                     value={propertyDescribeWord}
-                                />
-                            </div>
-                            <div className='text-gray-700'>
-                                <label className="text-sm font-medium">Does the property has any of the following?</label>
-                                <MultiSelect
-                                    options={propertyspecialFeature}
-                                    onChange={setPropertySpecialFeature}
-                                    value={propertySpecialFeature}
                                 />
                             </div>
                         </div>

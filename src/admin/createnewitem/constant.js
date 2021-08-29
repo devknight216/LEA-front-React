@@ -2,12 +2,12 @@ export const features = [
     {
       label: "What is the property type?",
       variableName: "propertyType",
-      properties:['Apartment', 'House', 'Condo / Townhome', 'Secondary Unit', 'Unique Space', 'Bed and Breakfast', 'Boutique Hotel', 'Duplex', 'RV / Camper', 'Tiny House']
+      properties:['Apartment', 'House', 'Condo / Townhome', 'Secondary Unit', 'Unique place', 'Bed and Breakfast', 'Boutique Hotel', 'Duplex', 'RV / Camper', 'Tiny House']
     },
     {
       label: "Choose the best option that fits the space in the property that guests will occupy.",
       variableName: "propertySpaceFeature",
-      properties:['An entire place', 'A private room', 'A shared room']
+      properties:['The whole place', 'A private room', 'A shared room']
     },
 ]
   
@@ -36,22 +36,17 @@ export const guestsNum = [
   
 export const lastOffer = {
     'first':[
-      { lable: "Peaceful", variableName: "peaceful" },
-      { lable: "Unique", variableName: "unique" },
-      { lable: "Family-Friendly", variableName: "familiFriendly" },
-      { lable: "Stylish", variableName: "stylish" },
-      { lable: "Central", variableName: "central" },
-      { lable: "Spacious", variableName: "spacious" },
-    ],
-    'second':[
-      { lable: "Security Camera", variableName: "securityCamera" },
-      { lable: "Weapons", variableName: "weapons" },
-      { lable: "Dangerous", variableName: "dangerous" }
+      { lable: "Quiet Neighborhood", variableName: "quietNeighborhood" },
+      { lable: "Rare Space", variableName: "rareSpace" },
+      { lable: "Good for Families", variableName: "goodForFamilies" },
+      { lable: "Sleek Interior", variableName: "sleekInterior" },
+      { lable: "Ideal Location", variableName: "idealLocation" },
+      { lable: "Roomy and Big Space", variableName: "roomyAndBigSpace" },
     ]
   }
 export const amenities = {
     'standout': {
-        title: 'Standout amenities',
+        title: 'Special Amenities',
         lists: [{
                 label: 'Pool',
                 variableName: 'amenities_pool'
@@ -103,7 +98,7 @@ export const amenities = {
         ],
     },
     'favorites': {
-        title: 'Guest favorites',
+        title: "Guest's Pick",
         lists: [{
                 label: 'Wifi',
                 variableName: 'amenities_wifi'
@@ -147,7 +142,7 @@ export const amenities = {
         ],
     },
     'safetyItems': {
-        title: 'Have any of these safety items?',
+        title: 'Safety Devices',
         lists: [{
                 label: 'Smoke alarm',
                 variableName: 'amenities_smoke_alarm'
@@ -167,7 +162,7 @@ export const amenities = {
         ]
     },
     'bathroom': {
-        title: 'Bathroom',
+        title: 'Bathroom Basics',
         lists: [{
                 label: 'Bathtub',
                 variableName: 'amenities_bathtub'

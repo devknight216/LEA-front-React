@@ -77,7 +77,7 @@ export default function SearchPropertyComponent() {
     <>
       <Popover.Group
         as="nav"
-        className="flex w-6xl max-w-4/5 m-auto relative mt-3 bg-gray-100 rounded-full p-1"
+        className="flex w-6xl max-w-4/5 m-auto relative mt-3 bg-gray-100 rounded-xl p-1"
       >
         <Popover className="w-1/4 outline-none">
           <Popover.Button className="w-full flex outline-none">
@@ -130,7 +130,7 @@ export default function SearchPropertyComponent() {
                   onClick={(e) => e.preventDefault()}
                 >
                   <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">
-                    CheckIn
+                    Check In
                   </div>
                   <div
                     className={`w-full text-left text-md font-semibold pl-8 text-gray-600`}
@@ -186,7 +186,7 @@ export default function SearchPropertyComponent() {
                   onClick={(e) => e.preventDefault()}
                 >
                   <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">
-                    CheckOut
+                    Check Out
                   </div>
                   <div
                     className={`w-full text-left text-md font-semibold pl-8 text-gray-600`}

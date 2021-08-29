@@ -7,7 +7,6 @@ import {
   PencilIcon,
   MailIcon,
   HomeIcon,
-  UserCircleIcon,
   CogIcon
 } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,7 +25,11 @@ export default function HeaderDropdownComponent() {
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className=" flex items-center justify-between w-full bg-white text-sm font-medium text-gray-700  focus:outline-none">
-          <UserCircleIcon className="-mr-1 ml-2 h-12 w-12" aria-hidden="true" />
+          <span className="h-10 w-10 rounded-full overflow-hidden bg-gray-100">
+            <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </span>
           <div className="ml-3 text-gray-500">
             <p className="font-bold text-base">{AuthUser.name}</p>
             <p className="text-xs">{AuthUser.role.toUpperCase()}</p>
@@ -48,8 +51,8 @@ export default function HeaderDropdownComponent() {
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
+                <Link
+                  to="/edit-profile"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'group flex items-center px-4 py-2 text-sm'
@@ -57,13 +60,13 @@ export default function HeaderDropdownComponent() {
                 >
                   <PencilIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
                   Edit Profile
-                </a>
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
+                <Link
+                  to="/messages"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'group flex items-center px-4 py-2 text-sm'
@@ -71,13 +74,13 @@ export default function HeaderDropdownComponent() {
                 >
                   <MailIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
                   Messages
-                </a>
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
+                <Link
+                  to="/book-history"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'group flex items-center px-4 py-2 text-sm'
@@ -85,7 +88,7 @@ export default function HeaderDropdownComponent() {
                 >
                   <BookmarkIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
                   Booking History
-                </a>
+                </Link>
               )}
             </Menu.Item>
           </div>

@@ -91,7 +91,7 @@ const PropertyDetailViewPage = (props) => {
                 <section aria-labelledby="quick-links-title">
                   <div className="rounded-lg bg-white overflow-hidden shadow divide-y divide-gray-200 sm:divide-y-0 sm:gap-px">
                     <div className="px-4 py-8 w-100">
-                      <p className="text-gray-600 text-lg font-bold">About</p>
+                      <p className="text-gray-600 text-lg font-bold">Know more about this space</p>
                       <span className="text-gray-600">
                         {property?.propertyDescription}
                       </span>
