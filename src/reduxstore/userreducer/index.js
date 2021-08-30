@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 export const getAllUsersFromAPI = async() => {
     const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api/accounts`;
@@ -12,7 +11,7 @@ export const getAllUsersFromAPI = async() => {
                 'X-Requested-With': 'XMLHttpRequest'
             }
         }
-    );
+    )
     return res;
 }
 
@@ -43,17 +42,19 @@ export const deleteUserFromAPI = async(id) => {
 export const updateUserFromAPI = async(id, body) => {
     const token  = localStorage.getItem('token');
     const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api/accounts`;
-    console.log(id, body);
-    await axios.put(
+    console.log(id, JSON.stringify(body));
+    const pp = await axios.put(
        `${backend_url}/${id}`,
        JSON.stringify(body),
        {
             headers:{
                 'Authorization': `${token}`,
-                'X-Requested-With': 'XMLHttpRequest'
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
             }
         }
     )
+    console.log("This is ", pp);
     const res = await axios.get(
         backend_url,
         {

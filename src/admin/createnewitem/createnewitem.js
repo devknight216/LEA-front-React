@@ -350,8 +350,8 @@ export default function CreateNewPropertyPage() {
               </fieldset>   
             </div>
             <fieldset>
-              <div className="grid sm:grid-cols-2 grid-cols-1">
-                <div>
+              <div className="grid sm:grid-cols-4 grid-cols-1 mt-5">
+                <div className="col-span-1">
                   <legend className='text-base font-medium py-2 text-gray-900'>Property Highlights</legend>
                   {
                     lastOffer.first.map((item, index) => (
@@ -371,6 +371,10 @@ export default function CreateNewPropertyPage() {
                       </div>
                     ))
                   }
+                </div>
+                <div className="border px-5 py-2 rounded-md col-span-3">
+                  <h2 className="text-base font-medium py-2 text-gray-900">Fees</h2>
+                  <div></div>
                 </div>
               </div>
             </fieldset>       

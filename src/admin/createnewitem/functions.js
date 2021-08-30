@@ -1,9 +1,8 @@
 import { amenities, lastOffer } from './constant'
 export const formatReqestData = ( data, imageData ) => {
-    
+    console.log(data);    
     const amenities = formatAmentities(data);
     const propertyDescribe = formatArray(data, lastOffer.first);
-    const propertyspecialFeature = formatArray(data, lastOffer.second);
     let imageArray = [];
     Object.keys(imageData).map(key => {
         imageArray.push({
@@ -19,7 +18,7 @@ export const formatReqestData = ( data, imageData ) => {
         imageURLs:imageArray,
         hostInfo: {
             name: data.hostedByName,
-            userId:"9203923823932823423",
+            userId:"123456789",
             email: data.hostedByNameEmail,
         },
         propertyLocation: {
@@ -38,7 +37,8 @@ export const formatReqestData = ( data, imageData ) => {
         bathroomNum: data.bathroomNum,
         amenities: amenities,
         propertyDescribe: propertyDescribe,
-        propertyspecialFeature: propertyspecialFeature
+        propertyspecialFeature: [],
+
     }
     return requestbody;
 }

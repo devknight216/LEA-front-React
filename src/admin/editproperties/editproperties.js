@@ -38,7 +38,8 @@ export default function CreateNewPropertyPage() {
   //Get form data from hook form
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    const requestBody = formatReqestData(data, imageData);
+    const requestBody = formatReqestData(data, imageData?imageData:[]);
+    console.log(requestBody);
     //Dispatch API to create New Item
     const payload = {
       id: propertyId, 
@@ -389,28 +390,6 @@ export default function CreateNewPropertyPage() {
                           {...register( `${item.variableName}`)}
                           type="checkbox"
                           defaultChecked={property.propertyDescribe?.indexOf(item.label) >= 0}
-                          className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                        />
-                      </div>
-                      <div className="ml-3 text-sm">
-                        <label htmlFor= {item.variableName} className="font-medium text-gray-700">
-                          {item.lable}
-                        </label>
-                      </div>
-                    </div>
-                  ))
-                }
-              </div>
-              <div>
-                <legend className='text-base font-medium py-2 text-gray-900'>Does the property has any of the following?</legend>
-                {
-                  lastOffer.second.map((item, index) => (
-                    <div className="relative flex items-start" key={index}>
-                      <div className="flex items-center h-5">
-                        <input
-                          {...register( `${item.variableName}`)}
-                          type="checkbox"
-                          defaultChecked={property.propertyspecialFeature?.indexOf(item.label) >= 0}
                           className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                         />
                       </div>
