@@ -124,7 +124,7 @@ export default function SearchComponent() {
           </div>
           <div>
             <div>
-              <p className="block text-sm font-medium text-gray-700">Type</p>
+              <p className="block text-sm font-medium text-gray-700">Property Type</p>
               <select
                 id="propertyType"
                 name="propertyType"

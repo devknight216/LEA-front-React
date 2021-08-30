@@ -72,7 +72,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                         className="text-base font-medium text-gray-900"
                         id="announcements-title"
                         >
-                            Reserve
+                            Guests
                         </h2>
                         <div className="flow-root mt-6">
                         <ul className="-my-5 py-5">
@@ -128,7 +128,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                             <div className="py-5 px-10">
                                 <p className="text-gray-800">
                                     <span className="text-lg font-bold">${property?.nightlyRate}</span>
-                                    /Night
+                                    /night
                                 </p>
                                 <div className="flex justify-between py-4 px-5 text-gray-800">
                                     <p className="underline">${property?.nightlyRate} x {dateArray.length} nights</p>

@@ -21,13 +21,15 @@ import { useDispatch } from 'react-redux';
 import { SignOut } from 'reduxstore/authreducer/action'
 import { classNames } from 'shared/function'
 import UserAdminsPage from './users'
+import DashboardPage from './dashboard'
+import BookingManagementPage from './bookinghistory'
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: HomeIcon, current: true },
   { name: 'Properties', href: '/admin/properties', icon: FolderIcon, current: false },
   { name: 'Users', href: '/admin/users', icon: UsersIcon, current: false },
+  { name: 'Booking', href: '/admin/booking', icon: InboxIcon, current: false },
   { name: 'Calendar', href: '/admin/calendar', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '/admin/documents', icon: InboxIcon, current: false },
   { name: 'Reports', href: '/admin/reports', icon: ChartBarIcon, current: false },
 ]
 const userNavigation = [
@@ -274,13 +276,12 @@ function DashboardMainLayout() {
               {/* Replace with your content */}
               <div className="py-4">
                 <Switch>
-                  <Route exact path="/admin">
-                    This is Dashboard
-                  </Route>
+                  <Route exact path="/admin" component={DashboardPage}/>
                   <Route exact path="/admin/properties" component={ManageNewPropertyItemPage}/>
                   <Route path="/admin/properties/new" component={CreateNewPropertyPage}/>
                   <Route path="/admin/properties/edit/:id" component={EditpropertiesPage}/>
                   <Route path="/admin/users" component={UserAdminsPage}/>
+                  <Route path="/admin/booking" component ={BookingManagementPage}/>
                 </Switch>
               </div>
               {/* /End replace */}
