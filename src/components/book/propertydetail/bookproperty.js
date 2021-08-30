@@ -1,11 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import qs from 'qs';
 
-function BookPropertyDetail() {
+function BookPropertyDetail({ bookData, setBookData }) {
     const property = useSelector((state) => state.properties.property);
-    const query = qs.parse(location.search, { ignoreQueryPrefix: true });
-
+ 
     return (
         <div className="text-gray-600 p-5 shadow-lg rounded-md">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-b py-5">
@@ -28,7 +26,33 @@ function BookPropertyDetail() {
                 </div>
             </div>
             <div className="py-5">
-               
+               <div>
+                   <div className="text-center">
+                        <p className="text-lg font-extrabold">Price details</p>
+                        <div className="py-5 px-10">
+                            <p className="text-gray-800">
+                                <span className="text-lg font-bold">${property?.nightlyRate}</span>
+                                /night
+                            </p>
+                        <div className="flex justify-between py-4 px-5 text-gray-800">
+                            <p className="underline">${property?.nightlyRate} x {bookData.dateArray?.length} nights</p>
+                            <p>${ parseInt(property?.nightlyRate) * bookData.dateArray?.length}</p>
+                        </div>
+                        <div className="flex pb-5 px-5 justify-between">
+                            <p className="underline">Deposite fee</p>
+                            <p>${property?.depositFee | 0}</p>
+                        </div>
+                        <div  className="flex pb-5 px-5 justify-end">
+                            <span className="font-bold mr-2">{ bookData.adult + bookData.children}</span> Guests
+                        </div>
+                        <hr />
+                        <div className="flex justify-between px-5 py-2">
+                            <p className="font-bold">Total</p>
+                            <p className="font-bold">${bookData?.totalCost}</p>
+                        </div>
+                   </div>
+                </div>
+               </div>
             </div>
         </div>
     )

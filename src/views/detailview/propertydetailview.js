@@ -10,6 +10,8 @@ import BedroomIcon from "assets/imgs/icon/sleep.png";
 import BedIcon from "assets/imgs/icon/bed.png";
 import BathroomIcon from "assets/imgs/icon/bathtub.png";
 import ReserveComponent from "components/detailview/reserve";
+import ReveiwsComponent from "components/detailview/reviews";
+import HostInfoComponent from "components/detailview/hostinfo";
 
 const PropertyDetailViewPage = (props) => {
 
@@ -19,6 +21,7 @@ const PropertyDetailViewPage = (props) => {
     dispatch(getPropertyById(props.match.params.id));
   }, []);  
   const property = useSelector((state) => state.properties.property);
+  console.log(property);
   
   const stats = [
     { label: "guests", value: property?.guestNum, icon: GuestIcon },
@@ -114,7 +117,7 @@ const PropertyDetailViewPage = (props) => {
                 </section>
                 <section>
                   <p className="text-gray-600 text-lg font-bold">
-                    Select check-in date
+                    Booked dates
                   </p>
                   <DateRangerComponent autoResponsive={true}/>
                 </section>
@@ -128,6 +131,20 @@ const PropertyDetailViewPage = (props) => {
                   </div>
                 </section>
                 <ReserveComponent checkedInOut={checked} propertyId={props.match.params.id} property={property}/>
+              </div>
+            </div>
+            <div>
+              {/* <div>
+                <p className="text-gray-600 text-lg font-bold">
+                  Host information
+                </p>
+                <HostInfoComponent/>
+              </div> */}
+              <div>
+                <p className="text-gray-600 text-lg font-bold">
+                  Reviews
+                </p>
+                <ReveiwsComponent reviews = {property.reviews}/>
               </div>
             </div>
           </div>

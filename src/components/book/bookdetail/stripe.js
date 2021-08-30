@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {loadStripe} from '@stripe/stripe-js';
 import {
   CardElement,
@@ -7,9 +7,13 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({bookData}) => {
     const stripe = useStripe();
     const elements = useElements();
+
+    useEffect(() => {
+     
+    }, [])
   
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -23,7 +27,7 @@ const CheckoutForm = () => {
       <form onSubmit={handleSubmit}>
         <CardElement className="border p-3 h-full rounded-lg"/>
         <button type="submit" disabled={!stripe} className="bg-red-500 hover:bg-red-600 p-2 w-full text-white rounded-lg my-2 font-bold">
-          Confirm and Pay
+          Confirm and Pay (${bookData?.totalCost})
         </button>
       </form>
     );
@@ -31,9 +35,9 @@ const CheckoutForm = () => {
 
 const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 
-const StripeComponent = () => (
+const StripeComponent = ({bookData}) => (
   <Elements stripe={stripePromise}>
-    <CheckoutForm />
+    <CheckoutForm  bookData={bookData}/>
   </Elements>
 );
 

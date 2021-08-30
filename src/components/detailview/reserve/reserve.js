@@ -135,8 +135,8 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                     <p>${ parseInt(property?.nightlyRate) * dateArray.length}</p>
                                 </div>
                                 <div className="flex pb-5 px-5 justify-between">
-                                    <p className="underline">Service fee</p>
-                                    <p>${25}</p>
+                                    <p className="underline">Deposite fee</p>
+                                    <p>${property?.depositFee | 0}</p>
                                 </div>
                                 <div  className="flex pb-5 px-5 justify-end">
                                     <span className="font-bold mr-2">{ guests.adult + guests.children }</span> Guests
@@ -144,7 +144,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                 <hr />
                                 <div className="flex justify-between px-5 py-2">
                                     <p className="font-bold">Total</p>
-                                    <p className="font-bold">${(parseInt(property?.nightlyRate) * dateArray.length)}</p>
+                                    <p className="font-bold">${(parseInt(property?.nightlyRate) * dateArray.length) + (property?.depositFee | 0)}</p>
                                 </div>
                             </div>
                         </ul>
