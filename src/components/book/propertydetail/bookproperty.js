@@ -39,7 +39,7 @@ function BookPropertyDetail({ bookData, setBookData }) {
                             <p>${ parseInt(property?.nightlyRate) * bookData.dateArray?.length}</p>
                         </div>
                         <div className="flex pb-5 px-5 justify-between">
-                            <p className="underline">Deposite fee</p>
+                            <p className="underline">Deposit fee</p>
                             <p>${property?.depositFee | 0}</p>
                         </div>
                         <div  className="flex pb-5 px-5 justify-end">

@@ -24,7 +24,7 @@ const navigation = {
       },
       {
         name: 'Instagram',
-        href: '#',
+        href: 'https://www.instagram.com/legendaryestatesairbnb/',
         icon: (props) => (
           <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
             <path
@@ -88,10 +88,10 @@ export default function FooterComponent() {
           </nav>
           <div className="mt-8 flex justify-center space-x-6">
             {navigation.social.map((item) => (
-              <Link key={item.name} to={item.href} className="text-white hover:text-gray-500">
+              <a key={item.name} href={item.href} className="text-white hover:text-gray-500">
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="h-6 w-6" aria-hidden="true" />
-              </Link>
+              </a>
             ))}
           </div>
           <p className="mt-8 text-center text-base text-gray-400">&copy; 2021 Legendary Estates Airbnb.  All rights reserved.</p>

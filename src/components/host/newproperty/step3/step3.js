@@ -46,7 +46,7 @@ function HostNewPropertyStepThree({ previousStep, property, setProperty, setStep
         })
     }
 
-    //Get Deposite Fee
+    //Get Deposit Fee
     const getDepositeFee = (e) => {
         setProperty({
             ...property,

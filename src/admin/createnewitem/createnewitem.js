@@ -377,7 +377,7 @@ export default function CreateNewPropertyPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sm:gap-x-3">
                     <div className="col-span-1">
                       <label htmlFor="depositeFee" className="block text-sm font-medium text-gray-700">
-                        Deposite Fee
+                        Deposit Fee
                       </label>
                       <div className="mt-1">
                         <input
