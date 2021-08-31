@@ -108,7 +108,7 @@ export default function CreateNewPropertyPage() {
               </label>
               <div className="mt-1">
                 <textarea
-                  rows={3}
+                  rows={6}
                   defaultValue={property.propertyDescription}
                   {...register("propertyDescription", {required: true})}
                   className="shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
@@ -378,7 +378,7 @@ export default function CreateNewPropertyPage() {
             </fieldset>   
           </div>
           <fieldset>
-            <div className="grid sm:grid-cols-2 grid-cols-1">
+            <div className="grid sm:grid-cols-4 grid-cols-1 mt-5">
               <div>
                 <legend className='text-base font-medium py-2 text-gray-900'>Describe the property.</legend>
                 {
@@ -401,6 +401,50 @@ export default function CreateNewPropertyPage() {
                     </div>
                   ))
                 }
+              </div>
+              <div className="border px-5 py-2 rounded-md col-span-3">
+                <h2 className="text-base font-medium py-2 text-gray-900">Fees</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sm:gap-x-3">
+                  <div className="col-span-1">
+                    <label htmlFor="depositeFee" className="block text-sm font-medium text-gray-700">
+                      Deposite Fee
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        type="text"
+                        defaultValue={property?.depositFee}
+                        {...register("depositFee", {required: true, pattern: /[0-9]+/})}
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-span-1">
+                    <label htmlFor="petFee" className="block text-sm font-medium text-gray-700">
+                      Pet Allow Fee
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        type="text"
+                        defaultValue={property?.petAllowFee?.fee}
+                        {...register("petFee", {required: true, pattern: /[0-9]+/})}
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-span-1">
+                    <label htmlFor="stagingRate" className="block text-sm font-medium text-gray-700">
+                      Stagin Fee
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        type="text"
+                        defaultValue={property?.stagingFee?.rate}
+                        {...register("stagingRate", {required: true, pattern: /[0-9]+/})}
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </fieldset>       

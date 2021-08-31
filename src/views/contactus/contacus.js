@@ -304,11 +304,11 @@ export default function ContactUsPage() {
                       defaultValue={''}
                     />
                   </div>
-                  <div className={recaptureCallback?"hidden":"flex justify-center mt-10"}>
+                  {/* <div className={recaptureCallback?"hidden":"flex justify-center mt-10"}>
                     <RecaptureComponent setrecaptureCallback = {setrecaptureCallback}/>
-                  </div>
+                  </div> */}
                 </div>
-                {
+                {/* {
                   recaptureCallback &&
                     <div className="sm:col-span-2 sm:flex sm:justify-end">
                       <button
@@ -318,7 +318,15 @@ export default function ContactUsPage() {
                         Submit
                       </button>
                     </div>
-                }
+                } */}
+                <div className="sm:col-span-2 sm:flex sm:justify-end">
+                  <button
+                    type="submit"
+                    className="mt-2 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-400 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:w-auto"
+                  >
+                    Submit
+                  </button>
+                </div>
               </form>
             </div>
           </div>

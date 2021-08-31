@@ -4,13 +4,14 @@ export const formatReqestData = ( data, imageData ) => {
     const amenities = formatAmentities(data);
     const propertyDescribe = formatArray(data, lastOffer.first);
     let imageArray = [];
-    Object.keys(imageData).map(key => {
-        imageArray.push({
-            filename:imageData[key].name,
-            url:imageData[key].url
-        });
-    })
-
+    if(imageData){
+        Object.keys(imageData).map(key => {
+            imageArray.push({
+                filename:imageData[key].name,
+                url:imageData[key].url
+            });
+        })
+    }
     const requestbody = {
         propertyName:  data.propertyName,
         nightlyRate: data.nightlyRate,
@@ -38,7 +39,16 @@ export const formatReqestData = ( data, imageData ) => {
         amenities: amenities,
         propertyDescribe: propertyDescribe,
         propertyspecialFeature: [],
-
+        depositFee: data.depositFee,
+        petAllowFee: { 
+            number: 0,
+            fee: data.petFee
+        },
+        stagingFee: { 
+            hours: 0,
+            rate: data.stagingRate
+        },
+        manageType: 'LEA'
     }
     return requestbody;
 }

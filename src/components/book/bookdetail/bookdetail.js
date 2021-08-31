@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { ChevronLeftIcon } from '@heroicons/react/outline';
-import qs from 'qs';
-import { useSelector } from 'react-redux';
 import StripeComponent from './stripe';
+import BookSendEmailPopUp from './sendemail';
+import BookAddPhonePopUp from './addphone';
 
 function BookDetailComponent({setBookData, bookData}) {
-    const property = useSelector((state) => state.properties.property);
-    const query = qs.parse(location.search, { ignoreQueryPrefix: true });
+    //Send Email Popup 
+    const [sendEmail, setSendEmail] = useState(false);
+    const [addPhone, setAddPhone] = useState(false)
 
     return (
         <div className="text-gray-600 p-5 shadow-lg rounded-md">
@@ -42,7 +43,7 @@ function BookDetailComponent({setBookData, bookData}) {
                             <p className="text-sm">Add and confirm your phone number to get trip updates.</p>
                         </div>
                         <div>
-                            <button className="bg-transparent hover:bg-red-600 px-3 py-1 rounded-md text-gray-600 hover:text-white border">Add</button>
+                            <button onClick={()=>{setAddPhone(true)}} className="bg-transparent hover:bg-red-600 px-4 py-1 rounded-md text-gray-600 hover:text-white border">Add</button>
                         </div>
                     </div>
                     <div className="py-3 px-5 flex justify-between space-x-2">
@@ -51,7 +52,7 @@ function BookDetailComponent({setBookData, bookData}) {
                             <p className="text-sm">Let the host know why you're traveling and when you'll check in.</p>
                         </div>
                         <div>
-                            <button className="bg-transparent hover:bg-red-600 px-3 py-1 rounded-md text-gray-600 hover:text-white border">Add</button>
+                            <button onClick={()=> {setSendEmail(true)}} className="bg-transparent hover:bg-red-600 px-4 py-1 rounded-md text-gray-600 hover:text-white border">Send</button>
                         </div>
                     </div>
                 </div>
@@ -62,6 +63,8 @@ function BookDetailComponent({setBookData, bookData}) {
                     </div>
                 </div>
             </div>
+            <BookSendEmailPopUp sendEmail={sendEmail} setSendEmail={setSendEmail}/>
+            <BookAddPhonePopUp sendEmail={addPhone} setSendEmail={setAddPhone}/>
         </div>
     )
 }
