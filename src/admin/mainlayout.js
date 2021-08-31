@@ -24,23 +24,21 @@ import UserAdminsPage from './users'
 import DashboardPage from './dashboard'
 import BookingManagementPage from './bookinghistory'
 
-const navigation = [
-  { name: 'Dashboard', href: '/admin', icon: HomeIcon, current: true },
-  { name: 'Properties', href: '/admin/properties', icon: FolderIcon, current: false },
-  { name: 'Users', href: '/admin/users', icon: UsersIcon, current: false },
-  { name: 'Booking', href: '/admin/booking', icon: InboxIcon, current: false },
-  { name: 'Calendar', href: '/admin/calendar', icon: CalendarIcon, current: false },
-  { name: 'Reports', href: '/admin/reports', icon: ChartBarIcon, current: false },
-]
 const userNavigation = [
-  { name: 'Profile', href: '#' },
-  { name: 'Settings', href: '#' },
   { name: 'Sign out', href: '/signin'},
 ]
 function DashboardMainLayout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
-
+  const navigation = [
+    { name: 'Dashboard', href: '/admin', icon: HomeIcon,  current: location.pathname == "/admin"?true:false },
+    { name: 'Properties', href: '/admin/properties', icon: FolderIcon, current: location.pathname == "/admin/properties"?true:false },
+    { name: 'Users', href: '/admin/users', icon: UsersIcon, current: location.pathname == "/admin/users"?true:false },
+    { name: 'Booking', href: '/admin/booking', icon: InboxIcon, current: location.pathname == "/admin/booking"?true:false },
+    { name: 'Calendar', href: '/admin/calendar', icon: CalendarIcon, current: location.pathname == "/admin/calendar"?true:false },
+    { name: 'Reports', href: '/admin/reports', icon: ChartBarIcon, current: location.pathname == "/admin/reports"?true:false },
+  ]
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  
   //Sign Out
   const dispatch = useDispatch();
   const signOutFunc = (type) => {
@@ -221,11 +219,13 @@ function DashboardMainLayout() {
                     <div>
                       <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         <span className="sr-only">Open user menu</span>
-                        <img
-                          className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                          alt=""
-                        />
+                        <div className="flex-shrink-0 h-8 w-8">
+                          <span className="h-8 w-8 rounded-full overflow-hidden bg-gray-100">
+                              <svg className="h-full w-full rounded-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                              </svg>
+                          </span>
+                        </div>
                       </Menu.Button>
                     </div>
                     <Transition

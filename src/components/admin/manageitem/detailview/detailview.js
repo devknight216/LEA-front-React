@@ -49,8 +49,8 @@ function DetailViewComponent( {selected} ) {
                         <span className="text-indigo-600 font-semibold text-lg">{selected?.propertyName}</span> 
                         <p>Item Features:</p>
                         <div className="flex justify-start flex-wrap">
-                            <div className="px-2 m-1 bg-red-600 rounded-md text-white">{selected?.propertyType}</div>
-                            <div className="px-2 m-1 bg-blue-600 rounded-md text-white">{selected?.propertySpaceFeature}</div>    
+                            <div className="px-2 m-1 bg-red-200 rounded-md text-red-600">{selected?.propertyType}</div>
+                            <div className="px-2 m-1 bg-blue-200 rounded-md text-blue-600">{selected?.propertySpaceFeature}</div>    
                         </div>
                         <p>Description:</p>
                         <div className="border-2 rounded-lg p-3">

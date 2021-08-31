@@ -47,7 +47,7 @@ const areaItem = [
 export default function Example() {
     return (
         <div>
-           <div className="max-w-7xl mx-auto py-16 px-5">
+           <div className="max-w-5xl mx-auto py-16 px-5">
                 <span className="text-3xl font-extrabold tracking-tight text-gray-900">What makes Airbnb so profitable?</span>
                 <div className="pt-5">
                     <span className="text-gray-600">Is your goal to earn more income in 2021? Can you believe how fast last year went by? If increasing your income while decreasing your work time is one of them, then look no further this course is your ticket!</span>

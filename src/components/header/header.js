@@ -7,9 +7,7 @@ import {
   MenuIcon,
   ShieldCheckIcon,
   XIcon,
-  UserCircleIcon,
   SparklesIcon,
-  HomeIcon
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import BrandIcon from 'assets/imgs/brand/png-black-background.png';
@@ -24,7 +22,7 @@ const company = [
   { name: 'Privacy and Policies', href: '/policy', icon: ShieldCheckIcon },
 ];
 const resources = [
-  { name: 'Guides', href: '#', icon: BookmarkAltIcon },
+  { name: 'Guides', href: '/guide', icon: BookmarkAltIcon },
   { name: 'Staging', href: '/staging', icon: SparklesIcon },
 ];
 export default function HeaderComponent() {
@@ -244,22 +242,23 @@ return (
                       <Link to="/policy" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                         Privacy and Policies
                       </Link>
+                      <Link to="/guide" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                        Guide
+                      </Link>
 
+                      
+                      <Link to="/host" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                        Add New Space
+                      </Link>
+  
+                      <Link to="/contact" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
+                        Contact Us
+                      </Link>
                       {
                           authUser?.role== "admin" &&<Link to="/admin" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                             Admin
                           </Link>
                       }
-
-                      {
-                          authUser?.role== "host" &&<Link to="/host" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
-                            Add New Space
-                          </Link>
-                      }
-  
-                      <Link to="/contact" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
-                        Contact Us
-                      </Link>
                     </div>
                     <div className="mt-6">
                     {authUser ?

@@ -16,6 +16,7 @@ import EditProfilePage from "./editprofile";
 import Messagespage from "./message";
 import BookingHistoryPage from "./bookhistory";
 import ScrollToTop from "shared/scrolltotop";
+import GuidePage from "./guide";
 
 export default function MainLayout() {
   return (
@@ -36,6 +37,7 @@ export default function MainLayout() {
           <Route path="/edit-profile" component={EditProfilePage}/>
           <Route path="/messages" component={Messagespage}/>
           <Route path="/book-history" component={BookingHistoryPage}/>
+          <Route path="/guide" component={GuidePage}/>
           <Route component={NotFoundPage}/>
         </Switch>
         <FooterComponent />

@@ -1,5 +1,5 @@
 export const typeArray = ['All','Apartment', 'House', 'Condo / Townhome', 'Secondary Unit', 'Unique Space', 'Bed and Breakfast', 'Boutique Hotel', 'Duplex', 'RV / Camper', 'Tiny House']
-export const spaceArray =['All', 'An entire place', 'A private room', 'A shared room'];
+export const spaceArray =['All', 'The whole place', 'A private room', 'A shared room'];
 export const amenities = [
     { label: 'Hot Tub', value: 'Hot Tub' },
     { label: 'Patio', value: 'Patio' },

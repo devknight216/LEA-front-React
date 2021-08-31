@@ -59,11 +59,21 @@ export default function ItemsTableComponent( {getSelected} ) {
               key={property['_id']}
               id={property['_id']}
               onClick={ () => { handleSelectProperty(property) } }
-              className={ ( selected?._id == property['_id'] )?"py-4 flex bg-gray-300 px-5 cursor-pointer justify-between":"py-4 flex hover:bg-gray-300 px-5 cursor-pointer justify-between" }
+              className={ ( selected?._id == property['_id'] )?"py-4 flex bg-gray-200 px-5 cursor-pointer justify-between":"py-4 flex hover:bg-gray-200 px-5 cursor-pointer justify-between" }
             >
-              <div>
-                <p className="text-sm font-medium text-gray-900"> { property.propertyName }</p>
-                <p className="text-sm text-gray-500">${property.nightlyRate}/night</p>
+              <div className="flex space-x-3">
+                <div>
+                  <img src={property?.imageURLs[0]?.url} className="w-14 h-14 rounded-md"/>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-gray-900"> { property.propertyName }</p>
+                  <p className="text-sm text-gray-500">
+                    ${property.nightlyRate}/night
+                    <span className="text-xs font-semibold inline-block py-1 px-2 rounded text-blue-600 bg-blue-200 uppercase mx-1">
+                      { property?.hostInfo.name }
+                    </span>
+                  </p>
+                </div>
               </div>
               <div>
                 <PencilAltIcon className="text-gray-400 h-6 w-6 hover:text-gray-800" onClick={()=>{gotEdit(property._id)}}/>

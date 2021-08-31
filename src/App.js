@@ -19,12 +19,12 @@ function App() {
           <Route exact path="/signup">
             <SignupPage/>
           </Route>
-          <PrivateRoute path="/admin">
-            <DashboardMainLayout/>
-          </PrivateRoute>
-          <HostPrivateRoute path="/host">
+          <PrivateRoute path="/host">
             <HostMainLayoutPage/>
-          </HostPrivateRoute>
+          </PrivateRoute>
+          <AdminRoute path="/admin">
+            <DashboardMainLayout/>
+          </AdminRoute>
           <Route path="/">
             <MainLayout/>
           </Route>
@@ -35,7 +35,7 @@ function App() {
 }
 
 
-function PrivateRoute({ children,  isAuth, ...rest}) {
+function AdminRoute({ children,  isAuth, ...rest}) {
   const authUser = useSelector((state) => state.auth.user);
   const token = useSelector((state) => state.auth.token);
   let auth = false;
@@ -61,11 +61,11 @@ function PrivateRoute({ children,  isAuth, ...rest}) {
   );
 }
 
-function HostPrivateRoute({ children, ...rest}) {
+function PrivateRoute({ children,  isAuth, ...rest}) {
   const authUser = useSelector((state) => state.auth.user);
   const token = useSelector((state) => state.auth.token);
   let auth = false;
-  if(token && authUser.role === 'host'){
+  if(token && authUser.role === 'user'){
     auth = true;
   }
   return (

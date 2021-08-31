@@ -1,5 +1,6 @@
-import { Fragment,  useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Fragment } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { PhoneIcon } from '@heroicons/react/outline'
 
 export default function BookAddPhonePopUp({sendEmail, setSendEmail}) {
 
@@ -40,7 +41,10 @@ export default function BookAddPhonePopUp({sendEmail, setSendEmail}) {
               <div>
                 <div className="mt-3 text-center sm:mt-5">
                   <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
-                    Add phone
+                    <div className="flex items-center justify-center space-x-3">
+                      <PhoneIcon className="h-10 w-10 text-gray-500"/>
+                      <p>Add Phone</p>
+                    </div>
                   </Dialog.Title>
                   <div className="mt-2">
                     <input 

@@ -85,7 +85,6 @@ export default function UserEditModalComponent({user, isOpen, setIsOpen }) {
                                     >
                                         <option value="admin">Admin</option>
                                         <option value="user">User</option>
-                                        <option value="host">Host</option>
                                     </select>
                                 </div>
                             </div>

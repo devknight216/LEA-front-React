@@ -16,7 +16,7 @@ function BookDetailComponent({setBookData, bookData}) {
                 <h2 className="text-3xl font-extrabold tracking-tight ml-2">Request to book</h2>
             </div>
             <div className="px-2">
-                <div className="py-3 tracking-tight border-b">
+                <div className="py-6 tracking-tight border-b">
                     <h2 className="text-xl">Your trip</h2>
                     <div className="py-4 sm:px-5 md:px-10">
                         <p className="font-bold">Dates</p>
@@ -31,11 +31,7 @@ function BookDetailComponent({setBookData, bookData}) {
                         </div>
                     </div>
                 </div>
-                {/* Select Pay method */}
-                {/* <div className="py-3 tracking-tight border-b">
-                    <h2 className="text-xl">Choose how to pay</h2>
-                </div> */}
-                <div className="py-3 tracking-tight border-b">
+                <div className="py-6 tracking-tight border-b">
                     <h2 className="text-xl">Required for your trip</h2>
                     <div className="py-3 px-5 flex justify-between space-x-2">
                         <div>
@@ -56,7 +52,7 @@ function BookDetailComponent({setBookData, bookData}) {
                         </div>
                     </div>
                 </div>
-                <div className="py-3 tracking-tight border-b">
+                <div className="py-6 tracking-tight border-b">
                     <h2 className="text-xl">Pay with</h2>
                     <div className="py-3">
                         <StripeComponent bookData={bookData}/>
