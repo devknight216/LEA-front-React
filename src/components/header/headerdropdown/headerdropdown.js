@@ -20,16 +20,17 @@ function classNames(...classes) {
 export default function HeaderDropdownComponent() {
   const dispatch = useDispatch();
   const AuthUser = useSelector(state => state.auth.user);
+  console.log(AuthUser);
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className=" flex items-center justify-between w-full bg-white text-sm font-medium text-gray-700  focus:outline-none">
           {
             AuthUser?.avatarURL?<div>
-                <img src={AuthUser?.avatarURL} className="h-10 w-10 rounded-full object-cover"/>
+                <img src={AuthUser?.avatarURL} className="h-14 w-14 rounded-full border-2 object-cover"/>
               </div>
             :
-              <span className="h-10 w-10 rounded-full overflow-hidden bg-gray-100">
+              <span className="h-14 w-14 rounded-full overflow-hidden bg-gray-100">
                 <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { saveAvatarUrlToBackend } from 'shared/api';
 import { uploadImageToAWS } from 'shared/function';
@@ -6,7 +6,8 @@ import { uploadImageToAWS } from 'shared/function';
 const AvatarEditorComponent = ({userId}) => {
 
   //Upload Image to AWS S3 Buchet
-  const [avatarURL, setAvatarURL] = useState(null);
+  const authUser = useSelector(state => state.auth.user);
+  const [avatarURL, setAvatarURL] = useState(authUser?.avatarURL);
   const authToken = useSelector(state => state.auth.token);
 
   const handlfileChange = async(e) => {

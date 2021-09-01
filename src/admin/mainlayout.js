@@ -17,7 +17,7 @@ import ManageNewPropertyItemPage from './manageitem'
 import BrandImage from 'assets/imgs/brand/png-black-background.png'
 import CreateNewPropertyPage from './createnewitem'
 import EditpropertiesPage from './editproperties'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SignOut } from 'reduxstore/authreducer/action'
 import { classNames } from 'shared/function'
 import UserAdminsPage from './users'
@@ -46,6 +46,9 @@ function DashboardMainLayout() {
       dispatch(SignOut())
     }
   }
+
+  //Get User Data
+  const AuthUser = useSelector(state => state.auth.user);
 
   return (
     <div className="h-screen flex overflow-hidden bg-gray-100">
@@ -219,13 +222,20 @@ function DashboardMainLayout() {
                     <div>
                       <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         <span className="sr-only">Open user menu</span>
-                        <div className="flex-shrink-0 h-8 w-8">
-                          <span className="h-8 w-8 rounded-full overflow-hidden bg-gray-100">
-                              <svg className="h-full w-full rounded-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                              </svg>
-                          </span>
-                        </div>
+                        {
+                          AuthUser?.avatarURL ? <div>
+                              <img src={AuthUser?.avatarURL} className="h-8 w-8 object-cover rounded-full border-2"/>
+                            </div>
+                          :<div>  
+                              <div className="flex-shrink-0 h-8 w-8">
+                                <span className="h-8 w-8 rounded-full overflow-hidden bg-gray-100">
+                                    <svg className="h-full w-full rounded-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                    </svg>
+                                </span>
+                              </div>
+                            </div>
+                        }
                       </Menu.Button>
                     </div>
                     <Transition
