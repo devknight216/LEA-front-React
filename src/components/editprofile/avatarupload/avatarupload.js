@@ -12,9 +12,7 @@ const AvatarEditorComponent = ({userId}) => {
   const handlfileChange = async(e) => {
     if(e.target.files[0]){
       const avatar = new File([e.target.files[0]], `avatar_${userId}.${e.target.files[0].name.split('.').pop()}`);
-      console.log(avatar);
       const res = await uploadImageToAWS(avatar, 'avatar');
-      console.log(res.location);
       setAvatarURL(res.location);
       saveAvatarUrlToBackend(userId, res.location,  authToken);
     }
@@ -40,7 +38,7 @@ const AvatarEditorComponent = ({userId}) => {
               <div>
                 <label
                   htmlFor="file-upload"
-                  className="relative cursor-pointer  rounded-md font-medium  focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2"
+                  className="relative cursor-pointer  rounded-md font-medium"
                 >
                   <div
                       type="button"

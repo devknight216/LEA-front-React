@@ -42,7 +42,7 @@ export const deleteUserFromAPI = async(id) => {
 export const updateUserFromAPI = async(id, body) => {
     const token  = localStorage.getItem('token');
     const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api/accounts`;
-    const pp = await axios.put(
+    await axios.put(
        `${backend_url}/${id}`,
        JSON.stringify(body),
        {
@@ -53,7 +53,6 @@ export const updateUserFromAPI = async(id, body) => {
             }
         }
     )
-    console.log(pp);
     const res = await axios.get(
         backend_url,
         {

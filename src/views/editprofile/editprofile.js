@@ -18,7 +18,6 @@ export default function EditProfilePage() {
                 history.push('/signin')
         }
         else{
-            console.log(userId)
             dispatch(getUserByID(userId))
         }
     }, []);

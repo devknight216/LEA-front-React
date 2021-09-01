@@ -19,7 +19,6 @@ export default function BookingHistoryPage() {
     const authToken = useSelector(state => state.auth.token);
     const history = useHistory()
     useEffect(() => {
-       console.log(authToken);
        if(!authToken){
         history.push('/signin')
        }

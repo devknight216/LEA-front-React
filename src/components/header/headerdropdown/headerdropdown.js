@@ -20,7 +20,6 @@ function classNames(...classes) {
 export default function HeaderDropdownComponent() {
   const dispatch = useDispatch();
   const AuthUser = useSelector(state => state.auth.user);
-  console.log(AuthUser);
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>

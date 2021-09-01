@@ -6,7 +6,6 @@ export default function ImageUploadComponent({property, setProperty}) {
 
   const handlfileChange = async(e) => {
     if(e.target.files[0]){
-      console.log(e.target.files[0]);
       hostUploadIamge(e.target.files[0]);
     }
   }

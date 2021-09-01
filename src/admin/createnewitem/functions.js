@@ -1,6 +1,5 @@
 import { amenities, lastOffer } from './constant'
 export const formatReqestData = ( data, imageData ) => {
-    console.log(data);    
     const amenities = formatAmentities(data);
     const propertyDescribe = formatArray(data, lastOffer.first);
     let imageArray = [];

@@ -8,6 +8,7 @@ import { createNewProperty } from 'reduxstore/propertyreducer/action';
 import { uploadImageToFirebase, recordImagedata, removeStore } from 'firebaseStorage/functions';
 import { useEffect, useState } from 'react'; 
 import { Toast } from 'components/common/notification';
+import ImageUploadToAWSComponent from 'components/common/uploadImage';
 
 export default function CreateNewPropertyPage() { 
     
@@ -37,7 +38,7 @@ export default function CreateNewPropertyPage() {
       return () => {
         removeStore();
       }
-    }, [])
+    }, []);
 
     //Image Upload
     const [url, setUrl] = useState(null);
@@ -435,6 +436,9 @@ export default function CreateNewPropertyPage() {
               Save
             </button>
           </div>
+        </div>
+        <div>
+          <ImageUploadToAWSComponent imageList={[]} propertyID={"test"}/>
         </div>
       </form>
     )

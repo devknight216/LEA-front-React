@@ -10,7 +10,6 @@ export default function BookPropertyListComponent() {
     useEffect(() => {
       dispatch(getAllProperties());
     }, [])
-    console.log(properties);
     return (
       <ul className="divide-y divide-gray-200">
         {

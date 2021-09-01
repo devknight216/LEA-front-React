@@ -28,7 +28,6 @@ export default function SigninPage() {
       password: data.password,
       password2: data.confirmpassword,
     };
-    console.log(user);
     dispatch(SignUp(user));
   };
 

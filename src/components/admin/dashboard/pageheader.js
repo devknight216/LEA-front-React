@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 function DashboardPageHeaderComponent() {
     const user = useSelector(state => state.auth.user);
-    console.log(user);
     return (
         <div className="bg-white">
             <div className="bg-white shadow">

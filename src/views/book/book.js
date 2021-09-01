@@ -24,6 +24,7 @@ function BookPage({ match }) {
         adult: parseInt(query.adult),
         children: parseInt(query.children),
         infants: parseInt(query.infants),
+        pets: parseInt(query.pets),
         checkedin: query.checkedin,
         checkedout: query.checkedout,
         totalCost: 0,
@@ -36,7 +37,8 @@ function BookPage({ match }) {
         setBookData({
             ...bookData,
             dateArray: dates,
-            totalCost: (parseInt(property?.nightlyRate) * dates.length) + (property?.depositFee | 0)
+            hostId: property?.hostInfo?.userId,
+            totalCost: (parseInt(property?.nightlyRate) * dates.length) + (property?.depositFee | 0) + ((property?.petAllowFee?.fee | 0)*bookData.pets)
         })
     }, [property])
 

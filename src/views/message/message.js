@@ -7,10 +7,9 @@ function Messagespage() {
     const authToken = useSelector(state => state.auth.token);
     const history = useHistory()
     useEffect(() => {
-       console.log(authToken);
-       if(!authToken){
-        history.push('/signin')
-       }
+        if(!authToken){
+                history.push('/signin')
+        }
     }, []);
 
     return (

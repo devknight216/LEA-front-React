@@ -3,12 +3,14 @@ import { MinusCircleIcon,  PlusCircleIcon } from '@heroicons/react/outline';
 import { Link, useHistory } from 'react-router-dom'
 import { classNames, getDaysArray } from 'shared/function';
 import { Toast } from 'components/common/notification';
+import { useSelector } from 'react-redux';
 
 function ReserveComponent({ property, checkedInOut, propertyId }) {
     const [guests, setGuests] = useState({
         adult: 1, 
         children: 0,
-        infants: 0
+        infants: 0,
+        pets: 0
     });
 
     //Increase or Decrease the Gust Num
@@ -44,7 +46,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
     ]
 
     //Get Date Array
-    const[dateArray, setDateArray] = useState([])
+    const[dateArray, setDateArray] = useState([]);
     useEffect(() => {
        if(checkedInOut?.from && checkedInOut?.to){
            const array = getDaysArray(checkedInOut?.from, checkedInOut?.to);
@@ -53,16 +55,26 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
     }, [checkedInOut]);
 
     //Go to Book
-    const history = useHistory()
+    const history = useHistory();
+    const AuthToken = useSelector( state => state.auth.token );
     const gotoBook = () => {
-        if(dateArray.length){
-            history.push(`/book/${propertyId}?adult=${guests.adult}&children=${guests.children}&infants=${guests.infants}&checkedin=${checkedInOut?.from}&checkedout=${checkedInOut?.to}`)
+        if(AuthToken){
+            if(dateArray.length){
+                history.push(`/book/${propertyId}?adult=${guests.adult}&children=${guests.children}&infants=${guests.infants}&checkedin=${checkedInOut?.from}&checkedout=${checkedInOut?.to}&pets=${guests.pets}`)
+            }
+            else{
+                Toast('', 'Please choose checked-in and checked-out', 'danger');
+            }
         }
         else{
-            Toast('', 'Please choose checked-in and checked-out', 'danger')
+            Toast('', 'You must sign in', 'danger');
+            history.push('/signin');
         }
     }
 
+    //Pet Allowed?
+    const [isPet, setIsPet] = useState(false);
+   
     return (
         <div>
             <section aria-labelledby="announcements-title">
@@ -102,7 +114,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                     </div>
                                 ))
                             }
-                             <div className="flex justify-between px-5 gird grid-cols-2">
+                            <div className="flex justify-between px-5 gird grid-cols-2">
                                 <p>Infants:</p>
                                 <div className="flex justify-between w-1/2">
                                     <div className="cursor-pointer" onClick={() => { setGuests({ ...guests, infants: guests.infants ? (guests.infants-1) : 0 }) }}>
@@ -124,6 +136,47 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                     </div>
                                 </div>
                             </div>
+                            <div>
+                                {
+                                    property?.amenities?.find(element => element === 'Pets Allowed')&&<div className="py-5 px-5">
+                                        <div className="flex justify-left items-center">
+                                            <input 
+                                                type="checkbox" 
+                                                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                                onChange={(e)=>{
+                                                    setIsPet(e.target.checked);
+                                                    setGuests({ ...guests, pets: 0 })
+                                                }}
+                                            />
+                                            <p className="ml-2 text-gray-400">Do you want Pets?</p>
+                                        </div>
+                                       {
+                                            isPet && <div>
+                                               <div className="flex justify-between gird grid-cols-2">
+                                                    <p>pets:</p>
+                                                    <div className="flex justify-between w-1/2">
+                                                        <div className="cursor-pointer" onClick={() => { setGuests({ ...guests, pets: guests.pets ? (guests.pets-1) : 0 }) }}>
+                                                            <MinusCircleIcon 
+                                                                className={classNames(
+                                                                    ((guests.pets)>0 ) ? 'text-gray-800' : 'text-gray-300','h-6'
+                                                                )} 
+                                                            />
+                                                        </div>
+                                                            { guests.pets }
+                                                        <div className="cursor-pointer" onClick={() => { setGuests({ ...guests, pets: guests.pets+1 }) }}>
+                                                            <PlusCircleIcon
+                                                                className={classNames(
+                                                                    ((guests.pets)<3 ) ? 'text-gray-800' : 'text-gray-300','h-6'
+                                                                )} 
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                       }
+                                    </div>
+                                }
+                            </div>
                             
                             <div className="py-5 px-10">
                                 <p className="text-gray-800">
@@ -138,13 +191,19 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                     <p className="underline">Deposit fee</p>
                                     <p>${property?.depositFee | 0}</p>
                                 </div>
+                                {
+                                    isPet && <div className="flex pb-5 px-5 justify-between">
+                                        <p className="underline">Pet fee</p>
+                                        <p>${(property?.petAllowFee?.fee | 0)*guests.pets}</p>
+                                    </div>
+                                }
                                 <div  className="flex pb-5 px-5 justify-end">
                                     <span className="font-bold mr-2">{ guests.adult + guests.children }</span> Guests
                                 </div>
                                 <hr />
                                 <div className="flex justify-between px-5 py-2">
                                     <p className="font-bold">Total</p>
-                                    <p className="font-bold">${(parseInt(property?.nightlyRate) * dateArray.length) + (property?.depositFee | 0)}</p>
+                                    <p className="font-bold">${(parseInt(property?.nightlyRate) * dateArray.length) + (property?.depositFee | 0) + (property?.petAllowFee?.fee | 0)*guests.pets}</p>
                                 </div>
                             </div>
                         </ul>
@@ -164,4 +223,4 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
     )
 }
 
-export default ReserveComponent
+export default ReserveComponent;
