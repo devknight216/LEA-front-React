@@ -16,15 +16,13 @@ export function getDaysArray(startDate, stopDate) {
 
 //AWS S3 Image Upload 
 
-
-
 export const uploadImageToAWS  = async(file, dirName) => {
     const config = {
-        bucketName: 'legendarystorage',
+        bucketName: process.env.REACT_APP_AWS_BUCKET_NAME,
         dirName: dirName, 
-        region: 'us-east-2',
-        accessKeyId: 'AKIA6IJYQ7CQDV4HXQWM',
-        secretAccessKey: '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'
+        region: process.env.REACT_APP_AWS_REGION,
+        accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
     }
     const res = await uploadFile(file, config);
     return res;       
