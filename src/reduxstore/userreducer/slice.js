@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteUser, getAllUsers, updateUser } from "./action";
+import { deleteUser, getAllUsers, getUserByID, updateUser } from "./action";
 const PREFIX = 'user';
 
 const STATUS = {
@@ -44,6 +44,13 @@ export const UserSlice = createSlice({
                 state.status = STATUS.FULFILLED;
             }
         )
+        .addCase(
+            getUserByID.fulfilled,
+            ( state, action ) => {
+                state.user = action.payload;
+                state.status = STATUS.FULFILLED;
+            }
+        )
         .addMatcher(
             isPendingAction,
             ( state, action ) => {
@@ -59,5 +66,5 @@ export const UserSlice = createSlice({
     }
 })
 
-export {  getAllUsers, deleteUser };
+export {  getAllUsers, deleteUser, getUserByID, updateUser };
 export default UserSlice.reducer;

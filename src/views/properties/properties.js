@@ -5,7 +5,7 @@ import { getAllProperties, searchProperties } from 'reduxstore/propertyreducer/a
 import { useLocation } from 'react-router-dom';
 import qs from 'qs'
 import SearchComponent from 'components/properties/search';
-import { SpinnerDotted } from 'spinners-react';
+import { SpinnerCircularFixed } from 'spinners-react';
 
 const PropertiesPage  = () => {
     //Get Properties from backend
@@ -46,7 +46,7 @@ const PropertiesPage  = () => {
                     {
                         (status == 2)?
                             <div className='flex justify-center py-10'>
-                                <SpinnerDotted size={100} thickness={100} speed={100} color="#FF000055" enabled={(status == 2)} />
+                                <SpinnerCircularFixed size={50} thickness={100} speed={100} color="#000000AA" secondaryColor="#D9D9D6" />
                             </div>
                         :
                         

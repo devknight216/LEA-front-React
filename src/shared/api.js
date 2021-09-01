@@ -26,3 +26,22 @@ export const emailVerify = async ( token ) => {
         }
     )
 }
+
+//Upload Avatar
+export const saveAvatarUrlToBackend = async ( id, url, token ) => {
+    return await axios.post(
+        backend_url + 'accounts/avatar',
+        {
+            "userId": id,
+            "avatarURL": url
+        },
+        {
+            headers: {
+                'Authorization': `${token}`,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            }
+        }
+
+    )
+}

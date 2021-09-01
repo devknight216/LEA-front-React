@@ -23,6 +23,7 @@ export const PropertySlice = createSlice({
             name: action.payload.name,
             email: action.payload.email,
             role: action.payload.role,
+            avatarURL: action.payload.avatarURL,
           };
           localStorage.setItem("token", action.payload.token);
           localStorage.setItem("user", JSON.stringify(state.user));

@@ -42,7 +42,6 @@ export const deleteUserFromAPI = async(id) => {
 export const updateUserFromAPI = async(id, body) => {
     const token  = localStorage.getItem('token');
     const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api/accounts`;
-    console.log(id, JSON.stringify(body));
     const pp = await axios.put(
        `${backend_url}/${id}`,
        JSON.stringify(body),
@@ -54,7 +53,7 @@ export const updateUserFromAPI = async(id, body) => {
             }
         }
     )
-    console.log("This is ", pp);
+    console.log(pp);
     const res = await axios.get(
         backend_url,
         {
@@ -64,5 +63,20 @@ export const updateUserFromAPI = async(id, body) => {
             }
         }
     );
+    return res;
+}
+
+export const getUserByIdFromAPI = async( id ) => {
+    const token  = localStorage.getItem('token');
+    const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api/accounts/${id}`;
+    const res = await axios.get(
+        backend_url,
+        {
+            headers:{
+                'Authorization': `${token}`,
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        }
+    )
     return res;
 }

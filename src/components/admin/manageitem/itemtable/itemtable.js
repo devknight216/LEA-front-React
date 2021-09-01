@@ -5,11 +5,13 @@ import { deletePropertyById } from 'reduxstore/propertyreducer/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { TrashIcon, PencilAltIcon, PlusIcon } from '@heroicons/react/outline'
 import { deleteImage } from 'firebaseStorage/functions';
+import { SpinnerCircularFixed } from 'spinners-react';
   
 export default function ItemsTableComponent( {getSelected} ) {
   
   //Get Property from Store
   const properties = useSelector( state => state.properties );
+  const status = useSelector( state => state.properties.status );
 
   //Get id of Selected Item 
   const [ selected, setSelected ] = useState(null);
@@ -48,41 +50,46 @@ export default function ItemsTableComponent( {getSelected} ) {
     <div>
       <div className="grid grid-cols-2 mb-5">
         <div className="px-10 py-2 w-max mx-auto flex bg-yellow-500 text-white text-center hover:bg-yellow-700 rounded-md cursor-pointer" onClick={gotoCreateNew}>New <PlusIcon/></div>
-        {
-          selected && <button className="px-10 py-2 w-max mx-auto bg-red-500 text-white text-center hover:bg-red-700 rounded-md cursor-pointer" onClick={handleDelete}>Delete</button>
-        }
       </div>
-      <ul className="divide-y divide-gray-200">
-        {
-          properties.properties.map( property => (
-            <li 
-              key={property['_id']}
-              id={property['_id']}
-              onClick={ () => { handleSelectProperty(property) } }
-              className={ ( selected?._id == property['_id'] )?"py-4 flex bg-gray-200 px-5 cursor-pointer justify-between":"py-4 flex hover:bg-gray-200 px-5 cursor-pointer justify-between" }
-            >
-              <div className="flex space-x-3">
-                <div>
-                  <img src={property?.imageURLs[0]?.url} className="w-14 h-14 rounded-md"/>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-900"> { property.propertyName }</p>
-                  <p className="text-sm text-gray-500">
-                    ${property.nightlyRate}/night
-                    <span className="text-xs font-semibold inline-block py-1 px-2 rounded text-blue-600 bg-blue-200 uppercase mx-1">
-                      { property?.hostInfo.name }
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <div>
-                <PencilAltIcon className="text-gray-400 h-6 w-6 hover:text-gray-800" onClick={()=>{gotEdit(property._id)}}/>
-                <TrashIcon className="text-red-400 h-6 w-6 hover:text-red-600" onClick={handleDelete}/>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
+      {
+        status !== 1
+        ?
+          <div className="flex justify-center w-full py-5">
+              <SpinnerCircularFixed size={50} thickness={100} speed={100} color="#000000AA" secondaryColor="#FFFFFF" />
+          </div>
+        :
+          <ul className="divide-y divide-gray-200">
+            {
+              properties.properties.map( property => (
+                <li 
+                  key={property['_id']}
+                  id={property['_id']}
+                  onClick={ () => { handleSelectProperty(property) } }
+                  className={ ( selected?._id == property['_id'] )?"py-4 flex bg-gray-200 px-5 cursor-pointer justify-between":"py-4 flex hover:bg-gray-200 px-5 cursor-pointer justify-between" }
+                >
+                  <div className="flex space-x-3">
+                    <div>
+                      <img src={property?.imageURLs[0]?.url} className="w-14 h-14 rounded-md"/>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-900"> { property.propertyName }</p>
+                      <p className="text-sm text-gray-500">
+                        ${property.nightlyRate}/night
+                        <span className="text-xs font-semibold inline-block py-1 px-2 rounded text-blue-600 bg-blue-200 uppercase mx-1">
+                          { property?.hostInfo.name }
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <PencilAltIcon className="text-gray-400 h-6 w-6 hover:text-gray-800" onClick={()=>{gotEdit(property._id)}}/>
+                    <TrashIcon className="text-red-400 h-6 w-6 hover:text-red-600" onClick={handleDelete}/>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+      }
       <ConfirmAlertComponent 
         isOpen={confirm} 
         onOk = {DeleteProperty}
