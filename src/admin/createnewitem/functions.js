@@ -1,16 +1,9 @@
 import { amenities, lastOffer } from './constant'
-export const formatReqestData = ( data, imageData ) => {
+export const formatReqestData = ( data ) => {
     const amenities = formatAmentities(data);
     const propertyDescribe = formatArray(data, lastOffer.first);
     let imageArray = [];
-    if(imageData){
-        Object.keys(imageData).map(key => {
-            imageArray.push({
-                filename:imageData[key].name,
-                url:imageData[key].url
-            });
-        })
-    }
+    
     const requestbody = {
         propertyName:  data.propertyName,
         nightlyRate: data.nightlyRate,

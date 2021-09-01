@@ -50,3 +50,6 @@ export const searchProperties = createAsyncThunk(
         return response.data;
     }
 )
+export const clearState = createAsyncThunk("property/clearStorage", async () => {
+    return;
+})

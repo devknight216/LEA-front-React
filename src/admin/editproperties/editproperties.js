@@ -1,44 +1,29 @@
-import ImageListComponent from 'components/admin/manageitem/imagelist'
 import { Link, useLocation } from 'react-router-dom'
 import { amenities, features, guestsNum, lastOffer } from '../createnewitem/constant'
 import { formatReqestData } from '../createnewitem/functions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { getPropertyById, updatePropertyById } from 'reduxstore/propertyreducer/slice';
-import { useEffect, useState } from 'react';
-import { recordImagedata, removeStore, uploadImageToFirebase } from 'firebaseStorage/functions';
+import { useEffect } from 'react';
+import ImageUploadToAWSComponent from 'components/common/uploadImage';
+
 import { Toast } from 'components/common/notification';
 
 export default function CreateNewPropertyPage() { 
   const location = useLocation();
   const propertyId = location.pathname.split('/')[4];  
-  const[imageData, setImageData] = useState(null);  
   
   //Get Stored value
   const dispatch = useDispatch();
   const property = useSelector(state => state.properties.property);
   useEffect(()=>{
     dispatch(getPropertyById(propertyId));
-    return () => {
-      removeStore();
-    }
   },[]);
-
-  //Preload uploaded Image  
-  useEffect(() => {
-    if(property?.imageURLs){
-      property.imageURLs.map(
-        (image) => {
-          recordImagedata({name: image.filename, url:image.url});
-        }
-      )
-    }
-  }, [property])
 
   //Get form data from hook form
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    const requestBody = formatReqestData(data, imageData?imageData:[]);
+    const requestBody = formatReqestData(data);
     //Dispatch API to create New Item
     const payload = {
       id: propertyId, 
@@ -51,15 +36,6 @@ export default function CreateNewPropertyPage() {
       Toast('','Faild', 'danger')
     }
   };
-
-  //Image Upload
-  const [url, setUrl] = useState(null);
-  const [progress, setProgeress] = useState(0);
-  const handlfileChange = async(e) => {
-    if(e.target.files[0]){
-      await uploadImageToFirebase(e.target.files[0], setProgeress, setUrl);
-    }
-  }
   
   return (
     <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
@@ -115,48 +91,8 @@ export default function CreateNewPropertyPage() {
               </div>
               <p className="mt-2 text-sm text-gray-500">Write a few sentences about property.</p>
             </div>            
-
-            <div className="sm:col-span-6">
-              <label htmlFor="cover_photo" className="block text-sm font-medium text-gray-700">
-                Images
-              </label>
-              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                <div className="space-y-1 text-center">
-                  <svg
-                    className="mx-auto h-12 w-12 text-gray-400"
-                    stroke="currentColor"
-                    fill="none"
-                    viewBox="0 0 48 48"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <div className="flex text-sm text-gray-600">
-                    <label
-                      htmlFor="file-upload"
-                      className="relative cursor-pointer  rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                    >
-                      <span>Upload a file</span> <span> progress: {progress}</span>
-                      <div className="relative pt-1">
-                        <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-200">
-                          <div style={{ width: `${progress}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
-                        </div>
-                      </div>
-                      <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handlfileChange} />
-                    </label>
-                  </div>
-                  <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
-        <ImageListComponent getImageData={setImageData}/>
         <div className="pt-8">
           <div>
             <h3 className="text-lg leading-6 font-medium text-gray-900">Host Information</h3>
@@ -467,6 +403,9 @@ export default function CreateNewPropertyPage() {
             Update
           </button>
         </div>
+      </div>
+      <div>
+        <ImageUploadToAWSComponent/>
       </div>
     </form>
   )
