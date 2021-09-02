@@ -1,4 +1,6 @@
 import moment from 'moment';
+import { useSelector } from 'react-redux';
+import { Redirect, Route } from 'react-router-dom';
 import { uploadFile, deleteFile } from 'react-s3';
 
 export const classNames = (...classes) => classes.filter(Boolean).join(' ');
@@ -27,3 +29,32 @@ export const uploadImageToAWS  = async(file, dirName) => {
     const res = await uploadFile(file, config);
     return res;       
 }
+
+//Private Route
+export function PrivateRoute({ children,  isAuth, ...rest}) {
+    const authUser = useSelector((state) => state.auth.user);
+    const token = useSelector((state) => state.auth.token);
+    let auth = false;
+    if(token && authUser.role === 'user'){
+      auth = true;
+    }
+    return (
+      <Route
+        {...rest}
+        render={({ location }) =>
+          auth ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/signin",
+                state: { from: location }
+              }}
+            />
+          )
+        }
+      />
+    );
+}
+
+  

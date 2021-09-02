@@ -113,12 +113,6 @@ const PropertyDetailViewPage = (props) => {
                   <p className="text-gray-600 text-lg font-bold">Location</p>
                   <GoogleMapComponent address={property?.propertyLocation} />
                 </section>
-                <section>
-                  <p className="text-gray-600 text-lg font-bold">
-                    Booked dates
-                  </p>
-                  <DateRangerComponent autoResponsive={true}/>
-                </section>
               </div>
 
               {/* Right column */}
@@ -138,7 +132,7 @@ const PropertyDetailViewPage = (props) => {
                 </p>
                 <HostInfoComponent/>
               </div> */}
-              <div>
+              <div className="mt-5">
                 <p className="text-gray-600 text-lg font-bold">
                   Reviews
                 </p>

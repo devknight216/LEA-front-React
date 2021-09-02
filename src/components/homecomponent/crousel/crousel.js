@@ -107,10 +107,10 @@ const CardItem = ({ item }) => {
             })}
           </Slider>
         <div className="text-lg leading-6 font-medium space-y-1 px-5 w-full">
-          <h3 className="truncate ">{item.propertyName}</h3>
-          <p className="text-indigo-600">Nightly Rate: ${item.nightlyRate}</p>
+          <h3 className="truncate text-sm font-medium">{item.propertyName}</h3>
+          <p className="text-indigo-600 text-sm">Nightly Rate: ${item.nightlyRate}</p>
         </div>
-        <ul className="flex space-x-5 px-5 pt-3 p-10">
+        <ul className="flex space-x-5 px-5 py-5">
           <li>
             <span className="px-2 py-1 bg-red-400 rounded-lg text-white cursor-pointer hover:bg-red-600" onClick={gotoDetail}>
               View Details

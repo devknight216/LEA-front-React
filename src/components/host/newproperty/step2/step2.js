@@ -42,7 +42,7 @@ function HostNewPropertyStepTwo({ previousStep, nextStep, property, setProperty,
         setSelectedAmenities([ ...seletedAmenities, { label: value, value: value } ])
     }
 
-    //Remove MainAmenities Value
+    //Remove Main Amenities Value
     const removeMainAmenities = ( index ) => {
         setSelectedAmenities(seletedAmenities.filter((item) => item.value !== index))
     }

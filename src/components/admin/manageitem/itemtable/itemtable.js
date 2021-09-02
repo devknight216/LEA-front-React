@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom'
 import { deletePropertyById } from 'reduxstore/propertyreducer/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { TrashIcon, PencilAltIcon, PlusIcon } from '@heroicons/react/outline'
-import { deleteImage } from 'firebaseStorage/functions';
 import { SpinnerCircularFixed } from 'spinners-react';
   
 export default function ItemsTableComponent( {getSelected} ) {
@@ -30,9 +29,6 @@ export default function ItemsTableComponent( {getSelected} ) {
   const dispatch = useDispatch();
   const DeleteProperty = () => {
     if(selected){
-      selected.imageURLs.map((item) => {
-        deleteImage(item.url)
-      });
       dispatch(deletePropertyById(selected?._id));
     }
   }

@@ -38,8 +38,8 @@ export default function PropertyIistItem ({item}){
                 })}
             </Slider>
             <div className="text-lg leading-6 font-medium space-y-1 px-5 pb-10 cursor-pointer" onClick={gotoDetailView}>
-                <h3 className="truncate">{item.propertyName}</h3>
-                <p className="text-indigo-600">Nightly Rate: ${item.nightlyRate}</p>
+                <h3 className="truncate text-gray-900 text-sm font-medium">{item.propertyName}</h3>
+                <p className="text-indigo-500 text-sm">Nightly Rate: ${item.nightlyRate}</p>
             </div>
         </div>               
     </>

@@ -57,7 +57,7 @@ function HostCreateNewPropertypage() {
     })
 
     useEffect(() => {
-        console.log(property);
+        console.log("Property=>", property);
     }, [property])
    
     return (

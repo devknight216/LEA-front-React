@@ -7,6 +7,7 @@ import SigninPage from 'views/signin';
 import SignupPage from 'views/signup';
 import { useSelector } from 'react-redux';
 import HostMainLayoutPage from 'views/host/mainlayout';
+import { PrivateRoute } from 'shared/function';
 
 function App() {
   return (
@@ -60,31 +61,4 @@ function AdminRoute({ children,  isAuth, ...rest}) {
     />
   );
 }
-
-function PrivateRoute({ children,  isAuth, ...rest}) {
-  const authUser = useSelector((state) => state.auth.user);
-  const token = useSelector((state) => state.auth.token);
-  let auth = false;
-  if(token && authUser.role === 'user'){
-    auth = true;
-  }
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        auth ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/signin",
-              state: { from: location }
-            }}
-          />
-        )
-      }
-    />
-  );
-}
-
 export default App;

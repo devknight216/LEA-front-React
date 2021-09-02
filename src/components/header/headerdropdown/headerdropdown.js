@@ -17,6 +17,17 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+const taplist = [
+  { name: 'Messages', linkto: '/messages', role: 'user', icon: MailIcon },
+  { name: 'Messages', linkto: '/messages', role: 'admin', icon: MailIcon },
+  { name: 'My accounts', linkto: '/edit-profile', role: 'user', icon: PencilIcon },
+  { name: 'My accounts', linkto: '/edit-profile', role: 'admin', icon: PencilIcon },
+  { name: 'Booking History', linkto: '/book-history', role: 'user', icon: BookmarkIcon },
+  { name: 'Host your Space', linkto: '/host', role: 'user', icon: HomeIcon },
+  { name: 'Manage listing', linkto: '/user-managemet', role: 'user', icon: CogIcon },
+  { name: 'Admin Panel', linkto: '/admin', role: 'admin', icon: CogIcon },
+]
+
 export default function HeaderDropdownComponent() {
   const dispatch = useDispatch();
   const AuthUser = useSelector(state => state.auth.user);
@@ -53,101 +64,45 @@ export default function HeaderDropdownComponent() {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="z-10 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
-             
           <div className="py-1">
-            <Menu.Item>
-              {({ active }) => (
-                <Link
-                  to="/edit-profile"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'group flex items-center px-4 py-2 text-sm'
-                  )}
-                >
-                  <PencilIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
-                  Edit Profile
-                </Link>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <Link
-                  to="/messages"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'group flex items-center px-4 py-2 text-sm'
-                  )}
-                >
-                  <MailIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
-                  Messages
-                </Link>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <Link
-                  to="/book-history"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'group flex items-center px-4 py-2 text-sm'
-                  )}
-                >
-                  <BookmarkIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
-                  Booking History
-                </Link>
-              )}
-            </Menu.Item>
-          </div>
-          <div className="py-2">
             {
-              AuthUser?.role !== "admin" && <Menu.Item>
-                {({ active }) => (
-                  <Link
-                    to="/host"
-                    className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'group flex items-center px-4 py-2 text-sm'
-                    )}
-                  >
-                    <HomeIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
-                    Host your Space
-                  </Link>
-                )}
-              </Menu.Item>
-            }
-            {
-              AuthUser?.role === "admin" && <Menu.Item>
-                {({ active }) => (
-                  <Link
-                    to="/admin"
-                    className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'group flex items-center px-4 py-2 text-sm'
-                    )}
-                  >
-                    <CogIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
-                    Admin Panel
-                  </Link>
-                )}
-              </Menu.Item>
-            }
-
-          </div>
-          <div className="py-1">
-            <Menu.Item>
-              {({ active }) => (
-                <div
-                  onClick={() => {dispatch(SignOut())}}
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'group flex items-center px-4 py-2 text-sm cursor-pointer'
-                  )}
-                >
-                  <LogoutIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
-                  Log Out
+              taplist.map((item, index) => (
+                <div key={index}>
+                  {
+                    AuthUser.role == item.role && <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          to={item.linkto}
+                          className={classNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'group flex items-center px-4 py-2 text-sm'
+                          )}
+                        >
+                          <item.icon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true"/>
+                          {item.name}
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  }
                 </div>
-              )}
-            </Menu.Item>
+              ))
+            }
+            <div className="py-2 border-t">
+              <Menu.Item>
+                {({ active }) => (
+                  <div
+                    onClick={() => {dispatch(SignOut())}}
+                    className={classNames(
+                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                      'group flex items-center px-4 py-2 text-sm cursor-pointer'
+                    )}
+                  >
+                    <LogoutIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
+                    Log Out
+                  </div>
+                )}
+              </Menu.Item> 
+            </div>
           </div>
         </Menu.Items>
       </Transition>
