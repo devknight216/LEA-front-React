@@ -63,22 +63,21 @@ export default function StagingInfoModalComponent( {isOpen, setisOpen} ) {
                     <div className="grid grid-cols-1 md:grid-cols-2 py-5 gap-5 text-gray-700">
                         {
                             formLayout.map( item => (
-                                <div key={item.name}>
-                                    <p className="block text-sm font-medium text-gray-700">{item.title}</p>
-                                    <select
-                                        id="propertyType"
-                                        name="propertyType"
-                                        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300  sm:text-sm rounded-md"
-                                        defaultValue="Canada"
-                                    >
-                                        {
-                                            item.options.map( (option, index) =>(
-                                                <option key={index}>{ option }</option>
-                                            ))
-                                        }
-                                    </select>
-                                </div>
-
+                              <div key={item.name}>
+                                  <p className="block text-sm font-medium text-gray-700">{item.title}</p>
+                                  <select
+                                      id="propertyType"
+                                      name="propertyType"
+                                      className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300  sm:text-sm rounded-md"
+                                      defaultValue="Canada"
+                                  >
+                                      {
+                                          item.options.map( (option, index) =>(
+                                              <option key={index}>{ option }</option>
+                                          ))
+                                      }
+                                  </select>
+                              </div>
                             ))
                         }
                     </div>

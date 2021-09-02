@@ -1,6 +1,12 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationIcon, XIcon } from '@heroicons/react/outline'
+import { XIcon } from '@heroicons/react/outline'
+import VisaCard from 'assets/imgs/icon/visacard.svg'
+import MasterCard from 'assets/imgs/icon/mastercard.svg'
+import AmexCard from 'assets/imgs/icon/amexcard.svg'
+import DiscoverCard from 'assets/imgs/icon/discovercard.svg'
+import { InputBox } from 'components/basicui/basicui'
+import StripeComponent from 'components/book/bookdetail/stripe'
 
 export default function AddPaymentMethodPopup({isOpen, setIsOpen}) {
   const [open, setOpen] = useState(true);
@@ -48,13 +54,57 @@ export default function AddPaymentMethodPopup({isOpen, setIsOpen}) {
                   <XIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
               </div>
-              <div className="sm:flex sm:items-start">
+              <div>
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
+                  <Dialog.Title as="h3" className="text-xl font-extrabold leading-6 py-4 text-gray-700">
                     Add Payment Method
                   </Dialog.Title>
                   <div className="mt-2">
-                   
+                    <div className="flex gap-2 flex-wrap">
+                      <img src={VisaCard}/>
+                      <img src={MasterCard}/>
+                      <img src={AmexCard}/>
+                      <img src={DiscoverCard}/>
+                    </div>
+                    <div className="mt-3">
+                      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
+                        <div>
+                          <InputBox label="First Name"/>
+                        </div>
+                        <div>
+                          <InputBox label="Last Name"/>
+                        </div>
+                        <div className='border-t col-span-2'></div>
+                        <div className="col-span-2">
+                          <InputBox label="Card Info" placeholder="Card Number"/>
+                        </div>
+                        <div>
+                          <InputBox placeholder="Expiration"/>
+                        </div>
+                        <div>
+                          <InputBox placeholder="CVV"/>
+                        </div>
+                        <div className='border-t col-span-2'></div>
+                        <div>
+                          <InputBox label="Street address"/>
+                        </div>
+                        <div>
+                          <InputBox label="Apt #"/>
+                        </div>
+                        <div>
+                          <InputBox label="City"/>
+                        </div>
+                        <div>
+                          <InputBox label="State"/>
+                        </div>
+                        <div>
+                          <InputBox label="ZIP code"/>
+                        </div>
+                        <div>
+                          <InputBox label="Country/region"/>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -64,13 +114,13 @@ export default function AddPaymentMethodPopup({isOpen, setIsOpen}) {
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={onClose}
                 >
-                  Deactivate
+                  Done
                 </button>
                 <button
                   type="button"
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
                   onClick={onClose}
-                >
+                > 
                   Cancel
                 </button>
               </div>

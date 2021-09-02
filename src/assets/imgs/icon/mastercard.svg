@@ -1,0 +1,16 @@
+<svg id="Mastercard_" data-name="Mastercard " xmlns="http://www.w3.org/2000/svg" width="66" height="46" viewBox="0 0 66 46">
+    <g id="Rectangle_Copy_4" data-name="Rectangle Copy 4" fill="#fff" stroke="#e6e7e8" stroke-miterlimit="10" stroke-width="1">
+      <rect width="66" height="46" rx="3" stroke="none"/>
+      <rect x="0.5" y="0.5" width="65" height="45" rx="2.5" fill="none"/>
+    </g>
+    <g id="mc_symbol" transform="translate(13 10)">
+      <g id="Group" opacity="0">
+        <rect id="Rectangle" width="39.815" height="25.97" fill="#fff"/>
+      </g>
+      <rect id="Rectangle-2" data-name="Rectangle" width="10.503" height="16.918" transform="translate(14.658 4.525)" fill="#ff5f00"/>
+      <path id="Path" d="M13.483,10.757A10.687,10.687,0,0,1,17.65,2.3,11.019,11.019,0,0,0,2.895,3.46a10.65,10.65,0,0,0,0,14.6,11.019,11.019,0,0,0,14.755,1.16A10.687,10.687,0,0,1,13.483,10.757Z" transform="translate(2.256 2.228)" fill="#eb001b"/>
+      <path id="Shape" d="M.917.849V.206L.787.758H.7L.567.206V.849H.48V0H.6L.74.606.88,0H1V.849Zm-.761,0v-.7H0V0H.4V.146H.23v.7Z" transform="translate(36.306 19.234)" fill="#f79e1b"/>
+      <path id="Path-2" data-name="Path" d="M17.652,10.761a10.746,10.746,0,0,1-6.142,9.677A11.034,11.034,0,0,1,0,19.219,10.705,10.705,0,0,0,4.168,10.76,10.705,10.705,0,0,0,0,2.3,11.034,11.034,0,0,1,11.51,1.082a10.746,10.746,0,0,1,6.142,9.677Z" transform="translate(19.906 2.224)" fill="#f79e1b"/>
+    </g>
+  </svg>
+  
