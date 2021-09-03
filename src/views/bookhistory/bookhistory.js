@@ -16,13 +16,8 @@ const people = [
   ]
   
 export default function BookingHistoryPage() {
-    const authToken = useSelector(state => state.auth.token);
-    const history = useHistory()
-    useEffect(() => {
-       if(!authToken){
-        history.push('/signin')
-       }
-    }, []);
+    const user = useSelector(state => state.auth.user);
+
     return (
         <div className="max-w-7xl mx-auto my-5">
             <div className="py-5 md:py-10 text-center">

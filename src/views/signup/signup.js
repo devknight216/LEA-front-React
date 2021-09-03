@@ -168,9 +168,12 @@ export default function SigninPage() {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full flex justify-center items-center gap-4 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Sign Up {status} 
+                Sign Up 
+                {
+                  status == 2 && <SpinnerCircularFixed size={20} thickness={200} speed={100} color="#000000AA" secondaryColor="#D9D9D6" />
+                } 
               </button>
             </div>
           </form>

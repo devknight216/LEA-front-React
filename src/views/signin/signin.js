@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import Brand from 'assets/imgs/brand/png-black-background.png';
-import { Link, useHistory, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { SignIn } from 'reduxstore/authreducer/slice';
+import { SpinnerCircularFixed } from 'spinners-react';
 
 
 export default function SigninPage() {
@@ -114,9 +115,12 @@ export default function SigninPage() {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full flex justify-center items-center gap-4 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Sign in
+                {
+                  status == 2 && <SpinnerCircularFixed size={20} thickness={200} speed={100} color="#000000AA" secondaryColor="#D9D9D6" />
+                }
               </button>
             </div>
           </form>

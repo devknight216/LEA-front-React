@@ -65,7 +65,7 @@ export const PropertySlice = createSlice({
         state.status = STATUS.INITIAL
         state.user = null;
         state.token = null;
-      })
+      })  
       .addMatcher(
         isPendingAction,
         ( state, action ) => {

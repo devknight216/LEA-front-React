@@ -60,7 +60,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
     const gotoBook = () => {
         if(AuthToken){
             if(dateArray.length){
-                history.push(`/book/${propertyId}?adult=${guests.adult}&children=${guests.children}&infants=${guests.infants}&checkedin=${checkedInOut?.from}&checkedout=${checkedInOut?.to}&pets=${guests.pets}`)
+                history.push(`/user/book/${propertyId}?adult=${guests.adult}&children=${guests.children}&infants=${guests.infants}&checkedin=${checkedInOut?.from}&checkedout=${checkedInOut?.to}&pets=${guests.pets}`)
             }
             else{
                 Toast('', 'Please choose checked-in and checked-out', 'info');
