@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 import AddPaymentMethodPopup from '../popups/addpyamentmethod'
 
 function EditAccountPaymentSettingComponent() {
     //Run Add Payment Method
     const[addPaymentMethod, setAddPaymentMethod] = useState(false);
-
+    const user = useSelector(state => state.auth.user);
 
     return (
         <div>
@@ -30,18 +31,20 @@ function EditAccountPaymentSettingComponent() {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <p className="text-2xl py-3 font-semibold">Payout methods</p>
-                    <div>
-                        <div className='p-3 rounded-md'>
-                            <p className="text-xl">Payout methods</p>
-                            <p className="py-3 text-gray-500">To get paid, you need to set up a payout method</p>
-                            <div className="px-5">
-                                <button className=" bg-red-500 text-white px-5 py-2 rounded hover:bg-red-700">Add Payout Method</button>
+                {
+                    user?.property?.length && <div>
+                        <p className="text-2xl py-3 font-semibold">Payout methods</p>
+                        <div>
+                            <div className='p-3 rounded-md'>
+                                <p className="text-xl">Payout methods</p>
+                                <p className="py-3 text-gray-500">To get paid, you need to set up a payout method</p>
+                                <div className="px-5">
+                                    <button className=" bg-red-500 text-white px-5 py-2 rounded hover:bg-red-700">Add Payout Method</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
                 <div>
                     <p className="text-2xl py-3 font-semibold">TAXES</p>
                     <div>

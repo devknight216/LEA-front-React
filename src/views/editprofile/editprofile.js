@@ -14,7 +14,6 @@ import EditAccountPaymentSettingComponent from 'components/editprofile/paymentse
 export default function EditProfilePage() {
     //Control Taps
     const location = useLocation();
-    console.log(location);
     const [tabs, setTaps] = useState([
         { name: 'Personal info', href: '/edit-profile', current: false },
         { name: 'Login & Security', href: '/edit-profile/security-setting', current: false },

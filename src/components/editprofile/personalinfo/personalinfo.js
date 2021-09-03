@@ -1,21 +1,56 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import AvatarEditorComponent from '../avatarupload';
 import { Disclosure } from '@headlessui/react'
 import { InputBox } from 'components/basicui/basicui';
+import { updateUser } from 'reduxstore/userreducer/slice';
 
 function EditAccountPersonalInfoComponent() {
     const user = useSelector(state => state.auth.user);
-    console.log(user);
 
     //layout
     const layout = [
-        { label: "Legal Name", value: user?.name, onEdit: () => {}, editChild: InputBox },
-        { label: "Email Address", value: user?.email, onEdit: () => {}, editChild: InputBox },
-        { label: "Phone Number", value: user?.phone, onEdit: () => {}, editChild: InputBox },
-        { label: "Date of Birth", value: user?.birthday, onEdit: () => {}, editChild: InputBox },
-        { label: "Address", value: user?.birthday, onEdit: () => {}, editChild: EditAddress },
+        { label: "Legal Name", variable: "name",  value: user?.name, onEdit: () => { updateUserData("name", userInfo.name ) }, editChild: InputBox },
+        { label: "Email Address", variable: "email",  value: user?.email, onEdit: () => { updateUserData("email", userInfo.email ) }, editChild: InputBox },
+        { label: "Phone Number", variable: "phone",  value: user?.phone, onEdit: () => { updateUserData("phone", userInfo.phone ) }, editChild: InputBox },
+        { label: "Date of Birth", variable: "birthday",  value: user?.birthday, onEdit: () => { updateUserData("birthday", userInfo.birthday ) }, editChild: InputBox },
+        { label: "Address",variable: "address",   value: user?.address, onEdit: () => {updateUserData("address", userInfo.address ) }, editChild: EditAddress },
     ]
+    
+    //const update user profile
+    const [userInfo, setUserInfo] = useState({
+        name: user?.name,
+        email: user?.email,
+        phone: user?.phone,
+        birthday: user?.birthday,
+        address: {
+            country: user?.address?.country,
+            street: user?.address?.street,
+            apt: user?.address?.address,
+            city: user?.address?.state,
+            state: user?.address?.state,
+            zip: user?.address?.zip
+        }
+    })
+    const getValue = (e, field) => {
+        setUserInfo({
+            ...userInfo,
+            [field]: e.target.value
+        })
+    }
+
+    const dispatch = useDispatch();
+    const updateUserData = ( field, value ) => {
+        if(user?.userID){
+            const payload = {
+                id: user?.userID,
+                body: {
+                    [field]: value
+                }
+            }
+            dispatch(updateUser(payload));
+        }
+    }
 
     return (
         <div className="pb-10">
@@ -44,9 +79,9 @@ function EditAccountPersonalInfoComponent() {
                                             </div>
                                         </Disclosure.Button>
                                         <Disclosure.Panel className="px-5 py-3">
-                                            <item.editChild label={item.label} type={"text"}/>
+                                            <item.editChild label={item.label} type={"text"} onchange={(e) =>{ getValue(e, item.variable) }} value={userInfo[item.variable]} />
                                             <div className="py-3 flex justify-end px-5">
-                                                <p className="text-indigo-500 cursor-pointer border rounded-md px-2">Save</p>
+                                                <p className="text-indigo-500 cursor-pointer border rounded-md px-2" onClick={item.onEdit}>Save</p>
                                             </div>
                                         </Disclosure.Panel>
                                     </div>
@@ -65,27 +100,52 @@ function EditAccountPersonalInfoComponent() {
 }
 
 
-const EditAddress = () => {
+const EditAddress = ({onchange, value}) => {
+    const[addressInfo, setAddressInfo] = useState({
+        apt: value.apt,
+        city: value.city,
+        country: value.country,
+        state: value.state,
+        street: value.street,
+        zip: value.zip,
+    })
+
+    const getValue = (e, field) => {
+        setAddressInfo({
+            ...addressInfo,
+            [field]: e.target.value
+        })
+    }
+
+    useEffect(() => {
+        const temp = {
+            target:{
+                value: addressInfo
+            }
+        }
+        onchange(temp);
+    }, [addressInfo])
+    
     return (
         <div>
             <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-6">
                 <div>
-                    <InputBox label="Country/Region"/>
+                    <InputBox label="Country/Region" value={value.country} onchange={(e)=>{getValue(e, "country")}}/>
                 </div>
                 <div>
-                    <InputBox label="Street"/>
+                    <InputBox label="Street" value={value.street} onchange={(e)=>{getValue(e, "street")}}/>
+                </div>
+                <div className="col-span-2" >
+                    <InputBox label="Apt, suite" value={value.apt} onchange={(e)=>{getValue(e, "apt")}}/>
                 </div>
                 <div className="col-span-2">
-                    <InputBox label="Apt, suite"/>
-                </div>
-                <div className="col-span-2">
-                    <InputBox label="City"/>
+                    <InputBox label="City" value={value.city} onchange={(e)=>{getValue(e, "city")}}/>
                 </div>
                 <div className="col-span-1">
-                    <InputBox label="State"/>
+                    <InputBox label="State" value={value.state} onchange={(e)=>{getValue(e, "state")}}/>
                 </div>
                 <div className="col-span-1">
-                    <InputBox label="Zip"/>
+                    <InputBox label="Zip" value={value.zip} onchange={(e)=>{getValue(e, "zip")}}/>
                 </div>
             </div>
         </div>

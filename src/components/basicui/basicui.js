@@ -8,7 +8,7 @@ import {
 } from '@heroicons/react/solid'
 import { SpeakerphoneIcon, XIcon } from '@heroicons/react/outline'
 
-export const InputBox = ({ label, name, placeholder, type, onchange, disabled }) => {
+export const InputBox = ({ label, name, placeholder, type, onchange, disabled, value }) => {
     return(
         <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -20,6 +20,7 @@ export const InputBox = ({ label, name, placeholder, type, onchange, disabled })
                     name={name}
                     id={name}
                     min={0}
+                    value={value}
                     className="shadow-sm focus: outline-none border block w-full h-full p-3 sm:text-sm border-gray-300 rounded-md"
                     placeholder={placeholder}
                     disabled={disabled}
