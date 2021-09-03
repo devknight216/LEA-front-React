@@ -16,8 +16,9 @@ import EditProfilePage from "./editprofile";
 import Messagespage from "./message";
 import BookingHistoryPage from "./bookhistory";
 import ScrollToTop from "shared/scrolltotop";
-import GuidePage from "./guide";
 import { PrivateRoute } from "shared/function";
+import HostCreateNewPropertypage from "./host/newproperty";
+import ManageListPage from "./host/managelist";
 
 export default function MainLayout() {
   return (
@@ -35,10 +36,11 @@ export default function MainLayout() {
           <Route path="/verify/:token" component={EmailVerificaionPage}/>
           <Route path="/verifynoti" component={NotiVerificationPage}/>
           <PrivateRoute path="/book/:id" component={BookPage}/>
+          <PrivateRoute path="/host" component={HostCreateNewPropertypage}/>
+          <PrivateRoute path="/manage-list" component={ManageListPage}/>
           <Route path="/edit-profile" component={EditProfilePage}/>
           <PrivateRoute path="/messages" component={Messagespage}/>
           <PrivateRoute path="/book-history" component={BookingHistoryPage}/>
-          <PrivateRoute path="/user-managemet" component={BookingHistoryPage}/>
           <Route component={NotFoundPage}/>
         </Switch>
         <FooterComponent />

@@ -24,7 +24,7 @@ const taplist = [
   { name: 'My accounts', linkto: '/edit-profile', role: 'admin', icon: PencilIcon },
   { name: 'Booking History', linkto: '/book-history', role: 'user', icon: BookmarkIcon },
   { name: 'Host your Space', linkto: '/host', role: 'user', icon: HomeIcon },
-  { name: 'Manage listing', linkto: '/user-managemet', role: 'user', icon: CogIcon },
+  { name: 'Manage listing', linkto: '/manage-list', role: 'user', icon: CogIcon },
   { name: 'Admin Panel', linkto: '/admin', role: 'admin', icon: CogIcon },
 ]
 
