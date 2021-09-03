@@ -6,6 +6,8 @@ import DashboardMainLayout from 'admin/mainlayout';
 import SigninPage from 'views/signin';
 import SignupPage from 'views/signup';
 import { useSelector } from 'react-redux';
+import { PrivateRoute } from 'shared/function';
+import PrivateLayout from 'views/privateLayout';
 
 function App() {
   return (
@@ -18,9 +20,12 @@ function App() {
           <Route exact path="/signup">
             <SignupPage/>
           </Route>
-            <AdminRoute path="/admin">
+          <AdminRoute path="/admin">
             <DashboardMainLayout/>
           </AdminRoute>
+          <PrivateRoute path="/user">
+            <PrivateLayout/>
+          </PrivateRoute>
           <Route path="/">
             <MainLayout/>
           </Route>

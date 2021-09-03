@@ -15,31 +15,31 @@ export default function EditProfilePage() {
     //Control Taps
     const location = useLocation();
     const [tabs, setTaps] = useState([
-        { name: 'Personal info', href: '/edit-profile', current: false },
-        { name: 'Login & Security', href: '/edit-profile/security-setting', current: false },
-        { name: 'Payment & Payout', href: '/edit-profile/payment-setting', current: true },
+        { name: 'Personal info', href: '/user/edit-profile', current: false },
+        { name: 'Login & Security', href: '/user/edit-profile/security-setting', current: false },
+        { name: 'Payment & Payout', href: '/user/edit-profile/payment-setting', current: true },
     ])
     useEffect(() => {
        switch (location.pathname) {
-           case "/edit-profile":
+           case "/user/edit-profile":
                 setTaps([
-                    { name: 'Personal info', href: '/edit-profile', current: true },
-                    { name: 'Login & Security', href: '/edit-profile/security-setting', current: false },
-                    { name: 'Payment & Payout', href: '/edit-profile/payment-setting', current: false },
+                    { name: 'Personal info', href: '/user/edit-profile', current: true },
+                    { name: 'Login & Security', href: '/user/edit-profile/security-setting', current: false },
+                    { name: 'Payment & Payout', href: '/user/edit-profile/payment-setting', current: false },
                 ])
                 break;
-            case "/edit-profile/security-setting":
+            case "/user/edit-profile/security-setting":
                 setTaps([
-                    { name: 'Personal info', href: '/edit-profile', current: false },
-                    { name: 'Login & Security', href: '/edit-profile/security-setting', current: true },
-                    { name: 'Payment & Payout', href: '/edit-profile/payment-setting', current: false },
+                    { name: 'Personal info', href: '/user/edit-profile', current: false },
+                    { name: 'Login & Security', href: '/user/edit-profile/security-setting', current: true },
+                    { name: 'Payment & Payout', href: '/user/edit-profile/payment-setting', current: false },
                 ])
                 break;
-            case "/edit-profile/payment-setting":
+            case "/user/edit-profile/payment-setting":
                 setTaps([
-                    { name: 'Personal info', href: '/edit-profile', current: false },
-                    { name: 'Login & Security', href: '/edit-profile/security-setting', current: false },
-                    { name: 'Payment & Payout', href: '/edit-profile/payment-setting', current: true },
+                    { name: 'Personal info', href: '/user/edit-profile', current: false },
+                    { name: 'Login & Security', href: '/user/edit-profile/security-setting', current: false },
+                    { name: 'Payment & Payout', href: '/user/edit-profile/payment-setting', current: true },
                 ])
                 break;
            default:
@@ -60,9 +60,9 @@ export default function EditProfilePage() {
                 </div>
                 <div>
                     <Switch>
-                        <PrivateRoute exact path="/edit-profile" component={EditAccountPersonalInfoComponent}/>
-                        <PrivateRoute path="/edit-profile/security-setting" component={EditAccountSecuritySettingComponent}/>
-                        <PrivateRoute path="/edit-profile/payment-setting" component={EditAccountPaymentSettingComponent}/>
+                        <PrivateRoute exact path="/user/edit-profile" component={EditAccountPersonalInfoComponent}/>
+                        <PrivateRoute path="/user/edit-profile/security-setting" component={EditAccountSecuritySettingComponent}/>
+                        <PrivateRoute path="/user/edit-profile/payment-setting" component={EditAccountPaymentSettingComponent}/>
                     </Switch>
                 </div>
             </div>     
