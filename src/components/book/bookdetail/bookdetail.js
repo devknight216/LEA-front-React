@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { ChevronLeftIcon } from '@heroicons/react/outline';
 import StripeComponent from './stripe';
-import BookSendEmailPopUp from './sendemail';
-import BookAddPhonePopUp from './addphone';
+import VisaCard from 'assets/imgs/icon/visacard.svg'
+import MasterCard from 'assets/imgs/icon/mastercard.svg'
+import AmexCard from 'assets/imgs/icon/amexcard.svg'
+import DiscoverCard from 'assets/imgs/icon/discovercard.svg'
 
 function BookDetailComponent({setBookData, bookData}) {
-    //Send Email Popup 
-    const [sendEmail, setSendEmail] = useState(false);
-    const [addPhone, setAddPhone] = useState(false)
-
+    
     return (
         <div className="text-gray-600 p-5 shadow-lg rounded-md">
             <div className="flex items-center flex-wrap">
@@ -32,35 +31,20 @@ function BookDetailComponent({setBookData, bookData}) {
                     </div>
                 </div>
                 <div className="py-6 tracking-tight border-b">
-                    <h2 className="text-xl">Required for your trip</h2>
-                    <div className="py-3 px-5 flex justify-between space-x-2">
-                        <div>
-                            <p className="font-bold">Phone number</p>
-                            <p className="text-sm">Add and confirm your phone number to get trip updates.</p>
-                        </div>
-                        <div>
-                            <button onClick={()=>{setAddPhone(true)}} className="bg-transparent hover:bg-red-600 px-4 py-1 rounded-md text-gray-600 hover:text-white border">Add</button>
-                        </div>
-                    </div>
-                    <div className="py-3 px-5 flex justify-between space-x-2">
-                        <div>
-                            <p className="font-bold">Send Email to Host</p>
-                            <p className="text-sm">Let the host know why you're traveling and when you'll check in.</p>
-                        </div>
-                        <div>
-                            <button onClick={()=> {setSendEmail(true)}} className="bg-transparent hover:bg-red-600 px-4 py-1 rounded-md text-gray-600 hover:text-white border">Send</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="py-6 tracking-tight border-b">
                     <h2 className="text-xl">Pay with</h2>
+                    <div>
+                        <div className="flex gap-2 flex-wrap justify-center py-5">
+                            <img src={VisaCard}/>
+                            <img src={MasterCard}/>
+                            <img src={AmexCard}/>
+                            <img src={DiscoverCard}/>
+                        </div>
+                    </div>
                     <div className="py-3">
                         <StripeComponent bookData={bookData}/>
                     </div>
                 </div>
             </div>
-            <BookSendEmailPopUp sendEmail={sendEmail} setSendEmail={setSendEmail}/>
-            <BookAddPhonePopUp sendEmail={addPhone} setSendEmail={setAddPhone}/>
         </div>
     )
 }

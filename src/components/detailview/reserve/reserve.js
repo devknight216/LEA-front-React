@@ -63,11 +63,11 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                 history.push(`/book/${propertyId}?adult=${guests.adult}&children=${guests.children}&infants=${guests.infants}&checkedin=${checkedInOut?.from}&checkedout=${checkedInOut?.to}&pets=${guests.pets}`)
             }
             else{
-                Toast('', 'Please choose checked-in and checked-out', 'danger');
+                Toast('', 'Please choose checked-in and checked-out', 'info');
             }
         }
         else{
-            Toast('', 'You must sign in', 'danger');
+            Toast('', 'You must sign in', 'info');
             history.push('/signin');
         }
     }
@@ -126,10 +126,10 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                         />
                                     </div>
                                         { guests.infants }
-                                    <div className="cursor-pointer" onClick={() => { setGuests({ ...guests, infants: guests.infants+1 }) }}>
+                                    <div className="cursor-pointer" onClick={() => { setGuests({ ...guests, infants: guests.infants<5 ? guests.infants+1 : guests.infants }) }}>
                                         <PlusCircleIcon
                                             className={classNames(
-                                                ((guests.infants)<3 ) ? 'text-gray-800' : 'text-gray-300',
+                                                ((guests.infants)<5 ) ? 'text-gray-800' : 'text-gray-300',
                                                 'h-6'
                                             )} 
                                         />
@@ -187,9 +187,15 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                     <p className="underline">${property?.nightlyRate} x {dateArray.length} nights</p>
                                     <p>${ parseInt(property?.nightlyRate) * dateArray.length}</p>
                                 </div>
+                                {
+                                    property?.depositFee && <div className="flex pb-5 px-5 justify-between">
+                                        <p className="underline">Deposit fee</p>
+                                        <p>${property?.depositFee | 0}</p>
+                                    </div>
+                                }
                                 <div className="flex pb-5 px-5 justify-between">
-                                    <p className="underline">Deposit fee</p>
-                                    <p>${property?.depositFee | 0}</p>
+                                    <p className="underline">Tax fee(6.5%)</p>
+                                    <p>${((parseInt(property?.nightlyRate) * dateArray.length) + (property?.depositFee | 0) + (property?.petAllowFee?.fee | 0)*guests.pets) * 0.065}</p>
                                 </div>
                                 {
                                     isPet && <div className="flex pb-5 px-5 justify-between">
@@ -203,18 +209,18 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                 <hr />
                                 <div className="flex justify-between px-5 py-2">
                                     <p className="font-bold">Total</p>
-                                    <p className="font-bold">${(parseInt(property?.nightlyRate) * dateArray.length) + (property?.depositFee | 0) + (property?.petAllowFee?.fee | 0)*guests.pets}</p>
+                                    <p className="font-bold">${(((parseInt(property?.nightlyRate) * dateArray.length) + (property?.depositFee | 0) + (property?.petAllowFee?.fee | 0)*guests.pets)*1.065).toFixed(2)}</p>
                                 </div>
                             </div>
                         </ul>
                     </div>
                     <div className="mt-6">
-                    <div
-                        onClick={gotoBook}
-                        className="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-800"
-                    >
-                        Reserve
-                    </div>
+                        <div
+                            onClick={gotoBook}
+                            className="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-800"
+                        >
+                            Reserve
+                        </div>
                     </div>
                 </div>
                 </div>

@@ -17,10 +17,29 @@ const CheckoutForm = ({bookData}) => {
   
     const handleSubmit = async (event) => {
       event.preventDefault();
+
+      if (!stripe || !elements) {
+        // Stripe.js has not loaded yet. Make sure to disable
+        // form submission until Stripe.js has loaded.
+        return;
+      }
+
+      // Get a reference to a mounted CardElement. Elements knows how
+      // to find your CardElement because there can only ever be one of
+      // each type of element.
+      const cardElement = elements.getElement(CardElement);
+
+      // Use your card Element with other Stripe.js APIs
       const {error, paymentMethod} = await stripe.createPaymentMethod({
         type: 'card',
-        card: elements.getElement(CardElement),
+        card: cardElement,
       });
+
+      if (error) {
+        console.log('[error]', error);
+      } else {
+        console.log('[PaymentMethod]', paymentMethod);
+      }
     };
   
     return (
@@ -33,7 +52,7 @@ const CheckoutForm = ({bookData}) => {
     );
 };
 
-const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const StripeComponent = ({bookData}) => (
   <Elements stripe={stripePromise}>

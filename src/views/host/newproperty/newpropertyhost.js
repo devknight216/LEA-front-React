@@ -37,7 +37,7 @@ function HostCreateNewPropertypage() {
             zip: ""
         },
         propertyType:"Apartment",
-        propertySpaceFeature: "An entire place",
+        propertySpaceFeature: "The whole place",
         guestNum: 0,
         bedsNum: 0,
         bedroomNum: 0,
