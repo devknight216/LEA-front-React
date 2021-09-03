@@ -22,7 +22,7 @@ const company = [
   { name: 'Privacy and Policies', href: '/policy', icon: ShieldCheckIcon },
 ];
 const resources = [
-  { name: 'Guides', href: '/guide', icon: BookmarkAltIcon },
+  // { name: 'Guides', href: '/guide', icon: BookmarkAltIcon },
   { name: 'Staging', href: '/staging', icon: SparklesIcon },
 ];
 export default function HeaderComponent() {

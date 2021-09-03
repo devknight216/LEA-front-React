@@ -2,6 +2,7 @@ import HostNewPropertyStepOne from 'components/host/newproperty/step1';
 import HostNewPropertyStepTwo from 'components/host/newproperty/step2';
 import HostNewPropertyStepThree from 'components/host/newproperty/step3';
 import StepsComponent from 'components/host/newproperty/steps';
+import HostNewPropertyWelcome from 'components/host/newproperty/welcome';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import StepWizard from "react-step-wizard";
@@ -68,6 +69,7 @@ function HostCreateNewPropertypage() {
                     <StepWizard 
                         isHashEnabled
                     >
+                        <HostNewPropertyWelcome/>
                         <HostNewPropertyStepOne property={property} setProperty={setProperty} setStep={setStep}/>
                         <HostNewPropertyStepTwo property={property} setProperty={setProperty} setStep={setStep}/>
                         <HostNewPropertyStepThree property={property} setProperty={setProperty} setStep={setStep}/>

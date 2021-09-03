@@ -20,8 +20,8 @@ function classNames(...classes) {
 const taplist = [
   { name: 'Messages', linkto: '/messages', role: 'user', icon: MailIcon },
   { name: 'Messages', linkto: '/messages', role: 'admin', icon: MailIcon },
-  { name: 'My accounts', linkto: '/edit-profile', role: 'user', icon: PencilIcon },
-  { name: 'My accounts', linkto: '/edit-profile', role: 'admin', icon: PencilIcon },
+  { name: 'My account', linkto: '/edit-profile', role: 'user', icon: PencilIcon },
+  { name: 'My account', linkto: '/edit-profile', role: 'admin', icon: PencilIcon },
   { name: 'Booking History', linkto: '/book-history', role: 'user', icon: BookmarkIcon },
   { name: 'Host your Space', linkto: '/host', role: 'user', icon: HomeIcon },
   { name: 'Manage listing', linkto: '/manage-list', role: 'user', icon: CogIcon },
