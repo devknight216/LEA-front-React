@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createReservation } from "./action";
+import { createReservation, getReservationById } from "./action";
 const PREFIX = 'reservation';
 
 const STATUS = {
@@ -28,6 +28,13 @@ export const ReservationSlice = createSlice({
             ( state, action ) => {
                 state.reservations = action.payload;
                 state.status = STATUS.FULFILLED;
+            }
+        )
+        .addCase(
+            getReservationById.fulfilled,
+            ( state, action ) => {
+                state.reservation = action.payload;
+                state.status = STATUS.FULFILLED
             }
         )
         .addMatcher(

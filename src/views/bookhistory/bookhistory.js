@@ -1,100 +1,66 @@
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react'
-
-const people = [
-    {
-      name: 'Jane Cooper',
-      title: 'Regional Paradigm Technician',
-      department: 'Optimization',
-      role: 'Admin',
-      email: 'jane.cooper@example.com',
-      image:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-    },
-    // More people...
-  ]
+import BookingHistoryItemComponent from 'components/bookinghistory/bookingitem';
+import { getUserByID } from 'reduxstore/userreducer/action';
   
 export default function BookingHistoryPage() {
     const user = useSelector(state => state.auth.user);
 
+    //get Reservations
+    const dispatch = useDispatch();
+    const userInfo = useSelector(state => state.user.user );
+    useEffect(() => {
+        if(user?.userID){
+            dispatch(getUserByID(user?.userID));
+        }
+    }, [])
+
+    console.log("userInfo =>", userInfo);
+
     return (
         <div className="max-w-7xl mx-auto my-5">
-            <div className="py-5 md:py-10 text-center">
-                <span className="text-2xl font-semibold">Booking History</span>
-            </div>
-            <div className="flex flex-col">
-                <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                            <table className="min-w-full divide-y divide-gray-200">
-                                <thead className="bg-gray-50">
-                                    <tr>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                        >
-                                            Name
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                        >
-                                            Title
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                        >
-                                            Status
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                        >
-                                            Role
-                                        </th>
-                                        <th scope="col" className="relative px-6 py-3">
-                                            <span className="sr-only">Edit</span>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody className="bg-white divide-y divide-gray-200">
-                                    {people.map((person) => (
-                                        <tr key={person.email}>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="flex items-center">
-                                                    <div className="flex-shrink-0 h-10 w-10">
-                                                        <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
-                                                    </div>
-                                                    <div className="ml-4">
-                                                        <div className="text-sm font-medium text-gray-900">{person.name}</div>
-                                                        <div className="text-sm text-gray-500">{person.email}</div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm text-gray-900">{person.title}</div>
-                                                <div className="text-sm text-gray-500">{person.department}</div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                    Active
-                                                </span>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{person.role}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+             <div className="relative bg-gray-900">
+                <div className="h-80 absolute inset-x-0 bottom-0 xl:top-0 xl:h-full">
+                    <div className="h-full w-full xl:grid xl:grid-cols-2">
+                        <div className="h-full xl:relative xl:col-start-2">
+                            <img
+                                className="h-full w-full object-cover opacity-25 xl:absolute xl:inset-0"
+                                src="https://legendarystorage.s3.us-east-2.amazonaws.com/background/bg-arrive-guest1.jpg"
+                                alt="People working on laptops"
+                            />
+                            <div
+                                aria-hidden="true"
+                                className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-gray-900 xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"
+                            />
                         </div>
                     </div>
                 </div>
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-cols-2 xl:grid-flow-col-dense xl:gap-x-8">
+                    <div className="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
+                        <h2 className="text-sm font-semibold tracking-wide uppercase">
+                            <span className="bg-gradient-to-r from-purple-300 to-indigo-300 bg-clip-text text-transparent">
+                                Booking
+                            </span>
+                        </h2>
+                        <p className="mt-3 text-3xl font-extrabold text-white">
+                            Booking History
+                        </p>
+                        <p className="mt-5 text-lg text-gray-300">
+                            When you book, it’ll show up here.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div className="flex flex-col py-5">
+               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                   {
+                      userInfo?.reservations?.map((item) => (
+                            <div key={item}>
+                                <BookingHistoryItemComponent revervation = {item}/>
+                            </div>
+                      ))
+                   }
+               </div>
             </div>
         </div>
     )
