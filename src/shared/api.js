@@ -27,6 +27,36 @@ export const emailVerify = async ( token ) => {
     )
 }
 
+//Link Stripe account
+export const stripeAccount = async ( token ) => {
+    return await axios.post(
+        `${backend_url}/users/stripe_account`,
+        {
+            headers:{
+                'Authorization': `${token}`,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            }
+        }
+
+    )
+}
+
+export const stripeLink = async ( token, body ) => {
+    return await axios.post(
+        `${backend_url}/users/stripe_link`,
+        JSON.stringify(body),
+        {
+            headers:{
+                'Authorization': `${token}`,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            }
+        }
+
+    )
+}
+
 //Upload Avatar
 export const saveAvatarUrlToBackend = async ( id, url, token ) => {
     return await axios.post(

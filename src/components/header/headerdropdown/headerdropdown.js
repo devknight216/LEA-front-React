@@ -22,13 +22,13 @@ const taplist = [
   { name: 'My account', linkto: '/user/edit-profile', role: 'user', icon: PencilIcon }, 
   { name: 'Booking History', linkto: '/user/book-history', role: 'user', icon: BookmarkIcon },
   { name: 'Host your Space', linkto: '/user/host', role: 'user', icon: HomeIcon },
-  { name: 'Manage listing', linkto: '/user/manage-list/reserves', role: 'user', icon: CogIcon },
   { name: 'Admin Panel', linkto: '/admin', role: 'admin', icon: CogIcon },
 ]
 
 export default function HeaderDropdownComponent() {
   const dispatch = useDispatch();
   const AuthUser = useSelector(state => state.auth.user);
+  console.log(AuthUser);
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -46,7 +46,10 @@ export default function HeaderDropdownComponent() {
           }
           <div className="ml-3 text-gray-500">
             <p className="font-bold text-base">{AuthUser.name}</p>
-            <p className="text-xs">{AuthUser.role.toUpperCase()}</p>
+            <p className="text-xs">
+              {AuthUser.role.toUpperCase()}
+              <span class="ml-2 inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-indigo-100 bg-indigo-600 rounded-full">{ AuthUser.isHost?"Host":"" }</span>
+            </p>
           </div>
         </Menu.Button>
       </div>
@@ -83,6 +86,22 @@ export default function HeaderDropdownComponent() {
                   }
                 </div>
               ))
+            }
+            {
+               AuthUser?.isHost && <Menu.Item>
+                {({ active }) => (
+                  <Link
+                    to={"/user/manage-list/reserves"}
+                    className={classNames(
+                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                      'group flex items-center px-4 py-2 text-sm cursor-pointer'
+                    )}
+                  >
+                    <CogIcon className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
+                    Manage listing
+                  </Link>
+                )}
+              </Menu.Item> 
             }
             <div className="py-2 border-t">
               <Menu.Item>

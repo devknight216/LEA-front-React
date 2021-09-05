@@ -8,7 +8,6 @@ export default function ImageUploadToAWSComponent() {
 
   //Image List
   const property = useSelector(state => state.properties.property);
-  console.log(property);
 
   const dispatch = useDispatch();
 

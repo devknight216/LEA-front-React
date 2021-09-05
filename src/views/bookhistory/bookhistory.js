@@ -15,7 +15,6 @@ export default function BookingHistoryPage() {
         }
     }, [])
 
-    console.log("userInfo =>", userInfo);
 
     return (
         <div className="max-w-7xl mx-auto my-5">

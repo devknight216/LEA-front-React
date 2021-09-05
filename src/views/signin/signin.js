@@ -17,7 +17,6 @@ export default function SigninPage() {
   const token = useSelector((state) => state.auth.token);
   const authUser = useSelector((state) => state.auth.user);
   const status = useSelector(state => state.auth.status);
-  console.log(status);
 
   const onSubmit = async( data )=> {
     const user = {

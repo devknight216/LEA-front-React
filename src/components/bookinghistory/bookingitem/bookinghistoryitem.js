@@ -15,7 +15,6 @@ function BookingHistoryItemComponent({revervation}) {
         }        
     }, [])
 
-    console.log(reservation);
     return (
         <div>
             <li className="col-span-1 bg-white rounded-lg shadow list-none">

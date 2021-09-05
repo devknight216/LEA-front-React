@@ -40,6 +40,9 @@ export const PropertySlice = createSlice({
             email: action.payload.email,
             role: action.payload.role,
             avatarURL: action.payload.avatarURL,
+            phone: action.payload.phone,
+            birthday: action.payload.birthday,
+            isHost: action.payload.isHost
           };
           state.status = STATUS.FULFILLED
           localStorage.setItem("token", action.payload.token);
@@ -55,7 +58,10 @@ export const PropertySlice = createSlice({
             name: action.payload.name,
             email: action.payload.email,
             role: action.payload.role,
+            phone: action.payload.phone,
+            birthday: action.payload.birthday
           };
+          console.log(action.payload);
           state.status = STATUS.FULFILLED
         }
       })

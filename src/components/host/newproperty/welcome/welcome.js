@@ -1,6 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserByID } from 'reduxstore/userreducer/action';
+import { stripeAccount } from 'shared/api';
 
 function HostNewPropertyWelcome({nextStep}) {
+
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.auth.user);
+    const token = useSelector(state => state.auth.token);
+    const userinfo = useSelector(state => state.user.user);
+
+    useEffect(() => {
+        dispatch(getUserByID(user?.userID))
+    }, [])
+    console.log("token=>", token);
+    const gotoNext = async() => {
+        if(!userinfo?.stripe_account){
+            try {
+                await stripeAccount(token);
+                nextStep();
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        else{
+            nextStep();
+        }
+    }
     return (
         <div>
             <div className="bg-white max-w-4xl mx-auto">
@@ -35,7 +61,7 @@ function HostNewPropertyWelcome({nextStep}) {
                                     Easy way to host your place
                                 </p>
                                 <div className="flex justify-end my-28">
-                                    <div onClick={nextStep} className="text-white text-xl py-2 px-5 bg-indigo-500 rounded-md cursor-pointer hover:bg-indigo-700">Start Hosting</div>
+                                    <div onClick={gotoNext} className="text-white text-xl py-2 px-5 bg-indigo-500 rounded-md cursor-pointer hover:bg-indigo-700">Start Hosting</div>
                                 </div>
                             </div>
                         </div>
