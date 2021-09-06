@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createReservation, getReservationById } from "./action";
+import { createReservation, getAllReservation, getReservationById } from "./action";
 const PREFIX = 'reservation';
 
 const STATUS = {
@@ -37,6 +37,13 @@ export const ReservationSlice = createSlice({
                 state.status = STATUS.FULFILLED
             }
         )
+        .addCase(
+            getAllReservation.fulfilled,
+            ( state, action ) => {
+                state.reservations = action.payload;
+                state.status = STATUS.FULFILLED
+            }
+        )
         .addMatcher(
             isPendingAction,
             ( state, action ) => {
@@ -51,5 +58,5 @@ export const ReservationSlice = createSlice({
         )
     }
 })
-export { createReservation };
+export { createReservation, getReservationById, getAllReservation };
 export default ReservationSlice.reducer;

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createReservationFromAPI, getReservationByIdFromAPI } from ".";
+import { createReservationFromAPI, getAllReservationsFromAPI, getReservationByIdFromAPI } from ".";
 
 export const createReservation = createAsyncThunk( "reservation/getAll", async( payload ) => {
         const response = await createReservationFromAPI(payload);
@@ -9,6 +9,12 @@ export const createReservation = createAsyncThunk( "reservation/getAll", async( 
 
 export const getReservationById = createAsyncThunk( "reservation/findOne", async( payload) => {
         const response = await getReservationByIdFromAPI(payload);
+        return response.data;
+    } 
+)
+
+export const getAllReservation = createAsyncThunk( "", async(  ) => {
+        const response = await getAllReservationsFromAPI();
         return response.data;
     } 
 )
