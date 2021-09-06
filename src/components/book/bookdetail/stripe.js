@@ -10,6 +10,7 @@ import { paymentIntent } from 'shared/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { SpinnerCircularFixed } from 'spinners-react';
 import { createReservation } from 'reduxstore/bookreducer/action';
+import { Toast } from 'components/common/notification';
 
 const CheckoutForm = ({bookData}) => {
     const stripe = useStripe();
@@ -78,6 +79,7 @@ const CheckoutForm = ({bookData}) => {
                 childrenNum: bookData.children,
                 infants: bookData.adult
               }))
+              Toast('','Reserved successfully, We will send an Email soon.', 'success')
               console.log("success");
             }
           }
