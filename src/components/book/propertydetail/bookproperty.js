@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 
-function BookPropertyDetail({ bookData, setBookData }) {
+function BookPropertyDetail({ bookData }) {
     const property = useSelector((state) => state.properties.property);
  
     return (

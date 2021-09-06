@@ -13,7 +13,7 @@ function HostNewPropertyWelcome({nextStep}) {
     useEffect(() => {
         dispatch(getUserByID(user?.userID))
     }, [])
-    console.log("token=>", token);
+
     const gotoNext = async() => {
         if(!userinfo?.stripe_account){
             try {

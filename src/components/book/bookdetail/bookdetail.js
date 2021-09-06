@@ -6,8 +6,7 @@ import MasterCard from 'assets/imgs/icon/mastercard.svg'
 import AmexCard from 'assets/imgs/icon/amexcard.svg'
 import DiscoverCard from 'assets/imgs/icon/discovercard.svg'
 
-function BookDetailComponent({setBookData, bookData}) {
-    
+function BookDetailComponent({bookData}) {  
     return (
         <div className="text-gray-600 p-5 shadow-lg rounded-md">
             <div className="flex items-center flex-wrap">

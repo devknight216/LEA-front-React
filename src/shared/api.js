@@ -29,6 +29,8 @@ export const emailVerify = async ( token ) => {
 
 //Link Stripe account
 export const stripeAccount = async ( token ) => {
+    console.log(token);
+    axios.defaults.headers.common['Authorization'] =  `${token}`;
     return await axios.post(
         `${backend_url}/users/stripe_account`,
         {
@@ -65,6 +67,24 @@ export const saveAvatarUrlToBackend = async ( id, url, token ) => {
             "userId": id,
             "avatarURL": url
         },
+        {
+            headers: {
+                'Authorization': `${token}`,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            }
+        }
+
+    )
+}
+
+//Payment intent
+export const paymentIntent = async (body, token) => {
+    axios.defaults.headers.common['Authorization'] =  `${token}`;
+    console.log(body);
+    return await axios.post(
+        backend_url + 'payment/payment-intent',
+        JSON.stringify(body),
         {
             headers: {
                 'Authorization': `${token}`,

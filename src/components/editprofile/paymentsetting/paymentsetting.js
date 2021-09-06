@@ -15,8 +15,8 @@ function EditAccountPaymentSettingComponent() {
     const [payoutErr, setPayoutErr] = useState(null);
     const addPayoutMethod = async() => {
         const reqbody = {
-            refresh_url: "https://legendaryestatesairbnb.com/payout/refresh",
-            return_url: "https://legendaryestatesairbnb.com/payout/refresh",
+            refresh_url: process.env.REACT_APP_STRIPE_REFRESH_URL,
+            return_url: process.env.REACT_APP_STRIPE_RETRUN_URL,
         }
         try {
             setPayoutErr(null);
