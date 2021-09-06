@@ -66,7 +66,7 @@ function EditAccountPaymentSettingComponent() {
                                 <p className="py-3 text-gray-500">To get paid, you need to set up a payout method</p>
                                 <div className="px-5">
                                     <button className="flex items-center gap-4 bg-red-500 text-white px-5 py-2 rounded hover:bg-red-700" onClick={addPayoutMethod}>
-                                        Add Payout Method
+                                        Connect with Stripe 
                                         {
                                             payoutlodding && <SpinnerCircularFixed size={20} thickness={200} speed={100} color="#ff0000" secondaryColor="#D9D9D6" />
                                         }
