@@ -11,7 +11,6 @@ import BedIcon from "assets/imgs/icon/bed.png";
 import BathroomIcon from "assets/imgs/icon/bathtub.png";
 import ReserveComponent from "components/detailview/reserve";
 import ReveiwsComponent from "components/detailview/reviews";
-import HostInfoComponent from "components/detailview/hostinfo";
 
 const PropertyDetailViewPage = (props) => {
 
@@ -29,7 +28,7 @@ const PropertyDetailViewPage = (props) => {
   ];
 
   //Get Checked in, Checked out Data
-  const[checked, setChecked] = useState(null)
+  const[checked, setChecked] = useState(null);
   
   return (
     <div>
@@ -119,7 +118,7 @@ const PropertyDetailViewPage = (props) => {
               <div className="grid grid-cols-1 gap-4">
                 <section aria-labelledby="announcements-title">
                   <div className="rounded-lg w-full bg-white overflow-hidden shadow">
-                    <DateRangerComponent autoResponsive={false} setCheckInOut={setChecked}/>
+                    <DateRangerComponent autoResponsive={false} setCheckInOut={setChecked} property={property}/>
                   </div>
                 </section>
                 <ReserveComponent checkedInOut={checked} propertyId={props.match.params.id} property={property}/>

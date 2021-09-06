@@ -23,13 +23,11 @@ function EditAccountPaymentSettingComponent() {
             setPayoutLoading(true);
             const res  = await stripeLink(token, reqbody );
             setPayoutLoading(false);
-            console.log(res);
             window.location.href =  res.data;
 
         } catch (error) {
             setPayoutLoading(false);
             setPayoutErr("Error occurred during connect to API");
-            console.log(error);
         }
     }
 

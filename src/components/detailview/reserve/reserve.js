@@ -195,7 +195,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                 }
                                 <div className="flex pb-5 px-5 justify-between">
                                     <p className="underline">Tax fee(6.5%)</p>
-                                    <p>${((parseInt(property?.nightlyRate) * dateArray.length) + (property?.depositFee | 0) + (property?.petAllowFee?.fee | 0)*guests.pets) * 0.065}</p>
+                                    <p>${(((parseInt(property?.nightlyRate) * dateArray.length) + (property?.depositFee | 0) + (property?.petAllowFee?.fee | 0)*guests.pets) * 0.065).toFixed(2)}</p>
                                 </div>
                                 {
                                     isPet && <div className="flex pb-5 px-5 justify-between">

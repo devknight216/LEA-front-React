@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 export default function BookHistoryAdminComponent() {
     const reservations = useSelector(state => state.reservation.reservations);
-    console.log("Reservations => ", reservations);
     return (
       <div className="flex flex-col h-full">
         <div className="py-2 align-middle">

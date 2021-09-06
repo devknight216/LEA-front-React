@@ -61,7 +61,6 @@ export const PropertySlice = createSlice({
             phone: action.payload.phone,
             birthday: action.payload.birthday
           };
-          console.log(action.payload);
           state.status = STATUS.FULFILLED
         }
       })
