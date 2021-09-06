@@ -3,7 +3,7 @@ import axios from 'axios';
 export const createReservationFromAPI = async(reqbody) => {
     const backendurl=`${process.env.REACT_APP_BACKEND_API_URL}/api/reservation`;
     const token  = localStorage.getItem('token');
-    const res = await axios.put(
+    const res = await axios.post(
         backendurl,
         JSON.stringify(reqbody),
         {

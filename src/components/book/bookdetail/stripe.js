@@ -7,15 +7,18 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import { paymentIntent } from 'shared/api';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SpinnerCircularFixed } from 'spinners-react';
+import { createReservation } from 'reduxstore/bookreducer/action';
 
 const CheckoutForm = ({bookData}) => {
     const stripe = useStripe();
     const elements = useElements();
     const token = useSelector(state => state.auth.token);
+    const dispatch = useDispatch();
     const [loading, setIsLoading] = useState(false);
     const [err, setErr] = useState(null);
+    console.log(bookData);
   
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -46,7 +49,38 @@ const CheckoutForm = ({bookData}) => {
         if (error) {
           console.log('[error]', error);
         } else {
-          console.log('[PaymentMethod]', paymentMethod);
+          const result = await stripe.confirmCardPayment(res.data.clientSecret, {
+            payment_method: {
+              card: cardElement,
+              billing_details: {
+                name: 'Jenny Rosen',
+              },
+            }
+          });
+          if (result.error) {
+            // Show error to your customer (e.g., insufficient funds)
+            console.log(result.error.message);
+          } else {
+            // The payment has been processed!
+            if (result.paymentIntent.status === 'succeeded') {
+              // Show a success message to your customer
+              // There's a risk of the customer closing the window before callback
+              // execution. Set up a webhook or plugin to listen for the
+              // payment_intent.succeeded event that handles any business critical
+              // post-payment actions.
+              dispatch(createReservation({
+                property: bookData.propertyId,
+                from: bookData.checkedin,
+                to: bookData.checkedout,
+                adultNum: bookData.adult,
+                petNum: bookData.pets,
+                total: bookData.totalCost,
+                childrenNum: bookData.children,
+                infants: bookData.adult
+              }))
+              console.log("success");
+            }
+          }
         }
         setIsLoading(false)
       } catch (error) {
