@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { SignUp } from "reduxstore/authreducer/slice";
+import { SpinnerCircularFixed } from 'spinners-react';
 
 export default function SigninPage() {
   //React hook form

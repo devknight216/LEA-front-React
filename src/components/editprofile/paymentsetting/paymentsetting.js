@@ -1,11 +1,37 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-import AddPaymentMethodPopup from '../popups/addpyamentmethod'
+import { stripeLink } from 'shared/api';
+import AddPaymentMethodPopup from '../popups/addpyamentmethod';
+import { SpinnerCircularFixed } from 'spinners-react';
 
 function EditAccountPaymentSettingComponent() {
     //Run Add Payment Method
     const[addPaymentMethod, setAddPaymentMethod] = useState(false);
     const user = useSelector(state => state.auth.user);
+    const token = useSelector(state => state.auth.token);
+
+    //Add Payout Method
+    const [payoutlodding, setPayoutLoading] = useState(false); 
+    const [payoutErr, setPayoutErr] = useState(null);
+    const addPayoutMethod = async() => {
+        const reqbody = {
+            refresh_url: "https://legendaryestatesairbnb.com/payout/refresh",
+            return_url: "https://legendaryestatesairbnb.com/payout/refresh",
+        }
+        try {
+            setPayoutErr(null);
+            setPayoutLoading(true);
+            const res  = await stripeLink(token, reqbody );
+            setPayoutLoading(false);
+            console.log(res);
+            window.location.href =  res.data;
+
+        } catch (error) {
+            setPayoutLoading(false);
+            setPayoutErr("Error occurred during connect to API");
+            console.log(error);
+        }
+    }
 
     return (
         <div>
@@ -32,14 +58,22 @@ function EditAccountPaymentSettingComponent() {
                     </div>
                 </div>
                 {
-                    user?.property?.length && <div>
+                    user?.isHost && <div>
                         <p className="text-2xl py-3 font-semibold">Payout methods</p>
                         <div>
                             <div className='p-3 rounded-md'>
                                 <p className="text-xl">Payout methods</p>
                                 <p className="py-3 text-gray-500">To get paid, you need to set up a payout method</p>
                                 <div className="px-5">
-                                    <button className=" bg-red-500 text-white px-5 py-2 rounded hover:bg-red-700">Add Payout Method</button>
+                                    <button className="flex items-center gap-4 bg-red-500 text-white px-5 py-2 rounded hover:bg-red-700" onClick={addPayoutMethod}>
+                                        Add Payout Method
+                                        {
+                                            payoutlodding && <SpinnerCircularFixed size={20} thickness={200} speed={100} color="#ff0000" secondaryColor="#D9D9D6" />
+                                        }
+                                    </button>
+                                    {
+                                        payoutErr && <p className="text-red-500 text-sm">{payoutErr}</p>
+                                    }
                                 </div>
                             </div>
                         </div>
