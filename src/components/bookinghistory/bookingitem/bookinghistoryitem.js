@@ -3,18 +3,7 @@ import { MailIcon, PhoneIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux';
 import { getReservationById } from 'reduxstore/bookreducer/action';
 
-function BookingHistoryItemComponent({revervation}) {
-
-    //Infos
-    const reservation = useSelector(state => state.reservation.reservation);
-
-    const dispatch = useDispatch()
-    useEffect(() => {
-        if(revervation){
-            dispatch(getReservationById(revervation))
-        }        
-    }, [])
-
+function BookingHistoryItemComponent({reservation}) {
     return (
         <div>
             <li className="col-span-1 bg-white rounded-lg shadow list-none">
@@ -28,13 +17,12 @@ function BookingHistoryItemComponent({revervation}) {
                         </div>
                         <p className="mt-1 text-gray-500 text-sm truncate">{(reservation?.from)?.substr(0,10)} to {(reservation?.to)?.substr(0,10)}</p>
                     </div>
-                    <img className="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" src={"https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"} alt="" />
+                    <img className="w-16 h-16 bg-gray-300 rounded-sm flex-shrink-0" src={reservation?.property?.imageURLs[0].url} alt="" />
                 </div>
                 <div className="px-6 pb-2 flex justify-between">
                     <span className="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">
                         ${reservation?.total}
                     </span>
-                    <p className="text-red-500 hover:text-red-700 text-md font-medium cursor-pointer">Delete</p>
                 </div>
                 <div>
                     <div className="-mt-px flex divide-x divide-gray-200 border-t">

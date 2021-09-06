@@ -1,20 +1,29 @@
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import BookingHistoryItemComponent from 'components/bookinghistory/bookingitem';
 import { getUserByID } from 'reduxstore/userreducer/action';
+import { getAllReservation } from 'reduxstore/bookreducer/action';
   
 export default function BookingHistoryPage() {
     const user = useSelector(state => state.auth.user);
+    const reservations = useSelector(state => state.reservation.reservations);
 
     //get Reservations
     const dispatch = useDispatch();
-    const userInfo = useSelector(state => state.user.user );
-    useEffect(() => {
-        if(user?.userID){
-            dispatch(getUserByID(user?.userID));
-        }
-    }, [])
 
+    console.log(user.userID);
+    useEffect(() => {
+        dispatch(getAllReservation());
+    }, []);
+    console.log(reservations);
+
+    const [filtered, setFiltered] = useState([]);
+    useEffect(() => {
+       if(reservations){
+            const temp = reservations.filter(item => item.guest._id === user.userID)
+            setFiltered(temp)
+       }
+    }, [reservations])
 
     return (
         <div className="max-w-7xl mx-auto my-5">
@@ -53,11 +62,11 @@ export default function BookingHistoryPage() {
             <div className="flex flex-col py-5">
                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                    {
-                      userInfo?.reservations?.map((item) => (
-                            <div key={item}>
-                                <BookingHistoryItemComponent revervation = {item}/>
+                        filtered?.map((item, index) => (
+                            <div key={index}>
+                                <BookingHistoryItemComponent reservation = {item}/>
                             </div>
-                      ))
+                        ))
                    }
                </div>
             </div>
