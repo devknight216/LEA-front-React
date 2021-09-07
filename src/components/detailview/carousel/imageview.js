@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ImgsViewer from "react-images-viewer";
 
 export default function ImageViewComponent({images, isOpen, closeViewer}){
-    console.log(images);
     const [currImg, setCurrImg] = useState(0);
     const gotoPrev = () => {
         if(currImg !== 0){

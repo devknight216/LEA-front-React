@@ -19,7 +19,6 @@ const CheckoutForm = ({bookData}) => {
     const dispatch = useDispatch();
     const [loading, setIsLoading] = useState(false);
     const [err, setErr] = useState(null);
-    console.log(bookData);
   
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -90,7 +89,6 @@ const CheckoutForm = ({bookData}) => {
       } catch (error) {
         setIsLoading(false);
         setErr("An error occurred during connect API")
-        console.log(error);
       }
 
 

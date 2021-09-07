@@ -11,11 +11,9 @@ export default function BookingHistoryPage() {
     //get Reservations
     const dispatch = useDispatch();
 
-    console.log(user.userID);
     useEffect(() => {
         dispatch(getAllReservation());
     }, []);
-    console.log(reservations);
 
     const [filtered, setFiltered] = useState([]);
     useEffect(() => {
