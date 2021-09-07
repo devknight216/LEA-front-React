@@ -50,8 +50,8 @@ export default function HeroComponent() {
                   <div className="bg-white bg-opacity-20">
                     <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl py-10">
                       <span className="text-gray-900">
-                        <p className="text-center drop-shadow-xl md:mt-16 font-cyzel">Luxury Apartments</p>
-                        <p className="text-center font-cyzel">Fully Furnished</p>
+                        <p className="text-center drop-shadow-xl md:mt-16  font-cyzel">Fully Furnished</p>
+                        <p className="text-center drop-shadow-xl  font-cyzel">Luxury Apartments</p>
                       </span>
                     </h1>
                     <p className="mt-6 max-w-lg mx-auto text-center text-xl text-gray-900 sm:max-w-3xl py-5">

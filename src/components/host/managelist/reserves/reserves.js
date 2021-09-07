@@ -79,24 +79,52 @@ function ManageListReserveComponent() {
                 <p className="mt-3 border-b pb-3 text-3xl font-extrabold text-gray-700">
                     Reserves
                 </p>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 py-5">
-                    {properties[0]?.reservations.map((reservation, index) => (
-                        <div
-                            key={index}
-                            className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                        >
-                            <div className="flex-shrink-0">
-                                <img className="h-10 w-10 rounded-full" src={""} alt="" />
+                <div className="py-3">
+                    {
+                        properties && properties.map( ( property, index ) => (
+                            <div className="" key={index}>
+                                <div className="border rounded-lg py-3 px-8">
+                                    <div className="flex space-x-6 items-center">
+                                        <div>
+                                            {
+                                                property.imageURLs && <img src={property?.imageURLs[0].url} className="w-16 h-16 object-cover rounded-lg shadow-lg"/>
+                                            }
+                                        </div>
+                                        <div>
+                                            <p className="text-gray-500 text-md font-bold"> {property.propertyName} </p>
+                                            <div className="flex space-x-6">
+                                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    {property.nightlyRate}
+                                                </span>
+                                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                                    {property.manageType}
+                                                </span>
+                                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                    {property.propertySpaceFeature}
+                                                </span>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="lg:px-8 md:px-6 sm-px-4 px-2 py-5">
+                                        {
+                                            property.reservations?.map((reservation, index) =>(
+                                                <div key={index} className="py-2 border-b flex items-center justify-between">
+                                                    <div>
+                                                        <p>During: {reservation.from.substr(0,10)} ~ {reservation.to.substr(0,10)}</p>
+                                                        <p>Cost: ${reservation.total}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="cursor-pointer text-indigo-600">Edit</p>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
                             </div>
-                            <div className="flex-1 min-w-0">
-                                <a href="#" className="focus:outline-none">
-                                    <span className="absolute inset-0" aria-hidden="true" />
-                                    <p className="text-sm font-medium text-gray-900">{reservation.from}</p>
-                                    <p className="text-sm text-gray-500 truncate">{reservation.to}</p>
-                                </a>
-                            </div>
-                        </div>
-                    ))}
+                        ) )
+                    }
                 </div>
             </div>
         </div>
