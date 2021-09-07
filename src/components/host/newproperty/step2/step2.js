@@ -16,6 +16,14 @@ const specialAmenities = [
     "Gym",
     "Dedicated workspace"
 ]
+const propertyDescribe = [ 
+    { label: 'Quiet Neighborhood', value:"Quiet Neighborhood" }, 
+    { label: 'Rare Space', value: "Rare Space"}, 
+    { label: 'Good for Families', value: "Good for Families"}, 
+    { label: 'Sleek Interior', value: 'Sleek Interior' }, 
+    { label: 'Ideal Location', value: 'Ideal Location' }, 
+    { label: 'Roomy and Big Space', value: 'Roomy and Big Space'}
+];
 
 function HostNewPropertyStepTwo({ previousStep, nextStep, property, setProperty, setStep }) {
 
@@ -46,6 +54,15 @@ function HostNewPropertyStepTwo({ previousStep, nextStep, property, setProperty,
     const removeMainAmenities = ( index ) => {
         setSelectedAmenities(seletedAmenities.filter((item) => item.value !== index))
     }
+
+    //Get Property Describe words
+    const[ propertyDescribeWord, setPropertyDescribeWord ] = useState([]);
+    useEffect(() => {
+         setProperty({
+             ...property,
+             propertyDescribe: propertyDescribeWord.map(item => item.label)
+         })
+     }, [propertyDescribeWord])
 
     //Go to Next
     const gotoNext = () => {
@@ -132,6 +149,16 @@ function HostNewPropertyStepTwo({ previousStep, nextStep, property, setProperty,
                                 onChange={setSelectedAmenities}
                                 labelledBy="Select"
                             />
+                        </div>
+                        <div className=" mt-4">
+                            <div className='text-gray-700'>
+                                <label className="text-sm font-medium">Describe the property.</label>
+                                <MultiSelect
+                                    options={propertyDescribe}
+                                    onChange={setPropertyDescribeWord}
+                                    value={propertyDescribeWord}
+                                />
+                            </div>
                         </div>
                     </form>
                 </div>

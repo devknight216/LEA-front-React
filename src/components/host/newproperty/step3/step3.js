@@ -6,26 +6,8 @@ import { createNewProperty } from 'reduxstore/propertyreducer/action';
 import { Toast } from 'components/common/notification';
 import ImageUploadToAWSComponent from 'components/common/uploadImage';
 
-const propertyDescribe = [ 
-    { label: 'Quiet Neighborhood', value:"Quiet Neighborhood" }, 
-    { label: 'Rare Space', value: "Rare Space"}, 
-    { label: 'Good for Families', value: "Good for Families"}, 
-    { label: 'Sleek Interior', value: 'Sleek Interior' }, 
-    { label: 'Ideal Location', value: 'Ideal Location' }, 
-    { label: 'Roomy and Big Space', value: 'Roomy and Big Space'}
-];
-
-function HostNewPropertyStepThree({ previousStep, property, setProperty, setStep }) {
+function HostNewPropertyStepThree({ previousStep, property, setProperty }) {
     
-    //Get Property Describe words
-    const[ propertyDescribeWord, setPropertyDescribeWord ] = useState([]);
-    useEffect(() => {
-        setProperty({
-            ...property,
-            propertyDescribe: propertyDescribeWord.map(item => item.label)
-        })
-    }, [propertyDescribeWord])
-
     //Get manage Type
     const getManageTypeToggle = (value) => {
         setProperty({
@@ -87,17 +69,6 @@ function HostNewPropertyStepThree({ previousStep, property, setProperty, setStep
                 </div>
                 <div className="py-2">
                     <form>
-                        {/* <ImageUploadComponent property={property} setProperty={setProperty}/> */}
-                        <div className=" mt-4 grid md:grid-cols-2 gap-4 py-5">
-                            <div className='text-gray-700'>
-                                <label className="text-sm font-medium">Describe the property.</label>
-                                <MultiSelect
-                                    options={propertyDescribe}
-                                    onChange={setPropertyDescribeWord}
-                                    value={propertyDescribeWord}
-                                />
-                            </div>
-                        </div>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 border-t mt-4 py-4">
                             <Toggle label={"Do you want LEA to manage the property for you?"} getToggleValue={getManageTypeToggle} removeToggleValue={removeManageTypeToggle}/>
                             <div>

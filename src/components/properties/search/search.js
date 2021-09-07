@@ -25,11 +25,10 @@ export default function SearchComponent() {
   //Get Filtered Data
   const query = qs.parse(location.search, { ignoreQueryPrefix: true });
   const city = query? (query?.location?.split(',')[0]): "";
-  console.log(query, city);
 
   const [filterData, setFilterData] = useState({
       nightlyRate: 0,
-      location: {
+      propertyLocation: {
         city: city
       },
       propertyType: '',
@@ -89,7 +88,7 @@ export default function SearchComponent() {
   useEffect(() => {
     dispatch(searchProperties({
       nightlyRate: filterData.nightlyRate,
-      location: {
+      propertyLocation: {
         city: city,
       },
       propertyType: filterData.propertyType,
