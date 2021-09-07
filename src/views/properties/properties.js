@@ -62,7 +62,7 @@ const PropertiesPage  = () => {
                                 : 
                                     <>
                                         <div className="py-20 text-center">
-                                            <span className="text-gray-200 text-5xl text-center">Sorry, We can't find items</span>
+                                            <span className="text-gray-200 text-5xl text-center">Sorry, no properties available on your selected dates</span>
                                         </div>
                                     </>
                             )

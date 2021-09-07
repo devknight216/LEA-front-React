@@ -109,7 +109,7 @@ export default function SearchComponent() {
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           <div className="mt-1">
             <label htmlFor="number" className="block text-sm font-medium text-gray-700">
-              Nightly Rate
+              Choose your max nightly rate
             </label>
             <div className="mt-1">
               <input
@@ -140,7 +140,7 @@ export default function SearchComponent() {
             </div>
           </div>
           <div>
-            <p className="block text-sm font-medium text-gray-700">Space Feature</p>
+            <p className="block text-sm font-medium text-gray-700">Space Type</p>
             <select
               id="spaceFeature"
               name="spaceFeature"

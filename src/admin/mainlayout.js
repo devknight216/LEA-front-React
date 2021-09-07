@@ -14,7 +14,7 @@ import {
 import { SearchIcon } from '@heroicons/react/solid'
 import { Link, Route, Switch,useLocation } from 'react-router-dom'
 import ManageNewPropertyItemPage from './manageitem'
-import BrandImage from 'assets/imgs/brand/png-black-background.png'
+import BrandImage from 'assets/imgs/brand/brand.svg'
 import CreateNewPropertyPage from './createnewitem'
 import EditpropertiesPage from './editproperties'
 import { useDispatch, useSelector } from 'react-redux';

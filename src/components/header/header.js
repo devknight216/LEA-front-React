@@ -10,7 +10,7 @@ import {
   SparklesIcon,
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
-import BrandIcon from 'assets/imgs/brand/png-black-background.png';
+import BrandIcon from 'assets/imgs/brand/brand.svg';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { SignOut } from 'reduxstore/authreducer/action';
@@ -44,7 +44,7 @@ return (
                   <Link to="/" className="flex">
                     <span className="sr-only">Workflow</span>
                     <img
-                      className="h-12 w-auto sm:h-16"
+                      className="h-12 w-auto sm:h-24"
                       src={BrandIcon}
                       alt=""
                     />
@@ -199,7 +199,7 @@ return (
                     <div className="flex items-center justify-between">
                       <div>
                         <img
-                          className="h-10 w-auto"
+                          className="h-16 w-auto"
                           src={BrandIcon}
                           alt="Workflow"
                         />

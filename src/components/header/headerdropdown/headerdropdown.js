@@ -46,10 +46,12 @@ export default function HeaderDropdownComponent() {
           <div className="ml-3 text-gray-500">
             <p className="font-bold text-base">{AuthUser.name}</p>
             <p className="text-xs">
-              {AuthUser.role.toUpperCase()}
               {
-                AuthUser.isHost &&
-                <span className="ml-2 inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-indigo-100 bg-indigo-600 rounded-full">Host</span>
+                <span className="ml-2 inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-indigo-100 bg-indigo-600 rounded-full">
+                  {
+                     AuthUser.isHost? "HOST": AuthUser.role === 'admin'?"ADMIN":"GUEST"
+                  }
+                </span>
               }
             </p>
           </div>

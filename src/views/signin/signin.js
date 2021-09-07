@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Brand from 'assets/imgs/brand/png-black-background.png';
+import Brand from 'assets/imgs/brand/brand.svg';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -45,7 +45,7 @@ export default function SigninPage() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <Link to="/">
           <img
-            className="mx-auto h-20 w-auto"
+            className="mx-auto h-28 w-auto"
             src={Brand}
             alt="Workflow"
           />

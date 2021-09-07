@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Brand from "assets/imgs/brand/png-black-background.png";
+import Brand from "assets/imgs/brand/brand.svg";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,7 +44,7 @@ export default function SigninPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <Link to="/">
-          <img className="mx-auto h-20 w-auto" src={Brand} alt="Workflow" />
+          <img className="mx-auto h-28 w-auto" src={Brand} alt="Workflow" />
         </Link>
       </div>
 
@@ -56,7 +56,7 @@ export default function SigninPage() {
                 htmlFor="firstname"
                 className="block text-sm font-medium text-gray-700"
               >
-                First Name
+                First Name*
               </label>
               <div className="mt-1">
                 <input
@@ -74,7 +74,7 @@ export default function SigninPage() {
                 htmlFor="lastname"
                 className="block text-sm font-medium text-gray-700"
               >
-                Last Name
+                Last Name*
               </label>
               <div className="mt-1">
                 <input
@@ -92,7 +92,7 @@ export default function SigninPage() {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
-                Email address
+                Email address*
               </label>
               <div className="mt-1">
                 <input
@@ -111,7 +111,7 @@ export default function SigninPage() {
                 htmlFor="phone"
                 className="block text-sm font-medium text-gray-700"
               >
-                Phone Number
+                Phone Number*
               </label>
               <div className="mt-1">
                 <input
@@ -130,7 +130,7 @@ export default function SigninPage() {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
-                Password
+                Password*
               </label>
               <div className="mt-1">
                 <input
@@ -149,7 +149,7 @@ export default function SigninPage() {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
-                Confirm Password
+                Confirm Password*
               </label>
               <div className="mt-1">
                 <input

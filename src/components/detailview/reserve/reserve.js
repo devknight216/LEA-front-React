@@ -148,7 +148,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                                     setGuests({ ...guests, pets: 0 })
                                                 }}
                                             />
-                                            <p className="ml-2 text-gray-400">Do you want Pets?</p>
+                                            <p className="ml-2 text-gray-400">Traveling with pets</p>
                                         </div>
                                        {
                                             isPet && <div>
@@ -200,7 +200,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                     </div>
                                 }
                                 <div className="flex pb-5 px-5 justify-between">
-                                    <p className="underline">Tax fee(6.5%)</p>
+                                    <p className="underline">Taxes</p>
                                     <p>${(((parseInt(property?.nightlyRate) * dateArray.length) + (property?.depositFee | 0) + (property?.petAllowFee?.fee | 0)*guests.pets) * 0.065).toFixed(2)}</p>
                                 </div>
                                 <div  className="flex pb-5 px-5 justify-end">

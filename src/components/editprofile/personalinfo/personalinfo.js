@@ -13,7 +13,6 @@ function EditAccountPersonalInfoComponent() {
         { label: "Legal Name", variable: "name",  value: user?.name, onEdit: () => { updateUserData("name", userInfo.name ) }, editChild: InputBox },
         { label: "Email Address", variable: "email",  value: user?.email, onEdit: () => { updateUserData("email", userInfo.email ) }, editChild: InputBox },
         { label: "Phone Number", variable: "phone",  value: user?.phone, onEdit: () => { updateUserData("phone", userInfo.phone ) }, editChild: InputBox },
-        { label: "Date of Birth", variable: "birthday",  value: user?.birthday, onEdit: () => { updateUserData("birthday", userInfo.birthday ) }, editChild: InputBox },
         { label: "Address",variable: "address",   value: user?.address, onEdit: () => {updateUserData("address", userInfo.address ) }, editChild: EditAddress },
     ]
     
@@ -22,7 +21,6 @@ function EditAccountPersonalInfoComponent() {
         name: user?.name,
         email: user?.email,
         phone: user?.phone,
-        birthday: user?.birthday,
         address: {
             country: user?.address?.country,
             street: user?.address?.street,

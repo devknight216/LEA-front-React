@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import BrandIcon from 'assets/imgs/brand/png-black-background.png'
+import BrandIcon from 'assets/imgs/brand/brand.svg'
 export default function NotFoundPage() {
     return (
       <div className="min-h-screen pt-16 pb-12 flex flex-col bg-white">

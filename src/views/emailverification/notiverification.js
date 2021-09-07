@@ -1,5 +1,5 @@
 import React from 'react'
-import BrandIcon from 'assets/imgs/brand/png-black-background.png'
+import BrandIcon from 'assets/imgs/brand/brand.svg'
 import { Link } from 'react-router-dom'
 
 function NotiVerificationPage() {
