@@ -16,7 +16,7 @@ function NotiVerificationPage() {
                         />
                     </Link>
                 </div>
-                <h2 className="text-gray-600 font-bold text-2xl my-5">Welcome to LEA!</h2>
+                <h2 className="text-gray-600 font-bold text-2xl my-5">Welcome to Legendary Estates Airbnb!</h2>
                 <p className="text-gray-500 ">
                     Thank you for signing up! <br/>
                     We are excited to have you here and can't wait to get you onboard.  <br/>

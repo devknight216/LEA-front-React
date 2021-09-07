@@ -17,7 +17,7 @@ function Stagingpage() {
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 py-10 px-5 sm:px-16">
                 <div className="py-5">
                     <h2 className="md:text-5xl text-3xl  font-extrabold tracking-tight text-gray-900">Thinking of staging<br/> your home<br/> or apartment?</h2>
-                    <p className='my-2 sm:my-12 text-2xl md:px-3 text-gray-600'>LEA can do it for you!</p>
+                    <p className='my-2 sm:my-12 text-2xl md:px-3 text-gray-600'>Legendary Estates Airbnb can do it for you!</p>
                 </div>
                 <div>
                     <div className="grid grid-cols-1 md:grid-cols-2">
@@ -44,8 +44,8 @@ function Stagingpage() {
                 </div>
                 <div className="py-5 text-gray-600">
                     <span>
-                        LEA offers  staging services for our  Airbnb hosts providing an array of  furniture and decor for a monthly fee. In addition, our staging services are available for hosts whose properties are already furnished, to make the property more aesthetically pleasing and comfortable to potential guests. <br/><br/>
-                        Often customers, or guests, are seeking a particular ambiance or vibe when searching for Airbnb properties. Professionals, families, and individuals utilize Airbnb for various purposes, and LEA offers our hosts the opportunity to make the most of their listings!
+                        Legendary Estates Airbnb offers  staging services for our  Airbnb hosts providing an array of  furniture and decor for a monthly fee. In addition, our staging services are available for hosts whose properties are already furnished, to make the property more aesthetically pleasing and comfortable to potential guests. <br/><br/>
+                        Often customers, or guests, are seeking a particular ambiance or vibe when searching for Airbnb properties. Professionals, families, and individuals utilize Airbnb for various purposes, and Legendary Estates Airbnb offers our hosts the opportunity to make the most of their listings!
                     </span>
                 </div>
                 <div>
@@ -55,7 +55,7 @@ function Stagingpage() {
                                 <li>
                                     <div className="flex items-center">
                                         <CheckIcon className="h-8 w-8"/>
-                                        <p className="ml-3">Get a special staging offer for listing your property in LEA.</p>
+                                        <p className="ml-3">Get a special staging offer for listing your property in Legendary Estates Airbnb.</p>
                                     </div>
                                 </li>
                                 <li>
@@ -74,7 +74,7 @@ function Stagingpage() {
                         </div>
                         <div>
                             <h2 className="md:text-5xl text-3xl font-extrabold tracking-tight text-gray-900">
-                                Let LEA stage your<br/>home or apartment<br/> for you!
+                                Let Legendary Estates Airbnb stage your<br/>home or apartment<br/> for you!
                             </h2>
                         </div>
                     </div>

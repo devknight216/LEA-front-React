@@ -102,14 +102,14 @@ function HostNewPropertyStepThree({ previousStep, property, setProperty }) {
                         <div>
                             <p className="text-lg font-bold">Other service offered by Legendary Estates Airbnb</p>
                             <p className="italic font-medium text-gray-600 text-sm">Management by Legendary Estates Airbnb</p>
-                            <p className="italic font-medium text-gray-600 text-sm">LEA can manage your property and handle everything for you. If you agree to have your property managed by LEA, 20% of platform sales will go to LEA.</p>
+                            <p className="italic font-medium text-gray-600 text-sm">Legendary Estates Airbnb can manage your property and handle everything for you. If you agree to have your property managed by Legendary Estates Airbnb, 20% of platform sales will go to Legendary Estates Airbnb.</p>
                             <div className="px-5 py-5">
-                                <Toggle label={"Do you want LEA to manage the property for you?"} getToggleValue={getManageTypeToggle} removeToggleValue={removeManageTypeToggle}/>
+                                <Toggle label={"Do you want Legendary Estates Airbnb to manage the property for you?"} getToggleValue={getManageTypeToggle} removeToggleValue={removeManageTypeToggle}/>
                             </div>
                         </div>
                         <div>
                             <p className="text-lg font-bold">Staging by Legendary Estates Airbnb</p>
-                            <p className="italic font-medium text-gray-600 text-sm">LEA also offers staging that will surely transform your space and get bookings in no time! Staging by LEA starts at $80 per hour.</p>
+                            <p className="italic font-medium text-gray-600 text-sm">Legendary Estates Airbnb also offers staging that will surely transform your space and get bookings in no time! Staging by Legendary Estates Airbnb starts at $80 per hour.</p>
                             <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-4 items-center">
                                 <div>
                                     <InputBox placeholder="staging Fee (hours)" name="stagingFee" type="number" onchange={getStagingFee}/>

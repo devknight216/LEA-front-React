@@ -54,7 +54,7 @@ export default function StagingInfoModalComponent( {isOpen, setisOpen} ) {
                 </div>
                 <div className="mt-3 text-center sm:mt-5">
                   <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
-                    Let LEA stage your home!  
+                    Let Legendary Estates Airbnb stage your home!  
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
