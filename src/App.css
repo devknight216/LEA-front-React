@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
 .tooltip{
     visibility: hidden;
     position: absolute;
@@ -18,6 +19,9 @@
 }
 .slick-next:before, .slick-prev:before{
   font-size: 27px;
+}
+.font-cyzel{
+  font-family:'Cinzel', serif;
 }
 body {
   font-family: 'Roboto', sans-serif;

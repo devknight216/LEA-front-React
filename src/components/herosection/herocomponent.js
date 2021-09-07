@@ -1,7 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
 import React from 'react'
-import HomeBanner from 'assets/imgs/background/home-banner.png';
-import { useLocation } from 'react-router-dom';
+import HomeBanner from 'assets/imgs/background/hero.jpg';
 import BellBoyIcon from 'assets/imgs/icon/bellboy.png';
 import DumbBellIcon from 'assets/imgs/icon/dumbbell.png';
 import WifiIcon from 'assets/imgs/icon/wifi-signal.png';
@@ -31,8 +30,6 @@ const iconlist = [
 ]
 
 export default function HeroComponent() {
-  const location = useLocation();
-
   return (
     <>
       <main>
@@ -49,17 +46,19 @@ export default function HeroComponent() {
                     alt="People working on laptops"
                   />
                 </div>
-                <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
-                  <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl py-10">
-                    <span className="text-white">
-                      <p className="text-center drop-shadow-xl md:mt-16">Luxury Apartments</p>
-                      <p className="text-center">Fully Furnished</p>
-                    </span>
-                  </h1>
-                  <p className="mt-6 max-w-lg mx-auto text-center text-xl text-white sm:max-w-3xl">
-                    Convenience meets luxury. Get the chance to experience luxurious living with the best amenities while having 
-                    everything else you need at your tips.
-                  </p>
+                <div className="relative py-16 sm:py-24 lg:py-32">
+                  <div className="bg-white bg-opacity-20">
+                    <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl py-10">
+                      <span className="text-gray-900">
+                        <p className="text-center drop-shadow-xl md:mt-16 font-cyzel">Luxury Apartments</p>
+                        <p className="text-center font-cyzel">Fully Furnished</p>
+                      </span>
+                    </h1>
+                    <p className="mt-6 max-w-lg mx-auto text-center text-xl text-gray-900 sm:max-w-3xl py-5">
+                      Convenience meets luxury. Get the chance to experience luxurious living with the best amenities while having 
+                      everything else you need at your tips.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
