@@ -14,7 +14,7 @@ function ManageNewPropertyItemPage() {
     }, []);
 
     //Get Selected Item
-    const [selected, getSelected ] = useState();
+    const [selected, getSelected ] = useState(null);
 
     return (
         <div>
@@ -26,7 +26,9 @@ function ManageNewPropertyItemPage() {
                             <ItemsTableComponent getSelected = {getSelected}/>
                         </main>
                         <aside className="hidden relative xl:flex xl:flex-col flex-shrink-0 w-96 p-4">
-                            <DetailViewComponent selected = { selected }/>
+                            {
+                                selected && <DetailViewComponent selected = { selected }/>
+                            }
                         </aside>
                     </div>
                 </div>

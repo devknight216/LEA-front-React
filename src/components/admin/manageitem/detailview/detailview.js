@@ -1,8 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { useHistory } from 'react-router';
-import BedroomImg from 'assets/imgs/property/bedroom.jpg';
-import KitchenImg from 'assets/imgs/property/kitchen.jpg';
 
 function DetailViewComponent( {selected} ) {
     const settings = {
@@ -10,7 +8,7 @@ function DetailViewComponent( {selected} ) {
         fade: true,
         infinite: true,
         speed: 500,
-        arrows: false,
+        arrows: true,
         autoplaySpeed: 1500,
         autoplay: true,
         slidesToShow: 1,
