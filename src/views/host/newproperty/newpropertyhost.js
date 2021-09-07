@@ -4,16 +4,15 @@ import HostNewPropertyStepThree from 'components/host/newproperty/step3';
 import StepsComponent from 'components/host/newproperty/steps';
 import HostNewPropertyWelcome from 'components/host/newproperty/welcome';
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import StepWizard from "react-step-wizard";
 
 function HostCreateNewPropertypage() {
     
     //Step Management
     const[steps, setStep] = useState([
-        { id: '01', name: 'Job details', status: "current" },
-        { id: '02', name: 'Application form', status:"upcoming" },
-        { id: '03', name: 'Preview',  status:"upcoming" },
+        { id: '01', name: 'Add Main Info', status: "current" },
+        { id: '02', name: 'Property Feature', status:"upcoming" },
+        { id: '03', name: 'Fees and Suggestions',  status:"upcoming" },
     ]);
 
     //Property Info 

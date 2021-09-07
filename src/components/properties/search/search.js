@@ -24,12 +24,14 @@ export default function SearchComponent() {
 
   //Get Filtered Data
   const query = qs.parse(location.search, { ignoreQueryPrefix: true });
-  const city = query? (query?.location?.split(',')[0]): "";
+  const city = query? (query?.location?.split(',')[ (query?.location?.split(',').length - 3) ]): "";
+  const state = query? (query?.location?.split(',')[(query?.location?.split(',').length - 2)]): ""
 
   const [filterData, setFilterData] = useState({
       nightlyRate: 0,
       propertyLocation: {
-        city: city
+        city: city?.replace(" ",""),
+        state: state?.replace(" ","")
       },
       propertyType: '',
       propertySpaceFeature: '',
@@ -89,7 +91,8 @@ export default function SearchComponent() {
     dispatch(searchProperties({
       nightlyRate: filterData.nightlyRate,
       propertyLocation: {
-        city: city,
+        city: city?.replace(" ",""),
+        state: state?.replace(" ","")
       },
       propertyType: filterData.propertyType,
       propertySpaceFeature: filterData.propertySpaceFeature,

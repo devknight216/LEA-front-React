@@ -11,7 +11,7 @@ export const formatReqestData = ( data ) => {
         imageURLs:imageArray,
         hostInfo: {
             name: data.hostedByName,
-            userId:"123456789",
+            userId: JSON.parse(localStorage.getItem('user').userID),
             email: data.hostedByNameEmail,
         },
         propertyLocation: {

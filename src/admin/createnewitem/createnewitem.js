@@ -56,13 +56,26 @@ export default function CreateNewPropertyPage() {
               </div>
               <div className="sm:col-span-1">
                 <label htmlFor="nightlyRate" className="block text-sm font-medium text-gray-700">
-                  Nightly Rate
+                  Nightly Rate($)
                 </label>
                 <div className="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="number"
                     min={0}
                     {...register("nightlyRate", {required: true})}
+                    className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-1">
+                <label htmlFor="nightlyRate" className="block text-sm font-medium text-gray-700">
+                  Disaccount($)
+                </label>
+                <div className="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="number"
+                    placeholder="Weekly or Monthly"
+                    min={0}
                     className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
                   />
                 </div>

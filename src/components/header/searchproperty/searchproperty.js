@@ -106,6 +106,7 @@ export default function SearchPropertyComponent() {
                     }
                     onSelect={(e) => {
                       setLocation(e)
+                      console.log(e);
                     }}
                   />
                 </div>
