@@ -9,28 +9,6 @@ import { SpinnerCircularFixed } from 'spinners-react';
 
 const PropertiesPage  = () => {
     //Get Properties from backend
-    const location = useLocation();
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if(!location.search){
-            dispatch(getAllProperties());
-        }
-        else{
-            const query = qs.parse(location.search, { ignoreQueryPrefix: true });
-            const queryBody = {
-                nightlyRateRangeFrom: '',
-                nightlyRateRangeTo: '',
-                location: {
-
-                },
-                propertyType: '',
-                propertySpaceFeature: '',
-                guestNum: (parseInt(query.adult) + parseInt(query.children)),
-                amenities: []
-            }
-            dispatch(searchProperties(queryBody));
-        }
-    }, []);
     const properties = useSelector((state) => state.properties.properties);
     const status = useSelector((state) => state.properties.status);
 

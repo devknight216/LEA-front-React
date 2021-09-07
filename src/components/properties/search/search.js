@@ -23,14 +23,21 @@ export default function SearchComponent() {
   const location = useLocation();
 
   //Get Filtered Data
+  const query = qs.parse(location.search, { ignoreQueryPrefix: true });
+  const city = query? (query?.location?.split(',')[0]): "";
+  console.log(query, city);
+
   const [filterData, setFilterData] = useState({
       nightlyRate: 0,
-      location: {},
+      location: {
+        city: city
+      },
       propertyType: '',
       propertySpaceFeature: '',
-      guestNum: 0,
+      guestNum: parseInt(query?.adult) + parseInt(query?.children),
       amenities: []
   });
+  console.log("filteder params=>", filterData);
   //Get Amenities Value
   const getAmenities = (value) => {
     setFilterData({
@@ -80,27 +87,16 @@ export default function SearchComponent() {
   
   const dispatch = useDispatch();
   useEffect(() => {
-    if(location.search){
-      const query = qs.parse(location.search, { ignoreQueryPrefix: true });
-      dispatch(searchProperties({
-        nightlyRate: filterData.nightlyRate,
-        location: {},
-        propertyType: filterData.propertyType,
-        propertySpaceFeature: filterData.propertySpaceFeature,
-        guestNum: (parseInt(query.adult) + parseInt(query.children)),
-        amenities: filterData.amenities.map(item => item.value)
-      }));
-    }
-    else{
-      dispatch(searchProperties({
-        nightlyRate: filterData.nightlyRate,
-        location: {},
-        propertyType: filterData.propertyType,
-        propertySpaceFeature: filterData.propertySpaceFeature,
-        guestNum: 0,
-        amenities: filterData.amenities.map(item => item.value)
-      }));
-    }
+    dispatch(searchProperties({
+      nightlyRate: filterData.nightlyRate,
+      location: {
+        city: city,
+      },
+      propertyType: filterData.propertyType,
+      propertySpaceFeature: filterData.propertySpaceFeature,
+      guestNum: (parseInt(query.adult) + parseInt(query.children)),
+      amenities: filterData.amenities.map(item => item.value)
+    }));
   }, [filterData])
 
   return (

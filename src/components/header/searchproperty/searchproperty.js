@@ -272,25 +272,25 @@ export default function SearchPropertyComponent() {
                 <div className="flex text-gray-500 items-center my-4">
                     <span className=" w-4/6 text-gray-600 font-bold">Adult</span>
                     <div className="flex w-2/6 items-center">
-                        <button className={`rounded-full border-2 border-gray-300 ${guestNum.adult === 0? 'cursor-not-allowed' : 'cursor-pointer hover:bg-gray-300'}`} onClick={() => changeGuestNum('minus', 'adult')}><MinusIcon className="w-8 h-8" /></button>
+                        <button className={`rounded-full border-2 border-gray-300 ${guestNum.adult === 0? 'cursor-not-allowed' : 'cursor-pointer hover:bg-gray-300'}`} onClick={() => changeGuestNum('minus', 'adult')}><MinusIcon className="w-6 h-6" /></button>
                         <span className="text-center mx-3">{guestNum.adult}</span>
-                        <button className="rounded-full border-2 border-gray-300 cursor-pointer hover:bg-gray-300" onClick={() => changeGuestNum('plus', 'adult')}><PlusIcon className="w-8 h-8" /></button>
+                        <button className="rounded-full border-2 border-gray-300 cursor-pointer hover:bg-gray-300" onClick={() => changeGuestNum('plus', 'adult')}><PlusIcon className="w-6 h-6" /></button>
                     </div>
                 </div>
                 <div className="flex text-gray-500 items-center my-4">
                     <span className=" w-4/6 text-gray-600 font-bold">Children</span>
                     <div className="flex w-2/6 items-center">
-                        <button className={`rounded-full border-2 border-gray-300 ${guestNum.children === 0? 'cursor-not-allowed' : 'cursor-pointer hover:bg-gray-300'}`} onClick={() => changeGuestNum('minus', 'children')}><MinusIcon className="w-8 h-8" /></button>
+                        <button className={`rounded-full border-2 border-gray-300 ${guestNum.children === 0? 'cursor-not-allowed' : 'cursor-pointer hover:bg-gray-300'}`} onClick={() => changeGuestNum('minus', 'children')}><MinusIcon className="w-6 h-6" /></button>
                         <span className="text-center mx-3">{guestNum.children}</span>
-                        <button className="rounded-full border-2 border-gray-300 cursor-pointer hover:bg-gray-300" onClick={() => changeGuestNum('plus', 'children')}><PlusIcon className="w-8 h-8" /></button>
+                        <button className="rounded-full border-2 border-gray-300 cursor-pointer hover:bg-gray-300" onClick={() => changeGuestNum('plus', 'children')}><PlusIcon className="w-6 h-6" /></button>
                     </div>
                 </div>
                 <div className="flex text-gray-500 items-center my-4">
                     <span className=" w-4/6 text-gray-600 font-bold">Infants</span>
                     <div className="flex w-2/6 items-center">
-                        <button className={`rounded-full border-2 border-gray-300 ${guestNum.infants === 0? 'cursor-not-allowed' : 'cursor-pointer hover:bg-gray-300'}`} onClick={() => changeGuestNum('minus', 'infants')}><MinusIcon className="w-8 h-8" /></button>
+                        <button className={`rounded-full border-2 border-gray-300 ${guestNum.infants === 0? 'cursor-not-allowed' : 'cursor-pointer hover:bg-gray-300'}`} onClick={() => changeGuestNum('minus', 'infants')}><MinusIcon className="w-6 h-6" /></button>
                         <span className="text-center mx-3">{guestNum.infants}</span>
-                        <button className="rounded-full border-2 border-gray-300 cursor-pointer hover:bg-gray-300" onClick={() => changeGuestNum('plus', 'infants')}><PlusIcon className="w-8 h-8" /></button>
+                        <button className="rounded-full border-2 border-gray-300 cursor-pointer hover:bg-gray-300" onClick={() => changeGuestNum('plus', 'infants')}><PlusIcon className="w-6 h-6" /></button>
                     </div>
                 </div>
             </Popover.Panel>
