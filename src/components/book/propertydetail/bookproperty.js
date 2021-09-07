@@ -35,8 +35,8 @@ function BookPropertyDetail({ bookData }) {
                                 /night
                             </p>
                         <div className="flex justify-between py-4 px-5 text-gray-800">
-                            <p className="underline">${property?.nightlyRate} x {bookData.dateArray?.length} nights</p>
-                            <p>${ parseInt(property?.nightlyRate) * bookData.dateArray?.length}</p>
+                            <p className="underline">${property?.nightlyRate} x {bookData.dateArray?.length - 1} nights</p>
+                            <p>${ parseInt(property?.nightlyRate) * (bookData.dateArray?.length - 1 )}</p>
                         </div>
                         {
                             property?.depositFee && <div className="flex pb-5 px-5 justify-between">
@@ -51,7 +51,7 @@ function BookPropertyDetail({ bookData }) {
                             </div>
                         }
                         <div className="flex justify-between py-4 px-5 text-gray-800">
-                            <p className="underline">Tax Fee(6.5%)</p>
+                            <p className="underline">Taxes</p>
                             <p>${ (bookData?.totalCost/1.065 * 0.065).toFixed(2)}</p>
                         </div>
                         <div  className="flex pb-5 px-5 justify-end">

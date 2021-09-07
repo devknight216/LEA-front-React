@@ -184,8 +184,8 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                     /night
                                 </p>
                                 <div className="flex justify-between py-4 px-5 text-gray-800">
-                                    <p className="underline">${property?.nightlyRate} x {dateArray.length} nights</p>
-                                    <p>${ parseInt(property?.nightlyRate) * dateArray.length}</p>
+                                    <p className="underline">${property?.nightlyRate} x {dateArray.length?(dateArray.length - 1): 0} nights</p>
+                                    <p>${ parseInt(property?.nightlyRate) * (dateArray.length?(dateArray.length - 1): 0)}</p>
                                 </div>
                                 {
                                     property?.depositFee && <div className="flex pb-5 px-5 justify-between">
@@ -201,7 +201,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                 }
                                 <div className="flex pb-5 px-5 justify-between">
                                     <p className="underline">Taxes</p>
-                                    <p>${(((parseInt(property?.nightlyRate) * dateArray.length) + (property?.depositFee | 0) + (property?.petAllowFee?.fee | 0)*guests.pets) * 0.065).toFixed(2)}</p>
+                                    <p>${(((parseInt(property?.nightlyRate) * (dateArray.length?(dateArray.length - 1): 0) ) + (property?.depositFee | 0) + (property?.petAllowFee?.fee | 0)*guests.pets) * 0.065).toFixed(2)}</p>
                                 </div>
                                 <div  className="flex pb-5 px-5 justify-end">
                                     <span className="font-bold mr-2">{ guests.adult + guests.children }</span> Guests
@@ -209,7 +209,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                 <hr />
                                 <div className="flex justify-between px-5 py-2">
                                     <p className="font-bold">Total</p>
-                                    <p className="font-bold">${(((parseInt(property?.nightlyRate) * dateArray.length) + (property?.depositFee | 0) + (property?.petAllowFee?.fee | 0)*guests.pets)*1.065).toFixed(2)}</p>
+                                    <p className="font-bold">${(((parseInt(property?.nightlyRate) * (dateArray.length?(dateArray.length - 1): 0) ) + (property?.depositFee | 0) + (property?.petAllowFee?.fee | 0)*guests.pets)*1.065).toFixed(2)}</p>
                                 </div>
                             </div>
                         </ul>
