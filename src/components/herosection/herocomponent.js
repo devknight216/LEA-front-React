@@ -6,6 +6,7 @@ import DumbBellIcon from 'assets/imgs/icon/dumbbell.png';
 import WifiIcon from 'assets/imgs/icon/wifi-signal.png';
 import KitckenIcon from 'assets/imgs/icon/kitchen.png';
 import PetIcon from 'assets/imgs/icon/pet.png';
+import { Banner } from 'components/basicui/basicui';
 const iconlist = [
   {
     text: "Fast WIFI",
