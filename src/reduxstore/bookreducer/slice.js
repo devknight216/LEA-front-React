@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createReservation, getAllReservation, getReservationById } from "./action";
+import { createReservation, getAllReservation, getHostReservations, getReservationById } from "./action";
 const PREFIX = 'reservation';
 
 const STATUS = {
@@ -26,7 +26,7 @@ export const ReservationSlice = createSlice({
         builder.addCase(
             createReservation.fulfilled,
             ( state, action ) => {
-                state.reservations = action.payload;
+                state.reservation = action.payload;
                 state.status = STATUS.FULFILLED;
             }
         )
@@ -39,6 +39,13 @@ export const ReservationSlice = createSlice({
         )
         .addCase(
             getAllReservation.fulfilled,
+            ( state, action ) => {
+                state.reservations = action.payload;
+                state.status = STATUS.FULFILLED
+            }
+        )
+        .addCase(
+            getHostReservations.fulfilled,
             ( state, action ) => {
                 state.reservations = action.payload;
                 state.status = STATUS.FULFILLED

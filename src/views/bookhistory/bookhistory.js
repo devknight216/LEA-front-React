@@ -19,10 +19,10 @@ export default function BookingHistoryPage() {
 
     const [filtered, setFiltered] = useState([]);
     useEffect(() => {
-       if(reservations){
-            const temp = reservations.filter(item => item.guest._id === user.userID)
+        if(reservations){
+            const temp = reservations.filter(item => item?.guest?._id === user.userID)
             setFiltered(temp)
-       }
+        }
     }, [reservations])
 
     return (

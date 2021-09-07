@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getHostReservations } from 'reduxstore/bookreducer/action';
 const people = [
     {
       name: 'Leslie Alexander',
@@ -32,6 +34,13 @@ const people = [
 ]
 
 function ManageListReserveComponent() {
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.auth.user);
+    const properties = useSelector(state => state.reservation.reservations);
+    useEffect(() => {
+        dispatch(getHostReservations(user.userID))         
+    }, []);
+    console.log(properties);
     return (
         <div className="py-5">
             <div className="relative bg-gray-900">
@@ -71,19 +80,19 @@ function ManageListReserveComponent() {
                     Reserves
                 </p>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 py-5">
-                    {people.map((person) => (
+                    {properties[0]?.reservations.map((reservation, index) => (
                         <div
-                            key={person.email}
+                            key={index}
                             className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                         >
                             <div className="flex-shrink-0">
-                                <img className="h-10 w-10 rounded-full" src={person.imageUrl} alt="" />
+                                <img className="h-10 w-10 rounded-full" src={""} alt="" />
                             </div>
                             <div className="flex-1 min-w-0">
                                 <a href="#" className="focus:outline-none">
                                     <span className="absolute inset-0" aria-hidden="true" />
-                                    <p className="text-sm font-medium text-gray-900">{person.name}</p>
-                                    <p className="text-sm text-gray-500 truncate">{person.role}</p>
+                                    <p className="text-sm font-medium text-gray-900">{reservation.from}</p>
+                                    <p className="text-sm text-gray-500 truncate">{reservation.to}</p>
                                 </a>
                             </div>
                         </div>

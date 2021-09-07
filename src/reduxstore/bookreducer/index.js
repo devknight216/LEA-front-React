@@ -46,3 +46,18 @@ export const getAllReservationsFromAPI = async() => {
     )
     return res;
 }
+
+export const getHostReservationFromAPI = async(id) => {
+    const backendurl=`${process.env.REACT_APP_BACKEND_API_URL}/api/reservation/user/${id}`;
+    const token = localStorage.getItem('token');
+    const res = await axios.get(
+        backendurl,
+        {
+            headers:{
+                'Authorization': `${token}`,
+                'X-Requested-With': 'XMLHttpRequest',
+            }
+        }
+    )
+    return res;
+}
