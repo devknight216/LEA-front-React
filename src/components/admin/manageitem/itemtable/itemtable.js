@@ -5,6 +5,7 @@ import { deletePropertyById } from 'reduxstore/propertyreducer/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { TrashIcon, PencilAltIcon, PlusIcon } from '@heroicons/react/outline'
 import { SpinnerCircularFixed } from 'spinners-react';
+import { stripeAccount } from 'shared/api';
   
 export default function ItemsTableComponent( {getSelected} ) {
   
@@ -35,8 +36,18 @@ export default function ItemsTableComponent( {getSelected} ) {
   
   //Goto Create New
   const history = useHistory();
-  const gotoCreateNew = () => {
-    history.push('/admin/properties/new');
+  const userinfo = useSelector(state => state.user.user);
+  const token = useSelector(state => state.auth.token);
+  const gotoCreateNew = async() => {
+    if(!userinfo?.stripe_account){
+      try {
+          await stripeAccount(token);
+          history.push('/admin/properties/new');
+         
+      } catch (error) {
+          console.log(error);
+      }
+    }
   }
   const gotEdit = (id) => {
     history.push(`/admin/properties/edit/${id}`)
@@ -48,7 +59,7 @@ export default function ItemsTableComponent( {getSelected} ) {
         <div
           type="button"
           onClick={gotoCreateNew}
-          className="inline-flex object-contain items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 focus:outline-none"
+          className="cursor-pointer inline-flex object-contain items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 focus:outline-none"
         >
           <PlusIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
           Add new Property

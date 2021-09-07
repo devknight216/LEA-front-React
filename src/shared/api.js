@@ -57,6 +57,20 @@ export const stripeLink = async ( token, body ) => {
 
     )
 }
+export const stripeCheck = async ( token ) => {
+    axios.defaults.headers.common['Authorization'] =  `${token}`;
+    return await axios.post(
+        `${backend_url}/users/stripe_check`,
+        {
+            headers:{
+                'Authorization': `${token}`,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            }
+        }
+
+    )
+}
 
 //Upload Avatar
 export const saveAvatarUrlToBackend = async ( id, url, token ) => {

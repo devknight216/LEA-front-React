@@ -10,6 +10,7 @@ import EditAccountPersonalInfoComponent from 'components/editprofile/personalinf
 import { PrivateRoute } from 'shared/function';
 import EditAccountSecuritySettingComponent from 'components/editprofile/securitysetting';
 import EditAccountPaymentSettingComponent from 'components/editprofile/paymentsetting';
+import RedirectFromConnectStripeComponent from 'components/editprofile/successpayout';
 
 export default function EditProfilePage() {
     //Control Taps
@@ -63,6 +64,8 @@ export default function EditProfilePage() {
                         <PrivateRoute exact path="/user/edit-profile" component={EditAccountPersonalInfoComponent}/>
                         <PrivateRoute path="/user/edit-profile/security-setting" component={EditAccountSecuritySettingComponent}/>
                         <PrivateRoute path="/user/edit-profile/payment-setting" component={EditAccountPaymentSettingComponent}/>
+                        <PrivateRoute path="/user/edit-profile/payment-setting" component={EditAccountPaymentSettingComponent}/>
+                        <PrivateRoute path="/user/edit-profile/payoutmethod-success" component={RedirectFromConnectStripeComponent}/>
                     </Switch>
                 </div>
             </div>     

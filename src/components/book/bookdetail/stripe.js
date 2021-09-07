@@ -31,6 +31,7 @@ const CheckoutForm = ({bookData}) => {
           petNum: bookData.pets,
           petAllowed: bookData.pets?true:false
         },  token);
+        console.log('[error]', res);
         
         if (!stripe || !elements) {
           // Stripe.js has not loaded yet. Make sure to disable
@@ -59,17 +60,13 @@ const CheckoutForm = ({bookData}) => {
               },
             }
           });
+          console.log("this is success result", result);
           if (result.error) {
             // Show error to your customer (e.g., insufficient funds)
             console.log(result.error.message);
           } else {
             // The payment has been processed!
             if (result.paymentIntent.status === 'succeeded') {
-              // Show a success message to your customer
-              // There's a risk of the customer closing the window before callback
-              // execution. Set up a webhook or plugin to listen for the
-              // payment_intent.succeeded event that handles any business critical
-              // post-payment actions.
               dispatch(createReservation({
                 property: bookData.propertyId,
                 from: bookData.checkedin,
