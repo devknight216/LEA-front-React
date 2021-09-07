@@ -42,7 +42,8 @@ export const PropertySlice = createSlice({
             avatarURL: action.payload.avatarURL,
             phone: action.payload.phone,
             birthday: action.payload.birthday,
-            isHost: action.payload.isHost
+            isHost: action.payload.isHost,
+            chargeEnagleStatus: action.payload.charges_enabled_status
           };
           state.status = STATUS.FULFILLED
           localStorage.setItem("token", action.payload.token);
