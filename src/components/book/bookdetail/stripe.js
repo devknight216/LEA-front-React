@@ -28,7 +28,9 @@ const CheckoutForm = ({bookData}) => {
         setIsLoading(true)
         const res = await paymentIntent({
           propertyId: bookData.propertyId,
-          nights: bookData.dateArray.length
+          nights: bookData.dateArray.length,
+          petNum: bookData.pets,
+          petAllowed: bookData.pets?true:false
         },  token);
         
         if (!stripe || !elements) {
