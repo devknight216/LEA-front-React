@@ -57,4 +57,12 @@ export function PrivateRoute({ children,  isAuth, ...rest}) {
     );
 }
 
+
+//Default Header
+export const setDefaultHdeader = () => {
+  const token = useSelector((state) => state.auth.token);
+    axios.defaults.headers.common['Authorization'] =  `${token}`;
+    axios.defaults.headers.common['X-Requested-With'] =  `XMLHttpRequest`;
+    axios.defaults.headers.common['Content-Type'] =  `application/json`;
+}
   
