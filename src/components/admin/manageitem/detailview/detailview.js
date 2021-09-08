@@ -33,7 +33,7 @@ function DetailViewComponent( {selected} ) {
                         {
                             selected?.imageURLs?.map((item, index )=> (
                                 <div key={index}>
-                                    <img className="object-cover shadow-lg w-full rounded-lg" src={item.url} alt="" />
+                                    <img className="object-cover shadow-lg w-full rounded-lg h-60" src={item.url} alt="" />
                                 </div>
                             ))
                         }
