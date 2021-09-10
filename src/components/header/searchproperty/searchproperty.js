@@ -101,7 +101,7 @@ export default function SearchPropertyComponent() {
     <>
       <Popover.Group
         as="nav"
-        className="flex w-6xl max-w-4/5 m-auto relative mt-3 bg-gray-100 rounded-xl p-1"
+        className="flex w-6xl max-w-4/5 m-auto relative mt-3 bg-gray-100 bg-opacity-70 rounded-xl p-1"
       >
         <Popover className="w-1/4 outline-none">
           <Popover.Button className="w-full flex outline-none">
@@ -121,20 +121,6 @@ export default function SearchPropertyComponent() {
                   <div className = "w-full bg-transparent outline-none overflow-ellipsis text-md text-gray-700 placeholder-gray-600 text-md font-semibold">
                     <input value={locationUrl} className="w-full bg-transparent outline-none overflow-ellipsis pl-8 text-md text-gray-700 placeholder-gray-600 text-md font-semibold"/>
                   </div>
-                  {/* <GooglePlacesAutoComplete
-                    inputRef={locationRef}
-                    inputClassName="w-full bg-transparent outline-none overflow-ellipsis pl-8 text-md text-gray-700 placeholder-gray-600 text-md font-semibold"
-                    itemClassName="text-left my-3 text-gray-600"
-                    containerClassName="w-200% absolute top-24 p-3 bg-white rounded-lg shadow-md"
-                    loader={
-                      <div className="w-200% absolute top-24 p-3 bg-white rounded-lg">
-                        loader
-                      </div>
-                    }
-                    onSelect={(e) => {
-                      setLocation(e)
-                    }}
-                  /> */}
                 </div>
                 {(currentNav !== 1 && currentNav !== 2) && (
                   <span className="bg-gray-300 w-px m-auto h-16"></span>
