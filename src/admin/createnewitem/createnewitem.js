@@ -7,11 +7,10 @@ import { clearState, createNewProperty } from 'reduxstore/propertyreducer/action
 import { useEffect, useState } from 'react'; 
 import { Toast } from 'components/common/notification';
 import ImageUploadToAWSComponent from 'components/common/uploadImage';
+import { Toggle } from 'components/basicui/basicui';
 
 export default function CreateNewPropertyPage() { 
     
-    const[imageData, setImageData] = useState(null);
-
     //Get form data from hook form
     const { register, handleSubmit } = useForm();
     const dispatch = useDispatch();
@@ -20,7 +19,7 @@ export default function CreateNewPropertyPage() {
     }, [])
 
     const onSubmit = (data) => {
-      const requestBody = formatReqestData(data, imageData);
+      const requestBody = formatReqestData(data);
       try {        
         //Dispatch API to create New Item
         dispatch(createNewProperty(JSON.stringify(requestBody)));
@@ -42,7 +41,7 @@ export default function CreateNewPropertyPage() {
             </div>
   
             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-              <div className="sm:col-span-4">
+              <div className="sm:col-span-6">
                 <label htmlFor="propertyName" className="block text-sm font-medium text-gray-700">
                   Property Name
                 </label>
@@ -50,7 +49,7 @@ export default function CreateNewPropertyPage() {
                   <input
                     type="text"
                     {...register("propertyName", {required: true, maxLength: 80})}
-                    className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
+                    className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 min-w-0 rounded-md sm:text-sm border-gray-300"
                   />
                 </div>
               </div>
@@ -63,24 +62,37 @@ export default function CreateNewPropertyPage() {
                     type="number"
                     min={0}
                     {...register("nightlyRate", {required: true})}
-                    className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
+                    className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 min-w-0 rounded-md sm:text-sm border-gray-300"
                   />
                 </div>
               </div>
               <div className="sm:col-span-1">
                 <label htmlFor="nightlyRate" className="block text-sm font-medium text-gray-700">
-                  Disaccount($)
+                  Weekly Discount(%)
                 </label>
                 <div className="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="number"
-                    placeholder="Weekly or Monthly"
                     min={0}
-                    className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
+                    className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 min-w-0 rounded-md sm:text-sm border-gray-300"
                   />
                 </div>
               </div>
-  
+              <div className="sm:col-span-1">
+                <label htmlFor="nightlyRate" className="block text-sm font-medium text-gray-700">
+                  Monthly Discount($)
+                </label>
+                <div className="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="number"
+                    min={0}
+                    className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 min-w-0 rounded-md sm:text-sm border-gray-300"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-6">
+                <Toggle label="Instant Book"/>
+              </div>  
               <div className="sm:col-span-6">
                 <label htmlFor="propertyDescription" className="block text-sm font-medium text-gray-700">
                   Describe property.
@@ -89,7 +101,7 @@ export default function CreateNewPropertyPage() {
                   <textarea
                     rows={3}
                     {...register("propertyDescription", {required: true})}
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 sm:text-sm border-gray-300 rounded-md"
                     defaultValue={''}
                   />
                 </div>
@@ -113,7 +125,7 @@ export default function CreateNewPropertyPage() {
                     id="hostedByName"
                     autoComplete="hostedByName"
                     {...register("hostedByName", {required: true})}
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full p-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
               </div>
@@ -126,7 +138,7 @@ export default function CreateNewPropertyPage() {
                   <input
                     type="email"
                     {...register("hostedByNameEmail", {required: true, pattern: /^\S+@\S+$/i})}
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full p-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
               </div>  
@@ -143,7 +155,7 @@ export default function CreateNewPropertyPage() {
                   <input
                     type="text"
                     {...register("apartment", {required: true})}
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
               </div>
@@ -155,7 +167,7 @@ export default function CreateNewPropertyPage() {
                   <input
                     type="text"
                     {...register("street", {required: true})}
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
               </div>
@@ -168,7 +180,7 @@ export default function CreateNewPropertyPage() {
                   <input
                     type="text"
                     {...register("city", {required: true})}
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
               </div>
@@ -181,7 +193,7 @@ export default function CreateNewPropertyPage() {
                   <input
                     type="text"
                     {...register("state", {required: true})}
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
               </div>
@@ -194,7 +206,7 @@ export default function CreateNewPropertyPage() {
                   <input
                     type="text"
                     {...register("zip", {required: true, pattern: /[0-9]+/})}
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
               </div>
@@ -205,7 +217,7 @@ export default function CreateNewPropertyPage() {
                 <div className="mt-1">
                   <select
                     {...register("country", {required: true})}
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  h-full p-2 sm:text-sm border-gray-300 rounded-md"
                   >
                     <option>United States</option>
                     <option>Canada</option>
@@ -345,6 +357,18 @@ export default function CreateNewPropertyPage() {
                     <div className="col-span-1">
                       <label htmlFor="petFee" className="block text-sm font-medium text-gray-700">
                         Pet Allow Fee
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          type="text"
+                          {...register("petFee", {required: true, pattern: /[0-9]+/})}
+                          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full py-2 sm:text-sm border-gray-300 rounded-md"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-span-1">
+                      <label htmlFor="petFee" className="block text-sm font-medium text-gray-700">
+                        Pet Allow Number
                       </label>
                       <div className="mt-1">
                         <input

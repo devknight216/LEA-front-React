@@ -41,7 +41,7 @@ export default function ItemsTableComponent( {getSelected} ) {
   const gotoCreateNew = async() => {
     if(!userinfo?.stripe_account){
       try {
-          await stripeAccount(token);
+          // await stripeAccount(token);
           history.push('/admin/properties/new');
          
       } catch (error) {
