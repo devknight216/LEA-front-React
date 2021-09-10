@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState, useMemo } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { RangePicker } from "react-trip-date";
 import GooglePlacesAutoComplete from "../googleautocomplete";
@@ -6,6 +6,8 @@ import { MinusIcon, PlusIcon, SearchIcon } from "@heroicons/react/solid";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 import { classNames } from "shared/function";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProperties } from "reduxstore/propertyreducer/action";
 
 export default function SearchPropertyComponent() {
   const locationRef = React.useRef();
@@ -17,8 +19,30 @@ export default function SearchPropertyComponent() {
   const [currentNav, setCurrentNav] = useState(null);
   const [filterDateRange, setFilterDateRange] = useState({ from: null, to: null});
   const [guestNum, setGuestNum] = useState({ adult:0, children:0, infants: 0});
-  const [locationUrl, setLocation] = useState(null)
+  const [locationUrl, setLocation] = useState("Address");
 
+  const properties = useSelector(state => state.properties.properties);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllProperties());
+  }, []);
+
+  //Get All Locations
+  const locationArray = useMemo(() => (
+    [
+        ... new Set(
+            properties.map(property => ({
+                city: property.propertyLocation.city,
+                state: property.propertyLocation.state,
+                country: property.propertyLocation.country,
+            })).map(JSON.stringify)
+        )
+    ].map(JSON.parse)), [properties]
+  );
+
+  console.log(locationArray);
+ 
+  
   const changeGuestNum = (type, who) => {
       if(type === 'plus') {
           switch(who) {
@@ -87,14 +111,17 @@ export default function SearchPropertyComponent() {
                 {open && setCurrentNav(1)}
                 <div
                   className={classNames(
-                    open ? "rounded-full bg-white shadow-l shadow-lg" : "",
-                    "w-full transform lg:py-5 sm:py-3 leading-2"
+                    open ? "rounded-full bg-white shadow-l shadow-lg" : "", "w-full transform lg:py-5 sm:py-3 leading-2 "
                   )}
+                  ref={locationRef}
                 >
                   <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">
                     Location
                   </div>
-                  <GooglePlacesAutoComplete
+                  <div className = "w-full bg-transparent outline-none overflow-ellipsis text-md text-gray-700 placeholder-gray-600 text-md font-semibold">
+                    <input value={locationUrl} className="w-full bg-transparent outline-none overflow-ellipsis pl-8 text-md text-gray-700 placeholder-gray-600 text-md font-semibold"/>
+                  </div>
+                  {/* <GooglePlacesAutoComplete
                     inputRef={locationRef}
                     inputClassName="w-full bg-transparent outline-none overflow-ellipsis pl-8 text-md text-gray-700 placeholder-gray-600 text-md font-semibold"
                     itemClassName="text-left my-3 text-gray-600"
@@ -106,9 +133,8 @@ export default function SearchPropertyComponent() {
                     }
                     onSelect={(e) => {
                       setLocation(e)
-                      console.log(e);
                     }}
-                  />
+                  /> */}
                 </div>
                 {(currentNav !== 1 && currentNav !== 2) && (
                   <span className="bg-gray-300 w-px m-auto h-16"></span>
@@ -116,6 +142,34 @@ export default function SearchPropertyComponent() {
               </>
             )}
           </Popover.Button>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-200"
+            enterFrom="opacity-0 -translate-y-1"
+            enterTo="opacity-100 translate-y-0"
+            leave="transition ease-in duration-150"
+            leaveFrom="opacity-100 translate-y-0"
+            leaveTo="opacity-0 -translate-y-1"
+          >
+            <Popover.Panel
+              static
+              className="hidden md:block absolute z-10 top-24 inset-x-0 bg-white rounded-lg shadow-md"
+            >
+              <div className="p-4">
+                <ul>
+                  {
+                    locationArray.map((location, index) => (
+                      <li key={index} className="cursor-pointer py-2 hover:bg-gray-200 px-5 rounded-lg" onClick={ ()=>{
+                        setLocation( `${location.city}, ${location.state}, ${location.country}`)
+                      } }>
+                        {location.city}, {location.state}, {location.country}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </Popover.Panel>
+          </Transition>
         </Popover>
         <Popover className="w-1/4" as="div">
           <Popover.Button className="w-full flex outline-none">
@@ -215,7 +269,7 @@ export default function SearchPropertyComponent() {
               className="hidden md:block absolute z-10 top-24 inset-x-0 bg-white rounded-t-lg shadow-md"
             >
               <RangePicker
-              numberOfMonths={2}
+                numberOfMonths={2}
                 onChange={(e) => {
                   setFilterDateRange(e);
                   if (filterDateRange.from === "") {
@@ -249,7 +303,7 @@ export default function SearchPropertyComponent() {
                   onClick={
                     (e) => {
                       e.preventDefault(); 
-                      (guestNum&&filterDateRange) && history.push(`/properties?adult=${guestNum.adult}&children=${guestNum.children}&infants=${guestNum.infants}&location=${locationUrl?.description}&checkin=${filterDateRange.from}&checkout=${filterDateRange.to}`)
+                      (guestNum&&filterDateRange) && history.push(`/properties?adult=${guestNum.adult}&children=${guestNum.children}&infants=${guestNum.infants}&location=${locationUrl}&checkin=${filterDateRange.from}&checkout=${filterDateRange.to}`)
                   }}
                 >
                     <SearchIcon className="text-white w-1/2 h-1/2" />

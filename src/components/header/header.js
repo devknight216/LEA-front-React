@@ -172,9 +172,9 @@ return (
                     }
                 </div>
               </div>
-              <div className="absolute w-full top-52 hidden lg:block">
+              <div className="absolute w-full top-42 hidden lg:block">
                 {
-                  path=="/" && <SearchPropertyComponent />
+                  path=="/" && <div><SearchPropertyComponent/></div>
                 }
               </div>
             </div>
