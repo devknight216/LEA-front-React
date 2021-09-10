@@ -163,6 +163,12 @@ export default function SearchComponent() {
           </div>
         </div>
         <div className="border-t mt-4 py-3">
+          <span className="text-lg text-gray-500 font-bold">Possibility of Instant Book</span>
+          <div className="my-2">
+            <Toggle label={"Instant Book"} getToggleValue={addMainAmenities} removeToggleValue={removeMainAmenities}/>
+          </div>
+        </div>
+        <div className="border-t mt-4 py-3">
           <span className="text-lg text-gray-500 font-bold">Special Amenities</span>
           <div className="py-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5">
               {
