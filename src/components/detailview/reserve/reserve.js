@@ -4,6 +4,11 @@ import { Link, useHistory } from 'react-router-dom'
 import { classNames, getDaysArray } from 'shared/function';
 import { Toast } from 'components/common/notification';
 import { useSelector } from 'react-redux';
+//Guest Data
+const GuestLayout = [
+    { title: "Adult", param: "adult"},
+    { title: "Children", param: "children"}
+]
 
 function ReserveComponent({ property, checkedInOut, propertyId }) {
     const [guests, setGuests] = useState({
@@ -12,39 +17,19 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
         infants: 0,
         pets: 0
     });
+    //Pet Allowed?
+    const [isPet, setIsPet] = useState(false);
 
     //Increase or Decrease the Gust Num
     const CalcGuestNum = ( method, type ) => {
         if((method === "INCREASE") && ((guests.adult + guests.children)<property?.guestNum ) ){
-            setGuests(
-                {
-                    ...guests,
-                    [type]: guests[type] + 1
-                }
-            )
+            setGuests({ ...guests, [type]: guests[type] + 1})
         }
         else if(method === "DECREASE"){
-            setGuests(
-                {
-                    ...guests,
-                    [type]: (guests[type]>0)? (guests[type] - 1) : 0
-                }
-            )
+            setGuests({ ...guests,  [type]: (guests[type]>0)? (guests[type] - 1) : 0 } )
         }
     }
-
-    //Guest Data
-    const GuestLayout = [
-        {
-            title: "Adult",
-            param: "adult"
-        },
-        {
-            title: "Children",
-            param: "children"
-        },
-    ]
-
+ 
     //Get Date Array
     const[dateArray, setDateArray] = useState([]);
     useEffect(() => {
@@ -53,6 +38,24 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
            setDateArray(array);
        }
     }, [checkedInOut]);
+
+    //Calculate 
+    const[costValue, setCostValue] = useState({
+        nightly: 0,
+        deposite: 0,
+        pet: 0,
+        tax: 0,
+        disamount: 0
+    })
+    useEffect(() => {
+        setCostValue({
+            nightly: ( (dateArray.length - 1)>0 )?( property.nightlyRate * ( dateArray.length - 1 ))|0: 0,
+            deposite: property?.depositFee | 0,
+            pet: (property?.petAllowFee?.fee | 0)*guests.pets,
+            tax:( (dateArray.length - 1)>0 )?(( property.nightlyRate * ( dateArray.length - 1 ) + (property?.depositFee | 0) + ((property?.petAllowFee?.fee | 0)*guests.pets)) * 0.065).toFixed(2): 0,
+            disamount: 0
+        })
+    }, [dateArray, guests])
 
     //Go to Book
     const history = useHistory();
@@ -71,21 +74,24 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
             history.push('/signin');
         }
     }
-
-    //Pet Allowed?
-    const [isPet, setIsPet] = useState(false);
    
     return (
         <div>
             <section aria-labelledby="announcements-title">
                 <div className="rounded-lg bg-white overflow-hidden shadow">
                     <div className="text-center w-full">
-                        <h2
-                        className="text-base font-medium text-gray-900"
-                        id="announcements-title"
-                        >
-                            Guests
-                        </h2>
+                        {
+                            checkedInOut && <div className="px-4 py-5">
+                                <div className="flex justify-between border border-gray-900 py-3 rounded-2xl">
+                                    <div className = "w-full text-center border-r border-gray-900">
+                                        <p>{checkedInOut?.from}</p>
+                                    </div>
+                                    <div className = "w-full text-center">
+                                        <p>{checkedInOut?.to}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                         <div className="flow-root mt-6">
                         <ul className="-my-5 py-5">
                             {
@@ -94,21 +100,11 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                         <p>{item.title}:</p>
                                         <div className="flex justify-between w-1/2">
                                             <div className="cursor-pointer" onClick={() => {CalcGuestNum("DECREASE", item.param)}}>
-                                                <MinusCircleIcon 
-                                                    className={classNames(
-                                                        ((guests[item.param])>0 ) ? 'text-gray-800' : 'text-gray-300',
-                                                        'h-6'
-                                                    )} 
-                                                />
+                                                <MinusCircleIcon className={classNames(((guests[item.param])>0 ) ? 'text-gray-800' : 'text-gray-300','h-6')}/>
                                             </div>
                                                 { guests[item.param] }
                                             <div className="cursor-pointer" onClick={() => {CalcGuestNum("INCREASE", item.param)}}>
-                                                <PlusCircleIcon
-                                                    className={classNames(
-                                                        ((guests.adult + guests.children)<property?.guestNum ) ? 'text-gray-800' : 'text-gray-300',
-                                                        'h-6'
-                                                    )} 
-                                                />
+                                                <PlusCircleIcon className={classNames(((guests.adult + guests.children)<property?.guestNum ) ? 'text-gray-800' : 'text-gray-300','h-6')}/>
                                             </div>
                                         </div>
                                     </div>
@@ -118,21 +114,11 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                 <p>Infants:</p>
                                 <div className="flex justify-between w-1/2">
                                     <div className="cursor-pointer" onClick={() => { setGuests({ ...guests, infants: guests.infants ? (guests.infants-1) : 0 }) }}>
-                                        <MinusCircleIcon 
-                                            className={classNames(
-                                                ((guests.infants)>0 ) ? 'text-gray-800' : 'text-gray-300',
-                                                'h-6'
-                                            )} 
-                                        />
+                                        <MinusCircleIcon className={classNames(((guests.infants)>0 ) ? 'text-gray-800' : 'text-gray-300','h-6')}/>
                                     </div>
                                         { guests.infants }
                                     <div className="cursor-pointer" onClick={() => { setGuests({ ...guests, infants: guests.infants<5 ? guests.infants+1 : guests.infants }) }}>
-                                        <PlusCircleIcon
-                                            className={classNames(
-                                                ((guests.infants)<5 ) ? 'text-gray-800' : 'text-gray-300',
-                                                'h-6'
-                                            )} 
-                                        />
+                                        <PlusCircleIcon className={classNames(((guests.infants)<5 ) ? 'text-gray-800' : 'text-gray-300','h-6')}/>
                                     </div>
                                 </div>
                             </div>
@@ -156,19 +142,11 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                                     <p>pets:</p>
                                                     <div className="flex justify-between w-1/2">
                                                         <div className="cursor-pointer" onClick={() => { setGuests({ ...guests, pets: guests.pets ? (guests.pets-1) : 0 }) }}>
-                                                            <MinusCircleIcon 
-                                                                className={classNames(
-                                                                    ((guests.pets)>0 ) ? 'text-gray-800' : 'text-gray-300','h-6'
-                                                                )} 
-                                                            />
+                                                            <MinusCircleIcon className={classNames(((guests.pets)>0 ) ? 'text-gray-800' : 'text-gray-300','h-6')}/>
                                                         </div>
                                                             { guests.pets }
                                                         <div className="cursor-pointer" onClick={() => { setGuests({ ...guests, pets: guests.pets+1 }) }}>
-                                                            <PlusCircleIcon
-                                                                className={classNames(
-                                                                    ((guests.pets)<3 ) ? 'text-gray-800' : 'text-gray-300','h-6'
-                                                                )} 
-                                                            />
+                                                            <PlusCircleIcon className={classNames(((guests.pets)<3 ) ? 'text-gray-800' : 'text-gray-300','h-6')}                                                                                      />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -185,23 +163,23 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                 </p>
                                 <div className="flex justify-between py-4 px-5 text-gray-800">
                                     <p className="underline">${property?.nightlyRate} x {dateArray.length?(dateArray.length - 1): 0} nights</p>
-                                    <p>${ parseInt(property?.nightlyRate) * (dateArray.length?(dateArray.length - 1): 0)}</p>
+                                    <p>${ costValue.nightly }</p>
                                 </div>
                                 {
                                     property?.depositFee && <div className="flex pb-5 px-5 justify-between">
                                         <p className="underline">Deposit fee</p>
-                                        <p>${property?.depositFee | 0}</p>
+                                        <p>${ costValue.deposite }</p>
                                     </div>
                                 }
                                 {
                                     isPet && <div className="flex pb-5 px-5 justify-between">
                                         <p className="underline">Pet fee</p>
-                                        <p>${(property?.petAllowFee?.fee | 0)*guests.pets}</p>
+                                        <p>${ costValue.pet }</p>
                                     </div>
                                 }
                                 <div className="flex pb-5 px-5 justify-between">
                                     <p className="underline">Taxes</p>
-                                    <p>${(((parseInt(property?.nightlyRate) * (dateArray.length?(dateArray.length - 1): 0) ) + (property?.depositFee | 0) + (property?.petAllowFee?.fee | 0)*guests.pets) * 0.065).toFixed(2)}</p>
+                                    <p>${ costValue.tax }</p>
                                 </div>
                                 <div  className="flex pb-5 px-5 justify-end">
                                     <span className="font-bold mr-2">{ guests.adult + guests.children }</span> Guests
@@ -209,7 +187,7 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                                 <hr />
                                 <div className="flex justify-between px-5 py-2">
                                     <p className="font-bold">Total</p>
-                                    <p className="font-bold">${(((parseInt(property?.nightlyRate) * (dateArray.length?(dateArray.length - 1): 0) ) + (property?.depositFee | 0) + (property?.petAllowFee?.fee | 0)*guests.pets)*1.065).toFixed(2)}</p>
+                                    <p className="font-bold">${ parseFloat(costValue.deposite) + parseFloat(costValue.nightly) + parseFloat(costValue.pet) + parseFloat(costValue.tax) }</p>
                                 </div>
                             </div>
                         </ul>

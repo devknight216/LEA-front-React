@@ -125,12 +125,6 @@ const PropertyDetailViewPage = (props) => {
               </div>
             </div>
             <div>
-              {/* <div>
-                <p className="text-gray-600 text-lg font-bold">
-                  Host information
-                </p>
-                <HostInfoComponent/>
-              </div> */}
               <div className="mt-5">
                 <p className="text-gray-600 text-lg font-bold">
                   Reviews

@@ -99,7 +99,7 @@ export default function Example() {
                         </div>
                     </div>
                     <div className="text-center my-5">
-                        <a href='https://sso.teachable.com/secure/862029/checkout/3302195/short-term-airbnb' target="_blank" className="bg-red-500 py-3 px-8 text-white rounded-md">Buy Now</a>
+                        <a href=' https://legendaryestatesairbnb.teachable.com/purchase?product_id=3392803' target="_blank" className="bg-red-500 py-3 px-8 text-white rounded-md">Buy Now</a>
                     </div>
                 </div>
            </div>
