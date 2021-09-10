@@ -1,4 +1,4 @@
-import { InputBox } from 'components/basicui/basicui';
+import { InputBox, Toggle } from 'components/basicui/basicui';
 import { Toast } from 'components/common/notification';
 import React, { useEffect, useState } from 'react';
 
@@ -83,6 +83,20 @@ function HostNewPropertyStepOne({ nextStep, property, setProperty, setStep }) {
         }
     }, [location])
 
+    //Get Instant Bool 
+    const getInstantBookToggle = (value) => {
+        setProperty({
+            ...property,
+            instantBook: true
+        })
+    }
+    const removeInstantBookToggle = (value) => {
+        setProperty({
+            ...property,
+            instantBook: false
+        })
+    }
+
     //Go to Next 
     const gotoNext = () => {
         if( property.propertyName && property.nightlyRate && property.propertyDescription && property.propertyLocation ){
@@ -111,7 +125,16 @@ function HostNewPropertyStepOne({ nextStep, property, setProperty, setStep }) {
                                 <InputBox label="Property Name" name="propertyName" type="text" onchange={getProprtyName}/>
                             </div>
                             <div className="col-span-1">
-                                <InputBox label="Nightly Rate" name="nightlyRate" type="number" onchange={getNightlyRate}/>
+                                <InputBox label="Nightly Rate($)" name="nightlyRate" type="number" onchange={getNightlyRate}/>
+                            </div>
+                            <div className="col-span-1">
+                                <InputBox label="Weekly Discount(%)" name="nightlyRate" type="number" onchange={getNightlyRate}/>
+                            </div>
+                            <div className="col-span-1">
+                                <InputBox label="Monthly Discount(%)" name="nightlyRate" type="number" onchange={getNightlyRate}/>
+                            </div>
+                            <div className="col-span-3 py-4">
+                                <Toggle label="Instant Book" getToggleValue={getInstantBookToggle} removeToggleValue={removeInstantBookToggle}/>
                             </div>
                         </div>
                         <div>

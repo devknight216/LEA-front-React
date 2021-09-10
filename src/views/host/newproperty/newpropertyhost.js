@@ -19,6 +19,7 @@ function HostCreateNewPropertypage() {
     const hostinfo = JSON.parse(localStorage.getItem("user"));
     const[property, setProperty] = useState({
         propertyName: "",
+        instantBook: false,
         nightlyRate: 0,
         propertyDescription: "",
         imageURLs: [],

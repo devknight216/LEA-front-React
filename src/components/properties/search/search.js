@@ -29,6 +29,7 @@ export default function SearchComponent() {
 
   const [filterData, setFilterData] = useState({
       nightlyRate: 0,
+      instantBook: false, 
       propertyLocation: {
         city: city?.replace(" ",""),
         state: state?.replace(" ","")
@@ -83,6 +84,20 @@ export default function SearchComponent() {
     setFilterData({
       ...filterData,
       propertySpaceFeature: e.target.value =="All"?"": e.target.value
+    });
+  }
+
+  //Get Instant Book
+  const getInstantBookTogle = () => {
+    setFilterData({
+      ...filterData,
+      instantBook: true
+    });
+  } 
+  const removeInstantBookTogle = () => {
+    setFilterData({
+      ...filterData,
+      instantBook: false
     });
   }
   
@@ -165,7 +180,7 @@ export default function SearchComponent() {
         <div className="border-t mt-4 py-3">
           <span className="text-lg text-gray-500 font-bold">Possibility of Instant Book</span>
           <div className="my-2">
-            <Toggle label={"Instant Book"} getToggleValue={addMainAmenities} removeToggleValue={removeMainAmenities}/>
+            <Toggle label={"Instant Book"} getToggleValue={getInstantBookTogle} removeToggleValue={removeInstantBookTogle}/>
           </div>
         </div>
         <div className="border-t mt-4 py-3">
