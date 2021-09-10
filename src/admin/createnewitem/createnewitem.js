@@ -91,7 +91,7 @@ export default function CreateNewPropertyPage() {
                 </div>
               </div>
               <div className="sm:col-span-6">
-                <Toggle label="Instant Book"/>
+                <Toggle label="Instant Book" removeToggleValue={() => {}} getToggleValue={() => {}}/>
               </div>  
               <div className="sm:col-span-6">
                 <label htmlFor="propertyDescription" className="block text-sm font-medium text-gray-700">
