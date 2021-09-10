@@ -6,10 +6,12 @@ import OurTeamComponent from 'components/homecomponent/team';
 import React from 'react';
 import FeedbackComponent from 'components/homecomponent/feedback';
 import ReviewGuesComponent from 'components/homecomponent/reviewgues/reviewgues';
+import SearchPropertyComponent from 'components/searchproperty/searchproperty';
 
 function HomePage() {
     return (
         <div>
+            <SearchPropertyComponent className="sticky top-5" />
             <HeroComponent/>
             <CarouselPropertyComponent/>
             <FeedbackComponent/>

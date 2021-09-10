@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState, useMemo } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { RangePicker } from "react-trip-date";
-import GooglePlacesAutoComplete from "../googleautocomplete";
+import GooglePlacesAutoComplete from "../header/googleautocomplete";
 import { MinusIcon, PlusIcon, SearchIcon } from "@heroicons/react/solid";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
@@ -9,7 +9,7 @@ import { classNames } from "shared/function";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProperties } from "reduxstore/propertyreducer/action";
 
-export default function SearchPropertyComponent() {
+export default function SearchPropertyComponent({ className}) {
   const locationRef = React.useRef();
   const checkInRef = React.useRef();
   const checkOutRef = React.useRef();
@@ -97,11 +97,14 @@ export default function SearchPropertyComponent() {
       return text;
   }
 
-    return (
-    <>
+  return (
+  <>
       <Popover.Group
         as="nav"
-        className="flex w-6xl max-w-4/5 m-auto relative mt-3 bg-gray-100 bg-opacity-70 rounded-xl p-1"
+        className={classNames(
+          "flex w-6xl max-w-4/5 m-auto mt-3 bg-gray-100 bg-opacity-70 rounded-xl p-1 z-50",
+          className
+        )}
       >
         <Popover className="w-1/4 outline-none">
           <Popover.Button className="w-full flex outline-none">

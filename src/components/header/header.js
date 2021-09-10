@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import SearchPropertyComponent from './searchproperty'
+import SearchPropertyComponent from '../searchproperty'
 import { Popover, Transition } from '@headlessui/react';
 import {
   BookmarkAltIcon,
@@ -38,7 +38,7 @@ return (
       {({ open }) => (
           <>
             <div className="absolute inset-0 shadow z-40 pointer-events-none" aria-hidden="true" />
-            <div className="relative z-40">
+            <div className="relative z-40 bg-white">
               <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
                 <div>
                   <Link to="/" className="flex">
@@ -171,11 +171,6 @@ return (
                       </div>
                     }
                 </div>
-              </div>
-              <div className="absolute w-full top-42 hidden lg:block">
-                {
-                  path=="/" && <div><SearchPropertyComponent/></div>
-                }
               </div>
             </div>
   
