@@ -5,6 +5,7 @@ import DumbBellIcon from "assets/imgs/icon/dumbbell.png";
 import WifiIcon from "assets/imgs/icon/wifi-signal.png";
 import KitckenIcon from "assets/imgs/icon/kitchen.png";
 import PetIcon from "assets/imgs/icon/pet.png";
+import SearchPropertyComponent from "components/searchproperty/searchproperty";
 const iconlist = [
   {
     text: "Fast WIFI",
@@ -39,14 +40,15 @@ export default function HeroComponent() {
             <img className="h-full w-full object-cover" src={HomeBanner} alt="People working on laptops" />
           </div>
           <div className="relative py-16 sm:py-24 lg:py-32">
-            <div className="bg-white bg-opacity-20">
-              <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl py-10">
-                <span className="text-gray-900">
-                  <p className="text-center drop-shadow-xl md:mt-16  font-cyzel">Fully Furnished</p>
+            <SearchPropertyComponent className="top-5 relative" />
+            <div className="bg-black bg-opacity-40 w-max m-auto px-2 sm:px-4 md:px-10 lg:px-16 py-14 my-10 rounded-lg">
+              <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                <span className="text-white">
+                  <p className="text-center drop-shadow-xl font-cyzel">Fully Furnished</p>
                   <p className="text-center drop-shadow-xl  font-cyzel">Luxury Apartments</p>
                 </span>
               </h1>
-              <p className="mt-6 max-w-lg mx-auto text-center text-xl text-gray-900 sm:max-w-3xl py-5">
+              <p className=" max-w-lg mx-auto text-center text-xl text-white sm:max-w-3xl ">
                 Convenience meets luxury. Get the chance to experience luxurious living with the best amenities while having
                 everything else you need at your tips.
               </p>

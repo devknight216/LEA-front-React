@@ -11,7 +11,6 @@ import SearchPropertyComponent from "components/searchproperty/searchproperty";
 function HomePage() {
   return (
     <div>
-      <SearchPropertyComponent className="sticky top-5" />
       <HeroComponent />
       <CarouselPropertyComponent />
       <FeedbackComponent />

@@ -63,13 +63,7 @@ export default function ItemsTableComponent({ getSelected }) {
       </div>
       {status !== 1 ? (
         <div className="flex justify-center w-full py-5">
-          <SpinnerCircularFixed
-            size={50}
-            thickness={100}
-            speed={100}
-            color="#000000AA"
-            secondaryColor="#FFFFFF"
-          />
+          <SpinnerCircularFixed size={50} thickness={100} speed={100} color="#000000AA" secondaryColor="#FFFFFF" />
         </div>
       ) : (
         <ul className="divide-y divide-gray-200">
@@ -88,16 +82,10 @@ export default function ItemsTableComponent({ getSelected }) {
             >
               <div className="flex space-x-3">
                 <div>
-                  <img
-                    src={property?.imageURLs[0]?.url}
-                    className="w-14 h-14 rounded-md"
-                  />
+                  <img src={property?.imageURLs[0]?.url} className="w-14 h-14 rounded-md" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-900">
-                    {" "}
-                    {property.propertyName}
-                  </p>
+                  <p className="text-sm font-medium text-gray-900"> {property.propertyName}</p>
                   <p className="text-sm text-gray-500">
                     ${property.nightlyRate}/night
                     <span className="text-xs font-semibold inline-block py-1 px-2 rounded text-blue-600 bg-blue-200 uppercase mx-1">
@@ -113,10 +101,7 @@ export default function ItemsTableComponent({ getSelected }) {
                     gotEdit(property._id);
                   }}
                 />
-                <TrashIcon
-                  className="text-red-400 h-6 w-6 hover:text-red-600"
-                  onClick={handleDelete}
-                />
+                <TrashIcon className="text-red-400 h-6 w-6 hover:text-red-600" onClick={handleDelete} />
               </div>
             </li>
           ))}

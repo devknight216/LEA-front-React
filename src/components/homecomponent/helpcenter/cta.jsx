@@ -21,7 +21,7 @@ export default function CtaComponent() {
         <div className="relative mx-auto max-w-md px-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
           <div className="md:ml-auto md:w-1/2 md:pl-10">
             <h2 className="text-base font-semibold uppercase tracking-wider text-gray-800">TALK TO OUR TEAM OF EXPERTS</h2>
-            <p className="mt-2 text-gray-800 text-3xl font-extrabold tracking-tight sm:text-4xl">We`&apos;` re here to help</p>
+            <p className="mt-2 text-gray-800 text-3xl font-extrabold tracking-tight sm:text-4xl">We&apos; re here to help</p>
             <p className="mt-3 text-lg text-gray-800">
               Want to know more about our properties? Maybe you have some questions about our process. Fill out the contact form
               and one our qualified property consultants will reach out to you and assist you with your concerns.
