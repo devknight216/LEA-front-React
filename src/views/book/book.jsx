@@ -39,10 +39,9 @@ function BookPage({ match }) {
       dateArray: dates,
       hostId: property?.hostInfo?.userId,
       totalCost: (
-        (parseInt(property?.nightlyRate) * (dates.length - 1) +
-          (property?.depositFee | 0) +
-          (property?.petAllowFee?.fee | 0) * bookData.pets) *
-        1.065
+        parseInt(property?.nightlyRate) * (dates.length - 1) +
+        (property?.depositFee | 0) +
+        (property?.petAllowFee?.fee | 0) * bookData.pets
       ).toFixed(2),
     });
   }, [property]);
