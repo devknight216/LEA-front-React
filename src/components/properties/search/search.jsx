@@ -119,7 +119,7 @@ export default function SearchComponent() {
   return (
     <div>
       <div className="shadow bg-white p-10 rounded-md text-gray-500 ">
-        <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 mb-4">
           <div className="mt-1">
             <label htmlFor="number" className="block text-sm font-medium text-gray-700">
               Choose your max nightly rate
@@ -172,11 +172,8 @@ export default function SearchComponent() {
             <MultiSelect options={amenities} value={filterData.amenities} onChange={getAmenities} labelledBy="Select" />
           </div>
         </div>
-        <div className="border-t mt-4 py-3">
-          <span className="text-lg text-gray-500 font-bold">Possibility of Instant Book</span>
-          <div className="my-2">
-            <Toggle label={"Instant Book"} getToggleValue={getInstantBookTogle} removeToggleValue={removeInstantBookTogle} />
-          </div>
+        <div className="border-t pt-6 pb-3">
+          <Toggle label={"Instant Book"} getToggleValue={getInstantBookTogle} removeToggleValue={removeInstantBookTogle} />
         </div>
         <div className="border-t mt-4 py-3">
           <span className="text-lg text-gray-500 font-bold">Special Amenities</span>

@@ -126,10 +126,10 @@ export default function ContactUsPage() {
                 <dt>
                   <span className="sr-only">Email</span>
                 </dt>
-                <dd className="flex text-base text-gray-600">
+                {/* <dd className="flex text-base text-gray-600">
                   <MailIcon className="flex-shrink-0 w-6 h-6 text-white" aria-hidden="true" />
                   <span className="ml-3">info@legendaryestatesairbnb.com</span>
-                </dd>
+                </dd> */}
               </dl>
               <ul className="mt-8 flex space-x-12" role="list">
                 <li>
