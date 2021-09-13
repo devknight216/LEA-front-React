@@ -15,8 +15,8 @@ function NotiVerificationPage() {
         <h2 className="text-gray-600 font-bold text-2xl my-5">Welcome to Legendary Estates Airbnb!</h2>
         <p className="text-gray-500 ">
           Thank you for signing up! <br />
-          We are excited to have you here and can`&apos;`t wait to get you onboard. <br />
-          Before we get started, we`&apos;`ll need to verify your email. <br />
+          We are excited to have you here and can&apos;t wait to get you onboard. <br />
+          Before we get started, we&apos;ll need to verify your email. <br />
           Please check your inbox and click the link for email verification.
         </p>
       </div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api/`;
+const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api`;
 
 //Contact US API
 export const contactus = (requestbody) => {

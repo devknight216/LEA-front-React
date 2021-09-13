@@ -57,8 +57,8 @@ export default function Example() {
         </div>
         <div className="py-2">
           <span className="text-gray-600">
-            You can start learning the proven methods we have used for the past 2 years to earn over $10,000 a month,
-            that`&apos;`s over $100,000 a year. The infamous 6 figures everyone chases!
+            You can start learning the proven methods we have used for the past 2 years to earn over $10,000 a month, that&apos;
+            sover $100,000 a year. The infamous 6 figures everyone chases!
           </span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 py-10 text-gray-600">
@@ -78,16 +78,16 @@ export default function Example() {
               <span>
                 We are creating a real community of online entrepreneurs. With Airbnb becoming a first choice over Hotel stays, it
                 gives you an opportunity to make profit for your Vacation Property! This course will show you how to make money
-                from other people`&apos;`s properties without the risk of having to pay a closing cost for owning.
+                from other people &apos;s properties without the risk of having to pay a closing cost for owning.
               </span>
             </div>
             <img src={Bg3} className="w-full h-auto object-cover my-5 md:my-10" />
             <div className="p-5 w-full h-auto">
               <span>
                 Be one of the students to enroll and learn all of my closely guarded secrets! Am I going to guarantee you
-                overnight success? Absolutely not, that would be unrealistic, we`&apos;`re all mature enough to know that there
+                overnight success? Absolutely not, that would be unrealistic, we &apos; re all mature enough to know that there
                 are no guarantees in life. Anyone promising that is lying. This is a real business that requires real work that
-                can take months to even a year to produce the income you`&apos;`re looking for Here is what I can promise you…
+                can take months to even a year to produce the income you &apos; re looking for Here is what I can promise you…
               </span>
             </div>
           </div>
@@ -97,7 +97,7 @@ export default function Example() {
             <span className="text-3xl font-extrabold tracking-tight text-gray-900">What you’ll learn and get</span>
             <div className="py-3 px-5">
               <span>
-                If you `&apos;`re coach-able with a good attitude, a willingness to work, and you follow my system you will earn
+                If you &apos; re coach-able with a good attitude, a willingness to work, and you follow my system you will earn
                 <br /> income. Even after your first 90 days the profits can be awesome!
               </span>
             </div>
