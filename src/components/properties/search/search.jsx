@@ -38,7 +38,6 @@ export default function SearchComponent() {
     guestNum: parseInt(query?.adult) + parseInt(query?.children),
     amenities: [],
   });
-  console.log("filteder params=>", filterData);
   //Get Amenities Value
   const getAmenities = (value) => {
     setFilterData({

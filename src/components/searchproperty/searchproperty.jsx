@@ -50,8 +50,6 @@ export default function SearchPropertyComponent({ className }) {
     [properties]
   );
 
-  console.log(locationArray);
-
   const changeGuestNum = (type, who) => {
     if (type === "plus") {
       switch (who) {
@@ -128,14 +126,13 @@ export default function SearchPropertyComponent({ className }) {
     <>
       <Popover.Group
         as="nav"
-        className={classNames("flex w-6xl max-w-4/5 m-auto mt-3 bg-gray-100 bg-opacity-70 rounded-xl p-1 z-50", className)}
+        className={classNames("flex w-6xl max-w-4/5 m-auto mt-3 bg-gray-100 bg-opacity-70 rounded-xl p-1 z-30", className)}
       >
         <Popover className="w-1/4 outline-none">
           <Popover.Button className="w-full flex outline-none">
-            {" "}
             {({ open }) => (
               <>
-                {open && locationRef.current.focus()} {open && setCurrentNav(1)}{" "}
+                {open && locationRef.current.focus()} {open && setCurrentNav(1)}
                 <div
                   className={classNames(
                     open ? "rounded-full bg-white shadow-l shadow-lg" : "",
@@ -143,18 +140,18 @@ export default function SearchPropertyComponent({ className }) {
                   )}
                   ref={locationRef}
                 >
-                  <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">Location </div>{" "}
+                  <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">Location </div>
                   <div className="w-full bg-transparent outline-none overflow-ellipsis text-md text-gray-700 placeholder-gray-600 text-md font-semibold">
                     <input
                       value={locationUrl}
                       className="w-full bg-transparent outline-none overflow-ellipsis pl-8 text-md text-gray-700 placeholder-gray-600 text-md font-semibold"
                     />
-                  </div>{" "}
-                </div>{" "}
-                {currentNav !== 1 && currentNav !== 2 && <span className="bg-gray-300 w-px m-auto h-16"> </span>}{" "}
+                  </div>
+                </div>
+                {currentNav !== 1 && currentNav !== 2 && <span className="bg-gray-300 w-px m-auto h-16"> </span>}
               </>
-            )}{" "}
-          </Popover.Button>{" "}
+            )}
+          </Popover.Button>
           <Transition
             as={Fragment}
             enter="transition ease-out duration-200"
@@ -176,36 +173,33 @@ export default function SearchPropertyComponent({ className }) {
                         setLocation(`${location.city}, ${location.state}, ${location.country}`);
                       }}
                     >
-                      {" "}
-                      {location.city}, {location.state}, {location.country}{" "}
+                      {location.city}, {location.state}, {location.country}
                     </li>
-                  ))}{" "}
-                </ul>{" "}
-              </div>{" "}
-            </Popover.Panel>{" "}
-          </Transition>{" "}
-        </Popover>{" "}
+                  ))}
+                </ul>
+              </div>
+            </Popover.Panel>
+          </Transition>
+        </Popover>
         <Popover className="w-1/4" as="div">
           <Popover.Button className="w-full flex outline-none">
-            {" "}
             {({ open }) => (
               <>
-                {open && setCurrentNav(2)}{" "}
+                {open && setCurrentNav(2)}
                 <div
                   ref={checkInRef}
                   className={classNames(open ? "rounded-full bg-white shadow-lg" : "", "transform lg:py-5 sm:py-3 w-full")}
                   onClick={(e) => e.preventDefault()}
                 >
-                  <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">Check In </div>{" "}
+                  <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">Check In </div>
                   <div className={`w-full text-left text-md font-semibold pl-8 text-gray-600`}>
-                    {" "}
-                    {filterDateRange.from ? moment(filterDateRange.from, "YYYY-MM-DD").format("MM/DD/YYYY") : "From"}{" "}
-                  </div>{" "}
-                </div>{" "}
-                {currentNav !== 2 && currentNav !== 3 && <span className="bg-gray-300 w-px m-auto h-16"> </span>}{" "}
+                    {filterDateRange.from ? moment(filterDateRange.from, "YYYY-MM-DD").format("MM/DD/YYYY") : "From"}
+                  </div>
+                </div>
+                {currentNav !== 2 && currentNav !== 3 && <span className="bg-gray-300 w-px m-auto h-16"> </span>}
               </>
-            )}{" "}
-          </Popover.Button>{" "}
+            )}
+          </Popover.Button>
           <Transition
             as={Fragment}
             enter="transition ease-out duration-200"
@@ -227,31 +221,29 @@ export default function SearchPropertyComponent({ className }) {
                   to: filterDateRange.to,
                 }}
                 disabledBeforeDate={filterDateRange.from}
-              />{" "}
-            </Popover.Panel>{" "}
-          </Transition>{" "}
-        </Popover>{" "}
+              />
+            </Popover.Panel>
+          </Transition>
+        </Popover>
         <Popover className="w-1/4">
           <Popover.Button className="w-full flex outline-none">
-            {" "}
             {({ open }) => (
               <>
-                {open && setCurrentNav(3)}{" "}
+                {open && setCurrentNav(3)}
                 <div
                   ref={checkOutRef}
                   className={classNames(open ? "rounded-full bg-white shadow-lg" : "", "transform lg:py-5 sm:py-3 w-full")}
                   onClick={(e) => e.preventDefault()}
                 >
-                  <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">Check Out </div>{" "}
+                  <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">Check Out </div>
                   <div className={`w-full text-left text-md font-semibold pl-8 text-gray-600`}>
-                    {" "}
-                    {filterDateRange.to ? moment(filterDateRange.to, "YYYY-MM-DD").format("MM/DD/YYYY") : "To"}{" "}
-                  </div>{" "}
-                </div>{" "}
-                {currentNav !== 3 && currentNav !== 4 && <span className="bg-gray-300 w-px m-auto h-16"> </span>}{" "}
+                    {filterDateRange.to ? moment(filterDateRange.to, "YYYY-MM-DD").format("MM/DD/YYYY") : "To"}
+                  </div>
+                </div>
+                {currentNav !== 3 && currentNav !== 4 && <span className="bg-gray-300 w-px m-auto h-16"> </span>}
               </>
-            )}{" "}
-          </Popover.Button>{" "}
+            )}
+          </Popover.Button>
           <Transition
             as={Fragment}
             enter="transition ease-out duration-200"
@@ -275,23 +267,22 @@ export default function SearchPropertyComponent({ className }) {
                   to: filterDateRange.to,
                 }}
                 disabledAfterDate={filterDateRange.to}
-              />{" "}
-            </Popover.Panel>{" "}
-          </Transition>{" "}
-        </Popover>{" "}
+              />
+            </Popover.Panel>
+          </Transition>
+        </Popover>
         <Popover className="w-1/4">
           <Popover.Button className="w-full flex outline-none relative" ref={guestRef}>
-            {" "}
             {({ open }) => (
               <>
-                {open && setCurrentNav(4)}{" "}
+                {open && setCurrentNav(4)}
                 <div
                   className={classNames(open ? "rounded-full bg-white shadow-lg" : "", "transform lg:py-5 sm:py-3 w-full")}
                   onClick={(e) => e.preventDefault()}
                 >
-                  <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">Guest </div>{" "}
-                  <div className="w-2/3 text-left text-gray-600 text-md font-semibold pl-8 truncate"> {getGuestText()} </div>{" "}
-                </div>{" "}
+                  <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">Guest </div>
+                  <div className="w-2/3 text-left text-gray-600 text-md font-semibold pl-8 truncate"> {getGuestText()} </div>
+                </div>
                 <div
                   className="absolute w-16 h-16 bg-yellow-300 hover:bg-yellow-400 rounded-full right-3 lg:top-3 sm:top-0 flex items-center justify-center"
                   onClick={(e) => {
@@ -304,10 +295,10 @@ export default function SearchPropertyComponent({ className }) {
                   }}
                 >
                   <SearchIcon className="text-white w-1/2 h-1/2" />
-                </div>{" "}
+                </div>
               </>
-            )}{" "}
-          </Popover.Button>{" "}
+            )}
+          </Popover.Button>
           <Transition
             as={Fragment}
             enter="transition ease-out duration-200"
@@ -322,7 +313,7 @@ export default function SearchPropertyComponent({ className }) {
               className="w-96 ml-auto hidden md:block absolute z-10 top-24 inset-x-0 bg-white rounded-lg shadow-md p-5"
             >
               <div className="flex text-gray-500 items-center my-4">
-                <span className=" w-4/6 text-gray-600 font-bold"> Adult </span>{" "}
+                <span className=" w-4/6 text-gray-600 font-bold"> Adult </span>
                 <div className="flex w-2/6 items-center">
                   <button
                     className={`rounded-full border-2 border-gray-300 ${
@@ -330,21 +321,19 @@ export default function SearchPropertyComponent({ className }) {
                     }`}
                     onClick={() => changeGuestNum("minus", "adult")}
                   >
-                    {" "}
-                    <MinusIcon className="w-6 h-6" />{" "}
-                  </button>{" "}
-                  <span className="text-center mx-3"> {guestNum.adult} </span>{" "}
+                    <MinusIcon className="w-6 h-6" />
+                  </button>
+                  <span className="text-center mx-3"> {guestNum.adult} </span>
                   <button
                     className="rounded-full border-2 border-gray-300 cursor-pointer hover:bg-gray-300"
                     onClick={() => changeGuestNum("plus", "adult")}
                   >
-                    {" "}
-                    <PlusIcon className="w-6 h-6" />{" "}
-                  </button>{" "}
-                </div>{" "}
-              </div>{" "}
+                    <PlusIcon className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
               <div className="flex text-gray-500 items-center my-4">
-                <span className=" w-4/6 text-gray-600 font-bold"> Children </span>{" "}
+                <span className=" w-4/6 text-gray-600 font-bold"> Children </span>
                 <div className="flex w-2/6 items-center">
                   <button
                     className={`rounded-full border-2 border-gray-300 ${
@@ -352,21 +341,19 @@ export default function SearchPropertyComponent({ className }) {
                     }`}
                     onClick={() => changeGuestNum("minus", "children")}
                   >
-                    {" "}
-                    <MinusIcon className="w-6 h-6" />{" "}
-                  </button>{" "}
-                  <span className="text-center mx-3"> {guestNum.children} </span>{" "}
+                    <MinusIcon className="w-6 h-6" />
+                  </button>
+                  <span className="text-center mx-3"> {guestNum.children} </span>
                   <button
                     className="rounded-full border-2 border-gray-300 cursor-pointer hover:bg-gray-300"
                     onClick={() => changeGuestNum("plus", "children")}
                   >
-                    {" "}
-                    <PlusIcon className="w-6 h-6" />{" "}
-                  </button>{" "}
-                </div>{" "}
-              </div>{" "}
+                    <PlusIcon className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
               <div className="flex text-gray-500 items-center my-4">
-                <span className=" w-4/6 text-gray-600 font-bold"> Infants </span>{" "}
+                <span className=" w-4/6 text-gray-600 font-bold"> Infants </span>
                 <div className="flex w-2/6 items-center">
                   <button
                     className={`rounded-full border-2 border-gray-300 ${
@@ -374,23 +361,21 @@ export default function SearchPropertyComponent({ className }) {
                     }`}
                     onClick={() => changeGuestNum("minus", "infants")}
                   >
-                    {" "}
-                    <MinusIcon className="w-6 h-6" />{" "}
-                  </button>{" "}
-                  <span className="text-center mx-3"> {guestNum.infants} </span>{" "}
+                    <MinusIcon className="w-6 h-6" />
+                  </button>
+                  <span className="text-center mx-3"> {guestNum.infants} </span>
                   <button
                     className="rounded-full border-2 border-gray-300 cursor-pointer hover:bg-gray-300"
                     onClick={() => changeGuestNum("plus", "infants")}
                   >
-                    {" "}
-                    <PlusIcon className="w-6 h-6" />{" "}
-                  </button>{" "}
-                </div>{" "}
-              </div>{" "}
-            </Popover.Panel>{" "}
-          </Transition>{" "}
-        </Popover>{" "}
-      </Popover.Group>{" "}
+                    <PlusIcon className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
+            </Popover.Panel>
+          </Transition>
+        </Popover>
+      </Popover.Group>
     </>
   );
 }

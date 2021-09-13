@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import {
-  CardElement,
-  Elements,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+import { CardElement, Elements, useStripe, useElements } from "@stripe/react-stripe-js";
 import { paymentIntent } from "shared/api";
 import { useDispatch, useSelector } from "react-redux";
 import { SpinnerCircularFixed } from "spinners-react";
@@ -34,7 +29,6 @@ const CheckoutForm = ({ bookData }) => {
         },
         token
       );
-      console.log("[error]", res);
 
       if (!stripe || !elements) {
         // Stripe.js has not loaded yet. Make sure to disable
@@ -81,11 +75,7 @@ const CheckoutForm = ({ bookData }) => {
                 infants: bookData.adult,
               })
             );
-            Toast(
-              "",
-              "Reserved successfully, We will send an Email soon.",
-              "success"
-            );
+            Toast("", "Reserved successfully, We will send an Email soon.", "success");
             console.log("success");
           }
         }
@@ -106,15 +96,7 @@ const CheckoutForm = ({ bookData }) => {
         className="bg-red-500 hover:bg-red-600 p-2 w-full text-white rounded-lg my-2 font-bold flex justify-center gap-4"
       >
         Confirm and Pay (${bookData?.totalCost})
-        {loading && (
-          <SpinnerCircularFixed
-            size={20}
-            thickness={200}
-            speed={100}
-            color="#ff0000AA"
-            secondaryColor="#D9D9D6"
-          />
-        )}
+        {loading && <SpinnerCircularFixed size={20} thickness={200} speed={100} color="#ff0000AA" secondaryColor="#D9D9D6" />}
       </button>
       <p className="text-sm text-red-500">{err}</p>
     </form>
