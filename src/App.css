@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+@import url('http://fonts.cdnfonts.com/css/trajan-pro');
 .tooltip{
     visibility: hidden;
     position: absolute;
@@ -22,6 +23,9 @@
 }
 .font-cyzel{
   font-family:'Cinzel', serif;
+}
+.font-trajan{
+  font-family: 'Trajan Pro', sans-serif;
 }
 body {
   font-family: 'Roboto', sans-serif;

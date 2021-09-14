@@ -217,10 +217,6 @@ export default function HeaderComponent() {
                     <Link to="/policy" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                       Privacy and Policies
                     </Link>
-                    <Link to="/guide" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
-                      Guide
-                    </Link>
-
                     <Link to="/host" className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700">
                       Add New Space
                     </Link>
