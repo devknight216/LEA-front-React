@@ -145,6 +145,7 @@ export default function SearchPropertyComponent({ className }) {
                     <input
                       type="text"
                       value={locationUrl}
+                      onChange={() => {}}
                       className="w-full bg-transparent outline-none overflow-ellipsis pl-8 text-md text-gray-700 placeholder-gray-600 text-md font-semibold"
                     />
                   </div>
@@ -162,7 +163,7 @@ export default function SearchPropertyComponent({ className }) {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 -translate-y-1"
           >
-            <Popover.Panel static className="hidden md:block absolute z-10 top-24 inset-x-0 bg-white rounded-lg shadow-md">
+            <Popover.Panel static className="hidden md:block absolute z-50 top-24 inset-x-0 bg-white rounded-lg shadow-md">
               <div className="p-4">
                 <ul>
                   {" "}
@@ -210,7 +211,7 @@ export default function SearchPropertyComponent({ className }) {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 -translate-y-1"
           >
-            <Popover.Panel static className="hidden md:block absolute z-10 top-24 inset-x-0 bg-white rounded-t-lg shadow-md">
+            <Popover.Panel static className="hidden md:block absolute z-50 top-24 inset-x-0 bg-white rounded-t-lg shadow-md">
               <RangePicker
                 numberOfMonths={2}
                 onChange={(e) => {
@@ -254,7 +255,7 @@ export default function SearchPropertyComponent({ className }) {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 -translate-y-1"
           >
-            <Popover.Panel static className="hidden md:block absolute z-10 top-24 inset-x-0 bg-white rounded-t-lg shadow-md">
+            <Popover.Panel static className="hidden md:block absolute z-50 top-24 inset-x-0 bg-white rounded-t-lg shadow-md">
               <RangePicker
                 numberOfMonths={2}
                 onChange={(e) => {
@@ -311,7 +312,7 @@ export default function SearchPropertyComponent({ className }) {
           >
             <Popover.Panel
               static
-              className="w-96 ml-auto hidden md:block absolute z-10 top-24 inset-x-0 bg-white rounded-lg shadow-md p-5"
+              className="w-96 ml-auto hidden md:block absolute z-50 top-24 inset-x-0 bg-white rounded-lg shadow-md p-5"
             >
               <div className="flex text-gray-500 items-center my-4">
                 <span className=" w-4/6 text-gray-600 font-bold"> Adult </span>

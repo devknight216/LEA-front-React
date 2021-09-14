@@ -47,7 +47,7 @@ export const stripeCheck = async (token) => {
 //Upload Avatar
 export const saveAvatarUrlToBackend = async (id, url, token) => {
   return await axios.post(
-    backend_url + "accounts/avatar",
+    backend_url + "/accounts/avatar",
     {
       userId: id,
       avatarURL: url,
@@ -63,7 +63,7 @@ export const saveAvatarUrlToBackend = async (id, url, token) => {
 
 //Payment intent
 export const paymentIntent = async (body, token) => {
-  return await axios.post(backend_url + "payment/payment-intent", JSON.stringify(body), {
+  return await axios.post(backend_url + "/payment/payment-intent", JSON.stringify(body), {
     headers: {
       Authorization: `${token}`,
       "X-Requested-With": "XMLHttpRequest",

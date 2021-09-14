@@ -35,11 +35,11 @@ export default function HeroComponent() {
       {/* Hero card */}
       <div className="relative">
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100" />
-        <div className="relative shadow-xl sm:overflow-hidden">
+        <div className="relative shadow-xl">
           <div className="absolute inset-0">
             <img className="h-full w-full object-cover" src={HomeBanner} alt="People working on laptops" />
           </div>
-          <div className="relative py-16 sm:py-24 lg:py-32">
+          <div className=" relative py-16 sm:py-24 lg:py-32">
             <div className="bg-black bg-opacity-40 px-2 sm:px-4 md:px-10 lg:px-16 py-14 my-10">
               <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
                 <span className="text-yellow-300">
@@ -52,7 +52,7 @@ export default function HeroComponent() {
                 everything else you need at your tips.
               </p>
             </div>
-            <SearchPropertyComponent className="top-5 relative" />
+            <SearchPropertyComponent className="relative" />
           </div>
         </div>
       </div>

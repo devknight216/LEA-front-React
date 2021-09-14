@@ -82,6 +82,28 @@ function HostNewPropertyStepOne({ nextStep, property, setProperty, setStep }) {
     });
   };
 
+  //Get Weekly or Monthly Discount
+  const getWeeklyDiscount = (e) => {
+    if (e.target.value <= 100) {
+      setProperty({
+        ...property,
+        weeklyDiscount: e.target.value,
+      });
+    } else {
+      Toast("", "Must be Percentage", "danger");
+    }
+  };
+  const getMonthlyDiscount = (e) => {
+    if (e.target.value <= 100) {
+      setProperty({
+        ...property,
+        monthlyDiscount: e.target.value,
+      });
+    } else {
+      Toast("", "Must be Percentage", "danger");
+    }
+  };
+
   //Get property Location
   useEffect(() => {
     if (location.apartment && location.city && location.state && location.street && location.zip && location.country) {
@@ -93,13 +115,13 @@ function HostNewPropertyStepOne({ nextStep, property, setProperty, setStep }) {
   }, [location]);
 
   //Get Instant Bool
-  const getInstantBookToggle = (value) => {
+  const getInstantBookToggle = () => {
     setProperty({
       ...property,
       instantBook: true,
     });
   };
-  const removeInstantBookToggle = (value) => {
+  const removeInstantBookToggle = () => {
     setProperty({
       ...property,
       instantBook: false,
@@ -129,17 +151,17 @@ function HostNewPropertyStepOne({ nextStep, property, setProperty, setStep }) {
         <div className="py-5">
           <form>
             <div className="grid grid-cols-1 sm:gird-cols-2 md:grid-cols-3 md:gap-4 py-2">
-              <div className="col-span-2">
+              <div className="col-span-3">
                 <InputBox label="Property Name" name="propertyName" type="text" onchange={getProprtyName} />
               </div>
               <div className="col-span-1">
                 <InputBox label="Nightly Rate($)" name="nightlyRate" type="number" onchange={getNightlyRate} />
               </div>
               <div className="col-span-1">
-                <InputBox label="Weekly Discount(%)" name="nightlyRate" type="number" onchange={getNightlyRate} />
+                <InputBox label="Weekly Discount(%)" name="nightlyRate" type="number" onchange={getWeeklyDiscount} />
               </div>
               <div className="col-span-1">
-                <InputBox label="Monthly Discount(%)" name="nightlyRate" type="number" onchange={getNightlyRate} />
+                <InputBox label="Monthly Discount(%)" name="nightlyRate" type="number" onchange={getMonthlyDiscount} />
               </div>
               <div className="col-span-3 py-4">
                 <Toggle label="Instant Book" getToggleValue={getInstantBookToggle} removeToggleValue={removeInstantBookToggle} />

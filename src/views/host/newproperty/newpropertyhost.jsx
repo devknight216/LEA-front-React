@@ -20,6 +20,8 @@ function HostCreateNewPropertypage() {
     propertyName: "",
     instantBook: false,
     nightlyRate: 0,
+    weeklyDiscount: 0,
+    monthlyDiscount: 0,
     propertyDescription: "",
     imageURLs: [],
     hostInfo: {

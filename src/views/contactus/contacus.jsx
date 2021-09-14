@@ -41,7 +41,7 @@ export default function ContactUsPage() {
               <form onSubmit={handleSubmit(onSubmit)} className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                 <div>
                   <label htmlFor="first_name" className="block text-sm font-medium text-gray-900">
-                    First name
+                    First name*
                   </label>
                   <div className="mt-1">
                     {errors.firstName && <span className="text-red-700">This field is required</span>}
@@ -54,7 +54,7 @@ export default function ContactUsPage() {
                 </div>
                 <div>
                   <label htmlFor="last_name" className="block text-sm font-medium text-gray-900">
-                    Last name
+                    Last name*
                   </label>
                   <div className="mt-1">
                     {errors.lastName && <span className="text-red-700">This field is required</span>}
@@ -67,7 +67,7 @@ export default function ContactUsPage() {
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-900">
-                    Email
+                    Email*
                   </label>
                   <div className="mt-1">
                     {errors.email && <span className="text-red-700">This field is required</span>}
@@ -83,7 +83,7 @@ export default function ContactUsPage() {
                 <div>
                   <div className="flex justify-between">
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-900">
-                      Phone
+                      Phone*
                     </label>
                   </div>
                   <div className="mt-1">
@@ -102,7 +102,7 @@ export default function ContactUsPage() {
                 </div>
                 <div className="sm:col-span-2">
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-900">
-                    Subject
+                    Subject*
                   </label>
                   <div className="mt-1">
                     {errors.subject && <span className="text-red-700">This field is required</span>}
@@ -116,7 +116,7 @@ export default function ContactUsPage() {
                 <div className="sm:col-span-2">
                   <div className="flex justify-between">
                     <label htmlFor="message" className="block text-sm font-medium text-gray-900">
-                      Message
+                      Message*
                     </label>
                     <span id="message-max" className="text-sm text-gray-500">
                       Max. 500 characters
