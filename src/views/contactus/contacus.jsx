@@ -3,15 +3,17 @@ import { MailIcon, PhoneIcon } from "@heroicons/react/outline";
 import { useForm } from "react-hook-form";
 import { contactus } from "shared/api";
 import { Toast } from "components/common/notification";
+import { useHistory } from "react-router";
 
 export default function ContactUsPage() {
   //Submit Email form
+  const history = useHistory();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const templateParams = {
       firstname: data.firstName,
       lastname: data.lastName,
@@ -21,8 +23,9 @@ export default function ContactUsPage() {
       subject: data.subject,
     };
     try {
-      contactus(templateParams);
-      Toast("", "Success", "success");
+      await contactus(templateParams);
+      history.push('/contact-success');
+      
     } catch (error) {
       Toast("", "Faild", "danger");
     }
