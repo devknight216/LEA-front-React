@@ -14,10 +14,9 @@ function ContactUsSuccessPage() {
         </div>
         <h2 className="text-gray-600 font-bold text-2xl my-5">Your request is sent successfully!</h2>
         <p className="text-gray-500 ">
-            Your request is sent successfully!<br/>
-            Thank you to reach out to us.
-            We will send the correct answer soon.
-
+          Your request is sent successfully!
+          <br />
+          Thank you to reach out to us. We will send the correct answer soon.
         </p>
       </div>
     </div>

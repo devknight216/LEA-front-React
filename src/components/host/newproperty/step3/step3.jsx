@@ -163,7 +163,9 @@ function HostNewPropertyStepThree({ previousStep, property, setProperty, nextSte
             <ImageUploadToAWSComponent />
           </div>
           <div className="text-right my-2">
-            <button className="rounded-md bg-red-500 hover:bg-red-700 text-white px-10 py-2" onClick={nextStep}>Next</button>
+            <button className="rounded-md bg-red-500 hover:bg-red-700 text-white px-10 py-2" onClick={nextStep}>
+              Next
+            </button>
           </div>
         </footer>
       </div>

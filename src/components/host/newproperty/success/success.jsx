@@ -2,10 +2,9 @@ import React from "react";
 import { useHistory } from "react-router";
 
 function HostNewPropertySuccess() {
-
- const hostory = useHistory()
+  const hostory = useHistory();
   const gotoView = async () => {
-    hostory.push('/properties')
+    hostory.push("/properties");
   };
   return (
     <div>

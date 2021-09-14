@@ -42,11 +42,11 @@ export default function CreateNewPropertyPage() {
   };
   //Get Instant Book Toggle
   const getInstantBook = () => {
-    setInstantBook(true)
-  }
+    setInstantBook(true);
+  };
   const removeInstanBook = () => {
-    setInstantBook(false)
-  }
+    setInstantBook(false);
+  };
 
   return (
     <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>

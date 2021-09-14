@@ -25,7 +25,7 @@ function HostNewPropertyWelcome({ nextStep }) {
         console.log(error);
       }
     } else {
-      Toast("", "You should add your payout method to host your space", "info")
+      Toast("", "You should add your payout method to host your space", "info");
     }
   };
   return (

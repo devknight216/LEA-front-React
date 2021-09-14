@@ -24,8 +24,7 @@ export default function ContactUsPage() {
     };
     try {
       await contactus(templateParams);
-      history.push('/contact-success');
-      
+      history.push("/contact-success");
     } catch (error) {
       Toast("", "Faild", "danger");
     }

@@ -21,10 +21,10 @@ export default function CreateNewPropertyPage() {
   const [instantBook, setInstantBook] = useState(false);
   const getInstantBook = () => {
     setInstantBook(true);
-  }
+  };
   const removeInstantBook = () => {
     setInstantBook(false);
-  }
+  };
 
   const onSubmit = (data) => {
     const requestBody = formatReqestData(data, instantBook);

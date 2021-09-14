@@ -26,7 +26,7 @@ export default function MainLayout() {
           <Route path="/staging" component={Stagingpage} />
           <Route path="/profit" component={ProfitPage} />
           <Route path="/contact" component={ContactUsPage} />
-          <Route path="/contact-success" component={ContactUsSuccessPage}/>
+          <Route path="/contact-success" component={ContactUsSuccessPage} />
           <Route path="/details/:id" component={PropertyDetailViewPage} />
           <Route path="/policy" component={PolicyPage} />
           <Route path="/verify/:token" component={EmailVerificaionPage} />
