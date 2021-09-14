@@ -6,6 +6,7 @@ import StepsComponent from "components/host/newproperty/steps";
 import HostNewPropertyWelcome from "components/host/newproperty/welcome";
 import StepWizard from "react-step-wizard";
 import HostNewPropertyStepFour from "components/host/newproperty/step4/step4";
+import HostNewPropertySuccess from "components/host/newproperty/success/success";
 
 function HostCreateNewPropertypage() {
   //Step Management
@@ -75,6 +76,7 @@ function HostCreateNewPropertypage() {
             <HostNewPropertyStepTwo property={property} setProperty={setProperty} setStep={setStep} />
             <HostNewPropertyStepThree property={property} setProperty={setProperty} setStep={setStep} />
             <HostNewPropertyStepFour property={property} setProperty={setProperty} setStep={setStep} />
+            <HostNewPropertySuccess />
           </StepWizard>
         </div>
       </div>

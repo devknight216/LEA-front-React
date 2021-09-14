@@ -5,7 +5,7 @@ import { createNewProperty } from "reduxstore/propertyreducer/action";
 import { Toast } from "components/common/notification";
 import ImageUploadToAWSComponent from "components/common/uploadImage";
 
-function HostNewPropertyStepThree({ previousStep, property, setProperty }) {
+function HostNewPropertyStepThree({ previousStep, property, setProperty, nextStep }) {
   //Get manage Type
   const getManageTypeToggle = (value) => {
     setProperty({
@@ -161,6 +161,9 @@ function HostNewPropertyStepThree({ previousStep, property, setProperty }) {
           </div>
           <div className="border-t">
             <ImageUploadToAWSComponent />
+          </div>
+          <div className="text-right my-2">
+            <button className="rounded-md bg-red-500 hover:bg-red-700 text-white px-10 py-2" onClick={nextStep}>Next</button>
           </div>
         </footer>
       </div>

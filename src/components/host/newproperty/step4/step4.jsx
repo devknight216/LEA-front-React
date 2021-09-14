@@ -1,6 +1,6 @@
 import React from "react";
 
-function HostNewPropertyStepFour({ previousStep, property, setProperty }) {
+function HostNewPropertyStepFour({ previousStep, property, setProperty, nextStep }) {
   const layout = [
     {
       title: "Check in and Check out Information",
@@ -35,6 +35,11 @@ function HostNewPropertyStepFour({ previousStep, property, setProperty }) {
             </div>
           </div>
         ))}
+        <div className="text-right">
+          <button className="bg-red-500 focus:bg-red-700 text-white px-10 py-2 rounded-md" onClick={nextStep}>
+            Complete
+          </button>
+        </div>
       </div>
     </div>
   );
