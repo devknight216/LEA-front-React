@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { amenities, features, guestsNum, lastOffer } from "./constant";
 import { useForm } from "react-hook-form";
@@ -18,8 +18,16 @@ export default function CreateNewPropertyPage() {
     dispatch(clearState());
   }, []);
 
+  const [instantBook, setInstantBook] = useState(false);
+  const getInstantBook = () => {
+    setInstantBook(true);
+  }
+  const removeInstantBook = () => {
+    setInstantBook(false);
+  }
+
   const onSubmit = (data) => {
-    const requestBody = formatReqestData(data);
+    const requestBody = formatReqestData(data, instantBook);
     try {
       //Dispatch API to create New Item
       dispatch(createNewProperty(JSON.stringify(requestBody)));
@@ -73,6 +81,7 @@ export default function CreateNewPropertyPage() {
               <div className="mt-1 flex rounded-md shadow-sm">
                 <input
                   type="number"
+                  {...register("weeklyDiscount", { required: true })}
                   min={0}
                   className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 min-w-0 rounded-md sm:text-sm border-gray-300"
                 />
@@ -85,13 +94,14 @@ export default function CreateNewPropertyPage() {
               <div className="mt-1 flex rounded-md shadow-sm">
                 <input
                   type="number"
+                  {...register("monthlyDiscount", { required: true })}
                   min={0}
                   className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 min-w-0 rounded-md sm:text-sm border-gray-300"
                 />
               </div>
             </div>
             <div className="sm:col-span-6">
-              <Toggle label="Instant Book" removeToggleValue={() => {}} getToggleValue={() => {}} />
+              <Toggle label="Instant Book" removeToggleValue={removeInstantBook} getToggleValue={getInstantBook} />
             </div>
             <div className="sm:col-span-6">
               <label htmlFor="propertyDescription" className="block text-sm font-medium text-gray-700">

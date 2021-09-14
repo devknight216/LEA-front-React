@@ -1,5 +1,5 @@
 import { amenities, lastOffer } from "./constant";
-export const formatReqestData = (data) => {
+export const formatReqestData = (data, instantBook) => {
   const amenities = formatAmentities(data);
   const propertyDescribe = formatArray(data, lastOffer.first);
   let imageArray = [];
@@ -7,8 +7,11 @@ export const formatReqestData = (data) => {
   const requestbody = {
     propertyName: data.propertyName,
     nightlyRate: data.nightlyRate,
+    weeklyDiscount: data.weeklyDiscount,
     propertyDescription: data.propertyDescription,
+    monthlyDiscount: data.monthlyDiscount,
     imageURLs: imageArray,
+    instantBook: instantBook,
     hostInfo: {
       name: data.hostedByName,
       userId: JSON.parse(localStorage.getItem("user")).userID,

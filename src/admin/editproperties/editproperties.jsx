@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { amenities, features, guestsNum, lastOffer } from "../createnewitem/constant";
 import { formatReqestData } from "../createnewitem/functions";
@@ -10,10 +10,12 @@ import ImageUploadToAWSComponent from "components/common/uploadImage";
 
 import { Toast } from "components/common/notification";
 import { Toggle } from "components/basicui/basicui";
+import { useStore } from "react-redux";
 
 export default function CreateNewPropertyPage() {
   const location = useLocation();
   const propertyId = location.pathname.split("/")[4];
+  const [instantBook, setInstantBook] = useState(false);
 
   //Get Stored value
   const dispatch = useDispatch();
@@ -25,7 +27,7 @@ export default function CreateNewPropertyPage() {
   //Get form data from hook form
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    const requestBody = formatReqestData(data);
+    const requestBody = formatReqestData(data, instantBook);
     //Dispatch API to create New Item
     const payload = {
       id: propertyId,
@@ -38,6 +40,13 @@ export default function CreateNewPropertyPage() {
       Toast("", "Faild", "danger");
     }
   };
+  //Get Instant Book Toggle
+  const getInstantBook = () => {
+    setInstantBook(true)
+  }
+  const removeInstanBook = () => {
+    setInstantBook(false)
+  }
 
   return (
     <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
@@ -84,7 +93,9 @@ export default function CreateNewPropertyPage() {
               <div className="mt-1 flex rounded-md shadow-sm">
                 <input
                   type="number"
+                  defaultValue={property.weeklyDiscount}
                   min={0}
+                  {...register("weeklyDiscount", { required: true })}
                   className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 min-w-0 rounded-md sm:text-sm border-gray-300"
                 />
               </div>
@@ -97,12 +108,14 @@ export default function CreateNewPropertyPage() {
                 <input
                   type="number"
                   min={0}
+                  defaultValue={property.monthlyDiscount}
+                  {...register("monthlyDiscount", { required: true })}
                   className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-full p-2 min-w-0 rounded-md sm:text-sm border-gray-300"
                 />
               </div>
             </div>
             <div className="sm:col-span-6">
-              <Toggle label="Instant Book" removeToggleValue={() => {}} getToggleValue={() => {}} />
+              <Toggle label="Instant Book" removeToggleValue={removeInstanBook} getToggleValue={getInstantBook} />
             </div>
             <div className="sm:col-span-6">
               <label htmlFor="propertyDescription" className="block text-sm font-medium text-gray-700">
