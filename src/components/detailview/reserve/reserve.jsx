@@ -60,7 +60,24 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
               0.065
             ).toFixed(2)
           : 0,
-      disamount: 0,
+      disamount:
+        dateArray.length - 1 > 7
+          ? dateArray.length - 1 > 30
+            ? (
+                ((property.nightlyRate * (dateArray.length - 1) +
+                  (property?.depositFee | 0) +
+                  (property?.petAllowFee?.fee | 0) * guests.pets) *
+                  (property?.monthlyDiscount | 0)) /
+                100
+              ).toFixed(2)
+            : (
+                ((property.nightlyRate * (dateArray.length - 1) +
+                  (property?.depositFee | 0) +
+                  (property?.petAllowFee?.fee | 0) * guests.pets) *
+                  (property?.weeklyDiscount | 0)) /
+                100
+              ).toFixed(2)
+          : 0,
     });
   }, [dateArray, guests]);
 
@@ -234,10 +251,25 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                       <p>${costValue.pet}</p>
                     </div>
                   )}
-                  {/* <div className="flex pb-5 px-5 justify-between">
-                    <p className="underline">Taxes</p>
-                    <p>${costValue.tax}</p>
-                  </div> */}
+                  {dateArray.length - 1 > 7 ? (
+                    dateArray.length - 1 > 30 ? (
+                      <>
+                        <div className="flex pb-5 px-5 justify-between">
+                          <p className="underline">Monthly Discount</p>
+                          <p>${costValue.disamount}</p>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex pb-5 px-5 justify-between">
+                          <p className="underline">Weekly Discount</p>
+                          <p>- ${costValue.disamount}</p>
+                        </div>
+                      </>
+                    )
+                  ) : (
+                    ""
+                  )}
                   <div className="flex pb-5 px-5 justify-end">
                     <span className="font-bold mr-2">{guests.adult + guests.children}</span> Guests
                   </div>
@@ -245,7 +277,11 @@ function ReserveComponent({ property, checkedInOut, propertyId }) {
                   <div className="flex justify-between px-5 py-2">
                     <p className="font-bold">Total</p>
                     <p className="font-bold">
-                      ${parseFloat(costValue.deposite) + parseFloat(costValue.nightly) + parseFloat(costValue.pet)}
+                      $
+                      {parseFloat(costValue.deposite) +
+                        parseFloat(costValue.nightly) +
+                        parseFloat(costValue.pet) -
+                        parseFloat(costValue.disamount)}
                     </p>
                   </div>
                 </div>

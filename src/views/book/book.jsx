@@ -38,11 +38,30 @@ function BookPage({ match }) {
       ...bookData,
       dateArray: dates,
       hostId: property?.hostInfo?.userId,
-      totalCost: (
-        parseInt(property?.nightlyRate) * (dates.length - 1) +
-        (property?.depositFee | 0) +
-        (property?.petAllowFee?.fee | 0) * bookData.pets
-      ).toFixed(2),
+      totalCost:
+        dates.length - 1 > 7
+          ? dates.length - 1 > 30
+            ? (
+                parseFloat(property?.nightlyRate) * (dates.length - 1) +
+                (property?.depositFee | 0) +
+                (property?.petAllowFee?.fee | 0) * bookData.pets -
+                ((parseFloat(property?.nightlyRate) * (dates.length - 1) +
+                  (property?.depositFee | 0) +
+                  (property?.petAllowFee?.fee | 0) * bookData.pets) *
+                  (property?.monthlyDiscount | 0)) /
+                  100
+              ).toFixed(2)
+            : (
+                parseFloat(property?.nightlyRate) * (dates.length - 1) +
+                (property?.depositFee | 0) +
+                (property?.petAllowFee?.fee | 0) * bookData.pets -
+                ((parseFloat(property?.nightlyRate) * (dates.length - 1) +
+                  (property?.depositFee | 0) +
+                  (property?.petAllowFee?.fee | 0) * bookData.pets) *
+                  (property?.weeklyDiscount | 0)) /
+                  100
+              ).toFixed(2)
+          : 0,
     });
   }, [property]);
 
