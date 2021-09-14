@@ -5,7 +5,6 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import { SwitchHorizontalIcon, DocumentIcon, ViewListIcon, MailOpenIcon, CalendarIcon } from "@heroicons/react/solid";
 import ManageListInboxComponent from "components/host/managelist/inbox";
 import ManageListCalendarComponent from "components/host/managelist/calendar";
-import ManageListGuideComponent from "components/host/managelist/guide";
 import ManageListTransactionsComponent from "components/host/managelist/transcations";
 import { PrivateRoute } from "shared/function";
 
@@ -27,12 +26,6 @@ function ManageListPage() {
       name: "Calendar",
       href: "/user/manage-list/calendar",
       icon: CalendarIcon,
-      current: false,
-    },
-    {
-      name: "Guide",
-      href: "/user/manage-list/guide",
-      icon: DocumentIcon,
       current: false,
     },
     {
@@ -67,12 +60,6 @@ function ManageListPage() {
             current: false,
           },
           {
-            name: "Guide",
-            href: "/user/manage-list/guide",
-            icon: DocumentIcon,
-            current: false,
-          },
-          {
             name: "Transaction",
             href: "/user/manage-list/transaction-history",
             icon: SwitchHorizontalIcon,
@@ -98,12 +85,6 @@ function ManageListPage() {
             name: "Calendar",
             href: "/user/manage-list/calendar",
             icon: CalendarIcon,
-            current: false,
-          },
-          {
-            name: "Guide",
-            href: "/user/manage-list/guide",
-            icon: DocumentIcon,
             current: false,
           },
           {
@@ -135,12 +116,6 @@ function ManageListPage() {
             current: true,
           },
           {
-            name: "Guide",
-            href: "/user/manage-list/guide",
-            icon: DocumentIcon,
-            current: false,
-          },
-          {
             name: "Transaction",
             href: "/user/manage-list/transaction-history",
             icon: SwitchHorizontalIcon,
@@ -166,12 +141,6 @@ function ManageListPage() {
             name: "Calendar",
             href: "/user/manage-list/calendar",
             icon: CalendarIcon,
-            current: false,
-          },
-          {
-            name: "Guide",
-            href: "/user/manage-list/guide",
-            icon: DocumentIcon,
             current: false,
           },
           {
@@ -203,12 +172,6 @@ function ManageListPage() {
             current: false,
           },
           {
-            name: "Guide",
-            href: "/user/manage-list/guide",
-            icon: DocumentIcon,
-            current: true,
-          },
-          {
             name: "Transaction",
             href: "/user/manage-list/transaction-history",
             icon: SwitchHorizontalIcon,
@@ -231,7 +194,6 @@ function ManageListPage() {
             <Route path={"/user/manage-list/inbox"} component={ManageListInboxComponent} />
             <Route path={"/user/manage-list/calendar"} component={ManageListCalendarComponent} />
             <Route path={"/user/manage-list/transaction-history"} component={ManageListTransactionsComponent} />
-            <Route path={"/user/manage-list/guide"} component={ManageListGuideComponent} />
           </Switch>
         </div>
       </div>

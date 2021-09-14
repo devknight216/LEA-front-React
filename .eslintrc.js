@@ -23,7 +23,7 @@ module.exports = {
     "react/prop-types": 0,
     "linebreak-style": "off",
     "prettier/prettier": "error",
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": ["error", "auto"],
     "arrow-body-style": "off",
     "prefer-arrow-callback": "off",
     "import/first": "off",

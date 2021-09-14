@@ -23,15 +23,18 @@ export const stripeAccount = async (token) => {
   return await axios.post(`${backend_url}/users/stripe_account`, {
     headers: {
       "X-Requested-With": "XMLHttpRequest",
+      "Content-Type": "application/json",
     },
   });
 };
 
 export const stripeLink = async (token, body) => {
+  console.log(body);
   return await axios.post(`${backend_url}/users/stripe_link`, JSON.stringify(body), {
     headers: {
       Authorization: `${token}`,
       "X-Requested-With": "XMLHttpRequest",
+      "Content-Type": "application/json",
     },
   });
 };

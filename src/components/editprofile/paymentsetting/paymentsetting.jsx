@@ -63,7 +63,7 @@ function EditAccountPaymentSettingComponent() {
             </div>
           </div>
         </div>
-        {user?.isHost && (
+        {user?.stripe_account !== "" && (
           <div>
             <p className="text-2xl py-3 font-semibold">Payout methods</p>
             <div>

@@ -5,6 +5,7 @@ import HostNewPropertyStepThree from "components/host/newproperty/step3";
 import StepsComponent from "components/host/newproperty/steps";
 import HostNewPropertyWelcome from "components/host/newproperty/welcome";
 import StepWizard from "react-step-wizard";
+import HostNewPropertyStepFour from "components/host/newproperty/step4/step4";
 
 function HostCreateNewPropertypage() {
   //Step Management
@@ -12,6 +13,7 @@ function HostCreateNewPropertypage() {
     { id: "01", name: "Add Main Info", status: "current" },
     { id: "02", name: "Property Feature", status: "upcoming" },
     { id: "03", name: "Fees and Suggestions", status: "upcoming" },
+    { id: "04", name: "Guide", status: "upcoming" },
   ]);
 
   //Property Info
@@ -72,6 +74,7 @@ function HostCreateNewPropertypage() {
             <HostNewPropertyStepOne property={property} setProperty={setProperty} setStep={setStep} />
             <HostNewPropertyStepTwo property={property} setProperty={setProperty} setStep={setStep} />
             <HostNewPropertyStepThree property={property} setProperty={setProperty} setStep={setStep} />
+            <HostNewPropertyStepFour property={property} setProperty={setProperty} setStep={setStep} />
           </StepWizard>
         </div>
       </div>

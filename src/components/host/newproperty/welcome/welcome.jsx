@@ -1,5 +1,7 @@
+import { Toast } from "components/common/notification";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { clearState } from "reduxstore/propertyreducer/action";
 import { getUserByID } from "reduxstore/userreducer/action";
 import { stripeAccount } from "shared/api";
 
@@ -14,15 +16,16 @@ function HostNewPropertyWelcome({ nextStep }) {
   }, []);
 
   const gotoNext = async () => {
-    if (!userinfo?.stripe_account) {
+    if (userinfo?.charges_enabled_status) {
       try {
         await stripeAccount(token);
+        dispatch(clearState());
         nextStep();
       } catch (error) {
         console.log(error);
       }
     } else {
-      nextStep();
+      Toast("", "You should add your payout method to host your space", "info")
     }
   };
   return (
@@ -30,7 +33,7 @@ function HostNewPropertyWelcome({ nextStep }) {
       <div className="bg-white max-w-4xl mx-auto">
         <div>
           <div className="relative bg-gray-900">
-            <div className="h-80 absolute inset-x-0 bottom-0 xl:top-0 xl:h-full">
+            <div className="h-96 absolute inset-x-0 bottom-0 xl:top-0 xl:h-full">
               <div className="h-full w-full xl:grid xl:grid-cols-2">
                 <div className="h-full xl:relative xl:col-start-2">
                   <img
