@@ -22,8 +22,6 @@ export default function HeaderComponent() {
   const authUser = useSelector((state) => state.auth.user);
   const authToken = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
-  const location = useLocation();
-  const path = location.pathname;
 
   return (
     <Popover className="relative bg-white" id="header">
@@ -35,7 +33,7 @@ export default function HeaderComponent() {
               <div>
                 <Link to="/" className="flex">
                   <span className="sr-only">Workflow</span>
-                  <img className="h-12 w-auto sm:h-24" src={BrandIcon} alt="" />
+                  <img className="h-12 w-auto sm:h-28" src={BrandIcon} alt="" />
                 </Link>
               </div>
               <div className="-mr-2 -my-2 md:hidden">
@@ -45,14 +43,26 @@ export default function HeaderComponent() {
                 </Popover.Button>
               </div>
               <div className="hidden md:flex-1 md:flex md:items-center md:justify-between">
-                <Popover.Group as="nav" className="flex space-x-10">
-                  <Link to="/properties" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                <Popover.Group
+                  as="nav"
+                  className="flex border-2 p-3 rounded-full border-yellow-400 divide-x-2 divide-yellow-400 "
+                >
+                  <Link
+                    to="/properties"
+                    className="text-base font-medium text-gray-500 hover:text-gray-900 text-center px-5 focus:outline-none"
+                  >
                     View All Properties
                   </Link>
-                  <Link to="/profit" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  <Link
+                    to="/profit"
+                    className="text-base font-medium text-gray-500 hover:text-gray-900 text-center px-5 focus:outline-none"
+                  >
                     Courses
                   </Link>
-                  <Link to="/contact" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  <Link
+                    to="/contact"
+                    className="text-base font-medium text-gray-500 hover:text-gray-900 text-center px-5 focus:outline-none"
+                  >
                     Contact Us
                   </Link>
                   <Popover>
@@ -61,7 +71,7 @@ export default function HeaderComponent() {
                         <Popover.Button
                           className={classNames(
                             open ? "text-gray-900" : "text-gray-500",
-                            "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none px-5"
                           )}
                         >
                           <span>More</span>
@@ -140,7 +150,7 @@ export default function HeaderComponent() {
                     </Link>
                     <Link
                       to="/signup"
-                      className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-500 hover:bg-red-600"
+                      className="ml-8 inline-flex items-center justify-center px-4 py-2 rounded-full shadow-sm text-base font-medium text-white bg-yellow-400 hover:bg-yellow-600"
                     >
                       Sign up
                     </Link>

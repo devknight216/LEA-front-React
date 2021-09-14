@@ -143,6 +143,7 @@ export default function SearchPropertyComponent({ className }) {
                   <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">Location </div>
                   <div className="w-full bg-transparent outline-none overflow-ellipsis text-md text-gray-700 placeholder-gray-600 text-md font-semibold">
                     <input
+                      type="text"
                       value={locationUrl}
                       className="w-full bg-transparent outline-none overflow-ellipsis pl-8 text-md text-gray-700 placeholder-gray-600 text-md font-semibold"
                     />

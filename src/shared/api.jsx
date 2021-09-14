@@ -4,9 +4,10 @@ const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api`;
 
 //Contact US API
 export const contactus = (requestbody) => {
-  axios.post(backend_url + "email/contact-us", requestbody, {
+  axios.post(backend_url + "/email/contact-us", JSON.stringify(requestbody), {
     headers: {
-      "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+      "X-Requested-With": "XMLHttpRequest",
+      "Content-Type": "application/json",
     },
   });
 };

@@ -112,6 +112,7 @@ export default function SearchComponent() {
         propertySpaceFeature: filterData.propertySpaceFeature,
         guestNum: parseInt(query.adult) + parseInt(query.children),
         amenities: filterData.amenities.map((item) => item.value),
+        instantBook: filterData.instantBook,
       })
     );
   }, [filterData]);
