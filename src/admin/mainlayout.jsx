@@ -60,10 +60,10 @@ function DashboardMainLayout() {
       current: location.pathname == "/admin/calendar" ? true : false,
     },
     {
-      name: "Reports",
-      href: "/admin/reports",
+      name: "Setting",
+      href: "/admin/setting",
       icon: ChartBarIcon,
-      current: location.pathname == "/admin/reports" ? true : false,
+      current: location.pathname == "/admin/setting" ? true : false,
     },
   ];
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -305,7 +305,7 @@ function DashboardMainLayout() {
                   <Route exact path="/admin/properties" component={ManageNewPropertyItemPage} />
                   <Route path="/admin/properties/edit/:id" component={EditpropertiesPage} />
                   <Route path="/admin/users" component={UserAdminsPage} />
-                  <Route path="/admin/host-new" component={HostNewPropertyPage}/>
+                  <Route path="/admin/host-new" component={HostNewPropertyPage} />
                   <Route path="/admin/booking" component={BookingManagementPage} />
                 </Switch>
               </div>

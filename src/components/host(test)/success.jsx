@@ -5,7 +5,7 @@ function SuccessHostComponent() {
   const history = useHistory();
   const gotoList = () => {
     history.push("/properties");
-  }
+  };
   return (
     <div>
       <div className="max-w-5xl mx-auto bg-white shadow-md rounded-md">

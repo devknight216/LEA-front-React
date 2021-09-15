@@ -14,7 +14,7 @@ import StepWizard from "react-step-wizard";
 import { useSelector } from "react-redux";
 
 function HostNewPropertyPage() {
-  const host = useSelector(state => state.auth.user);
+  const host = useSelector((state) => state.auth.user);
   const [property, setProperty] = useState({
     propertyName: "",
     instantBook: false,

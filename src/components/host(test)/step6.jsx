@@ -28,8 +28,8 @@ function HostAmanitiesComponent({ nextStep, previousStep, property, setProperty 
   useEffect(() => {
     setProperty({
       ...property,
-      amenities: seletedAmenities.map((item) => item.label)
-    })
+      amenities: seletedAmenities.map((item) => item.label),
+    });
   }, [seletedAmenities]);
   return (
     <div>
@@ -55,7 +55,7 @@ function HostAmanitiesComponent({ nextStep, previousStep, property, setProperty 
               <p className="text-2xl text-white font-extrabold">Amenities</p>
               <div className="py-5">
                 <div>
-                  <textarea className="w-full rounded-lg p-3" rows={5} value={ property.amenities } disabled/>
+                  <textarea className="w-full rounded-lg p-3" rows={5} value={property.amenities} disabled />
                   <div className="py-5 grid grid-cols-2 md:grid-cols-3">
                     {specialAmenities.map((item) => (
                       <div key={item} className="my-2 flex items-center text-white">
