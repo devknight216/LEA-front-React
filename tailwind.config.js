@@ -10,8 +10,10 @@ module.exports = {
         "200%": "200%",
         "6xl": "1152px",
       },
-      fill: {
+      colors: {
         "gray-600": "#4B5563",
+        "brown-dark": "#84502B",
+        "blue-dark": "#252F3F"
       },
       maxWidth: {
         "4/5": "80%",
