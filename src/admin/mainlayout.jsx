@@ -16,7 +16,6 @@ import { SearchIcon } from "@heroicons/react/solid";
 import { Link, Route, Switch, useLocation } from "react-router-dom";
 import ManageNewPropertyItemPage from "./manageitem";
 import BrandImage from "assets/imgs/brand/brand.svg";
-import CreateNewPropertyPage from "./createnewitem";
 import EditpropertiesPage from "./editproperties";
 import { useDispatch, useSelector } from "react-redux";
 import { SignOut } from "reduxstore/authreducer/action";
@@ -24,6 +23,7 @@ import { classNames } from "shared/function";
 import UserAdminsPage from "./users";
 import DashboardPage from "./dashboard";
 import BookingManagementPage from "./bookinghistory";
+import HostNewPropertyPage from "views/host(test)/host";
 
 const userNavigation = [{ name: "Sign out", href: "/signin" }];
 function DashboardMainLayout() {
@@ -303,9 +303,9 @@ function DashboardMainLayout() {
                 <Switch>
                   <Route exact path="/admin" component={DashboardPage} />
                   <Route exact path="/admin/properties" component={ManageNewPropertyItemPage} />
-                  <Route path="/admin/properties/new" component={CreateNewPropertyPage} />
                   <Route path="/admin/properties/edit/:id" component={EditpropertiesPage} />
                   <Route path="/admin/users" component={UserAdminsPage} />
+                  <Route path="/admin/host-new" component={HostNewPropertyPage}/>
                   <Route path="/admin/booking" component={BookingManagementPage} />
                 </Switch>
               </div>

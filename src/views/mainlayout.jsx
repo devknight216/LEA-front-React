@@ -22,7 +22,6 @@ export default function MainLayout() {
         <HeaderComponent />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/properties" component={PropertiesPage} />
           <Route path="/staging" component={Stagingpage} />
           <Route path="/profit" component={ProfitPage} />
           <Route path="/contact" component={ContactUsPage} />

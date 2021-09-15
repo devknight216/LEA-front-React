@@ -8,6 +8,7 @@ import SignupPage from "views/signup";
 import { useSelector } from "react-redux";
 import { PrivateRoute } from "shared/function";
 import PrivateLayout from "views/privateLayout";
+import HostNewPropertyPage from "views/host(test)/host";
 
 function App() {
   return (

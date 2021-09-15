@@ -34,15 +34,11 @@ export default function ItemsTableComponent({ getSelected }) {
 
   //Goto Create New
   const history = useHistory();
-  const userinfo = useSelector((state) => state.user.user);
   const gotoCreateNew = async () => {
-    if (!userinfo?.stripe_account) {
-      try {
-        // await stripeAccount(token);
-        history.push("/admin/properties/new");
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      history.push("/admin/host-new");
+    } catch (error) {
+      console.log(error);
     }
   };
   const gotEdit = (id) => {

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { amenities, features, guestsNum, lastOffer } from "../createnewitem/constant";
-import { formatReqestData } from "../createnewitem/functions";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { getPropertyById, updatePropertyById } from "reduxstore/propertyreducer/slice";
@@ -10,7 +8,6 @@ import ImageUploadToAWSComponent from "components/common/uploadImage";
 
 import { Toast } from "components/common/notification";
 import { Toggle } from "components/basicui/basicui";
-import { useStore } from "react-redux";
 
 export default function CreateNewPropertyPage() {
   const location = useLocation();
