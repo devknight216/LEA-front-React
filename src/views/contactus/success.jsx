@@ -12,8 +12,11 @@ function ContactUsSuccessPage() {
             <img className="h-24 w-auto" src={BrandIcon} alt="" />
           </Link>
         </div>
-        <h2 className="text-gray-600 font-bold text-2xl my-5">Your email request has been sent.</h2>
-        <p className="text-gray-500 ">One of our team members will contact you shortly. Thank you for reaching out to us.</p>
+        <h2 className="text-gray-600 font-bold text-2xl my-5">Thank you for your message!</h2>
+        <p className="text-gray-500 ">
+          Your email request was sent successfully.
+          <br /> One of our team members will contact you shortly. Thank you for reaching out to us.
+        </p>
       </div>
     </div>
   );

@@ -36,14 +36,6 @@ function HostLocationComponent({ nextStep, previousStep, property, setProperty }
               <p className="text-2xl text-white font-extrabold">Add location of the property</p>
               <div className="py-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
-                  <div className="col-span-2">
-                    <span className="text-white">Apartment, Suite etc</span>
-                    <InputBox
-                      onchange={(e) => {
-                        getLocation(e, "apartment");
-                      }}
-                    />
-                  </div>
                   <div className="col-span-1">
                     <span className="text-white">Street address</span>
                     <InputBox
@@ -57,6 +49,14 @@ function HostLocationComponent({ nextStep, previousStep, property, setProperty }
                     <InputBox
                       onchange={(e) => {
                         getLocation(e, "city");
+                      }}
+                    />
+                  </div>
+                  <div className="col-span-2">
+                    <span className="text-white">Apartment, Suite etc</span>
+                    <InputBox
+                      onchange={(e) => {
+                        getLocation(e, "apartment");
                       }}
                     />
                   </div>

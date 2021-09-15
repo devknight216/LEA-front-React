@@ -38,7 +38,7 @@ function HostTypeComponent({ nextStep, previousStep, property, setProperty }) {
           </div>
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:grid xl:grid-cols-2 xl:grid-flow-col-dense xl:gap-x-8">
             <div className="relative xl:col-start-1 py-3 sm:py-5 md:py-16">
-              <p className="text-2xl text-white font-extrabold">Choose the Type and Feature of your property</p>
+              <p className="text-2xl text-white font-extrabold">Property Features</p>
               <div className="py-5">
                 {features.map((item, index) => (
                   <div key={index} className="py-3">

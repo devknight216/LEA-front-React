@@ -57,6 +57,7 @@ function HostMainInfoComponent({ nextStep, previousStep, property, setProperty }
                   onchange={(e) => {
                     getData(e, "propertyName");
                   }}
+                  placeholder="Choose a catchy name for your property to grab guest's attention."
                   type="text"
                 />
               </div>

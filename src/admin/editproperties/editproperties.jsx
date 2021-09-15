@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPropertyById } from "reduxstore/propertyreducer/slice";
 import { useEffect } from "react";
@@ -136,7 +136,14 @@ export default function CreateNewPropertyPage() {
             />
           </div>
           <div>
-            <EditPropertyFieldComponent label="Beds:" value={property?.bedsNum} unit="" type="number" variableName="bedsNum" propertyID={propertyId}/>
+            <EditPropertyFieldComponent
+              label="Beds:"
+              value={property?.bedsNum}
+              unit=""
+              type="number"
+              variableName="bedsNum"
+              propertyID={propertyId}
+            />
           </div>
         </div>
       </div>

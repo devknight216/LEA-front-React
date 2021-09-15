@@ -39,9 +39,14 @@ function HostDescriptionComponent({ nextStep, previousStep, property, setPropert
           </div>
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:grid xl:grid-cols-2 xl:grid-flow-col-dense xl:gap-x-8">
             <div className="relative xl:col-start-1 py-3 sm:py-5 md:py-16">
-              <p className="text-2xl text-white font-extrabold">Add your Describe about this property</p>
+              <p className="text-2xl text-white font-extrabold">Describe your property</p>
               <div className="py-5">
-                <textarea className="w-full p-3 rounded-lg focus:outline-none" rows={10} onChange={getDescription} />
+                <textarea
+                  className="w-full p-3 rounded-lg focus:outline-none"
+                  rows={10}
+                  onChange={getDescription}
+                  placeholder="Write a brief desciption for your property. You can include nearby places to visit and explore, local restaurants to dine in and other highlights that comes with booking the property."
+                />
               </div>
               <div className="flex justify-between py-5">
                 <ButtonComponent onClick={previousStep} label="Prev" classes="bg-indigo-500 hover-bg-indigo-600" />
