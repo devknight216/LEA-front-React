@@ -1,27 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { PencilAltIcon, CheckCircleIcon, XCircleIcon } from "@heroicons/react/outline";
-import { useDispatch } from "react-redux";
-import { updatePropertyById } from "reduxstore/propertyreducer/action";
-import { useLocation } from "react-router";
 
-function EditPropertyFieldComponent({ label, value, variableName, type, unit, propertyID }) {
+function EditPropertyFieldBySelectComponent({ label, value, variableName, options }) {
   const [isEdit, setIsEdit] = useState(false);
   const [editValue, setEditValue] = useState(null);
-  const dispatch = useDispatch();
-
   const swichEdit = () => {
     setIsEdit(!isEdit);
-  };
-  const updateValue = () => {
-    const payload = {
-      id: propertyID,
-      body: {
-        [variableName]: editValue,
-      },
-    };
-    console.log(payload);
-    dispatch(updatePropertyById(payload));
-    setIsEdit(false);
   };
   useEffect(() => {
     setEditValue(value);
@@ -32,22 +16,23 @@ function EditPropertyFieldComponent({ label, value, variableName, type, unit, pr
         <p className="text-sm">{label}</p>
         <div className="flex items-center space-x-2">
           {isEdit ? (
-            <input
-              type={type}
-              className="border rounded-md py-1 px-3 min-w-10"
+            <select
+              className="border rounded-md py-1 px-3 min-w-10 w-full"
               value={editValue}
               onChange={(e) => {
                 setEditValue(e.target.value);
               }}
-            />
+            >
+              {options.map((item, index) => (
+                <option key={index}>{item}</option>
+              ))}
+            </select>
           ) : (
-            <p>
-              {unit} {value}
-            </p>
+            <p>{value}</p>
           )}
           {isEdit ? (
             <div className="flex items-center space-x-2">
-              <CheckCircleIcon className="h-6 w-6 cursor-pointer text-gray-500 hover:text-gray-800 " onClick={updateValue} />
+              <CheckCircleIcon className="h-6 w-6 cursor-pointer text-gray-500 hover:text-gray-800 " onClick={swichEdit} />
               <XCircleIcon className="h-6 w-6 cursor-pointer text-gray-500 hover:text-gray-800 " onClick={swichEdit} />
             </div>
           ) : (
@@ -59,4 +44,4 @@ function EditPropertyFieldComponent({ label, value, variableName, type, unit, pr
   );
 }
 
-export default EditPropertyFieldComponent;
+export default EditPropertyFieldBySelectComponent;
