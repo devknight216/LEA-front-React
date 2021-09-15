@@ -120,7 +120,7 @@ function UserAdminsPage() {
                                 lunchClose(user);
                               }}
                             >
-                              Close
+                              Archive
                             </div>
                           </div>
                         </td>

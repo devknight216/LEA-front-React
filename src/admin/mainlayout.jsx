@@ -24,6 +24,7 @@ import UserAdminsPage from "./users";
 import DashboardPage from "./dashboard";
 import BookingManagementPage from "./bookinghistory";
 import HostNewPropertyPage from "views/host(test)/host";
+import AdminCalendarPage from "./calendar/calendar";
 
 const userNavigation = [{ name: "Sign out", href: "/signin" }];
 function DashboardMainLayout() {
@@ -307,9 +308,9 @@ function DashboardMainLayout() {
                   <Route path="/admin/users" component={UserAdminsPage} />
                   <Route path="/admin/host-new" component={HostNewPropertyPage} />
                   <Route path="/admin/booking" component={BookingManagementPage} />
+                  <Route path="/admin/calendar" component={AdminCalendarPage} />
                 </Switch>
               </div>
-              {/* /End replace */}
             </div>
           </div>
         </main>

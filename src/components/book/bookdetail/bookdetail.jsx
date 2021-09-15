@@ -6,12 +6,16 @@ import MasterCard from "assets/imgs/icon/mastercard.svg";
 import AmexCard from "assets/imgs/icon/amexcard.svg";
 import DiscoverCard from "assets/imgs/icon/discovercard.svg";
 
-function BookDetailComponent({ bookData }) {
+function BookDetailComponent({ bookData, property }) {
   return (
     <div className="text-gray-600 p-5 shadow-lg rounded-md">
       <div className="flex items-center flex-wrap">
         <ChevronLeftIcon className="w-8 h-8" />
-        <h2 className="text-3xl font-extrabold tracking-tight ml-2">Request to book</h2>
+        <h2 className="text-3xl font-extrabold tracking-tight ml-2">
+          {
+            property?.instantBook?"Instant Book":"Request to book"
+          }
+        </h2>
       </div>
       <div className="px-2">
         <div className="py-6 tracking-tight border-b">
