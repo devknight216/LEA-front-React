@@ -24,7 +24,7 @@ const taplist = [
     role: "user",
     icon: BookmarkIcon,
   },
-  { name: "Host your Space", linkto: "/user/host", role: "user", icon: HomeIcon },
+  { name: "Host your Space", linkto: "/user/host-new", role: "user", icon: HomeIcon },
   { name: "Admin Panel", linkto: "/admin", role: "admin", icon: CogIcon },
 ];
 

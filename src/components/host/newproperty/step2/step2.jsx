@@ -3,7 +3,6 @@ import { features, guestsNum } from "admin/createnewitem/constant";
 import MultiSelect from "react-multi-select-component";
 import { amenities } from "components/properties/search/constant";
 import { InputBox, Toggle } from "components/basicui/basicui";
-import { Toast } from "components/common/notification";
 
 const specialAmenities = [
   "Pets Allowed",
@@ -76,7 +75,6 @@ function HostNewPropertyStepTwo({ previousStep, nextStep, property, setProperty,
       Toast("", "You should fill all fields", "danger");
     }
   };
-
   return (
     <div>
       <div className="max-w-4xl mx-auto rounded-md shadow-md p-3 sm:p-8 bg-white px-2">
@@ -131,7 +129,12 @@ function HostNewPropertyStepTwo({ previousStep, nextStep, property, setProperty,
             <div className="py-5 grid grid-cols-2 md:grid-cols-3">
               {specialAmenities.map((item) => (
                 <div key={item} className="my-2">
-                  <Toggle label={item} getToggleValue={addMainAmenities} removeToggleValue={removeMainAmenities} />
+                  <Toggle
+                    label={item}
+                    getToggleValue={addMainAmenities}
+                    removeToggleValue={removeMainAmenities}
+                    classnames="text-white"
+                  />
                 </div>
               ))}
             </div>

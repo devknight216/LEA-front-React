@@ -28,9 +28,9 @@ function HostNewPropertyStepFour({ previousStep, property, setProperty, nextStep
       <div className="max-w-4xl mx-auto rounded-md shadow-md p-3 sm:p-8 bg-white px-2">
         {layout.map((item, index) => (
           <div key={index}>
-            <h4 className="text-xl font-extrabold tracking-tight text-gray-900 py-5">{item.title}</h4>
+            <h4 className="text-xl font-extrabold tracking-tight text-gray-900">{item.title}</h4>
             <p className="text-gray-500 italic">{item.content}</p>
-            <div className="w-full py-5">
+            <div className="w-full py-2">
               <textarea rows={5} className="border w-full rounded-md p-2" name={item.variableName} />
             </div>
           </div>
