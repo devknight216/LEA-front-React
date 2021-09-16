@@ -61,7 +61,7 @@ function DashboardMainLayout() {
       current: location.pathname == "/admin/calendar" ? true : false,
     },
     {
-      name: "Setting",
+      name: "Settings",
       href: "/admin/setting",
       icon: ChartBarIcon,
       current: location.pathname == "/admin/setting" ? true : false,

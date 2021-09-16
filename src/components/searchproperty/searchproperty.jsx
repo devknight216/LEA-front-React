@@ -151,7 +151,7 @@ export default function SearchPropertyComponent({ className }) {
                   setLocationFocue(true);
                 }}
                 onSelect={handleOnSelect}
-                onClear={() =>{
+                onClear={() => {
                   setLocationFocue(false);
                 }}
                 styling={

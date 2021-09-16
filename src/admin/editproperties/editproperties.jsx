@@ -19,6 +19,7 @@ export default function CreateNewPropertyPage() {
   //Get Stored value
   const dispatch = useDispatch();
   const property = useSelector((state) => state.properties.property);
+  console.log(property);
   useEffect(() => {
     dispatch(getPropertyById(propertyId));
   }, []);
@@ -27,7 +28,6 @@ export default function CreateNewPropertyPage() {
   const [isEdit, setIsEdit] = useState(false);
   const [selectedAmenity, setSelectedAmenity] = useState(null);
   const handleOnSelect = (item) => {
-    console.log(item);
     setSelectedAmenity(item.name);
   };
   const formatResult = (item) => {
@@ -111,7 +111,7 @@ export default function CreateNewPropertyPage() {
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5  mt-4">
+      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">
         <p className="border-b py-2 text-xl">Property Feature</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 py-2">
           <div>
@@ -195,7 +195,7 @@ export default function CreateNewPropertyPage() {
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5  mt-4">
+      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">
         <p className="border-b py-2 text-xl">Amenities</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 px-5 py-5">
           {property?.amenities?.map((amenity, index) => (
@@ -248,6 +248,96 @@ export default function CreateNewPropertyPage() {
               />
             </div>
           )}
+        </div>
+      </div>
+      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">
+        <p className="border-b py-2 text-xl">Fees</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 divide-x mt-3">
+          <div className="px-4">
+            <EditPropertyFieldComponent
+              label="Deposit Fee:"
+              value={property?.depositFee | 0}
+              unit="$"
+              type="number"
+              variableName="depositFee"
+              propertyID={propertyId}
+            />
+          </div>
+          <div className="px-4">
+            <div className="grid grid-cols-2">
+              <div>
+                <EditPropertyFieldComponent
+                  label="Pet Fee:"
+                  value={property?.petAllowFee?.fee | 0}
+                  unit="$"
+                  type="number"
+                  variableName="petAllowFee"
+                  propertyID={propertyId}
+                />
+              </div>
+              <div>
+                <EditPropertyFieldComponent
+                  label="Pet Allow Number:"
+                  value={property?.petAllowFee?.number | 0}
+                  unit=""
+                  type="number"
+                  variableName="petAllowFee"
+                  propertyID={propertyId}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="px-4">
+            <div className="grid grid-cols-2">
+              <div>
+                <EditPropertyFieldComponent
+                  label="Staging Fee:"
+                  value={property?.stagingFee?.rate | 0}
+                  unit="$"
+                  type="number"
+                  variableName="stagingFee"
+                  propertyID={propertyId}
+                />
+              </div>
+              <div>
+                <EditPropertyFieldComponent
+                  label="Staging housrs:"
+                  value={property?.stagingFee?.hours | 0}
+                  unit=""
+                  type="number"
+                  variableName="stagingFee"
+                  propertyID={propertyId}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">
+        <p className="border-b py-2 text-xl">Location</p>
+        <div></div>
+      </div>
+      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">
+        <p className="border-b py-2 text-xl">Settings</p>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <EditPropertyFieldBySelectComponent
+              label="Instant Book"
+              value={property?.instantBook ? "TRUE" : "FALSE"}
+              options={["Instant Book", "No"]}
+              variableName="instantBook"
+              propertyID={propertyId}
+            />
+          </div>
+          <div>
+            <EditPropertyFieldBySelectComponent
+              label="Manage By"
+              value={property?.manageType}
+              options={["LEA", "HOST"]}
+              variableName="manageType"
+              propertyID={propertyId}
+            />
+          </div>
         </div>
       </div>
       <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">
