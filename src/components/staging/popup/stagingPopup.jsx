@@ -3,6 +3,7 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { SparklesIcon } from "@heroicons/react/outline";
 import { formLayout } from "./constant";
+import { InputBox } from "components/basicui/basicui";
 
 export default function StagingInfoModalComponent({ isOpen, setisOpen }) {
   const cancelButtonRef = useRef(null);
@@ -60,6 +61,17 @@ export default function StagingInfoModalComponent({ isOpen, setisOpen }) {
                       Change please enter to Provide your property details and our qualified staging consultant will reach out to
                       you to discuss options to transform your space.
                     </p>
+                    <div className="py-5 border-b grid grid-cols-1 sm:grid-cols-2 sm:gap-4">
+                      <div className="col-span-1">
+                        <InputBox placeholder="Name"/>
+                      </div>
+                      <div className="col-span-1">
+                        <InputBox placeholder="Email" type="email"/>
+                      </div>
+                      <div className="col-span-2">
+                        <InputBox placeholder="Phone Number"/>
+                      </div>
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 py-5 gap-5 text-gray-700">
                       {formLayout.map((item) => (
                         <div key={item.name}>

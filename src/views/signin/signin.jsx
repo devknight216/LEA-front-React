@@ -132,7 +132,7 @@ export default function SigninPage() {
               </div>
               <div className="relative flex justify-center text-sm">
                 <span className="px-2 bg-white text-gray-500">
-                  Haven`&apos;`t account?{" "}
+                  Haven&apos;t account?{" "}
                   <Link to="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
                     Sign Up
                   </Link>
