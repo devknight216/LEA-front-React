@@ -100,17 +100,26 @@ const CardItem = ({ item }) => {
         </Slider>
         <div className="text-lg leading-6 font-medium space-y-1 px-5 w-full">
           <h3 className="truncate text-sm font-medium">{item.propertyName}</h3>
-          <p className="text-indigo-600 text-sm">Nightly Rate: ${item.nightlyRate}</p>
+          <div className="flex flex-wrap space-x-4">
+            <p className="text-indigo-600 text-sm">Nightly Rate: ${item.nightlyRate}</p>
+            <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-indigo-500 rounded">
+              {item.propertyType}
+            </span>
+            <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-yellow-100 bg-yellow-500 rounded">
+              {item.propertySpaceFeature}
+            </span>
+          </div>
+          <div className="flex space-x-3 flex-wrap">
+            <p className="text-indigo-500 text-sm">Guests: {item.guestNum}</p>
+            <p className="text-indigo-500 text-sm">Bedrooms: {item.bedroomNum}</p>
+            <p className="text-indigo-500 text-sm">Beds: {item.bedsNum}</p>
+            <p className="text-indigo-500 text-sm">baths: {item.fullBathNum | 0}</p>
+          </div>
         </div>
-        <ul className="flex space-x-5 px-5 py-5">
+        <ul className="flex space-x-5 px-5 pb-5">
           <li>
             <span className="px-2 py-1 bg-red-400 rounded-lg text-white cursor-pointer hover:bg-red-600" onClick={gotoDetail}>
               View Details
-            </span>
-          </li>
-          <li>
-            <span className="px-2 py-1 bg-red-400 rounded-lg text-white cursor-pointer hover:bg-red-600" onClick={gotoDetail}>
-              Airbnb
             </span>
           </li>
         </ul>
