@@ -211,6 +211,7 @@ export default function CreateNewPropertyPage() {
                   id: index,
                   name: amenity.label,
                 }))}
+                maxResults={20}
                 onSelect={handleOnSelect}
                 autoFocus
                 formatResult={formatResult}
