@@ -4,16 +4,22 @@ import AvatarEditorComponent from "../avatarupload";
 import { Disclosure } from "@headlessui/react";
 import { InputBox } from "components/basicui/basicui";
 import { updateUser } from "reduxstore/userreducer/slice";
+import { getUserByID } from "reduxstore/userreducer/action";
 
 function EditAccountPersonalInfoComponent() {
   const user = useSelector((state) => state.auth.user);
+  const userdata = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserByID(user?.userID));
+  }, []);
 
   //layout
   const layout = [
     {
       label: "Legal Name",
       variable: "name",
-      value: user?.name,
+      value: userdata?.name,
       onEdit: () => {
         updateUserData("name", userInfo.name);
       },
@@ -22,7 +28,7 @@ function EditAccountPersonalInfoComponent() {
     {
       label: "Email Address",
       variable: "email",
-      value: user?.email,
+      value: userdata?.email,
       onEdit: () => {
         updateUserData("email", userInfo.email);
       },
@@ -31,7 +37,7 @@ function EditAccountPersonalInfoComponent() {
     {
       label: "Phone Number",
       variable: "phone",
-      value: user?.phone,
+      value: userdata?.phone,
       onEdit: () => {
         updateUserData("phone", userInfo.phone);
       },
@@ -40,7 +46,7 @@ function EditAccountPersonalInfoComponent() {
     {
       label: "Address",
       variable: "address",
-      value: user?.address,
+      value: `${userdata?.address?.apt}, ${userdata?.address?.street} ${userdata?.address?.city}, ${userdata?.address?.state}, ${userdata?.address?.country}, ${userdata?.address?.zip}`,
       onEdit: () => {
         updateUserData("address", userInfo.address);
       },
@@ -56,8 +62,8 @@ function EditAccountPersonalInfoComponent() {
     address: {
       country: user?.address?.country,
       street: user?.address?.street,
-      apt: user?.address?.address,
-      city: user?.address?.state,
+      apt: user?.address?.apt,
+      city: user?.address?.city,
       state: user?.address?.state,
       zip: user?.address?.zip,
     },
@@ -68,8 +74,6 @@ function EditAccountPersonalInfoComponent() {
       [field]: e.target.value,
     });
   };
-
-  const dispatch = useDispatch();
   const updateUserData = (field, value) => {
     if (user?.userID) {
       const payload = {
