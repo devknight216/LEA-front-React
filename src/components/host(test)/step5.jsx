@@ -11,7 +11,7 @@ function HostGuestComponent({ nextStep, previousStep, property, setProperty }) {
     });
   };
   const gotoNext = () => {
-    if (property.guestNum && property.bedsNum && property.bedroomNum && property.bathroomNum) {
+    if (property.guestNum && property.bedsNum && property.bedroomNum && property.fullBathNum && property.halfBathNum) {
       nextStep();
     } else {
       Toast("", "You should add all information", "danger");

@@ -12,6 +12,7 @@ import { iconList } from "components/detailview/amenities/icons";
 import { CheckCircleIcon, XCircleIcon, PlusCircleIcon } from "@heroicons/react/outline";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import { updatePropertyById } from "reduxstore/propertyreducer/action";
+import EditPropertyLocationComponent from "components/admin/manageitem/editfields/editlocation";
 
 export default function CreateNewPropertyPage() {
   const location = useLocation();
@@ -287,35 +288,19 @@ export default function CreateNewPropertyPage() {
               </div>
             </div>
           </div>
-          <div className="px-4">
-            <div className="grid grid-cols-2">
-              <div>
-                <EditPropertyFieldComponent
-                  label="Staging Fee:"
-                  value={property?.stagingFee?.rate | 0}
-                  unit="$"
-                  type="number"
-                  variableName="stagingFee"
-                  propertyID={propertyId}
-                />
-              </div>
-              <div>
-                <EditPropertyFieldComponent
-                  label="Staging housrs:"
-                  value={property?.stagingFee?.hours | 0}
-                  unit=""
-                  type="number"
-                  variableName="stagingFee"
-                  propertyID={propertyId}
-                />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">
         <p className="border-b py-2 text-xl">Location</p>
-        <div></div>
+        <div>
+          <p>
+            {property?.propertyLocation?.apartment}, {property?.propertyLocation?.street} {property?.propertyLocation?.city},{" "}
+            {property?.propertyLocation?.country}, {property?.propertyLocation?.zip}
+          </p>
+          <div>
+            <EditPropertyLocationComponent location={property?.propertyLocation} propertyId={propertyId} />
+          </div>
+        </div>
       </div>
       <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">
         <p className="border-b py-2 text-xl">Settings</p>

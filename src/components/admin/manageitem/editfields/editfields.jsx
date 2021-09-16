@@ -15,7 +15,7 @@ function EditPropertyFieldComponent({ label, value, variableName, type, unit, pr
   const updateValue = () => {
     const payload = {
       id: propertyID,
-      body:{
+      body: {
         [variableName]: editValue,
       },
     };

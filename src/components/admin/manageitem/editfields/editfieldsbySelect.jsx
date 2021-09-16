@@ -13,13 +13,14 @@ function EditPropertyFieldBySelectComponent({ label, value, variableName, option
   const updateValue = () => {
     const payload = {
       id: propertyID,
-      body:variableName == "instantBook"
-      ? {
-          [variableName]: editValue == "Instant Book"? true : false,
-        }
-      : {
-          [variableName]: editValue,
-        },
+      body:
+        variableName == "instantBook"
+          ? {
+              [variableName]: editValue == "Instant Book" ? true : false,
+            }
+          : {
+              [variableName]: editValue,
+            },
     };
     dispatch(updatePropertyById(payload));
     setIsEdit(false);
