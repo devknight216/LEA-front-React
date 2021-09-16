@@ -68,10 +68,19 @@ function HostGuestComponent({ nextStep, previousStep, property, setProperty }) {
                   />
                 </div>
                 <div className="py-2">
-                  <span className="text-white">Bathrooms (# of bathrooms in the property)</span>
+                  <span className="text-white">Full Bathrooms (# of full bathrooms in the property)</span>
                   <InputBox
                     onchange={(e) => {
-                      setGuests(e, "bathroomNum");
+                      setGuests(e, "fullBathNum");
+                    }}
+                    type="number"
+                  />
+                </div>
+                <div className="py-2">
+                  <span className="text-white">Half Bathrooms (# of half bathrooms in the property)</span>
+                  <InputBox
+                    onchange={(e) => {
+                      setGuests(e, "halfBathNum");
                     }}
                     type="number"
                   />

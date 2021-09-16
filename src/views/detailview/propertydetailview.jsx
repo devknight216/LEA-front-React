@@ -21,10 +21,11 @@ const PropertyDetailViewPage = (props) => {
   }, []);
   const property = useSelector((state) => state.properties.property);
   const stats = [
-    { label: "guests", value: property?.guestNum, icon: GuestIcon },
-    { label: "bedrooms", value: property?.bedroomNum, icon: BedroomIcon },
-    { label: "beds", value: property?.bedsNum, icon: BedIcon },
-    { label: "baths", value: property?.bathroomNum, icon: BathroomIcon },
+    { label: "Guests", value: property?.guestNum, icon: GuestIcon },
+    { label: "Bedrooms", value: property?.bedroomNum, icon: BedroomIcon },
+    { label: "Beds", value: property?.bedsNum, icon: BedIcon },
+    { label: "Full baths", value: property?.fullBathNum | 0, icon: BathroomIcon },
+    { label: "Half baths", value: property?.halfBathNum | 0, icon: BathroomIcon },
   ];
 
   //Get Checked in, Checked out Data
@@ -68,9 +69,9 @@ const PropertyDetailViewPage = (props) => {
                         </div>
                       </div>
                     </div>
-                    <div className="border-t border-gray-200 bg-gray-50 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-4 sm:divide-y-0 sm:divide-x">
+                    <div className="border-t border-gray-200 bg-gray-50 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-5 sm:divide-y-0 sm:divide-x">
                       {stats.map((stat) => (
-                        <div key={stat.label} className="px-6 py-5 text-sm font-medium text-center flex align-middle">
+                        <div key={stat.label} className="px-2 py-3 text-sm font-medium text-center flex align-middle">
                           <img src={stat.icon} className="h-7 px-3" />
                           <span className="text-gray-900">
                             {stat.value}
