@@ -34,7 +34,7 @@ export default function PropertyIistItem({ item }) {
             );
           })}
         </Slider>
-        <div className="text-lg leading-6 font-medium space-y-1 px-5 pb-10 cursor-pointer" onClick={gotoDetailView}>
+        <div className="text-lg leading-6 font-medium space-y-1 px-3 pb-5 cursor-pointer" onClick={gotoDetailView}>
           <h3 className="truncate text-gray-900 text-sm font-medium">{item.propertyName}</h3>
           <div className="flex flex-wrap space-x-4">
             <p className="text-indigo-500 text-sm">Nightly Rate: ${item.nightlyRate}</p>
@@ -44,6 +44,12 @@ export default function PropertyIistItem({ item }) {
             <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-yellow-100 bg-yellow-500 rounded">
               {item.propertySpaceFeature}
             </span>
+          </div>
+          <div className="flex space-x-3 flex-wrap">
+            <p className="text-indigo-500 text-sm">Guests: {item.guestNum}</p>
+            <p className="text-indigo-500 text-sm">Bedrooms: {item.bedroomNum}</p>
+            <p className="text-indigo-500 text-sm">Beds: {item.bedsNum}</p>
+            <p className="text-indigo-500 text-sm">baths: {item.fullBathNum | 0}</p>
           </div>
         </div>
       </div>

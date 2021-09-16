@@ -69,7 +69,7 @@ const PropertyDetailViewPage = (props) => {
                         </div>
                       </div>
                     </div>
-                    <div className="border-t border-gray-200 bg-gray-50 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-5 sm:divide-y-0 sm:divide-x">
+                    <div className="grid grid-cols-1 sm:grid-cols-5 ">
                       {stats.map((stat) => (
                         <div key={stat.label} className="px-2 py-3 text-sm font-medium text-center flex align-middle">
                           <img src={stat.icon} className="h-7 px-3" />
