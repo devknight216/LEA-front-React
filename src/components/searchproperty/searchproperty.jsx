@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import { classNames } from "shared/function";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProperties } from "reduxstore/propertyreducer/action";
+import ReactSearchAutocomplete from "react-search-autocomplete/dist/components/ReactSearchAutocomplete";
 
 export default function SearchPropertyComponent({ className }) {
   const locationRef = React.useRef();
@@ -25,7 +26,8 @@ export default function SearchPropertyComponent({ className }) {
     children: 0,
     infants: 0,
   });
-  const [locationUrl, setLocation] = useState("Address");
+  const [locationUrl, setLocation] = useState(null);
+  const [locationFocuse, setLocationFocue] = useState(false);
 
   const properties = useSelector((state) => state.properties.properties);
   const dispatch = useDispatch();
@@ -49,6 +51,10 @@ export default function SearchPropertyComponent({ className }) {
       ].map(JSON.parse),
     [properties]
   );
+  const handleOnSelect = (item) => {
+    setLocationFocue(false);
+    setLocation(item.name);
+  };
 
   const changeGuestNum = (type, who) => {
     if (type === "plus") {
@@ -129,59 +135,45 @@ export default function SearchPropertyComponent({ className }) {
         className={classNames("flex w-6xl max-w-4/5 m-auto mt-3 bg-gray-100 bg-opacity-70 rounded-xl p-1 z-30", className)}
       >
         <Popover className="w-1/4 outline-none">
-          <Popover.Button className="w-full flex outline-none">
-            {({ open }) => (
-              <>
-                {open && locationRef.current.focus()} {open && setCurrentNav(1)}
-                <div
-                  className={classNames(
-                    open ? "rounded-full bg-white shadow-l shadow-lg" : "",
-                    "w-full transform lg:py-5 sm:py-3 leading-2 "
-                  )}
-                  ref={locationRef}
-                >
-                  <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">Location </div>
-                  <div className="w-full bg-transparent outline-none overflow-ellipsis text-md text-gray-700 placeholder-gray-600 text-md font-semibold">
-                    <input
-                      type="text"
-                      value={locationUrl}
-                      onChange={() => {}}
-                      className="w-full bg-transparent outline-none overflow-ellipsis pl-8 text-md text-gray-700 placeholder-gray-600 text-md font-semibold"
-                    />
-                  </div>
-                </div>
-                {currentNav !== 1 && currentNav !== 2 && <span className="bg-gray-300 w-px m-auto h-16"> </span>}
-              </>
+          <div
+            className={classNames(
+              locationFocuse ? "rounded-full bg-white shadow-l shadow-lg" : "",
+              "w-full transform lg:py-5 sm:py-3 leading-2 "
             )}
-          </Popover.Button>
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-200"
-            enterFrom="opacity-0 -translate-y-1"
-            enterTo="opacity-100 translate-y-0"
-            leave="transition ease-in duration-150"
-            leaveFrom="opacity-100 translate-y-0"
-            leaveTo="opacity-0 -translate-y-1"
           >
-            <Popover.Panel static className="hidden md:block absolute z-50 top-24 inset-x-0 bg-white rounded-lg shadow-md">
-              <div className="p-4">
-                <ul>
-                  {" "}
-                  {locationArray.map((location, index) => (
-                    <li
-                      key={index}
-                      className="cursor-pointer py-2 hover:bg-gray-200 px-5 rounded-lg"
-                      onClick={() => {
-                        setLocation(`${location.city}, ${location.state}, ${location.country}`);
-                      }}
-                    >
-                      {location.city}, {location.state}, {location.country}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Popover.Panel>
-          </Transition>
+            <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">Location </div>
+            <div className="w-full bg-transparent outline-none overflow-ellipsis text-md text-gray-700 placeholder-gray-600 text-md font-semibold px-2">
+              <ReactSearchAutocomplete
+                items={locationArray?.map((item, index) => ({ id: index, name: `${item.city}, ${item.state}, ${item.country}` }))}
+                placeholder="Address"
+                autoFocus
+                onFocus={() => {
+                  setLocationFocue(true);
+                }}
+                onSelect={handleOnSelect}
+                onClear={() =>{
+                  setLocationFocue(false);
+                }}
+                styling={
+                  locationFocuse
+                    ? {
+                        height: "20px",
+                        backgroundColor: "white",
+                        border: "0px solid #dfe1e5",
+                        boxShadow: "none",
+                        borderRadius: "5px",
+                      }
+                    : {
+                        height: "20px",
+                        backgroundColor: "transparent",
+                        border: "0px solid #dfe1e5",
+                        boxShadow: "none",
+                        borderRadius: "5px",
+                      }
+                }
+              />
+            </div>
+          </div>
         </Popover>
         <Popover className="w-1/4" as="div">
           <Popover.Button className="w-full flex outline-none">

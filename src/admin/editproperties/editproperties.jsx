@@ -28,7 +28,7 @@ export default function CreateNewPropertyPage() {
   const [selectedAmenity, setSelectedAmenity] = useState(null);
   const handleOnSelect = (item) => {
     console.log(item);
-    setSelectedAmenity(item.name)
+    setSelectedAmenity(item.name);
   };
   const formatResult = (item) => {
     return item;
@@ -44,11 +44,11 @@ export default function CreateNewPropertyPage() {
     dispatch(updatePropertyById(payload));
   };
   const addAmenities = () => {
-    if(selectedAmenity){
+    if (selectedAmenity) {
       const payload = {
         id: propertyId,
         body: {
-          amenities:[ ...property?.amenities, selectedAmenity ]
+          amenities: [...property?.amenities, selectedAmenity],
         },
       };
       dispatch(updatePropertyById(payload));
@@ -229,7 +229,7 @@ export default function CreateNewPropertyPage() {
             />
           ) : (
             <div>
-              <CheckCircleIcon className="h-6 w-6 cursor-pointer text-gray-500 hover:text-gray-800" onClick={addAmenities}/>
+              <CheckCircleIcon className="h-6 w-6 cursor-pointer text-gray-500 hover:text-gray-800" onClick={addAmenities} />
               <XCircleIcon
                 className="h-6 w-6 cursor-pointer text-gray-500 hover:text-gray-800"
                 onClick={() => {
