@@ -40,7 +40,7 @@ function ManageListReserveComponent() {
         </div>
       </div>
       <div>
-        <p className="mt-3 border-b pb-3 text-3xl font-extrabold text-gray-700">Reserves</p>
+        <p className="mt-3 border-b pb-3 text-3xl font-extrabold text-gray-700">Reservations</p>
         <div className="py-3">
           {properties &&
             properties.map((property, index) => (

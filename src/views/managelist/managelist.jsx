@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import ManageListReserveComponent from "components/host/managelist/reserves";
 import ManageListTapComponent from "components/host/managelist/tap";
 import { Route, Switch, useLocation } from "react-router-dom";
-import { SwitchHorizontalIcon, DocumentIcon, ViewListIcon, MailOpenIcon, CalendarIcon } from "@heroicons/react/solid";
-import ManageListInboxComponent from "components/host/managelist/inbox";
+import { SwitchHorizontalIcon, ViewListIcon, CalendarIcon } from "@heroicons/react/solid";
 import ManageListCalendarComponent from "components/host/managelist/calendar";
 import ManageListTransactionsComponent from "components/host/managelist/transcations";
-import { PrivateRoute } from "shared/function";
 
 function ManageListPage() {
   const [tabs, setTabs] = useState([
@@ -15,12 +13,6 @@ function ManageListPage() {
       href: "/user/manage-list/reserves",
       icon: ViewListIcon,
       current: true,
-    },
-    {
-      name: "Inbox",
-      href: "/user/manage-list/inbox",
-      icon: MailOpenIcon,
-      current: false,
     },
     {
       name: "Calendar",
@@ -48,12 +40,6 @@ function ManageListPage() {
             current: true,
           },
           {
-            name: "Inbox",
-            href: "/user/manage-list/inbox",
-            icon: MailOpenIcon,
-            current: false,
-          },
-          {
             name: "Calendar",
             href: "/user/manage-list/calendar",
             icon: CalendarIcon,
@@ -76,12 +62,6 @@ function ManageListPage() {
             current: false,
           },
           {
-            name: "Inbox",
-            href: "/user/manage-list/inbox",
-            icon: MailOpenIcon,
-            current: true,
-          },
-          {
             name: "Calendar",
             href: "/user/manage-list/calendar",
             icon: CalendarIcon,
@@ -101,12 +81,6 @@ function ManageListPage() {
             name: "Reserves",
             href: "/user/manage-list/reserves",
             icon: ViewListIcon,
-            current: false,
-          },
-          {
-            name: "Inbox",
-            href: "/user/manage-list/inbox",
-            icon: MailOpenIcon,
             current: false,
           },
           {
@@ -132,12 +106,6 @@ function ManageListPage() {
             current: false,
           },
           {
-            name: "Inbox",
-            href: "/user/manage-list/inbox",
-            icon: MailOpenIcon,
-            current: false,
-          },
-          {
             name: "Calendar",
             href: "/user/manage-list/calendar",
             icon: CalendarIcon,
@@ -157,12 +125,6 @@ function ManageListPage() {
             name: "Reserves",
             href: "/user/manage-list/reserves",
             icon: ViewListIcon,
-            current: false,
-          },
-          {
-            name: "Inbox",
-            href: "/user/manage-list/inbox",
-            icon: MailOpenIcon,
             current: false,
           },
           {
@@ -189,9 +151,7 @@ function ManageListPage() {
         <ManageListTapComponent tabs={tabs} />
         <div>
           <Switch>
-            <PrivateRoute path={"/user/manage-list/reserves"} component={ManageListReserveComponent} />
             <Route path={"/user/manage-list/reserves"} component={ManageListReserveComponent} />
-            <Route path={"/user/manage-list/inbox"} component={ManageListInboxComponent} />
             <Route path={"/user/manage-list/calendar"} component={ManageListCalendarComponent} />
             <Route path={"/user/manage-list/transaction-history"} component={ManageListTransactionsComponent} />
           </Switch>
