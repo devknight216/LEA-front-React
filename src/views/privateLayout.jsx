@@ -7,7 +7,7 @@ import NotFoundPage from "./404";
 import BookPage from "./book";
 import BookingHistoryPage from "./bookhistory";
 import EditProfilePage from "./editprofile";
-import ManageListPage from "./host/managelist";
+import ManageListPage from "./managelist";
 import Messagespage from "./message";
 import HostNewPropertyPage from "./host(test)/host";
 
