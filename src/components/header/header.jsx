@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { InformationCircleIcon, MenuIcon, ShieldCheckIcon, XIcon, SparklesIcon } from "@heroicons/react/outline";
@@ -22,6 +22,7 @@ export default function HeaderComponent() {
   const authUser = useSelector((state) => state.auth.user);
   const authToken = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
+  const moreRef = useRef();
 
   return (
     <Popover className="relative bg-white" id="header">
@@ -74,14 +75,16 @@ export default function HeaderComponent() {
                             "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none px-5"
                           )}
                         >
-                          <span>More</span>
-                          <ChevronDownIcon
-                            className={classNames(
-                              open ? "text-gray-600" : "text-gray-400",
-                              "ml-2 h-5 w-5 group-hover:text-gray-500"
-                            )}
-                            aria-hidden="true"
-                          />
+                          <div ref={moreRef} className="flex">
+                            <span>More</span>
+                            <ChevronDownIcon
+                              className={classNames(
+                                open ? "text-gray-600" : "text-gray-400",
+                                "ml-2 h-5 w-5 group-hover:text-gray-500"
+                              )}
+                              aria-hidden="true"
+                            />
+                          </div>
                         </Popover.Button>
 
                         <Transition
@@ -105,7 +108,13 @@ export default function HeaderComponent() {
                                   <h3 className="text-sm font-medium tracking-wide text-gray-500 uppercase">Company</h3>
                                   <ul className="mt-5 space-y-6">
                                     {company.map((item) => (
-                                      <li key={item.name} className="flow-root">
+                                      <li
+                                        key={item.name}
+                                        className="flow-root"
+                                        onClick={() => {
+                                          moreRef.current.click();
+                                        }}
+                                      >
                                         <Link
                                           to={item.href}
                                           className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
@@ -122,7 +131,12 @@ export default function HeaderComponent() {
                                   <ul className="mt-5 space-y-6">
                                     {resources.map((item) => (
                                       <Link to={item.href} className="flow-root" key={item.name}>
-                                        <div className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">
+                                        <div
+                                          className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
+                                          onClick={() => {
+                                            moreRef.current.click();
+                                          }}
+                                        >
                                           <item.icon className="flex-shrink-0 h-6 w-6 text-gray-400" aria-hidden="true" />
                                           <span className="ml-4">{item.name}</span>
                                         </div>

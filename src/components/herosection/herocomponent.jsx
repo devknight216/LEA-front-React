@@ -44,7 +44,7 @@ export default function HeroComponent() {
               <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
                 <span className="text-yellow-300">
                   <p className="text-center drop-shadow-xl font-extrabold font-trajan">Fully Furnished</p>
-                  <p className="text-center drop-shadow-xl font-extrabold font-trajan">Luxury Apartments</p>
+                  <p className="text-center drop-shadow-xl font-extrabold font-trajan">Vacation Rental Homes</p>
                 </span>
               </h1>
               <p className=" max-w-lg mx-auto text-center text-xl text-white sm:max-w-3xl ">

@@ -62,10 +62,10 @@ function BookPage({ match }) {
                   100
               ).toFixed(2)
           : (
-            parseFloat(property?.nightlyRate) * (dates.length - 1) +
-            (property?.depositFee | 0) +
-            (property?.petAllowFee?.fee | 0) * bookData.pets
-          ).toFixed(2),
+              parseFloat(property?.nightlyRate) * (dates.length - 1) +
+              (property?.depositFee | 0) +
+              (property?.petAllowFee?.fee | 0) * bookData.pets
+            ).toFixed(2),
     });
   }, [property]);
 
@@ -76,7 +76,7 @@ function BookPage({ match }) {
           <PropertyDetailComponent bookData={bookData} />
         </div>
         <div>
-          <BookDetailComponent bookData={bookData} property={property}/>
+          <BookDetailComponent bookData={bookData} property={property} />
         </div>
       </div>
     </div>
