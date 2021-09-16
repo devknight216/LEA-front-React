@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPropertyById } from "reduxstore/propertyreducer/slice";
@@ -7,7 +7,12 @@ import EditPropertyFieldComponent from "components/admin/manageitem/editfields/e
 import ImageUploadToAWSComponent from "components/common/uploadImage";
 import EditPropertyDescriptionComponent from "components/admin/manageitem/editfields/editdescription";
 import EditPropertyFieldBySelectComponent from "components/admin/manageitem/editfields/editfieldsbySelect";
-import { features } from "components/host(test)/constant";
+import { amenities, features } from "components/host(test)/constant";
+import { iconList } from "components/detailview/amenities/icons";
+import { CheckCircleIcon, XCircleIcon, PlusCircleIcon } from "@heroicons/react/outline";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import { updatePropertyById } from "reduxstore/propertyreducer/action";
+
 export default function CreateNewPropertyPage() {
   const location = useLocation();
   const propertyId = location.pathname.split("/")[4];
@@ -17,6 +22,39 @@ export default function CreateNewPropertyPage() {
   useEffect(() => {
     dispatch(getPropertyById(propertyId));
   }, []);
+
+  //Edit Amenities
+  const [isEdit, setIsEdit] = useState(false);
+  const [selectedAmenity, setSelectedAmenity] = useState(null);
+  const handleOnSelect = (item) => {
+    console.log(item);
+    setSelectedAmenity(item.name)
+  };
+  const formatResult = (item) => {
+    return item;
+  };
+
+  const deleteAmenities = (item) => {
+    const payload = {
+      id: propertyId,
+      body: {
+        amenities: property?.amenities?.filter((amenities) => amenities !== item),
+      },
+    };
+    dispatch(updatePropertyById(payload));
+  };
+  const addAmenities = () => {
+    if(selectedAmenity){
+      const payload = {
+        id: propertyId,
+        body: {
+          amenities:[ ...property?.amenities, selectedAmenity ]
+        },
+      };
+      dispatch(updatePropertyById(payload));
+    }
+  };
+
   return (
     <div>
       <div className="bg-white rounded-lg shadow-lg p-2 md:p-5">
@@ -67,7 +105,7 @@ export default function CreateNewPropertyPage() {
               label="Property Description"
               value={property?.propertyDescription}
               type="text"
-              variableName="propertyName"
+              variableName="propertyDescription"
               propertyID={propertyId}
             />
           </div>
@@ -145,6 +183,60 @@ export default function CreateNewPropertyPage() {
               propertyID={propertyId}
             />
           </div>
+        </div>
+      </div>
+      <div className="bg-white rounded-lg shadow-lg p-2 md:p-5  mt-4">
+        <p className="border-b py-2 text-xl">Amenities</p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 px-5 py-5">
+          {property?.amenities?.map((amenity, index) => (
+            <div key={index} className="py-3 md:px-5 px-2 relative">
+              <img src={iconList[amenity]} className="w-10 h-10" />
+              <p className="truncate">{amenity}</p>
+              <div className="absolute top-0 left-0">
+                <XCircleIcon
+                  className="h-6 w-6 cursor-pointer text-red-500 hover:text-red-800"
+                  onClick={() => {
+                    deleteAmenities(amenity);
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center border-t py-5">
+          {isEdit ? (
+            <div className="w-full">
+              <ReactSearchAutocomplete
+                items={amenities?.map((amenity, index) => ({
+                  id: index,
+                  name: amenity.label,
+                }))}
+                onSelect={handleOnSelect}
+                autoFocus
+                formatResult={formatResult}
+              />
+            </div>
+          ) : (
+            ""
+          )}
+          {!isEdit ? (
+            <PlusCircleIcon
+              className="h-6 w-6 cursor-pointer text-gray-500 hover:text-gray-800"
+              onClick={() => {
+                setIsEdit(true);
+              }}
+            />
+          ) : (
+            <div>
+              <CheckCircleIcon className="h-6 w-6 cursor-pointer text-gray-500 hover:text-gray-800" onClick={addAmenities}/>
+              <XCircleIcon
+                className="h-6 w-6 cursor-pointer text-gray-500 hover:text-gray-800"
+                onClick={() => {
+                  setIsEdit(false);
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
       <div className="bg-white rounded-lg shadow-lg p-2 md:p-5 mt-4">

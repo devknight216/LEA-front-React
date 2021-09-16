@@ -19,7 +19,6 @@ function EditPropertyFieldComponent({ label, value, variableName, type, unit, pr
         [variableName]: editValue,
       },
     };
-    console.log(payload);
     dispatch(updatePropertyById(payload));
     setIsEdit(false);
   };
