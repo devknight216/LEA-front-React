@@ -15,6 +15,7 @@ import NotiVerificationPage from "./emailverification/notiverification";
 import ScrollToTop from "shared/scrolltotop";
 import ContactUsSuccessPage from "./contactus/success";
 import StagingEmailSuccess from "./staging/success";
+import MapSearchPage from "./mapsearch/mapsearch";
 
 export default function MainLayout() {
   return (
@@ -25,7 +26,7 @@ export default function MainLayout() {
           <Route exact path="/" component={HomePage} />
           <Route path="/properties" component={PropertiesPage} />
           <Route path="/staging" component={Stagingpage} />
-          <Route path="/staging-success" component={StagingEmailSuccess}/>
+          <Route path="/staging-success" component={StagingEmailSuccess} />
           <Route path="/profit" component={ProfitPage} />
           <Route path="/contact" component={ContactUsPage} />
           <Route path="/contact-success" component={ContactUsSuccessPage} />
@@ -33,6 +34,7 @@ export default function MainLayout() {
           <Route path="/policy" component={PolicyPage} />
           <Route path="/verify/:token" component={EmailVerificaionPage} />
           <Route path="/verifynoti" component={NotiVerificationPage} />
+          <Route path="/map-search" component={MapSearchPage} />
           <Route component={NotFoundPage} />
         </Switch>
         <FooterComponent />

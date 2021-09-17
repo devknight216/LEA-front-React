@@ -24,26 +24,24 @@ export default function StagingInfoModalComponent({ isOpen, setisOpen }) {
     spaceArea: "Less than 500 sq ft",
     spaceFurniture: "Living Room",
     stagingTime: "Immediately",
-    ownerType: "Homeowner"
-  })
-  console.log(stagingInfo);
+    ownerType: "Homeowner",
+  });
 
   const setValue = (e, param) => {
     setStagingInfo({
       ...stagingInfo,
-      [param]: e.target.value
-    })
-  }
+      [param]: e.target.value,
+    });
+  };
 
   const onSubmit = async () => {
-    if(stagingInfo.username && stagingInfo.email && stagingInfo.phone ){
+    if (stagingInfo.username && stagingInfo.email && stagingInfo.phone) {
       const res = await staging(stagingInfo);
-      console.log(res);
-      if(res.status === 200){
-        history.push("/staging-success");   
+      if (res.status === 200) {
+        history.push("/staging-success");
       }
     }
-  }
+  };
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>
@@ -96,13 +94,32 @@ export default function StagingInfoModalComponent({ isOpen, setisOpen }) {
                     </p>
                     <div className="py-5 border-b grid grid-cols-1 sm:grid-cols-2 sm:gap-4">
                       <div className="col-span-1">
-                        <InputBox placeholder="Name" value={stagingInfo.username} onchange={(e) => {setValue(e, "username")}} />
+                        <InputBox
+                          placeholder="Name"
+                          value={stagingInfo.username}
+                          onchange={(e) => {
+                            setValue(e, "username");
+                          }}
+                        />
                       </div>
                       <div className="col-span-1">
-                        <InputBox placeholder="Email" type="email" value={stagingInfo.email} onchange={(e) => {setValue(e, "email")}} />
+                        <InputBox
+                          placeholder="Email"
+                          type="email"
+                          value={stagingInfo.email}
+                          onchange={(e) => {
+                            setValue(e, "email");
+                          }}
+                        />
                       </div>
                       <div className="col-span-2">
-                        <InputBox placeholder="Phone Number" value={stagingInfo.phone} onchange={(e) => {setValue(e, "phone")}}/>
+                        <InputBox
+                          placeholder="Phone Number"
+                          value={stagingInfo.phone}
+                          onchange={(e) => {
+                            setValue(e, "phone");
+                          }}
+                        />
                       </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 py-5 gap-5 text-gray-700">
@@ -115,7 +132,7 @@ export default function StagingInfoModalComponent({ isOpen, setisOpen }) {
                             className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300  sm:text-sm rounded-md"
                             defaultValue="Canada"
                             onChange={(e) => {
-                              setValue(e, item.name)
+                              setValue(e, item.name);
                             }}
                           >
                             {item.options.map((option, index) => (

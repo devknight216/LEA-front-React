@@ -56,9 +56,6 @@ function HostNewPropertyPage() {
       rate: 80,
     },
   });
-  useEffect(() => {
-    console.log(property);
-  }, [property]);
   return (
     <div>
       <div className="bg-gray-100">

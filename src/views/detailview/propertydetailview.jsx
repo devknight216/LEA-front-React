@@ -22,7 +22,6 @@ const PropertyDetailViewPage = (props) => {
     dispatch(getPropertyById(props.match.params.id));
   }, []);
   const property = useSelector((state) => state.properties.property);
-  console.log(property);
   const stats = [
     { label: "Guests", value: property?.guestNum, icon: GuestIcon },
     { label: "Bedrooms", value: property?.bedroomNum, icon: BedroomIcon },

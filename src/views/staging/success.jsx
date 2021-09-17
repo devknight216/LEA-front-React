@@ -12,12 +12,11 @@ function StagingEmailSuccess() {
             <img className="h-24 w-auto" src={BrandIcon} alt="" />
           </Link>
         </div>
-        <h2 className="text-gray-600 font-bold text-2xl my-5">Staging Email Success</h2>
+        <h2 className="text-gray-600 font-bold text-2xl my-5">Your request was submitted successfully!</h2>
         <p className="text-gray-500 ">
-          Thank you for signing up! <br />
-          We are excited to have you here and can&apos;t wait to get you onboard. <br />
-          Before we get started, we&apos;ll need to verify your email. <br />
-          Please check your inbox and click the link for email verification.
+          Thank you for your interest with our staging services.
+          <br /> One of our staging consultants will reach out to you shortly. We are excited to help you transform your space and
+          get it rented fast!
         </p>
       </div>
     </div>

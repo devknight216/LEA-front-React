@@ -20,7 +20,7 @@ export const staging = async (requestbody) => {
       "Content-Type": "application/json",
     },
   });
-}
+};
 
 //Email Verify API
 export const emailVerify = async (token) => {
@@ -39,7 +39,6 @@ export const stripeAccount = async (token) => {
 };
 
 export const stripeLink = async (token, body) => {
-  console.log(body);
   return await axios.post(`${backend_url}/users/stripe_link`, JSON.stringify(body), {
     headers: {
       Authorization: `${token}`,

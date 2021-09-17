@@ -20,7 +20,6 @@ export default function CreateNewPropertyPage() {
   //Get Stored value
   const dispatch = useDispatch();
   const property = useSelector((state) => state.properties.property);
-  console.log(property);
   useEffect(() => {
     dispatch(getPropertyById(propertyId));
   }, []);
