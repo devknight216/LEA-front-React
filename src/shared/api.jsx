@@ -12,6 +12,16 @@ export const contactus = (requestbody) => {
   });
 };
 
+//Staging API
+export const staging = async (requestbody) => {
+  return await axios.post(backend_url + "/email/staging", JSON.stringify(requestbody), {
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      "Content-Type": "application/json",
+    },
+  });
+}
+
 //Email Verify API
 export const emailVerify = async (token) => {
   return await axios.get(`${backend_url}/users/verify/${token}`);
