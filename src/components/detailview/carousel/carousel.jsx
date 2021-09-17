@@ -1,17 +1,10 @@
-import React, { useState } from "react";
-import ImageViewComponent from "./imageview";
+import React from "react";
 
 function DetailViewCarouselComponent({ images }) {
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="mx-auto container">
       {images && (
-        <div
-          className="mt-6 max-w-7xl mx-auto cursor-pointer"
-          onClick={() => {
-            setIsOpen(true);
-          }}
-        >
+        <div className="mt-6 max-w-7xl mx-auto cursor-pointer">
           <div className="grid grid-cols-1 md:grid-cols-3 md:gap-8">
             <div className="hidden rounded-lg overflow-hidden lg:block">
               <img src={images[0]?.url} alt={images[0]?.filename} className="w-full h-full object-center object-cover" />
@@ -36,15 +29,6 @@ function DetailViewCarouselComponent({ images }) {
             </div>
           </div>
         </div>
-      )}
-      {images && (
-        <ImageViewComponent
-          isOpen={isOpen}
-          closeViewer={() => {
-            setIsOpen(false);
-          }}
-          images={images}
-        />
       )}
     </div>
   );

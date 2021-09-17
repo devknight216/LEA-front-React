@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ImgsViewer from "react-images-viewer";
 
 export default function ImageViewComponent({ images, isOpen, closeViewer }) {
@@ -13,14 +13,9 @@ export default function ImageViewComponent({ images, isOpen, closeViewer }) {
     setCurrImg(currImg + 1);
   };
 
-  const [imageArray, setImageArray] = useState([]);
-  useEffect(() => {
-    images.forEach((element) => setImageArray((prev) => [...prev, { src: element.url }]));
-  }, []);
-
   return (
     <ImgsViewer
-      imgs={imageArray}
+      imgs={images?.map((element) => ({ src: element.url }))}
       isOpen={isOpen}
       currImg={currImg}
       onClickPrev={gotoPrev}
