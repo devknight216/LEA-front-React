@@ -1,39 +1,73 @@
 import React, { useEffect, useState } from "react";
-// import GoogleMap, { Marker } from "react-maps-google";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import { getLatLangArray } from "./functions";
+import Slider from "react-slick";
 
-const GoogleMapComponent = ({ google, locations }) => {
-  console.log("Locations", locations);
+const GoogleMapComponent = ({ google, properties }) => {
   const [geoList, setGeoList] = useState([]);
+  const [visible, setVisible] = useState({ showingInfoWindow: false, activeMarker: {}, selectedPlace: {}, property: {} });
   const getGeoList = async () => {
-    setGeoList(await getLatLangArray(locations));
+    setGeoList(await getLatLangArray(properties));
   };
-
+  
   useEffect(() => {
     getGeoList();
-  }, [locations]);
+  }, [properties]);
 
-  console.log("GeoList", geoList);
+  const clickMapPin = (props, marker, e, property) => {
+    console.log(property);
+    setVisible({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true,
+      property: property,
+    });
+  };
 
-  // var points = [
-  //   { lat: 42.02, lng: -77.01 },
-  //   { lat: 42.03, lng: -77.02 },
-  //   { lat: 41.03, lng: -77.04 },
-  //   { lat: 42.05, lng: -77.02 },
-  // ];
-  // var bounds = new google.maps.LatLngBounds();
-  // for (var i = 0; i < points.length; i++) {
-  //   bounds.extend(points[i]);
-  // }
+  const settingsChildren = {
+    dots: false,
+    infinite: true,
+    fade: true,
+    pauseOnHover: false,
+    swipeToSlide: false,
+    swipe: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    lazyLoad: true,
+    arrows: true,
+    autoplay: false,
+  };
+
   return geoList.length > 0 ? (
-    <Map google={google} zoom={14}>
+    <Map
+      google={google}
+      zoom={14}
+      initialCenter={{
+        lat: 29.7506658,
+        lng: -95.37915079999999,
+      }}
+    >
       {geoList.map((position, index) => (
-        <Marker key={index} name={"Current location"} position={{ lat: position.lat, lng: position.lng }} />
+        <Marker
+          key={index}
+          name={position.property.propertyName}
+          title={position.property.propertyName}
+          position={{ lat: position.geo.lat, lng: position.geo.lng }}
+          onClick={(props, marker, e) => {
+            clickMapPin(props, marker, e, position.property);
+          }}
+        ></Marker>
       ))}
-      <InfoWindow>
-        <div>
-          <h1>ttt</h1>
+      <InfoWindow visible={visible.showingInfoWindow} marker={visible.activeMarker}>
+        <div className="bg-white px-5 py-3 h-60 w-30">
+          {visible.property?.imageURLs?.map((item) => (
+            <div className="p-2 " key={item._id}>
+              <img className="object-cover w-full h-full shadow-lg rounded-lg" src={item.url} alt="" />
+            </div>
+          ))}
+          <p className="font-bold">{visible.property.propertyName}</p>
+          <p className="text-indigo-500">${visible.property.nightlyRate}/night</p>
         </div>
       </InfoWindow>
     </Map>

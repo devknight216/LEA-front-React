@@ -28,7 +28,7 @@ export default function PropertyIistItem({ item }) {
         <Slider {...settingsChildren}>
           {item.imageURLs.map((img) => {
             return (
-              <div className="aspect-w-3 aspect-h-2 p-5 h-72" key={img._id}>
+              <div className="aspect-w-3 aspect-h-2 p-5 h-52 md:h-72" key={img._id}>
                 <img className="object-cover w-full h-full shadow-lg rounded-lg" src={img.url} alt="" />
               </div>
             );

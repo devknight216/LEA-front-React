@@ -284,7 +284,7 @@ export default function SearchPropertyComponent({ className }) {
                     guestNum &&
                       filterDateRange &&
                       history.push(
-                        `/properties?adult=${guestNum.adult}&children=${guestNum.children}&infants=${guestNum.infants}&location=${locationUrl}&checkin=${filterDateRange.from}&checkout=${filterDateRange.to}`
+                        `/map-search?adult=${guestNum.adult}&children=${guestNum.children}&infants=${guestNum.infants}&location=${locationUrl}&checkin=${filterDateRange.from}&checkout=${filterDateRange.to}`
                       );
                   }}
                 >
