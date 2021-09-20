@@ -30,3 +30,17 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+.google-places-autocomplete__suggestions-container{
+  position: absolute;
+  background-color: white;
+  padding: 8px;
+  top: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 10px;;
+}
+.google-places-autocomplete__suggestion{
+  cursor: pointer;
+}
+.google-places-autocomplete__suggestion:hover{
+  background-color: #00000011;
+}

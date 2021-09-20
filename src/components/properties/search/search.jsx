@@ -23,16 +23,10 @@ export default function SearchComponent() {
 
   //Get Filtered Data
   const query = qs.parse(location.search, { ignoreQueryPrefix: true });
-  const city = query ? query?.location?.split(",")[query?.location?.split(",").length - 3] : "";
-  const state = query ? query?.location?.split(",")[query?.location?.split(",").length - 2] : "";
 
   const [filterData, setFilterData] = useState({
     nightlyRate: 0,
     instantBook: false,
-    propertyLocation: {
-      city: city?.replace(" ", ""),
-      state: state?.replace(" ", ""),
-    },
     propertyType: "",
     propertySpaceFeature: "",
     guestNum: parseInt(query?.adult) + parseInt(query?.children),
@@ -104,10 +98,6 @@ export default function SearchComponent() {
     dispatch(
       searchProperties({
         nightlyRate: filterData.nightlyRate,
-        propertyLocation: {
-          city: city?.replace(" ", ""),
-          state: state?.replace(" ", ""),
-        },
         propertyType: filterData.propertyType,
         propertySpaceFeature: filterData.propertySpaceFeature,
         guestNum: parseInt(query.adult) + parseInt(query.children),

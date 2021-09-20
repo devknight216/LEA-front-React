@@ -5,9 +5,9 @@ import { MinusIcon, PlusIcon, SearchIcon } from "@heroicons/react/solid";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 import { classNames } from "shared/function";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAllProperties } from "reduxstore/propertyreducer/action";
-import ReactSearchAutocomplete from "react-search-autocomplete/dist/components/ReactSearchAutocomplete";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 export default function SearchPropertyComponent({ className }) {
   const locationRef = React.useRef();
@@ -29,33 +29,10 @@ export default function SearchPropertyComponent({ className }) {
   const [locationUrl, setLocation] = useState(null);
   const [locationFocuse, setLocationFocue] = useState(false);
 
-  const properties = useSelector((state) => state.properties.properties);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllProperties());
+    dispatch(getAllProperties({ propertyLocation: locationUrl }));
   }, []);
-
-  //Get All Locations
-  const locationArray = useMemo(
-    () =>
-      [
-        ...new Set(
-          properties
-            .map((property) => ({
-              city: property.propertyLocation.city,
-              state: property.propertyLocation.state,
-              country: property.propertyLocation.country,
-            }))
-            .map(JSON.stringify)
-        ),
-      ].map(JSON.parse),
-    [properties]
-  );
-  const handleOnSelect = (item) => {
-    setLocationFocue(false);
-    setLocation(item.name);
-  };
-
   const changeGuestNum = (type, who) => {
     if (type === "plus") {
       switch (who) {
@@ -142,35 +119,18 @@ export default function SearchPropertyComponent({ className }) {
             )}
           >
             <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">Location </div>
-            <div className="w-full bg-transparent outline-none overflow-ellipsis text-md text-gray-700 placeholder-gray-600 text-md font-semibold px-2">
-              <ReactSearchAutocomplete
-                items={locationArray?.map((item, index) => ({ id: index, name: `${item.city}, ${item.state}, ${item.country}` }))}
-                placeholder="Address"
-                autoFocus
-                onFocus={() => {
-                  setLocationFocue(true);
+            <div className="w-full bg-transparent outline-none overflow-ellipsis text-md text-gray-700 placeholder-gray-600 text-md font-semibold px-2 relative">
+              <GooglePlacesAutocomplete
+                inputStyle={{
+                  backgroundColor: "transparent",
+                  padding: "0px 0px 0px 24px",
+                  outline: "none",
+                  fontWeight: "bold",
                 }}
-                onSelect={handleOnSelect}
-                onClear={() => {
-                  setLocationFocue(false);
+                onSelect={(val) => {
+                  console.log(val);
+                  setLocation(val.place_id);
                 }}
-                styling={
-                  locationFocuse
-                    ? {
-                        height: "20px",
-                        backgroundColor: "white",
-                        border: "0px solid #dfe1e5",
-                        boxShadow: "none",
-                        borderRadius: "5px",
-                      }
-                    : {
-                        height: "20px",
-                        backgroundColor: "transparent",
-                        border: "0px solid #dfe1e5",
-                        boxShadow: "none",
-                        borderRadius: "5px",
-                      }
-                }
               />
             </div>
           </div>

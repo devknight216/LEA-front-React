@@ -61,6 +61,7 @@ const craeteNewPropertFromAPI = async (requestBody) => {
 };
 
 const searchPropertiesFromAPI = async (requestBody) => {
+  console.log("arrived => ", requestBody);
   const backend_url = `${process.env.REACT_APP_BACKEND_API_URL}/api/property/search`;
   const res = axios.post(backend_url, JSON.stringify(requestBody), {
     headers: {

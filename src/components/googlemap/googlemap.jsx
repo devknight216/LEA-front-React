@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import { getLatLangArray } from "./functions";
-import Slider from "react-slick";
 
-const GoogleMapComponent = ({ google, properties }) => {
+const GoogleMapComponent = ({ google, properties, center }) => {
   const [geoList, setGeoList] = useState([]);
   const [visible, setVisible] = useState({ showingInfoWindow: false, activeMarker: {}, selectedPlace: {}, property: {} });
   const getGeoList = async () => {
     setGeoList(await getLatLangArray(properties));
   };
-  
+
   useEffect(() => {
     getGeoList();
   }, [properties]);
@@ -22,21 +21,6 @@ const GoogleMapComponent = ({ google, properties }) => {
       showingInfoWindow: true,
       property: property,
     });
-  };
-
-  const settingsChildren = {
-    dots: false,
-    infinite: true,
-    fade: true,
-    pauseOnHover: false,
-    swipeToSlide: false,
-    swipe: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    lazyLoad: true,
-    arrows: true,
-    autoplay: false,
   };
 
   return geoList.length > 0 ? (
@@ -60,12 +44,7 @@ const GoogleMapComponent = ({ google, properties }) => {
         ></Marker>
       ))}
       <InfoWindow visible={visible.showingInfoWindow} marker={visible.activeMarker}>
-        <div className="bg-white px-5 py-3 h-60 w-30">
-          {visible.property?.imageURLs?.map((item) => (
-            <div className="p-2 " key={item._id}>
-              <img className="object-cover w-full h-full shadow-lg rounded-lg" src={item.url} alt="" />
-            </div>
-          ))}
+        <div className="bg-white px-5 py-3 w-30">
           <p className="font-bold">{visible.property.propertyName}</p>
           <p className="text-indigo-500">${visible.property.nightlyRate}/night</p>
         </div>
