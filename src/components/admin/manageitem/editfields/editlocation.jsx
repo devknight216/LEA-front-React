@@ -45,7 +45,7 @@ function EditPropertyLocationComponent({ location, propertyId }) {
             <div>
               <InputBox
                 placeholder="apartment"
-                value={loationInfo.apartment}
+                value={loationInfo?.apartment}
                 onchange={(e) => {
                   inputLoationInfo(e, "apartment");
                 }}
@@ -54,7 +54,7 @@ function EditPropertyLocationComponent({ location, propertyId }) {
             <div>
               <InputBox
                 placeholder="street"
-                value={loationInfo.street}
+                value={loationInfo?.street}
                 onchange={(e) => {
                   inputLoationInfo(e, "street");
                 }}
@@ -63,7 +63,7 @@ function EditPropertyLocationComponent({ location, propertyId }) {
             <div>
               <InputBox
                 placeholder="city"
-                value={loationInfo.city}
+                value={loationInfo?.city}
                 onchange={(e) => {
                   inputLoationInfo(e, "city");
                 }}
@@ -72,7 +72,7 @@ function EditPropertyLocationComponent({ location, propertyId }) {
             <div>
               <InputBox
                 placeholder="state"
-                value={loationInfo.state}
+                value={loationInfo?.state}
                 onchange={(e) => {
                   inputLoationInfo(e, "state");
                 }}
@@ -81,7 +81,7 @@ function EditPropertyLocationComponent({ location, propertyId }) {
             <div>
               <InputBox
                 placeholder="country"
-                value={loationInfo.country}
+                value={loationInfo?.country}
                 onchange={(e) => {
                   inputLoationInfo(e, "country");
                 }}
@@ -90,7 +90,7 @@ function EditPropertyLocationComponent({ location, propertyId }) {
             <div>
               <InputBox
                 placeholder="zip"
-                value={loationInfo.zip}
+                value={loationInfo?.zip}
                 onchange={(e) => {
                   inputLoationInfo(e, "zip");
                 }}

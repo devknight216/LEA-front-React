@@ -84,12 +84,43 @@ function HostFeesComponent({ nextStep, previousStep, property, setProperty }) {
               <div className="py-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="col-span-2">
-                    <span className="text-white">Deposite Fee($)</span>
+                    <span className="text-white text-lg">Deposite Fee($)</span>
+                    <p className="text-white">As a host, you can set a Deposit fee for your property.</p>
                     <InputBox type="number" onchange={setDepositeFee} />
-                    <span className="text-white text-xs">As a host, you can set a Deposit fee for your property</span>
+                    <span className="text-white text-xs">If you want to set a deposit fee, please enter your desired amount. Please leave it blank otherwise.</span>
                   </div>
                 </div>
-                <p className="text-white mt-1">Pet Fee($)</p>
+                <p className="text-white mt-5 text-lg">Pet Fee($)</p>
+                <p className="text-white">If you selected to allow pets inside the property, you can also set a fee for each pet per night or accommodation.</p>
+                <div className="py-4">                  
+                  <p className="text-white">Select your pet free preference:</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="col-span-1">
+                      <Toggle
+                        getToggleValue={() => {
+                          setManageType(true);
+                        }}
+                        removeToggleValue={() => {
+                          setManageType(false);
+                        }}
+                        classnames="text-white"
+                        label="Per night"
+                      />
+                    </div>
+                    <div className="col-span-1">
+                      <Toggle
+                        getToggleValue={() => {
+                          setManageType(true);
+                        }}
+                        removeToggleValue={() => {
+                          setManageType(false);
+                        }}
+                        classnames="text-white"
+                        label="Per accommodation"
+                      />
+                    </div>
+                  </div>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="col-span-1">
                     <InputBox type="number" placeholder="Pet allow fee" onchange={setPetFee} />
@@ -100,8 +131,12 @@ function HostFeesComponent({ nextStep, previousStep, property, setProperty }) {
                     <span className="text-white text-xs">How many pets are you allowing inside your property?</span>
                   </div>
                 </div>
-                <p className="text-white mt-2">Other service offered by Legendary Estates Airbnb</p>
-                <div className="flex items-center">
+                <p className="text-white text-lg mt-2">Other service offered by Legendary Estates Airbnb</p>
+                <p className="text-white">Management by Legendary Estates Airbnb</p>
+                <p className="text-white text-xs italic">
+                  LEA can manage your property and handle everything for you. If you agree to have your property managed by LEA, 20% of platform sales will go to LEA.
+                </p>
+                <div className="flex items-center py-2">
                   <Toggle
                     getToggleValue={() => {
                       setManageType(true);
@@ -111,14 +146,6 @@ function HostFeesComponent({ nextStep, previousStep, property, setProperty }) {
                     }}
                   />
                   <span className="text-white text-xs">Do you want Legendary Estates Airbnb to manage the property for you?</span>
-                </div>
-                <p className="text-white mt-2">Staging by Legendary Estates Airbnb</p>
-                <div>
-                  <InputBox onchange={setStaging} />
-                  <span className="text-white text-xs">
-                    Please enter the number of hours you want to have your property staged. Please leave it blank if you don’t
-                    want staging for your space
-                  </span>
                 </div>
               </div>
               <div className="flex justify-between py-3">

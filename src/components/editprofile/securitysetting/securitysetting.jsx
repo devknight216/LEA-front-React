@@ -22,7 +22,7 @@ function EditAccountSecuritySettingComponent() {
           <div className="border-b py-2 px-5">
             <p>Deactivate your account</p>
             <div className="py-5 flex justify-end px-5">
-              <p className="text-red-500 cursor-pointer border rounded-md px-4 hover:bg-gray-200">Deactive</p>
+              <p className="text-red-500 cursor-pointer border rounded-md px-4 hover:bg-gray-200">Deactivate</p>
             </div>
           </div>
         </div>
