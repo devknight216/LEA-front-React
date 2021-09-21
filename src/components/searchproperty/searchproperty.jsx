@@ -6,8 +6,8 @@ import moment from "moment";
 import { useHistory } from "react-router-dom";
 import { classNames } from "shared/function";
 import { useDispatch } from "react-redux";
-import { getAllProperties } from "reduxstore/propertyreducer/action";
-import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import { getAllProperties, searchProperties } from "reduxstore/propertyreducer/action";
+import GooglePlacesAutocomplete, { geocodeByPlaceId } from "react-google-places-autocomplete";
 
 export default function SearchPropertyComponent({ className }) {
   const locationRef = React.useRef();
@@ -28,6 +28,36 @@ export default function SearchPropertyComponent({ className }) {
   });
   const [locationUrl, setLocation] = useState(null);
   const [locationFocuse, setLocationFocue] = useState(false);
+
+  const getLocationById = async (value) => {
+    const id = value.place_id;
+    setLocation(id);
+    try {
+      const result = await geocodeByPlaceId(id);
+      const address = result[0].address_components;
+      const getLocationDetail = (loationArray, type) => {
+        const detailedData = loationArray.filter((item) => item.types[0] && item.types[0] && item.types[0] === type)[0]
+          ?.long_name;
+        return detailedData ? detailedData : "";
+      };
+      dispatch(
+        searchProperties({
+          propertyLocation: {
+            apartment: "",
+            street: getLocationDetail(address, "street_number")
+              ? `${getLocationDetail(address, "street_number")} ${getLocationDetail(address, "route")}`
+              : getLocationDetail(address, "route"),
+            city: getLocationDetail(address, "locality"),
+            state: getLocationDetail(address, "administrative_area_level_1"),
+            country: getLocationDetail(address, "country"),
+            zip: getLocationDetail(address, "postal_code"),
+          },
+        })
+      );
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -121,16 +151,14 @@ export default function SearchPropertyComponent({ className }) {
             <div className="w-full text-left text-gray-600 text-sm font-semibold pl-8">Location </div>
             <div className="w-full bg-transparent outline-none overflow-ellipsis text-md text-gray-700 placeholder-gray-600 text-md font-semibold px-2 relative">
               <GooglePlacesAutocomplete
+                apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
                 inputStyle={{
                   backgroundColor: "transparent",
                   padding: "0px 0px 0px 24px",
                   outline: "none",
                   fontWeight: "bold",
                 }}
-                onSelect={(val) => {
-                  console.log(val);
-                  setLocation(val.place_id);
-                }}
+                onSelect={getLocationById}
               />
             </div>
           </div>
@@ -241,11 +269,7 @@ export default function SearchPropertyComponent({ className }) {
                   className="absolute w-16 h-16 bg-yellow-300 hover:bg-yellow-400 rounded-full right-3 lg:top-3 sm:top-0 flex items-center justify-center"
                   onClick={(e) => {
                     e.preventDefault();
-                    guestNum &&
-                      filterDateRange &&
-                      history.push(
-                        `/map-search?adult=${guestNum.adult}&children=${guestNum.children}&infants=${guestNum.infants}&location=${locationUrl}&checkin=${filterDateRange.from}&checkout=${filterDateRange.to}`
-                      );
+                    guestNum && filterDateRange && history.push(`/map-search`);
                   }}
                 >
                   <SearchIcon className="text-white w-1/2 h-1/2" />

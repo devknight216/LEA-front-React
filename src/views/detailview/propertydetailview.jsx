@@ -44,8 +44,7 @@ const PropertyDetailViewPage = (props) => {
       >
         <DetailViewCarouselComponent images={property?.imageURLs} />
       </div>
-      {
-        property?.imageURLs?.length>0 &&
+      {property?.imageURLs?.length > 0 && (
         <ImageViewComponent
           images={property?.imageURLs}
           isOpen={isOpen}
@@ -53,7 +52,7 @@ const PropertyDetailViewPage = (props) => {
             setIsOpen(false);
           }}
         />
-      }
+      )}
       <div className="min-h-screen mt-20 pt-10">
         <main className="-mt-24 pb-8">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
